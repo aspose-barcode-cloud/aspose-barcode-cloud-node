@@ -1,0 +1,9 @@
+.vs
+/src/node_modules
+obj
+testdata/out*
+bin
+*.js
+*.js.map
+*.user
+

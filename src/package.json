@@ -1,0 +1,15 @@
+{
+  "name": "aspose.bar-code.cloud.sdk",
+  "version": "0.0.0",
+  "description": "Aspose.BarCode.Cloud.Sdk",
+  "main": "app.js",
+  "author": {
+    "name": "Aspose.BarCode"
+  },
+  "devDependencies": {
+    "@types/node": "^6.0.87"
+  },
+  "dependencies": {
+    "request": "^2.85.0"
+  }
+}
