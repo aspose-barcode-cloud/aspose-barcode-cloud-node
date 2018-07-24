@@ -1,13 +1,9 @@
-﻿# Aspose.BarCode for Cloud Node JS SDK
-Aspose.BarCode for Cloud is a REST API for Linear, 2D and postal barcode generation and recognition in the cloud. API recognizes and generates barcode images in a variety of formats. Barcode REST API allows to specify barcode image attributes like image width, height, border style and output image format in order to customize the generation process. Developers can also specify the barcode type and text attributes such as text location and font styles in order to suit the application requirements.
-
-This repository contains Aspose.BarCode for Cloud Node JS SDK source code. 
-
+﻿Aspose.BarCode for Cloud is a REST API for Linear, 2D and postal barcode generation and recognition in the cloud. API recognizes and generates barcode images in a variety of formats. Barcode REST API allows to specify barcode image attributes like image width, height, border style and output image format in order to customize the generation process. Developers can also specify the barcode type and text attributes such as text location and font styles in order to suit the application requirements.
 
 To use these SDKs, you will need App SID and App Key which can be looked up at [Aspose Cloud Dashboard](https://dashboard.aspose.cloud/#/apps) (free registration in Aspose Cloud is required for this).
 
 ## How to use the SDK?
-The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [nmpjs distribution](https://www.npmjs.com/package/aspose-barcode-cloud-node) (recommended).
+The complete source code is available in the GIT repository. You can either directly use it in your project via source code or get [nmpjs distribution](https://www.npmjs.com/package/aspose-barcode-cloud-node) (recommended).
 
 ### Install Aspose.BarCode for Cloud via NPM
 
@@ -16,7 +12,7 @@ From the command line:
 	npm install aspose-barcode-cloud-node --save
 
 
-### Sample usage
+## Sample usage
 
 The examples below show how your application have to generate PDF417 barcode and save it on local storage:
 ``` js
