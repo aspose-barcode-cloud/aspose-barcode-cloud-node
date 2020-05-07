@@ -6,4 +6,4 @@ bin
 *.js
 *.js.map
 *.user
-
+/src/test/configuration.json

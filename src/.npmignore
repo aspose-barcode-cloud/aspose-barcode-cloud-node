@@ -6,4 +6,5 @@ bin
 *.js.map
 *.user
 *.njsproj
-
+test/
+configuration.json

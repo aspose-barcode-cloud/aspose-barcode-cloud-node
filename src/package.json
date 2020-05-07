@@ -15,7 +15,11 @@
   "main": "api.js",
   "author": "Aspose.BarCode Team",
   "devDependencies": {
-    "@types/node": "^6.0.87"
+    "@types/mocha": "^7.0.2",
+    "@types/node": "^6.0.87",
+    "mocha": "^7.1.2",
+    "ts-node": "^8.10.1",
+    "typescript": "^3.8.3"
   },
   "dependencies": {
     "request": "^2.85.0"
@@ -24,7 +28,7 @@
     "url": "https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/issues"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha -r ts-node/register test/**/*.ts"
   },
   "license": "MIT",
   "readmeFilename": "README.md"

@@ -892,16 +892,16 @@ export enum BarCodeApiApiKeys {
 }
 
 export class BarCodeApi {
-	
+
 	protected defaultHeaders : any = {};
     protected _configuration : Configuration;
 
 
-    constructor(appSID: string, appKey: string, version?: ApiVersion)
-	{
-		this._configuration = new Configuration(appSID, appKey, version);
+    constructor(configuration: Configuration)
+    {
+        this._configuration = configuration;
 	}
-	
+
     /**
      * 
      * @summary Generate barcode.
@@ -963,7 +963,7 @@ export class BarCodeApi {
             json: true,
             encoding: null,
         };
-		
+
         await this._configuration.authentication.applyToRequest(localVarRequestOptions);
 
         if (Object.keys(localVarFormParams).length) {
@@ -981,7 +981,7 @@ export class BarCodeApi {
                     body = ObjectSerializer.deserialize(body, "Buffer");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
-                    } 
+                    }
 					else if (allowRepeat && response.statusCode && response.statusCode === 401){
 						await this._configuration.authentication.applyUnauthorized();
 						await handler(error, response, body, false);
@@ -1076,7 +1076,7 @@ export class BarCodeApi {
             uri: localVarPath,
             json: true,
         };
-		
+
         await this._configuration.authentication.applyToRequest(localVarRequestOptions);
 
         if (Object.keys(localVarFormParams).length) {
@@ -1094,7 +1094,7 @@ export class BarCodeApi {
                     body = ObjectSerializer.deserialize(body, "BarCodeResponseList");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
-                    } 
+                    }
 					else if (allowRepeat && response.statusCode && response.statusCode === 401){
 						await this._configuration.authentication.applyUnauthorized();
 						await handler(error, response, body, false);
@@ -1158,7 +1158,7 @@ export class BarCodeApi {
             uri: localVarPath,
             json: true,
         };
-		
+
         await this._configuration.authentication.applyToRequest(localVarRequestOptions);
 
         if (Object.keys(localVarFormParams).length) {
@@ -1176,7 +1176,7 @@ export class BarCodeApi {
                     body = ObjectSerializer.deserialize(body, "BarCodeResponseList");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
-                    } 
+                    }
 					else if (allowRepeat && response.statusCode && response.statusCode === 401){
 						await this._configuration.authentication.applyUnauthorized();
 						await handler(error, response, body, false);
@@ -1217,7 +1217,7 @@ export class BarCodeApi {
             encoding: null,
             body: ObjectSerializer.serialize(dto, "BarCodeBuildersList")
         };
-		
+
         await this._configuration.authentication.applyToRequest(localVarRequestOptions);
 
         if (Object.keys(localVarFormParams).length) {
@@ -1235,7 +1235,7 @@ export class BarCodeApi {
                     body = ObjectSerializer.deserialize(body, "Buffer");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
-                    } 
+                    }
 					else if (allowRepeat && response.statusCode && response.statusCode === 401){
 						await this._configuration.authentication.applyUnauthorized();
 						await handler(error, response, body, false);
@@ -1396,7 +1396,7 @@ export class BarCodeApi {
             uri: localVarPath,
             json: true,
         };
-		
+
         await this._configuration.authentication.applyToRequest(localVarRequestOptions);
 
         if (Object.keys(localVarFormParams).length) {
@@ -1414,7 +1414,7 @@ export class BarCodeApi {
                     body = ObjectSerializer.deserialize(body, "AsposeResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
-                    } 
+                    }
 					else if (allowRepeat && response.statusCode && response.statusCode === 401){
 						await this._configuration.authentication.applyUnauthorized();
 						await handler(error, response, body, false);
@@ -1466,7 +1466,7 @@ export class BarCodeApi {
             json: true,
             body: ObjectSerializer.serialize(barcodeReader, "BarCodeReader")
         };
-		
+
         await this._configuration.authentication.applyToRequest(localVarRequestOptions);
 
         if (Object.keys(localVarFormParams).length) {
@@ -1484,7 +1484,7 @@ export class BarCodeApi {
                     body = ObjectSerializer.deserialize(body, "BarCodeResponseList");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
-                    } 
+                    }
 					else if (allowRepeat && response.statusCode && response.statusCode === 401){
 						await this._configuration.authentication.applyUnauthorized();
 						await handler(error, response, body, false);
@@ -1536,7 +1536,7 @@ export class BarCodeApi {
             json: true,
             body: ObjectSerializer.serialize(dto, "BarCodeBuildersList")
         };
-		
+
         await this._configuration.authentication.applyToRequest(localVarRequestOptions);
 
         if (Object.keys(localVarFormParams).length) {
@@ -1554,7 +1554,7 @@ export class BarCodeApi {
                     body = ObjectSerializer.deserialize(body, "AsposeResponse");
                     if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
                         resolve({ response: response, body: body });
-                    } 
+                    }
 					else if (allowRepeat && response.statusCode && response.statusCode === 401){
 						await this._configuration.authentication.applyUnauthorized();
 						await handler(error, response, body, false);

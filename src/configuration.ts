@@ -28,8 +28,8 @@ import http = require('http');
 
 export interface Authentication {
     /**
-    * Apply authentication settings to header and query params.
-    */
+     * Apply authentication settings to header and query params.
+     */
     applyToRequest(requestOptions: localVarRequest.Options): void;
 
     applyUnauthorized(): void;
@@ -87,7 +87,7 @@ export class OAuth implements Authentication {
                         self._refreshToken = response.body.refresh_token;
                         resolve();
                     } else {
-                        reject();
+                        reject(response.body);
                     }
                 }
             });
@@ -116,7 +116,7 @@ export class OAuth implements Authentication {
                         self._refreshToken = response.body.refresh_token;
                         resolve();
                     } else {
-                        reject();
+                        reject(response.body);
                     }
                 }
             });
@@ -157,20 +157,24 @@ export class Configuration {
      */
     public version: ApiVersion = ApiVersion.v1;
 
-    constructor(appSID: string, appKey: string, version?: ApiVersion) {
+    constructor(appSID: string, appKey: string, baseUrl?: string) {
         this.appSID = appSID;
         this.appKey = appKey;
-        this.baseUrl = "https://api.aspose.cloud";
-
-        if (version) {
-            this.version = version;
+        if (baseUrl) {
+            this.baseUrl = baseUrl;
         } else {
-            this.version = ApiVersion.v1;
+            this.baseUrl = "https://api.aspose.cloud";
         }
 
+        this.version = ApiVersion.v3;
 
+        //TODO: make JWT
         this.authentication = new OAuth(this) as Authentication;
     }
+
+    // static FromFile(filename: string): Configuration
+    // {
+    // }
 
     /**
      * Returns api base url
