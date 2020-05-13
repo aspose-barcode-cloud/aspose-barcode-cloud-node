@@ -1,19 +1,12 @@
 import 'mocha';
+import {Configuration} from "../configuration";
+import {LoadConfigurationFromFile} from "./test-config";
 
 const assert = require('assert');
-const fs = require('fs');
 
-
-function loadConfig() {
-    let rawdata = fs.readFileSync('./test/configuration.json');
-    let config = JSON.parse(rawdata);
-    return config;
-}
-
-
-describe('Load configuration.json', () => {
+describe('LoadConfigurationFromFile', () => {
     it('should return Configuration', () => {
-        let config = loadConfig();
-        assert.equal(config.ApiBaseUrl, "https://api-qa.aspose.cloud");
+        const config: Configuration = LoadConfigurationFromFile('./test/configuration.json');
+        assert.equal(config.baseUrl, "https://api-qa.aspose.cloud");
     });
 });

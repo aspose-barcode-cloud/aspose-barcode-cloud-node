@@ -23,8 +23,6 @@
 */
 
 import localVarRequest = require('request');
-import http = require('http');
-
 
 export interface Authentication {
     /**
@@ -125,9 +123,9 @@ export class OAuth implements Authentication {
 }
 
 export enum ApiVersion {
-    v1,
-    v2,
-    v3
+    v1 = "v1",
+    v2 = "v2",
+    v3 = "v3"
 }
 
 export class Configuration {
@@ -152,10 +150,7 @@ export class Configuration {
      */
     public baseUrl: string;
 
-    /**
-     * Gets or sets the API version.
-     */
-    public version: ApiVersion = ApiVersion.v1;
+    readonly version: ApiVersion = ApiVersion.v3;
 
     constructor(appSID: string, appKey: string, baseUrl?: string) {
         this.appSID = appSID;
@@ -166,15 +161,9 @@ export class Configuration {
             this.baseUrl = "https://api.aspose.cloud";
         }
 
-        this.version = ApiVersion.v3;
-
         //TODO: make JWT
         this.authentication = new OAuth(this) as Authentication;
     }
-
-    // static FromFile(filename: string): Configuration
-    // {
-    // }
 
     /**
      * Returns api base url

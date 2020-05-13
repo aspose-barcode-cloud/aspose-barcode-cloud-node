@@ -1,10 +1,12 @@
 ﻿import fs = require('fs');
-import * as barcode from './api';
-import { Configuration } from './configuration';
 
-async function generate(api: barcode.BarCodeApi) {
+import * as barcode from './api';
+
+import {LoadConfigurationFromFile} from "./test/test-config";
+
+async function generate(api: barcode.BarcodeApi) {
     //1. simple barcode generation
-    await api.barCodeGetBarCodeGenerate("Aspose.BarCode for Cloud Sample", "Pdf417", "png")
+    await api.getBarcodeGenerate("Pdf417", "Aspose.BarCode for Cloud Sample", "png")
         .then((apiResult) => {
             if (apiResult.response.statusCode == 200) {
                 fs.writeFile("../testdata/out_1.png", apiResult.body, (err) => {
@@ -19,20 +21,20 @@ async function generate(api: barcode.BarCodeApi) {
         });
 
     //2. create multiple barcodes on the one image
-    await api.barCodePostGenerateMultiple(
-        {
-            barCodeBuilders: [{
-                typeOfBarCode: barcode.BarCodeType.Code128,
-                text: "First barcode"
-            },
-            {
-                typeOfBarCode: barcode.BarCodeType.QR,
-                text: "Second barcode"
-            }],
-            xStep: 0,
-            yStep: 1
-        },
-        "png")
+    const firstBarcode = new barcode.GeneratorParams();
+    firstBarcode.typeOfBarcode = barcode.EncodeBarcodeType.Code128;
+    firstBarcode.text = "First barcode";
+
+    const secondBarcode = new barcode.GeneratorParams();
+    secondBarcode.typeOfBarcode = barcode.EncodeBarcodeType.QR;
+    secondBarcode.text = "Second barcode";
+
+    const params = new barcode.GeneratorParamsList();
+    params.barcodeBuilders = [firstBarcode, secondBarcode];
+    params.xStep = 0;
+    params.yStep = 1;
+
+    await api.postGenerateMultiple(params, "png")
         .then((apiResult) => {
             if (apiResult.response.statusCode == 200) {
                 fs.writeFile("../testdata/out_2.png", apiResult.body, (err) => {
@@ -47,6 +49,7 @@ async function generate(api: barcode.BarCodeApi) {
         });
 }
 
+const config = LoadConfigurationFromFile('./test/configuration.json');
 
-let api = new barcode.BarCodeApi(config);
-generate(api);
+let api = new barcode.BarcodeApi(config);
+generate(api).then(r => console.info("Done"));

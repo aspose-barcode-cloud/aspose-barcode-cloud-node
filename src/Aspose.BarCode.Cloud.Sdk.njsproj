@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>cae04741-d39a-43f2-ba95-7ac9e617529b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>app.ts</StartupFile>
+    <StartupFile>demo.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -37,7 +37,9 @@
     <TypeScriptCompile Include="configuration.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="app.ts" />
+    <TypeScriptCompile Include="demo.ts" />
+    <TypeScriptCompile Include="test\*.ts" />
+    <Content Include="test\configuration.json.template" />
     <Content Include="tsconfig.json" />
     <Content Include="package.json" />
     <Content Include="README.md" />

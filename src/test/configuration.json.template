@@ -1,5 +1,5 @@
 {
-    "AppKey": "Test.AppKey",
-    "AppSid": "Test.AppSid",
-    "DebugMode": true
+    "appKey": "Test.AppKey",
+    "appSID": "Test.AppSid",
+    "baseUrl": "localhost"
 }
