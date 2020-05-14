@@ -5,4 +5,6 @@ bin
 *.js
 *.js.map
 *.user
-/src/test/configuration.json
+/src/test/configuration*.json
+/src/.nyc_output/
+/src/coverage/

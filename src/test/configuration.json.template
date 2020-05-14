@@ -1,5 +1,5 @@
 {
     "appKey": "Test.AppKey",
     "appSID": "Test.AppSid",
-    "baseUrl": "localhost"
+    "baseUrl": "http://localhost"
 }

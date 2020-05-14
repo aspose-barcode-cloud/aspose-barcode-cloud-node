@@ -7,4 +7,5 @@ bin
 *.user
 *.njsproj
 test/
-configuration.json
+.nyc_output/
+coverage/

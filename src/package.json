@@ -18,6 +18,7 @@
     "@types/mocha": "^7.0.2",
     "@types/node": "^6.0.87",
     "mocha": "^7.1.2",
+    "nyc": "^15.0.1",
     "ts-node": "^8.10.1",
     "typescript": "^3.8.3"
   },
@@ -28,7 +29,8 @@
     "url": "https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/issues"
   },
   "scripts": {
-    "test": "mocha -r ts-node/register test/**/*.ts"
+    "test": "mocha -r ts-node/register test/**/*.ts",
+    "coverage": "nyc npm run test"
   },
   "license": "MIT",
   "readmeFilename": "README.md"

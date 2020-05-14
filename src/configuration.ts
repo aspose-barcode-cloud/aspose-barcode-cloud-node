@@ -22,110 +22,13 @@
 * SOFTWARE.
 */
 
-import localVarRequest = require('request');
-
-export interface Authentication {
-    /**
-     * Apply authentication settings to header and query params.
-     */
-    applyToRequest(requestOptions: localVarRequest.Options): void;
-
-    applyUnauthorized(): void;
-}
-
-export class OAuth implements Authentication {
-
-    private _accessToken: string;
-    private _refreshToken: string;
-    private _configuration: Configuration;
-
-    constructor(configuration: Configuration) {
-        this._configuration = configuration;
-    }
-
-    /**
-     * Apply authentication settings to header and query params.
-     */
-    public async applyToRequest(requestOptions: localVarRequest.Options): Promise<void> {
-        if (this._accessToken == null) {
-            await this.requestToken();
-        }
-
-        if (requestOptions && requestOptions.headers) {
-            requestOptions.headers.Authorization = "Bearer " + this._accessToken;
-        }
-
-        return Promise.resolve();
-    }
-
-    public async applyUnauthorized(): Promise<void> {
-        await this.refreshToken();
-    }
-
-    private requestToken(): Promise<void> {
-        const requestOptions: localVarRequest.Options = {
-            method: "POST",
-            json: true,
-            uri: this._configuration.baseUrl + "/oauth2/token",
-            form: {
-                grant_type: "client_credentials",
-                client_id: this._configuration.appSID,
-                client_secret: this._configuration.appKey,
-            },
-        };
-
-        return new Promise<void>((resolve, reject) => {
-            var self = this;
-            localVarRequest(requestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        self._accessToken = response.body.access_token;
-                        self._refreshToken = response.body.refresh_token;
-                        resolve();
-                    } else {
-                        reject(response.body);
-                    }
-                }
-            });
-        });
-    }
-
-    private refreshToken(): Promise<void> {
-        const requestOptions: localVarRequest.Options = {
-            method: "POST",
-            json: true,
-            uri: this._configuration.baseUrl + "/oauth2/token",
-            form: {
-                grant_type: "refresh_token",
-                refresh_token: this._refreshToken,
-            },
-        };
-
-        return new Promise<void>((resolve, reject) => {
-            var self = this;
-            localVarRequest(requestOptions, (error, response, body) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        self._accessToken = response.body.access_token;
-                        self._refreshToken = response.body.refresh_token;
-                        resolve();
-                    } else {
-                        reject(response.body);
-                    }
-                }
-            });
-        });
-    }
-}
+import {OAuth} from "./OAuth";
+import {Authentication} from "./Authentification";
 
 export enum ApiVersion {
     v1 = "v1",
-    v2 = "v2",
-    v3 = "v3"
+    v2 = "v1.1",
+    v3 = "v3.0"
 }
 
 export class Configuration {
@@ -151,14 +54,18 @@ export class Configuration {
     public baseUrl: string;
 
     readonly version: ApiVersion = ApiVersion.v3;
+    readonly accessToken: string;
 
-    constructor(appSID: string, appKey: string, baseUrl?: string) {
+    constructor(appSID: string, appKey: string, baseUrl?: string, accessToken?: string) {
         this.appSID = appSID;
         this.appKey = appKey;
         if (baseUrl) {
             this.baseUrl = baseUrl;
         } else {
             this.baseUrl = "https://api.aspose.cloud";
+        }
+        if (accessToken) {
+            this.accessToken = accessToken;
         }
 
         //TODO: make JWT
@@ -169,6 +76,6 @@ export class Configuration {
      * Returns api base url
      */
     public getApiBaseUrl(): string {
-        return this.baseUrl + "/" + ApiVersion[this.version];
+        return this.baseUrl + "/" + this.version;
     }
 }

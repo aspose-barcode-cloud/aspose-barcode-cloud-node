@@ -12,7 +12,7 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>cae04741-d39a-43f2-ba95-7ac9e617529b</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>demo.ts</StartupFile>
+    <StartupFile>example.ts</StartupFile>
     <StartWebBrowser>False</StartWebBrowser>
     <SearchPath>
     </SearchPath>
@@ -34,10 +34,10 @@
   </PropertyGroup>
   <ItemGroup>
     <TypeScriptCompile Include="api.ts" />
-    <TypeScriptCompile Include="configuration.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="demo.ts" />
+    <TypeScriptCompile Include="Authentification.ts" />
+    <TypeScriptCompile Include="OAuth.ts" />
+    <TypeScriptCompile Include="configuration.ts" />
+    <TypeScriptCompile Include="example.ts" />
     <TypeScriptCompile Include="test\*.ts" />
     <Content Include="test\configuration.json.template" />
     <Content Include="tsconfig.json" />
