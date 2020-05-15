@@ -22,8 +22,8 @@
 * SOFTWARE.
 */
 
-import {JWTAuth} from "./JWTAuth";
-import {Authentication} from "./Authentification";
+import {JWTAuth} from './JWTAuth';
+import {Authentication} from './Authentification';
 
 export enum ApiVersion {
     v1 = "v1",

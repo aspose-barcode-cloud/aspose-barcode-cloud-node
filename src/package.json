@@ -16,10 +16,11 @@
   "author": "Aspose.BarCode Team",
   "devDependencies": {
     "@types/mocha": "^7.0.2",
-    "@types/node": "^6.0.87",
+    "@types/node": "^6.14.10",
+    "@types/request": "^2.48.4",
+    "@types/uuid": "^7.0.3",
     "mocha": "^7.1.2",
     "nyc": "^15.0.1",
-    "ts-node": "^8.10.1",
     "typescript": "^3.8.3",
     "uuid": "^8.0.0"
   },

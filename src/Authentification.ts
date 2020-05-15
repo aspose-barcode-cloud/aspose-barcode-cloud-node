@@ -1,4 +1,4 @@
-import Request = require('request');
+import * as Request  from 'request';
 
 export interface Authentication {
     /**

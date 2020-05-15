@@ -1,17 +1,18 @@
-import Request = require('request');
+import * as Request  from 'request';
 
-import {Configuration} from "./configuration";
-import {Authentication} from "./Authentification";
+import {Configuration} from './configuration';
+import {Authentication} from './Authentification';
 
 export class JWTAuth implements Authentication {
 
     private _accessToken: string;
-    private _configuration: Configuration;
+    private readonly _configuration: Configuration;
 
     constructor(configuration: Configuration) {
         this._configuration = configuration;
 
         if (configuration.accessToken) {
+            // Use saved token
             this._accessToken = configuration.accessToken;
         }
     }

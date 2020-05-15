@@ -1,27 +1,18 @@
-﻿import fs = require('fs');
-
+﻿import * as fs from 'fs';
 import * as Barcode from './api';
 
-import {LoadConfigurationFromFile} from "./test/test-utils";
+import {LoadConfigurationFromFile} from './test/test-utils';
 
 async function generate(api: Barcode.BarcodeApi) {
     //1. simple barcode generation
-    await api.getBarcodeGenerate(Barcode.EncodeBarcodeType.Pdf417, "Aspose.BarCode for Cloud Sample",
+    const oneBarcode = await api.getBarcodeGenerate(Barcode.EncodeBarcodeType.Pdf417, "Aspose.BarCode for Cloud Sample",
         undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined,
         "png"
-    )
-        .then(apiResult => {
-            if (apiResult.response.statusCode == 200) {
-                fs.writeFile("../testdata/out_1.png", apiResult.body, (err) => {
-                    if (err) throw err;
+    );
 
-                    console.log('Saved to ../testdata/out_1.png');
-                });
-            }
-        })
-        .catch(reason => {
-            console.error(reason);
-        });
+    fs.writeFileSync("../testdata/out_1.png", oneBarcode.body);
+    console.log('Saved to ../testdata/out_1.png');
+
 
     //2. create multiple barcodes on the one image
     const firstBarcode = new Barcode.GeneratorParams();
@@ -37,20 +28,12 @@ async function generate(api: Barcode.BarcodeApi) {
     params.xStep = 0;
     params.yStep = 1;
 
-    await api.postGenerateMultiple(params, "png")
-        .then(apiResult => {
-            if (apiResult.response.statusCode == 200) {
-                fs.writeFile("../testdata/out_2.png", apiResult.body, (err) => {
-                    if (err) throw err;
+    const twoBarcodes = await api.postGenerateMultiple(params, "png");
 
-                    console.log("Saved to ../testdata/out_2.png");
-                });
-            }
-        })
-        .catch(reason => {
-            console.error(reason);
-        });
+    fs.writeFileSync("../testdata/out_2.png", twoBarcodes.body);
+    console.log("Saved to ../testdata/out_2.png");
 }
+
 
 const config = LoadConfigurationFromFile('./test/configuration.json');
 

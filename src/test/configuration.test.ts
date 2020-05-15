@@ -1,8 +1,8 @@
 import 'mocha';
 import * as assert from 'assert';
 
-import {Configuration} from "../configuration";
-import {LoadConfigurationFromFile} from "./test-utils";
+import {Configuration} from '../configuration';
+import {LoadConfigurationFromFile} from './test-utils';
 
 
 describe('LoadConfigurationFromFile', () => {

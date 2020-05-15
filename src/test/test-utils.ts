@@ -1,6 +1,6 @@
-import fs = require('fs');
+import * as fs from 'fs'
 
-import {Configuration} from "../configuration";
+import {Configuration} from '../configuration';
 
 export function LoadConfigurationFromFile(filename: string): Configuration {
     const text: string = fs.readFileSync(filename, 'utf-8');
