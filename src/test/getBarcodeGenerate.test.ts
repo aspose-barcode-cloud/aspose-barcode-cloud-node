@@ -1,12 +1,13 @@
 import 'mocha';
+import * as assert from 'assert';
 
-import {LoadConfigurationFromFile} from './test-utils';
 import * as Barcode from '../api';
+import {LoadConfigurationFromFile} from './test-utils';
 
-const assert = require('assert');
 
 describe('getBarcodeGenerate', function () {
     this.timeout(60000);
+
     const api = new Barcode.BarcodeApi(LoadConfigurationFromFile('./test/configuration.json'));
 
     it('should generate image', async function () {

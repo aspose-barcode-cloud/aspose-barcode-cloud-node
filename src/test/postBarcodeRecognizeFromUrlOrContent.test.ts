@@ -1,18 +1,20 @@
+import * as fs from 'fs';
+
 import 'mocha';
-import fs = require('fs');
+import * as assert from 'assert';
 
-import {LoadConfigurationFromFile} from './test-utils';
 import * as Barcode from '../api';
+import {LoadConfigurationFromFile} from './test-utils';
 
-const assert = require('assert');
 
 describe('postBarcodeRecognizeFromUrlOrContent', function () {
     this.timeout(60000);
+
     const api = new Barcode.BarcodeApi(LoadConfigurationFromFile('./test/configuration.json'));
 
-    it('should recognize sample', function (done) {
-        const imageStream = fs.createReadStream('../testdata/pdf417Sample.png');
+    const imageStream = fs.createReadStream('../testdata/pdf417Sample.png');
 
+    it('should recognize sample', function (done) {
         const buffers = [];
         imageStream.on('data', buf => {
             buffers.push(buf);
@@ -26,7 +28,7 @@ describe('postBarcodeRecognizeFromUrlOrContent', function () {
                 Barcode.PresetType.HighPerformance,
                 undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined,
                 imageBuffer)
-                .then((recognized) => {
+                .then(recognized => {
 
                     const barcodes = recognized.body.barcodes;
                     assert.equal(barcodes.length, 1);
@@ -41,7 +43,7 @@ describe('postBarcodeRecognizeFromUrlOrContent', function () {
 
                     done();
                 })
-                .catch((err) => done(err));
+                .catch(err => done(err));
         });
     });
 });

@@ -2,15 +2,15 @@
 
 import * as Barcode from './api';
 
-import { LoadConfigurationFromFile } from "./test/test-utils";
+import {LoadConfigurationFromFile} from "./test/test-utils";
 
 async function generate(api: Barcode.BarcodeApi) {
     //1. simple barcode generation
-    await api.getBarcodeGenerate("Pdf417", "Aspose.BarCode for Cloud Sample",
+    await api.getBarcodeGenerate(Barcode.EncodeBarcodeType.Pdf417, "Aspose.BarCode for Cloud Sample",
         undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined, undefined,
         "png"
     )
-        .then((apiResult) => {
+        .then(apiResult => {
             if (apiResult.response.statusCode == 200) {
                 fs.writeFile("../testdata/out_1.png", apiResult.body, (err) => {
                     if (err) throw err;
@@ -19,7 +19,7 @@ async function generate(api: Barcode.BarcodeApi) {
                 });
             }
         })
-        .catch((reason) => {
+        .catch(reason => {
             console.error(reason);
         });
 
@@ -38,7 +38,7 @@ async function generate(api: Barcode.BarcodeApi) {
     params.yStep = 1;
 
     await api.postGenerateMultiple(params, "png")
-        .then((apiResult) => {
+        .then(apiResult => {
             if (apiResult.response.statusCode == 200) {
                 fs.writeFile("../testdata/out_2.png", apiResult.body, (err) => {
                     if (err) throw err;
@@ -47,7 +47,7 @@ async function generate(api: Barcode.BarcodeApi) {
                 });
             }
         })
-        .catch((reason) => {
+        .catch(reason => {
             console.error(reason);
         });
 }

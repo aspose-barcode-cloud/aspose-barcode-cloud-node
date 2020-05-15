@@ -1,28 +1,29 @@
 import 'mocha';
+import * as assert from 'assert';
 
-import {LoadConfigurationFromFile} from './test-utils';
 import * as Barcode from '../api';
+import {LoadConfigurationFromFile} from './test-utils';
 
-const assert = require('assert');
 
-describe('getBarcodeGenerate', function () {
+describe('postGenerateMultiple', function () {
     this.timeout(60000);
 
     const api = new Barcode.BarcodeApi(LoadConfigurationFromFile('./test/configuration.json'));
 
-    it('should generate QR', async function () {
-        const barcode = new Barcode.GeneratorParams();
-        barcode.typeOfBarcode = Barcode.EncodeBarcodeType.Code128;
-        barcode.text = 'First barcode';
+    const firstBarcode = new Barcode.GeneratorParams();
+    firstBarcode.typeOfBarcode = Barcode.EncodeBarcodeType.Code128;
+    firstBarcode.text = 'First barcode';
 
-        const secondBarcode = new Barcode.GeneratorParams();
-        secondBarcode.typeOfBarcode = Barcode.EncodeBarcodeType.QR;
-        secondBarcode.text = 'Second barcode';
+    const secondBarcode = new Barcode.GeneratorParams();
+    secondBarcode.typeOfBarcode = Barcode.EncodeBarcodeType.QR;
+    secondBarcode.text = 'Second barcode';
 
-        const params = new Barcode.GeneratorParamsList();
-        params.barcodeBuilders = [barcode, secondBarcode];
-        params.xStep = 0;
-        params.yStep = 1;
+    const params = new Barcode.GeneratorParamsList();
+    params.barcodeBuilders = [firstBarcode, secondBarcode];
+    params.xStep = 0;
+    params.yStep = 1;
+
+    it('should generate image', async function () {
 
         const generated = await api.postGenerateMultiple(params, 'png');
 

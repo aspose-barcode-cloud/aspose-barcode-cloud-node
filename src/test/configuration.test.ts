@@ -1,8 +1,9 @@
 import 'mocha';
+import * as assert from 'assert';
+
 import {Configuration} from "../configuration";
 import {LoadConfigurationFromFile} from "./test-utils";
 
-const assert = require('assert');
 
 describe('LoadConfigurationFromFile', () => {
     it('should return Configuration', () => {
