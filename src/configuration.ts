@@ -22,7 +22,7 @@
 * SOFTWARE.
 */
 
-import {OAuth} from "./OAuth";
+import {JWTAuth} from "./JWTAuth";
 import {Authentication} from "./Authentification";
 
 export enum ApiVersion {
@@ -69,7 +69,7 @@ export class Configuration {
         }
 
         //TODO: make JWT
-        this.authentication = new OAuth(this) as Authentication;
+        this.authentication = new JWTAuth(this) as Authentication;
     }
 
     /**

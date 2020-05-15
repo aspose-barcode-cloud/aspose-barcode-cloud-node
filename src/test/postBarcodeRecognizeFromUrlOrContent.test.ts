@@ -10,7 +10,7 @@ describe('postBarcodeRecognizeFromUrlOrContent', function () {
     this.timeout(60000);
     const api = new Barcode.BarcodeApi(LoadConfigurationFromFile('./test/configuration.json'));
 
-    it('should recognize sample', function (done ) {
+    it('should recognize sample', function (done) {
         const imageStream = fs.createReadStream('../testdata/pdf417Sample.png');
 
         const buffers = [];
@@ -40,7 +40,8 @@ describe('postBarcodeRecognizeFromUrlOrContent', function () {
                     assert.ok(barcode.region[0].Y > 0, `Y=${barcodes[0].region[0].Y}`);
 
                     done();
-                });
+                })
+                .catch((err) => done(err));
         });
     });
 });

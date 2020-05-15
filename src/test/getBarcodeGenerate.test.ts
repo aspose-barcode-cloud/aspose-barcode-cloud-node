@@ -9,7 +9,7 @@ describe('getBarcodeGenerate', function () {
     this.timeout(60000);
     const api = new Barcode.BarcodeApi(LoadConfigurationFromFile('./test/configuration.json'));
 
-    it('should generate QR', async function () {
+    it('should generate image', async function () {
 
         const generated = await api.getBarcodeGenerate(Barcode.EncodeBarcodeType.QR, 'Testing generator');
 
