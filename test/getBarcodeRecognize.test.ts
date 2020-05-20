@@ -4,7 +4,7 @@ import assert from 'assert';
 import { v4 as uuidv4 } from 'uuid';
 
 import * as Barcode from '../src/api';
-import { LoadConfigurationFromFile } from './test-utils';
+import { LoadConfigurationFromFile } from './LoadConfigurationFromFile';
 
 describe('getBarcodeRecognize', () => {
     jest.setTimeout(60000);

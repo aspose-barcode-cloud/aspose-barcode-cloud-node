@@ -3,7 +3,7 @@ import fs from 'fs';
 import assert from 'assert';
 
 import * as Barcode from '../src/api';
-import { LoadConfigurationFromFile } from './test-utils';
+import { LoadConfigurationFromFile } from './LoadConfigurationFromFile';
 
 describe('postBarcodeRecognizeFromUrlOrContent', () => {
     jest.setTimeout(60000);

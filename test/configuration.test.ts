@@ -1,7 +1,7 @@
 import assert from 'assert';
 
-import { Configuration } from '../src/configuration';
-import { LoadConfigurationFromFile } from './test-utils';
+import { Configuration } from '../src/Configuration';
+import { LoadConfigurationFromFile } from './LoadConfigurationFromFile';
 
 describe('LoadConfigurationFromFile', () => {
     it('should return Configuration', () => {

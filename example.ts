@@ -1,7 +1,7 @@
 ﻿import * as fs from 'fs';
 import * as Barcode from './api';
 
-import {LoadConfigurationFromFile} from './test/test-utils';
+import {LoadConfigurationFromFile} from '../test/LoadConfigurationFromFile';
 
 async function generate(api: Barcode.BarcodeApi) {
     //1. simple barcode generation

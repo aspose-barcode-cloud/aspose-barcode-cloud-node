@@ -1,7 +1,7 @@
 import assert from 'assert';
 
 import * as Barcode from '../src/api';
-import { LoadConfigurationFromFile } from './test-utils';
+import { LoadConfigurationFromFile } from './LoadConfigurationFromFile';
 
 describe('Generate and recognize', () => {
     jest.setTimeout(60000);
