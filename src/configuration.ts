@@ -26,57 +26,57 @@ import { JWTAuth } from './JWTAuth';
 import { Authentication } from './Authentification';
 
 export enum ApiVersion {
-  v1 = 'v1',
-  v2 = 'v1.1',
-  v3 = 'v3.0',
+    v1 = 'v1',
+    v2 = 'v1.1',
+    v3 = 'v3.0',
 }
 
 export class Configuration {
-  /**
-   * Authentication type.
-   */
-  public authentication: Authentication;
+    /**
+     * Authentication type.
+     */
+    public authentication: Authentication;
 
-  /**
-   * App SID.
-   */
-  public appSID: string;
+    /**
+     * App SID.
+     */
+    public appSID: string;
 
-  /**
-   * App key.
-   */
-  public appKey: string;
+    /**
+     * App key.
+     */
+    public appKey: string;
 
-  /**
-   * Base Url.
-   */
-  public baseUrl: string;
+    /**
+     * Base Url.
+     */
+    public baseUrl: string;
 
-  readonly version: ApiVersion = ApiVersion.v3;
-  readonly accessToken: string;
+    readonly version: ApiVersion = ApiVersion.v3;
+    readonly accessToken: string;
 
-  constructor(appSID: string, appKey: string, baseUrl?: string, accessToken?: string) {
-    this.appSID = appSID;
-    this.appKey = appKey;
-    if (baseUrl) {
-      this.baseUrl = baseUrl;
-    } else {
-      this.baseUrl = 'https://api.aspose.cloud';
+    constructor(appSID: string, appKey: string, baseUrl?: string, accessToken?: string) {
+        this.appSID = appSID;
+        this.appKey = appKey;
+        if (baseUrl) {
+            this.baseUrl = baseUrl;
+        } else {
+            this.baseUrl = 'https://api.aspose.cloud';
+        }
+        if (accessToken) {
+            this.accessToken = accessToken;
+        } else {
+            this.accessToken = '';
+        }
+
+        //TODO: make JWT
+        this.authentication = new JWTAuth(this) as Authentication;
     }
-    if (accessToken) {
-      this.accessToken = accessToken;
-    } else {
-      this.accessToken = '';
+
+    /**
+     * Returns api base url
+     */
+    public getApiBaseUrl(): string {
+        return this.baseUrl + '/' + this.version;
     }
-
-    //TODO: make JWT
-    this.authentication = new JWTAuth(this) as Authentication;
-  }
-
-  /**
-   * Returns api base url
-   */
-  public getApiBaseUrl(): string {
-    return this.baseUrl + '/' + this.version;
-  }
 }
