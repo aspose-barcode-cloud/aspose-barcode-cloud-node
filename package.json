@@ -28,6 +28,7 @@
     "test": "tsdx test",
     "cover": "tsdx test --collect-coverage",
     "lint": "tsdx lint",
+    "fix": "tsdx lint --fix",
     "prepare": "tsdx build"
   },
   "peerDependencies": {},
