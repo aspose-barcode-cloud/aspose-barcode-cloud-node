@@ -1,0 +1,68 @@
+{
+  "name": "aspose-barcode-cloud-node",
+  "version": "18.6.0",
+  "description": "Aspose.BarCode Cloud SDK for Node.js",
+  "homepage": "https://products.aspose.cloud/barcode/cloud",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node.git"
+  },
+  "keywords": [
+    "Aspose",
+    "Cloud",
+    "BarCode"
+  ],
+  "main": "dist/index.js",
+  "author": "Aspose.BarCode Team",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "cover": "tsdx test --collect-coverage",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build"
+  },
+  "peerDependencies": {},
+  "prettier": {
+    "printWidth": 120,
+    "semi": true,
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
+  "module": "dist/tsdxdemo.esm.js",
+  "devDependencies": {
+    "@types/request": "^2.48.5",
+    "@types/uuid": "^8.0.0",
+    "tsdx": "^0.13.2",
+    "tslib": "^2.0.0",
+    "typescript": "^3.9.3",
+    "uuid": "^8.0.0"
+  },
+  "dependencies": {
+    "request": "^2.88.2"
+  },
+  "bugs": {
+    "url": "https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/issues"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "jest": {
+    "globals": {
+      "ts-jest": {
+        "diagnostics": false
+      }
+    },
+    "collectCoverageFrom": [
+      "**/*.ts",
+      "!**/*.d.ts"
+    ]
+  }
+}

@@ -1,10 +1,11 @@
 .vs
-/src/node_modules
+/node_modules
 obj
 bin
 *.js
 *.js.map
 *.user
-/src/test/configuration*.json
-/src/.nyc_output/
-/src/coverage/
+/test/configuration*.json
+/.nyc_output/
+/coverage/
+*.d.ts
