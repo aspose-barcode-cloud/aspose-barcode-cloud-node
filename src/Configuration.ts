@@ -69,7 +69,6 @@ export class Configuration {
             this.accessToken = '';
         }
 
-        //TODO: make JWT
         this.authentication = new JWTAuth(this) as Authentication;
     }
 
