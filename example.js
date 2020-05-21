@@ -1,5 +1,4 @@
 ﻿const fs = require('fs');
-
 const Barcode = require('aspose-barcode-cloud-node');
 
 const config = new Barcode.Configuration(
@@ -14,8 +13,8 @@ async function generate(api) {
         'png'
     );
 
-    fs.writeFileSync('../testdata/out_1.png', oneBarcode.body);
-    console.log('Saved to ../testdata/out_1.png');
+    fs.writeFileSync('out.png', oneBarcode.body);
+    console.log('Saved to out.png');
 }
 
 const api = new Barcode.BarcodeApi(config);
