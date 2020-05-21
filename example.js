@@ -7,10 +7,9 @@ const config = new Barcode.Configuration(
 );
 
 async function generate(api) {
-    //1. simple barcode generation
-    const oneBarcode = await api.getBarcodeGenerate(Barcode.EncodeBarcodeType.Pdf417, 'Aspose.BarCode for Cloud Sample',
-        null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, null,
-        'png'
+    const oneBarcode = await api.getBarcodeGenerate(
+        Barcode.EncodeBarcodeType.Pdf417,
+        'Aspose.BarCode for Cloud Sample'
     );
 
     fs.writeFileSync('out.png', oneBarcode.body);
@@ -18,4 +17,4 @@ async function generate(api) {
 }
 
 const api = new Barcode.BarcodeApi(config);
-generate(api).then(() => console.info('Done')).catch(err => console.error(err));
+generate(api).catch(err => console.error(err));
