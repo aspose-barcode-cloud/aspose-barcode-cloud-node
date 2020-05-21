@@ -1,7 +1,7 @@
 import Request from 'request';
 
 import { Configuration } from './Configuration';
-import { Authentication } from './Authentification';
+import { Authentication } from './Authentication.ts';
 
 export class JWTAuth implements Authentication {
     private _accessToken?: string;

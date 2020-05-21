@@ -23,7 +23,7 @@
 */
 
 import { JWTAuth } from './JWTAuth';
-import { Authentication } from './Authentification';
+import { Authentication } from './Authentication.ts';
 
 export enum ApiVersion {
     v1 = 'v1',
