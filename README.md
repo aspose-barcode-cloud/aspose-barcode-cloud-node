@@ -62,3 +62,31 @@ All Aspose.BarCode for Cloud SDKs, helper scripts and templates are licensed und
 + [**Free Support Forum**](https://forum.aspose.cloud/c/barcode)
 + [**Paid Support Helpdesk**](https://helpdesk.aspose.cloud/)
 + [**Blog**](https://blog.aspose.cloud/category/aspose-products/aspose-barcode-product-family/)
+
+## Documentation for API Endpoints
+
+All URIs are relative to *https://api.aspose.cloud/v3.0/*
+
+Class | Method | HTTP request | Description
+----- | ------ | ------------ | -----------
+BarcodeApi | getBarcodeGenerate | **GET** /barcode/generate | Generate barcode.             
+BarcodeApi | getBarcodeRecognize | **GET** /barcode/{name}/recognize | Recognize barcode from a file on server.             
+BarcodeApi | postBarcodeRecognizeFromUrlOrContent | **POST** /barcode/recognize | Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.             
+BarcodeApi | postGenerateMultiple | **POST** /barcode/generateMultiple | Generate multiple barcodes and return in response stream             
+BarcodeApi | putBarcodeGenerateFile | **PUT** /barcode/{name}/generate | Generate barcode and save on server (from query params or from file with json or xml content)             
+BarcodeApi | putBarcodeRecognizeFromBody | **PUT** /barcode/{name}/recognize | Recognition of a barcode from file on server with parameters in body.             
+BarcodeApi | putGenerateMultiple | **PUT** /barcode/{name}/generateMultiple | Generate image with multiple barcodes and put new file on server             
+FileApi | copyFile | **PUT** /barcode/storage/file/copy/{srcPath} | Copy file
+FileApi | deleteFile | **DELETE** /barcode/storage/file/{path} | Delete file
+FileApi | downloadFile | **GET** /barcode/storage/file/{path} | Download file
+FileApi | moveFile | **PUT** /barcode/storage/file/move/{srcPath} | Move file
+FileApi | uploadFile | **PUT** /barcode/storage/file/{path} | Upload file
+FolderApi | copyFolder | **PUT** /barcode/storage/folder/copy/{srcPath} | Copy folder
+FolderApi | createFolder | **PUT** /barcode/storage/folder/{path} | Create the folder
+FolderApi | deleteFolder | **DELETE** /barcode/storage/folder/{path} | Delete folder
+FolderApi | getFilesList | **GET** /barcode/storage/folder/{path} | Get all files and folders within a folder
+FolderApi | moveFolder | **PUT** /barcode/storage/folder/move/{srcPath} | Move folder
+StorageApi | getDiscUsage | **GET** /barcode/storage/disc | Get disc usage
+StorageApi | getFileVersions | **GET** /barcode/storage/version/{path} | Get file versions
+StorageApi | objectExists | **GET** /barcode/storage/exist/{path} | Check if file or folder exists
+StorageApi | storageExists | **GET** /barcode/storage/{storageName}/exist | Check if storage exists
