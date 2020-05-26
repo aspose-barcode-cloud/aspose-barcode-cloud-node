@@ -1,9 +1,0 @@
-.vs
-node_modules
-obj
-bin
-*.ts
-*.js.map
-*.user
-*.njsproj
-

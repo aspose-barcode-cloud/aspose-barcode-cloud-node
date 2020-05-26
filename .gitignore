@@ -1,9 +1,8 @@
 .vs
-/src/node_modules
-obj
-testdata/out*
-bin
+/node_modules
 *.js
 *.js.map
 *.user
-
+/test/configuration*.json
+/coverage/
+*.d.ts
