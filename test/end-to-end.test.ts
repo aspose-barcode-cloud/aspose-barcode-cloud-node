@@ -50,13 +50,13 @@ describe('Generate and recognize', () => {
         );
 
         const barcodes = recognized.body.barcodes;
-        assert.equal(barcodes.length, 1);
+        assert.strictEqual(barcodes.length, 1);
 
         const barcode = barcodes[0];
-        assert.equal(barcode.type, Barcode.DecodeBarcodeType.QR);
-        assert.equal(barcode.barcodeValue, 'Testing generator');
+        assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.QR);
+        assert.strictEqual(barcode.barcodeValue, 'Testing generator');
 
-        assert.equal(barcode.region.length, 4);
+        assert.strictEqual(barcode.region.length, 4);
         assert.ok(barcode.region[0].X > 0, `X=${barcode.region[0].X}`);
         assert.ok(barcode.region[0].Y > 0, `Y=${barcode.region[0].Y}`);
     });

@@ -172,9 +172,8 @@ class ObjectSerializer {
     }
 }
 
-
 /**
- * AustralianPost barcode parameters.             
+ * AustralianPost barcode parameters.
  */
 export class AustralianPostParams {
     /**
@@ -204,36 +203,31 @@ export class AustralianPostParams {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum AutoSizeMode {
     None = 'None',
     Nearest = 'Nearest',
     Interpolation = 'Interpolation',
-    
 }
 
-
 /**
- * Subset of GraphicsUnit.             
+ * Subset of GraphicsUnit.
  */
 export enum AvailableGraphicsUnit {
     Pixel = 'Pixel',
     Point = 'Point',
     Inch = 'Inch',
     Millimeter = 'Millimeter',
-    
 }
 
-
 /**
- * Aztec parameters.             
+ * Aztec parameters.
  */
 export class AztecParams {
     /**
-     * Height/Width ratio of 2D BarCode module.             
+     * Height/Width ratio of 2D BarCode module.
      */
     'aspectRatio'?: number;
     /**
@@ -245,7 +239,7 @@ export class AztecParams {
      */
     'symbolMode'?: AztecSymbolMode;
     /**
-     * Sets the encoding of codetext.             
+     * Sets the encoding of codetext.
      */
     'textEncoding'?: string;
 
@@ -277,25 +271,22 @@ export class AztecParams {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum AztecSymbolMode {
     Auto = 'Auto',
     Compact = 'Compact',
     FullRange = 'FullRange',
     Rune = 'Rune',
-    
 }
 
-
 /**
- * BarCodeErrorResponse             
+ * BarCodeErrorResponse
  */
 export class BarCodeErrorResponse {
     /**
-     * Error             
+     * Error
      */
     'error'?: Error;
 
@@ -312,25 +303,24 @@ export class BarCodeErrorResponse {
     }
 }
 
-
 /**
- * Represents information about barcode.             
+ * Represents information about barcode.
  */
 export class BarcodeResponse {
     /**
-     * Barcode data.             
+     * Barcode data.
      */
     'barcodeValue'?: string;
     /**
-     * Type of the barcode.             
+     * Type of the barcode.
      */
     'type'?: string;
     /**
-     * Region with barcode.             
+     * Region with barcode.
      */
     'region'?: Array<RegionPoint>;
     /**
-     * Checksum of barcode.             
+     * Checksum of barcode.
      */
     'checksum'?: string;
 
@@ -362,13 +352,12 @@ export class BarcodeResponse {
     }
 }
 
-
 /**
- * Represents information about barcode list.             
+ * Represents information about barcode list.
  */
 export class BarcodeResponseList {
     /**
-     * List of barcodes which are present in image.             
+     * List of barcodes which are present in image.
      */
     'barcodes'?: Array<BarcodeResponse>;
 
@@ -385,9 +374,8 @@ export class BarcodeResponseList {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum BorderDashStyle {
     Solid = 'Solid',
@@ -395,36 +383,34 @@ export enum BorderDashStyle {
     Dot = 'Dot',
     DashDot = 'DashDot',
     DashDotDot = 'DashDotDot',
-    
 }
 
-
 /**
- * Caption             
+ * Caption
  */
 export class CaptionParams {
     /**
-     * Caption text.             
+     * Caption text.
      */
     'text'?: string;
     /**
-     * Text alignment.             
+     * Text alignment.
      */
     'alignment'?: TextAlignment;
     /**
-     * Text color.             
+     * Text color.
      */
     'color'?: string;
     /**
-     * Is caption visible.             
+     * Is caption visible.
      */
     'visible'?: boolean;
     /**
-     * Font.             
+     * Font.
      */
     'font'?: FontParams;
     /**
-     * Padding.             
+     * Padding.
      */
     'padding'?: Padding;
 
@@ -466,27 +452,22 @@ export class CaptionParams {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum ChecksumValidation {
     Default = 'Default',
     On = 'On',
     Off = 'Off',
-    
 }
 
-
 /**
- * 
+ *
  */
 export enum CodabarChecksumMode {
     Mod10 = 'Mod10',
     Mod16 = 'Mod16',
-    
 }
-
 
 /**
  * Codabar parameters.
@@ -528,18 +509,15 @@ export class CodabarParams {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum CodabarSymbol {
     A = 'A',
     B = 'B',
     C = 'C',
     D = 'D',
-    
 }
-
 
 /**
  * Codablock parameters.
@@ -581,7 +559,6 @@ export class CodablockParams {
     }
 }
 
-
 /**
  * Code16K parameters.
  */
@@ -622,17 +599,14 @@ export class Code16KParams {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum CodeLocation {
     Below = 'Below',
     Above = 'Above',
     None = 'None',
-    
 }
-
 
 /**
  * Coupon parameters. Used for UpcaGs1DatabarCoupon, UpcaGs1Code128Coupon.
@@ -656,17 +630,14 @@ export class CouponParams {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum CustomerInformationInterpretingType {
     CTable = 'CTable',
     NTable = 'NTable',
     Other = 'Other',
-    
 }
-
 
 /**
  * Databar parameters.
@@ -708,9 +679,8 @@ export class DataBarParams {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum DataMatrixEccType {
     EccAuto = 'EccAuto',
@@ -720,12 +690,10 @@ export enum DataMatrixEccType {
     Ecc100 = 'Ecc100',
     Ecc140 = 'Ecc140',
     Ecc200 = 'Ecc200',
-    
 }
 
-
 /**
- * 
+ *
  */
 export enum DataMatrixEncodeMode {
     Auto = 'Auto',
@@ -734,9 +702,7 @@ export enum DataMatrixEncodeMode {
     Custom = 'Custom',
     C40 = 'C40',
     Text = 'Text',
-    
 }
-
 
 /**
  * DataMatrix parameters.
@@ -805,9 +771,8 @@ export class DataMatrixParams {
     }
 }
 
-
 /**
- * See DecodeType             
+ * See DecodeType
  */
 export enum DecodeBarcodeType {
     All = 'all',
@@ -877,9 +842,7 @@ export enum DecodeBarcodeType {
     DotCode = 'DotCode',
     DutchKIX = 'DutchKIX',
     CodablockF = 'CodablockF',
-    
 }
-
 
 /**
  * Class for disc space information.
@@ -912,7 +875,6 @@ export class DiscUsage {
     }
 }
 
-
 /**
  * DotCode parameters.
  */
@@ -944,9 +906,8 @@ export class DotCodeParams {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum ECIEncodings {
     ISO88591 = 'ISO_8859_1',
@@ -975,23 +936,19 @@ export enum ECIEncodings {
     Big5 = 'Big5',
     GB18030 = 'GB18030',
     EUCKR = 'EUC_KR',
-    
 }
 
-
 /**
- * 
+ *
  */
 export enum EnableChecksum {
     Default = 'Default',
     Yes = 'Yes',
     No = 'No',
-    
 }
 
-
 /**
- * See EncodeTypes             
+ * See EncodeTypes
  */
 export enum EncodeBarcodeType {
     Codabar = 'Codabar',
@@ -1060,9 +1017,7 @@ export enum EncodeBarcodeType {
     UpcaGs1DatabarCoupon = 'UpcaGs1DatabarCoupon',
     CodablockF = 'CodablockF',
     GS1CodablockF = 'GS1CodablockF',
-    
 }
-
 
 /**
  * The error details
@@ -1095,7 +1050,6 @@ export class ErrorDetails {
     }
 }
 
-
 /**
  * File versions FileVersion.
  */
@@ -1118,7 +1072,6 @@ export class FileVersions {
     }
 }
 
-
 /**
  * Files list
  */
@@ -1140,7 +1093,6 @@ export class FilesList {
         return FilesList.attributeTypeMap;
     }
 }
-
 
 /**
  * File upload result
@@ -1173,31 +1125,28 @@ export class FilesUploadResult {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum FontMode {
     Auto = 'Auto',
     Manual = 'Manual',
-    
 }
 
-
 /**
- * Font.             
+ * Font.
  */
 export class FontParams {
     /**
-     * Font family.             
+     * Font family.
      */
     'family'?: string;
     /**
-     * Font size in units.             
+     * Font size in units.
      */
     'size'?: number;
     /**
-     * Font style.             
+     * Font style.
      */
     'style'?: FontStyle;
 
@@ -1224,9 +1173,8 @@ export class FontParams {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum FontStyle {
     Regular = 'Regular',
@@ -1234,20 +1182,18 @@ export enum FontStyle {
     Italic = 'Italic',
     Underline = 'Underline',
     Strikeout = 'Strikeout',
-    
 }
 
-
 /**
- * Represents extended BarcodeGenerator params.             
+ * Represents extended BarcodeGenerator params.
  */
 export class GeneratorParams {
     /**
-     * Type of barcode to generate.             
+     * Type of barcode to generate.
      */
     'typeOfBarcode': EncodeBarcodeType;
     /**
-     * Text to encode.             
+     * Text to encode.
      */
     'text': string;
     /**
@@ -1259,7 +1205,7 @@ export class GeneratorParams {
      */
     'textLocation'?: CodeLocation;
     /**
-     * Text alignment.             
+     * Text alignment.
      */
     'textAlignment'?: TextAlignment;
     /**
@@ -1279,11 +1225,11 @@ export class GeneratorParams {
      */
     'resolution'?: number;
     /**
-     * DEPRECATED: Use 'Resolution' instead.             
+     * DEPRECATED: Use 'Resolution' instead.
      */
     'resolutionX'?: number;
     /**
-     * DEPRECATED: Use 'Resolution' instead.             
+     * DEPRECATED: Use 'Resolution' instead.
      */
     'resolutionY'?: number;
     /**
@@ -1295,7 +1241,7 @@ export class GeneratorParams {
      */
     'textSpace'?: number;
     /**
-     * Common Units for all measuring in query. Default units: pixel.             
+     * Common Units for all measuring in query. Default units: pixel.
      */
     'units'?: AvailableGraphicsUnit;
     /**
@@ -1303,15 +1249,15 @@ export class GeneratorParams {
      */
     'sizeMode'?: AutoSizeMode;
     /**
-     * Height of the barcode in given units. Default units: pixel.             
+     * Height of the barcode in given units. Default units: pixel.
      */
     'barHeight'?: number;
     /**
-     * Height of the barcode image in given units. Default units: pixel.             
+     * Height of the barcode image in given units. Default units: pixel.
      */
     'imageHeight'?: number;
     /**
-     * Width of the barcode image in given units. Default units: pixel.             
+     * Width of the barcode image in given units. Default units: pixel.
      */
     'imageWidth'?: number;
     /**
@@ -1323,11 +1269,11 @@ export class GeneratorParams {
      */
     'padding'?: Padding;
     /**
-     * Additional caption above barcode.             
+     * Additional caption above barcode.
      */
     'captionAbove'?: CaptionParams;
     /**
-     * Additional caption below barcode.             
+     * Additional caption below barcode.
      */
     'captionBelow'?: CaptionParams;
     /**
@@ -1355,7 +1301,7 @@ export class GeneratorParams {
      */
     'borderVisible'?: boolean;
     /**
-     * Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology             
+     * Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology
      */
     'enableChecksum'?: EnableChecksum;
     /**
@@ -1367,7 +1313,7 @@ export class GeneratorParams {
      */
     'filledBars'?: boolean;
     /**
-     * Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.             
+     * Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.
      */
     'alwaysShowChecksum'?: boolean;
     /**
@@ -1701,21 +1647,20 @@ export class GeneratorParams {
     }
 }
 
-
 /**
- * Represents list of barcode generators             
+ * Represents list of barcode generators
  */
 export class GeneratorParamsList {
     /**
-     * List of barcode generators             
+     * List of barcode generators
      */
     'barcodeBuilders'?: Array<GeneratorParams>;
     /**
-     * Shift step according to X axis             
+     * Shift step according to X axis
      */
     'xStep': number;
     /**
-     * Shift step according to Y axis             
+     * Shift step according to Y axis
      */
     'yStep': number;
 
@@ -1742,9 +1687,8 @@ export class GeneratorParamsList {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum ITF14BorderType {
     None = 'None',
@@ -1752,12 +1696,10 @@ export enum ITF14BorderType {
     Bar = 'Bar',
     FrameOut = 'FrameOut',
     BarOut = 'BarOut',
-    
 }
 
-
 /**
- * ITF parameters.             
+ * ITF parameters.
  */
 export class ITFParams {
     /**
@@ -1796,7 +1738,6 @@ export class ITFParams {
     }
 }
 
-
 /**
  * MaxiCode parameters.
  */
@@ -1828,25 +1769,24 @@ export class MaxiCodeParams {
     }
 }
 
-
 /**
  * Error
  */
 export class ModelError {
     /**
-     * Code             
+     * Code
      */
     'code'?: string;
     /**
-     * Message             
+     * Message
      */
     'message'?: string;
     /**
-     * Description             
+     * Description
      */
     'description'?: string;
     /**
-     * Inner Error             
+     * Inner Error
      */
     'innerError'?: ErrorDetails;
 
@@ -1877,7 +1817,6 @@ export class ModelError {
         return ModelError.attributeTypeMap;
     }
 }
-
 
 /**
  * Object exists
@@ -1910,25 +1849,24 @@ export class ObjectExist {
     }
 }
 
-
 /**
- * Padding around barcode.             
+ * Padding around barcode.
  */
 export class Padding {
     /**
-     * Left padding.             
+     * Left padding.
      */
     'left'?: number;
     /**
-     * Right padding.             
+     * Right padding.
      */
     'right'?: number;
     /**
-     * Top padding.             
+     * Top padding.
      */
     'top'?: number;
     /**
-     * Bottom padding.             
+     * Bottom padding.
      */
     'bottom'?: number;
 
@@ -1960,21 +1898,18 @@ export class Padding {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum Pdf417CompactionMode {
     Auto = 'Auto',
     Text = 'Text',
     Numeric = 'Numeric',
     Binary = 'Binary',
-    
 }
 
-
 /**
- * 
+ *
  */
 export enum Pdf417ErrorLevel {
     Level0 = 'Level0',
@@ -1986,24 +1921,22 @@ export enum Pdf417ErrorLevel {
     Level6 = 'Level6',
     Level7 = 'Level7',
     Level8 = 'Level8',
-    
 }
 
-
 /**
- * PDF417 parameters.             
+ * PDF417 parameters.
  */
 export class Pdf417Params {
     /**
-     * Height/Width ratio of 2D BarCode module.             
+     * Height/Width ratio of 2D BarCode module.
      */
     'aspectRatio'?: number;
     /**
-     * Encoding of codetext.             
+     * Encoding of codetext.
      */
     'textEncoding'?: string;
     /**
-     * Columns count.             
+     * Columns count.
      */
     'columns'?: number;
     /**
@@ -2093,13 +2026,12 @@ export class Pdf417Params {
     }
 }
 
-
 /**
- * Postal parameters. Used for Postnet, Planet.             
+ * Postal parameters. Used for Postnet, Planet.
  */
 export class PostalParams {
     /**
-     * Short bar's height of Postal barcodes.             
+     * Short bar's height of Postal barcodes.
      */
     'shortBarHeight'?: number;
 
@@ -2116,7 +2048,6 @@ export class PostalParams {
     }
 }
 
-
 /**
  * See QualitySettings allows to configure recognition quality and speed manually.
  */
@@ -2127,12 +2058,10 @@ export enum PresetType {
     MaxQualityDetection = 'MaxQualityDetection',
     HighQuality = 'HighQuality',
     MaxBarCodes = 'MaxBarCodes',
-    
 }
 
-
 /**
- * 
+ *
  */
 export enum QREncodeMode {
     Auto = 'Auto',
@@ -2141,35 +2070,29 @@ export enum QREncodeMode {
     Utf16BEBOM = 'Utf16BEBOM',
     ECIEncoding = 'ECIEncoding',
     ExtendedCodetext = 'ExtendedCodetext',
-    
 }
 
-
 /**
- * 
+ *
  */
 export enum QREncodeType {
     Auto = 'Auto',
     ForceQR = 'ForceQR',
     ForceMicroQR = 'ForceMicroQR',
-    
 }
 
-
 /**
- * 
+ *
  */
 export enum QRErrorLevel {
     LevelL = 'LevelL',
     LevelM = 'LevelM',
     LevelQ = 'LevelQ',
     LevelH = 'LevelH',
-    
 }
 
-
 /**
- * 
+ *
  */
 export enum QRVersion {
     Auto = 'Auto',
@@ -2217,12 +2140,10 @@ export enum QRVersion {
     VersionM2 = 'VersionM2',
     VersionM3 = 'VersionM3',
     VersionM4 = 'VersionM4',
-    
 }
 
-
 /**
- * QR parameters.             
+ * QR parameters.
  */
 export class QrParams {
     /**
@@ -2246,7 +2167,7 @@ export class QrParams {
      */
     'encodeMode'?: QREncodeMode;
     /**
-     * Level of Reed-Solomon error correction for QR barcode. From low to high: LevelL, LevelM, LevelQ, LevelH. see QRErrorLevel.             
+     * Level of Reed-Solomon error correction for QR barcode. From low to high: LevelL, LevelM, LevelQ, LevelH. see QRErrorLevel.
      */
     'errorLevel'?: QRErrorLevel;
     /**
@@ -2297,17 +2218,16 @@ export class QrParams {
     }
 }
 
-
 /**
- * Represents BarcodeReader object.             
+ * Represents BarcodeReader object.
  */
 export class ReaderParams {
     /**
-     * The type of barcode to read.             
+     * The type of barcode to read.
      */
     'type'?: DecodeBarcodeType;
     /**
-     * Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies             
+     * Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
      */
     'checksumValidation'?: ChecksumValidation;
     /**
@@ -2319,27 +2239,27 @@ export class ReaderParams {
      */
     'preset'?: PresetType;
     /**
-     * Set X for area for recognition.             
+     * Set X for area for recognition.
      */
     'rectX'?: number;
     /**
-     * Set Y for area for recognition.             
+     * Set Y for area for recognition.
      */
     'rectY'?: number;
     /**
-     * Set Width of area for recognition.             
+     * Set Width of area for recognition.
      */
     'rectWidth'?: number;
     /**
-     * Set Height of area for recognition.             
+     * Set Height of area for recognition.
      */
     'rectHeight'?: number;
     /**
-     * Value indicating whether FNC symbol strip must be done.             
+     * Value indicating whether FNC symbol strip must be done.
      */
     'stripFNC'?: boolean;
     /**
-     * Timeout of recognition process.             
+     * Timeout of recognition process.
      */
     'timeout'?: number;
     /**
@@ -2581,17 +2501,16 @@ export class ReaderParams {
     }
 }
 
-
 /**
- * Wrapper around Drawing.Point for proper specification.             
+ * Wrapper around Drawing.Point for proper specification.
  */
 export class RegionPoint {
     /**
-     * X-coordinate             
+     * X-coordinate
      */
     'X': number;
     /**
-     * Y-coordinate             
+     * Y-coordinate
      */
     'Y': number;
 
@@ -2613,21 +2532,20 @@ export class RegionPoint {
     }
 }
 
-
 /**
- * Created image info.             
+ * Created image info.
  */
 export class ResultImageInfo {
     /**
-     * Result file size.             
+     * Result file size.
      */
     'fileSize': number;
     /**
-     * Result image width.             
+     * Result image width.
      */
     'imageWidth'?: number;
     /**
-     * Result image height.             
+     * Result image height.
      */
     'imageHeight'?: number;
 
@@ -2654,13 +2572,12 @@ export class ResultImageInfo {
     }
 }
 
-
 /**
  * Storage exists
  */
 export class StorageExist {
     /**
-     * Shows that the storage exists.             
+     * Shows that the storage exists.
      */
     'exists': boolean;
 
@@ -2676,7 +2593,6 @@ export class StorageExist {
         return StorageExist.attributeTypeMap;
     }
 }
-
 
 /**
  * File or folder information
@@ -2736,15 +2652,13 @@ export class StorageFile {
     }
 }
 
-
 /**
- * 
+ *
  */
 export enum TextAlignment {
     Left = 'Left',
     Center = 'Center',
     Right = 'Right',
-    
 }
 
 export class FileVersion {
@@ -2820,7 +2734,6 @@ export class FileVersion {
     }
 }
 
-
 let enumsMap: { [index: string]: any } = {
     AutoSizeMode: AutoSizeMode,
     AvailableGraphicsUnit: AvailableGraphicsUnit,
@@ -2888,7 +2801,6 @@ let typeMap: { [index: string]: any } = {
     FileVersion: FileVersion,
 };
 
-
 export class BarcodeApi {
     protected defaultHeaders: any = {};
     protected _configuration: Configuration;
@@ -2897,27 +2809,26 @@ export class BarcodeApi {
         this._configuration = configuration;
     }
 
-
     /**
-     * 
-     * @summary Generate barcode.             
-     * @param type Type of barcode to generate.             
-     * @param text Text to encode.             
+     *
+     * @summary Generate barcode.
+     * @param type Type of barcode to generate.
+     * @param text Text to encode.
      * @param twoDDisplayText Text that will be displayed instead of codetext in 2D barcodes. Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
      * @param textLocation Specify the displaying Text Location, set to CodeLocation.None to hide CodeText. Default value: CodeLocation.Below.
-     * @param textAlignment Text alignment.             
+     * @param textAlignment Text alignment.
      * @param textColor Specify the displaying CodeText&#39;s Color. Default value: Color.Black.
      * @param fontSizeMode Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto.
      * @param resolution Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
-     * @param resolutionX DEPRECATED: Use &#39;Resolution&#39; instead.             
-     * @param resolutionY DEPRECATED: Use &#39;Resolution&#39; instead.             
+     * @param resolutionX DEPRECATED: Use &#39;Resolution&#39; instead.
+     * @param resolutionY DEPRECATED: Use &#39;Resolution&#39; instead.
      * @param dimensionX The smallest width of the unit of BarCode bars or spaces. Increase this will increase the whole barcode image width. Ignored if AutoSizeMode property is set to AutoSizeMode.Nearest or AutoSizeMode.Interpolation.
      * @param textSpace Space between the CodeText and the BarCode in Unit value. Default value: 2pt. Ignored for EAN8, EAN13, UPCE, UPCA, ISBN, ISMN, ISSN, UpcaGs1DatabarCoupon.
-     * @param units Common Units for all measuring in query. Default units: pixel.             
+     * @param units Common Units for all measuring in query. Default units: pixel.
      * @param sizeMode Specifies the different types of automatic sizing modes. Default value: AutoSizeMode.None.
-     * @param barHeight Height of the barcode in given units. Default units: pixel.             
-     * @param imageHeight Height of the barcode image in given units. Default units: pixel.             
-     * @param imageWidth Width of the barcode image in given units. Default units: pixel.             
+     * @param barHeight Height of the barcode in given units. Default units: pixel.
+     * @param imageHeight Height of the barcode image in given units. Default units: pixel.
+     * @param imageWidth Width of the barcode image in given units. Default units: pixel.
      * @param rotationAngle BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation. If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image. Default value: 0.
      * @param backColor Background color of the barcode image. Default value: Color.White.
      * @param barColor Bars color. Default value: Color.Black.
@@ -2925,10 +2836,10 @@ export class BarcodeApi {
      * @param borderWidth Border width. Default value: 0. Ignored if Visible is set to false.
      * @param borderDashStyle Border dash style. Default value: BorderDashStyle.Solid.
      * @param borderVisible Border visibility. If false than parameter Width is always ignored (0). Default value: false.
-     * @param enableChecksum Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology             
+     * @param enableChecksum Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology
      * @param enableEscape Indicates whether explains the character \&quot;\\\&quot; as an escape character in CodeText property. Used for Pdf417, DataMatrix, Code128 only If the EnableEscape is true, \&quot;\\\&quot; will be explained as a special escape character. Otherwise, \&quot;\\\&quot; acts as normal characters. Aspose.BarCode supports input decimal ascii code and mnemonic for ASCII control-code characters. For example, \\013 and \\\\CR stands for CR.
      * @param filledBars Value indicating whether bars are filled. Only for 1D barcodes. Default value: true.
-     * @param alwaysShowChecksum Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.             
+     * @param alwaysShowChecksum Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.
      * @param wideNarrowRatio Wide bars to Narrow bars ratio. Default value: 3, that is, wide bars are 3 times as wide as narrow bars. Used for ITF, PZN, PharmaCode, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, IATA2of5, VIN, DeutschePost, OPC, Code32, DataLogic2of5, PatchCode, Code39Extended, Code39Standard
      * @param validateText Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingapurePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
      * @param supplementData Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
@@ -2936,7 +2847,73 @@ export class BarcodeApi {
      * @param format Result image format.
      */
     public async getBarcodeGenerate(
-        type: 'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF',
+        type:
+            | 'Codabar'
+            | 'Code11'
+            | 'Code39Standard'
+            | 'Code39Extended'
+            | 'Code93Standard'
+            | 'Code93Extended'
+            | 'Code128'
+            | 'GS1Code128'
+            | 'EAN8'
+            | 'EAN13'
+            | 'EAN14'
+            | 'SCC14'
+            | 'SSCC18'
+            | 'UPCA'
+            | 'UPCE'
+            | 'ISBN'
+            | 'ISSN'
+            | 'ISMN'
+            | 'Standard2of5'
+            | 'Interleaved2of5'
+            | 'Matrix2of5'
+            | 'ItalianPost25'
+            | 'IATA2of5'
+            | 'ITF14'
+            | 'ITF6'
+            | 'MSI'
+            | 'VIN'
+            | 'DeutschePostIdentcode'
+            | 'DeutschePostLeitcode'
+            | 'OPC'
+            | 'PZN'
+            | 'Code16K'
+            | 'Pharmacode'
+            | 'DataMatrix'
+            | 'QR'
+            | 'Aztec'
+            | 'Pdf417'
+            | 'MacroPdf417'
+            | 'AustraliaPost'
+            | 'Postnet'
+            | 'Planet'
+            | 'OneCode'
+            | 'RM4SCC'
+            | 'DatabarOmniDirectional'
+            | 'DatabarTruncated'
+            | 'DatabarLimited'
+            | 'DatabarExpanded'
+            | 'SingaporePost'
+            | 'GS1DataMatrix'
+            | 'AustralianPosteParcel'
+            | 'SwissPostParcel'
+            | 'PatchCode'
+            | 'DatabarExpandedStacked'
+            | 'DatabarStacked'
+            | 'DatabarStackedOmniDirectional'
+            | 'MicroPdf417'
+            | 'GS1QR'
+            | 'MaxiCode'
+            | 'Code32'
+            | 'DataLogic2of5'
+            | 'DotCode'
+            | 'DutchKIX'
+            | 'UpcaGs1Code128Coupon'
+            | 'UpcaGs1DatabarCoupon'
+            | 'CodablockF'
+            | 'GS1CodablockF',
         text: string,
         twoDDisplayText?: string,
         textLocation?: 'Below' | 'Above' | 'None',
@@ -2969,10 +2946,8 @@ export class BarcodeApi {
         supplementData?: string,
         supplementSpace?: number,
         format?: string
-    ): Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
-        const requestPath =
-            this._configuration.getApiBaseUrl() +
-            '/barcode/generate';
+    ): Promise<{ response: http.IncomingMessage; body: Buffer }> {
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate';
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -2988,27 +2963,36 @@ export class BarcodeApi {
         }
 
         if (type !== undefined) {
-            requestQueryParameters['Type'] = ObjectSerializer.serialize(type, "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF'");
+            requestQueryParameters['Type'] = ObjectSerializer.serialize(
+                type,
+                "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF'"
+            );
         }
 
         if (text !== undefined) {
-            requestQueryParameters['Text'] = ObjectSerializer.serialize(text, "string");
+            requestQueryParameters['Text'] = ObjectSerializer.serialize(text, 'string');
         }
 
         if (twoDDisplayText !== undefined) {
-            requestQueryParameters['TwoDDisplayText'] = ObjectSerializer.serialize(twoDDisplayText, "string");
+            requestQueryParameters['TwoDDisplayText'] = ObjectSerializer.serialize(twoDDisplayText, 'string');
         }
 
         if (textLocation !== undefined) {
-            requestQueryParameters['TextLocation'] = ObjectSerializer.serialize(textLocation, "'Below' | 'Above' | 'None'");
+            requestQueryParameters['TextLocation'] = ObjectSerializer.serialize(
+                textLocation,
+                "'Below' | 'Above' | 'None'"
+            );
         }
 
         if (textAlignment !== undefined) {
-            requestQueryParameters['TextAlignment'] = ObjectSerializer.serialize(textAlignment, "'Left' | 'Center' | 'Right'");
+            requestQueryParameters['TextAlignment'] = ObjectSerializer.serialize(
+                textAlignment,
+                "'Left' | 'Center' | 'Right'"
+            );
         }
 
         if (textColor !== undefined) {
-            requestQueryParameters['TextColor'] = ObjectSerializer.serialize(textColor, "string");
+            requestQueryParameters['TextColor'] = ObjectSerializer.serialize(textColor, 'string');
         }
 
         if (fontSizeMode !== undefined) {
@@ -3016,107 +3000,119 @@ export class BarcodeApi {
         }
 
         if (resolution !== undefined) {
-            requestQueryParameters['Resolution'] = ObjectSerializer.serialize(resolution, "number");
+            requestQueryParameters['Resolution'] = ObjectSerializer.serialize(resolution, 'number');
         }
 
         if (resolutionX !== undefined) {
-            requestQueryParameters['ResolutionX'] = ObjectSerializer.serialize(resolutionX, "number");
+            requestQueryParameters['ResolutionX'] = ObjectSerializer.serialize(resolutionX, 'number');
         }
 
         if (resolutionY !== undefined) {
-            requestQueryParameters['ResolutionY'] = ObjectSerializer.serialize(resolutionY, "number");
+            requestQueryParameters['ResolutionY'] = ObjectSerializer.serialize(resolutionY, 'number');
         }
 
         if (dimensionX !== undefined) {
-            requestQueryParameters['DimensionX'] = ObjectSerializer.serialize(dimensionX, "number");
+            requestQueryParameters['DimensionX'] = ObjectSerializer.serialize(dimensionX, 'number');
         }
 
         if (textSpace !== undefined) {
-            requestQueryParameters['TextSpace'] = ObjectSerializer.serialize(textSpace, "number");
+            requestQueryParameters['TextSpace'] = ObjectSerializer.serialize(textSpace, 'number');
         }
 
         if (units !== undefined) {
-            requestQueryParameters['Units'] = ObjectSerializer.serialize(units, "'Pixel' | 'Point' | 'Inch' | 'Millimeter'");
+            requestQueryParameters['Units'] = ObjectSerializer.serialize(
+                units,
+                "'Pixel' | 'Point' | 'Inch' | 'Millimeter'"
+            );
         }
 
         if (sizeMode !== undefined) {
-            requestQueryParameters['SizeMode'] = ObjectSerializer.serialize(sizeMode, "'None' | 'Nearest' | 'Interpolation'");
+            requestQueryParameters['SizeMode'] = ObjectSerializer.serialize(
+                sizeMode,
+                "'None' | 'Nearest' | 'Interpolation'"
+            );
         }
 
         if (barHeight !== undefined) {
-            requestQueryParameters['BarHeight'] = ObjectSerializer.serialize(barHeight, "number");
+            requestQueryParameters['BarHeight'] = ObjectSerializer.serialize(barHeight, 'number');
         }
 
         if (imageHeight !== undefined) {
-            requestQueryParameters['ImageHeight'] = ObjectSerializer.serialize(imageHeight, "number");
+            requestQueryParameters['ImageHeight'] = ObjectSerializer.serialize(imageHeight, 'number');
         }
 
         if (imageWidth !== undefined) {
-            requestQueryParameters['ImageWidth'] = ObjectSerializer.serialize(imageWidth, "number");
+            requestQueryParameters['ImageWidth'] = ObjectSerializer.serialize(imageWidth, 'number');
         }
 
         if (rotationAngle !== undefined) {
-            requestQueryParameters['RotationAngle'] = ObjectSerializer.serialize(rotationAngle, "number");
+            requestQueryParameters['RotationAngle'] = ObjectSerializer.serialize(rotationAngle, 'number');
         }
 
         if (backColor !== undefined) {
-            requestQueryParameters['BackColor'] = ObjectSerializer.serialize(backColor, "string");
+            requestQueryParameters['BackColor'] = ObjectSerializer.serialize(backColor, 'string');
         }
 
         if (barColor !== undefined) {
-            requestQueryParameters['BarColor'] = ObjectSerializer.serialize(barColor, "string");
+            requestQueryParameters['BarColor'] = ObjectSerializer.serialize(barColor, 'string');
         }
 
         if (borderColor !== undefined) {
-            requestQueryParameters['BorderColor'] = ObjectSerializer.serialize(borderColor, "string");
+            requestQueryParameters['BorderColor'] = ObjectSerializer.serialize(borderColor, 'string');
         }
 
         if (borderWidth !== undefined) {
-            requestQueryParameters['BorderWidth'] = ObjectSerializer.serialize(borderWidth, "number");
+            requestQueryParameters['BorderWidth'] = ObjectSerializer.serialize(borderWidth, 'number');
         }
 
         if (borderDashStyle !== undefined) {
-            requestQueryParameters['BorderDashStyle'] = ObjectSerializer.serialize(borderDashStyle, "'Solid' | 'Dash' | 'Dot' | 'DashDot' | 'DashDotDot'");
+            requestQueryParameters['BorderDashStyle'] = ObjectSerializer.serialize(
+                borderDashStyle,
+                "'Solid' | 'Dash' | 'Dot' | 'DashDot' | 'DashDotDot'"
+            );
         }
 
         if (borderVisible !== undefined) {
-            requestQueryParameters['BorderVisible'] = ObjectSerializer.serialize(borderVisible, "boolean");
+            requestQueryParameters['BorderVisible'] = ObjectSerializer.serialize(borderVisible, 'boolean');
         }
 
         if (enableChecksum !== undefined) {
-            requestQueryParameters['EnableChecksum'] = ObjectSerializer.serialize(enableChecksum, "'Default' | 'Yes' | 'No'");
+            requestQueryParameters['EnableChecksum'] = ObjectSerializer.serialize(
+                enableChecksum,
+                "'Default' | 'Yes' | 'No'"
+            );
         }
 
         if (enableEscape !== undefined) {
-            requestQueryParameters['EnableEscape'] = ObjectSerializer.serialize(enableEscape, "boolean");
+            requestQueryParameters['EnableEscape'] = ObjectSerializer.serialize(enableEscape, 'boolean');
         }
 
         if (filledBars !== undefined) {
-            requestQueryParameters['FilledBars'] = ObjectSerializer.serialize(filledBars, "boolean");
+            requestQueryParameters['FilledBars'] = ObjectSerializer.serialize(filledBars, 'boolean');
         }
 
         if (alwaysShowChecksum !== undefined) {
-            requestQueryParameters['AlwaysShowChecksum'] = ObjectSerializer.serialize(alwaysShowChecksum, "boolean");
+            requestQueryParameters['AlwaysShowChecksum'] = ObjectSerializer.serialize(alwaysShowChecksum, 'boolean');
         }
 
         if (wideNarrowRatio !== undefined) {
-            requestQueryParameters['WideNarrowRatio'] = ObjectSerializer.serialize(wideNarrowRatio, "number");
+            requestQueryParameters['WideNarrowRatio'] = ObjectSerializer.serialize(wideNarrowRatio, 'number');
         }
 
         if (validateText !== undefined) {
-            requestQueryParameters['ValidateText'] = ObjectSerializer.serialize(validateText, "boolean");
+            requestQueryParameters['ValidateText'] = ObjectSerializer.serialize(validateText, 'boolean');
         }
 
         if (supplementData !== undefined) {
-            requestQueryParameters['SupplementData'] = ObjectSerializer.serialize(supplementData, "string");
+            requestQueryParameters['SupplementData'] = ObjectSerializer.serialize(supplementData, 'string');
         }
 
         if (supplementSpace !== undefined) {
-            requestQueryParameters['SupplementSpace'] = ObjectSerializer.serialize(supplementSpace, "number");
+            requestQueryParameters['SupplementSpace'] = ObjectSerializer.serialize(supplementSpace, 'number');
         }
 
         if (format !== undefined) {
-            requestQueryParameters['format'] = ObjectSerializer.serialize(format, "string");
+            requestQueryParameters['format'] = ObjectSerializer.serialize(format, 'string');
         }
 
         let requestUseFormData = false;
@@ -3130,8 +3126,8 @@ export class BarcodeApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: Buffer; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: Buffer }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -3154,19 +3150,19 @@ export class BarcodeApi {
     }
 
     /**
-     * 
-     * @summary Recognize barcode from a file on server.             
+     *
+     * @summary Recognize barcode from a file on server.
      * @param name The image file name.
-     * @param type The type of barcode to read.             
-     * @param checksumValidation Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies             
+     * @param type The type of barcode to read.
+     * @param checksumValidation Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
      * @param detectEncoding A flag which force engine to detect codetext encoding for Unicode.
      * @param preset Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
-     * @param rectX Set X for area for recognition.             
-     * @param rectY Set Y for area for recognition.             
-     * @param rectWidth Set Width of area for recognition.             
-     * @param rectHeight Set Height of area for recognition.             
-     * @param stripFNC Value indicating whether FNC symbol strip must be done.             
-     * @param timeout Timeout of recognition process.             
+     * @param rectX Set X for area for recognition.
+     * @param rectY Set Y for area for recognition.
+     * @param rectWidth Set Width of area for recognition.
+     * @param rectHeight Set Height of area for recognition.
+     * @param stripFNC Value indicating whether FNC symbol strip must be done.
+     * @param timeout Timeout of recognition process.
      * @param medianSmoothingWindowSize Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
      * @param allowMedianSmoothing Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
      * @param allowComplexBackground Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
@@ -3187,16 +3183,89 @@ export class BarcodeApi {
      * @param similarity Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      * @param skipDiagonalSearch Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param australianPostEncodingTable Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
-     * @param rectangleRegion 
+     * @param rectangleRegion
      * @param storage The image storage.
      * @param folder The image folder.
      */
     public async getBarcodeRecognize(
         name: string,
-        type?: 'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF',
+        type?:
+            | 'all'
+            | 'AustraliaPost'
+            | 'Aztec'
+            | 'ISBN'
+            | 'Codabar'
+            | 'Code11'
+            | 'Code128'
+            | 'GS1Code128'
+            | 'Code39Extended'
+            | 'Code39Standard'
+            | 'Code93Extended'
+            | 'Code93Standard'
+            | 'DataMatrix'
+            | 'DeutschePostIdentcode'
+            | 'DeutschePostLeitcode'
+            | 'EAN13'
+            | 'EAN14'
+            | 'EAN8'
+            | 'IATA2of5'
+            | 'Interleaved2of5'
+            | 'ISSN'
+            | 'ISMN'
+            | 'ItalianPost25'
+            | 'ITF14'
+            | 'ITF6'
+            | 'MacroPdf417'
+            | 'Matrix2of5'
+            | 'MSI'
+            | 'OneCode'
+            | 'OPC'
+            | 'PatchCode'
+            | 'Pdf417'
+            | 'MicroPdf417'
+            | 'Planet'
+            | 'Postnet'
+            | 'PZN'
+            | 'QR'
+            | 'MicroQR'
+            | 'RM4SCC'
+            | 'SCC14'
+            | 'SSCC18'
+            | 'Standard2of5'
+            | 'Supplement'
+            | 'UPCA'
+            | 'UPCE'
+            | 'VIN'
+            | 'Pharmacode'
+            | 'GS1DataMatrix'
+            | 'DatabarOmniDirectional'
+            | 'DatabarTruncated'
+            | 'DatabarLimited'
+            | 'DatabarExpanded'
+            | 'SwissPostParcel'
+            | 'AustralianPosteParcel'
+            | 'Code16K'
+            | 'DatabarStackedOmniDirectional'
+            | 'DatabarStacked'
+            | 'DatabarExpandedStacked'
+            | 'CompactPdf417'
+            | 'GS1QR'
+            | 'MaxiCode'
+            | 'MicrE13B'
+            | 'Code32'
+            | 'DataLogic2of5'
+            | 'DotCode'
+            | 'DutchKIX'
+            | 'CodablockF',
         checksumValidation?: 'Default' | 'On' | 'Off',
         detectEncoding?: boolean,
-        preset?: 'HighPerformance' | 'NormalQuality' | 'HighQualityDetection' | 'MaxQualityDetection' | 'HighQuality' | 'MaxBarCodes',
+        preset?:
+            | 'HighPerformance'
+            | 'NormalQuality'
+            | 'HighQualityDetection'
+            | 'MaxQualityDetection'
+            | 'HighQuality'
+            | 'MaxBarCodes',
         rectX?: number,
         rectY?: number,
         rectWidth?: number,
@@ -3226,13 +3295,10 @@ export class BarcodeApi {
         rectangleRegion?: string,
         storage?: string,
         folder?: string
-    ): Promise<{ response: http.IncomingMessage; body: BarcodeResponseList;  }> {
+    ): Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/recognize'.replace(
-                '{' + 'name' + '}',
-                encodeURIComponent(String(name))
-            );
+            '/barcode/{name}/recognize'.replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -3243,135 +3309,183 @@ export class BarcodeApi {
         }
 
         if (type !== undefined) {
-            requestQueryParameters['Type'] = ObjectSerializer.serialize(type, "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF'");
+            requestQueryParameters['Type'] = ObjectSerializer.serialize(
+                type,
+                "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF'"
+            );
         }
 
         if (checksumValidation !== undefined) {
-            requestQueryParameters['ChecksumValidation'] = ObjectSerializer.serialize(checksumValidation, "'Default' | 'On' | 'Off'");
+            requestQueryParameters['ChecksumValidation'] = ObjectSerializer.serialize(
+                checksumValidation,
+                "'Default' | 'On' | 'Off'"
+            );
         }
 
         if (detectEncoding !== undefined) {
-            requestQueryParameters['DetectEncoding'] = ObjectSerializer.serialize(detectEncoding, "boolean");
+            requestQueryParameters['DetectEncoding'] = ObjectSerializer.serialize(detectEncoding, 'boolean');
         }
 
         if (preset !== undefined) {
-            requestQueryParameters['Preset'] = ObjectSerializer.serialize(preset, "'HighPerformance' | 'NormalQuality' | 'HighQualityDetection' | 'MaxQualityDetection' | 'HighQuality' | 'MaxBarCodes'");
+            requestQueryParameters['Preset'] = ObjectSerializer.serialize(
+                preset,
+                "'HighPerformance' | 'NormalQuality' | 'HighQualityDetection' | 'MaxQualityDetection' | 'HighQuality' | 'MaxBarCodes'"
+            );
         }
 
         if (rectX !== undefined) {
-            requestQueryParameters['RectX'] = ObjectSerializer.serialize(rectX, "number");
+            requestQueryParameters['RectX'] = ObjectSerializer.serialize(rectX, 'number');
         }
 
         if (rectY !== undefined) {
-            requestQueryParameters['RectY'] = ObjectSerializer.serialize(rectY, "number");
+            requestQueryParameters['RectY'] = ObjectSerializer.serialize(rectY, 'number');
         }
 
         if (rectWidth !== undefined) {
-            requestQueryParameters['RectWidth'] = ObjectSerializer.serialize(rectWidth, "number");
+            requestQueryParameters['RectWidth'] = ObjectSerializer.serialize(rectWidth, 'number');
         }
 
         if (rectHeight !== undefined) {
-            requestQueryParameters['RectHeight'] = ObjectSerializer.serialize(rectHeight, "number");
+            requestQueryParameters['RectHeight'] = ObjectSerializer.serialize(rectHeight, 'number');
         }
 
         if (stripFNC !== undefined) {
-            requestQueryParameters['StripFNC'] = ObjectSerializer.serialize(stripFNC, "boolean");
+            requestQueryParameters['StripFNC'] = ObjectSerializer.serialize(stripFNC, 'boolean');
         }
 
         if (timeout !== undefined) {
-            requestQueryParameters['Timeout'] = ObjectSerializer.serialize(timeout, "number");
+            requestQueryParameters['Timeout'] = ObjectSerializer.serialize(timeout, 'number');
         }
 
         if (medianSmoothingWindowSize !== undefined) {
-            requestQueryParameters['MedianSmoothingWindowSize'] = ObjectSerializer.serialize(medianSmoothingWindowSize, "number");
+            requestQueryParameters['MedianSmoothingWindowSize'] = ObjectSerializer.serialize(
+                medianSmoothingWindowSize,
+                'number'
+            );
         }
 
         if (allowMedianSmoothing !== undefined) {
-            requestQueryParameters['AllowMedianSmoothing'] = ObjectSerializer.serialize(allowMedianSmoothing, "boolean");
+            requestQueryParameters['AllowMedianSmoothing'] = ObjectSerializer.serialize(
+                allowMedianSmoothing,
+                'boolean'
+            );
         }
 
         if (allowComplexBackground !== undefined) {
-            requestQueryParameters['AllowComplexBackground'] = ObjectSerializer.serialize(allowComplexBackground, "boolean");
+            requestQueryParameters['AllowComplexBackground'] = ObjectSerializer.serialize(
+                allowComplexBackground,
+                'boolean'
+            );
         }
 
         if (allowDatamatrixIndustrialBarcodes !== undefined) {
-            requestQueryParameters['AllowDatamatrixIndustrialBarcodes'] = ObjectSerializer.serialize(allowDatamatrixIndustrialBarcodes, "boolean");
+            requestQueryParameters['AllowDatamatrixIndustrialBarcodes'] = ObjectSerializer.serialize(
+                allowDatamatrixIndustrialBarcodes,
+                'boolean'
+            );
         }
 
         if (allowDecreasedImage !== undefined) {
-            requestQueryParameters['AllowDecreasedImage'] = ObjectSerializer.serialize(allowDecreasedImage, "boolean");
+            requestQueryParameters['AllowDecreasedImage'] = ObjectSerializer.serialize(allowDecreasedImage, 'boolean');
         }
 
         if (allowDetectScanGap !== undefined) {
-            requestQueryParameters['AllowDetectScanGap'] = ObjectSerializer.serialize(allowDetectScanGap, "boolean");
+            requestQueryParameters['AllowDetectScanGap'] = ObjectSerializer.serialize(allowDetectScanGap, 'boolean');
         }
 
         if (allowIncorrectBarcodes !== undefined) {
-            requestQueryParameters['AllowIncorrectBarcodes'] = ObjectSerializer.serialize(allowIncorrectBarcodes, "boolean");
+            requestQueryParameters['AllowIncorrectBarcodes'] = ObjectSerializer.serialize(
+                allowIncorrectBarcodes,
+                'boolean'
+            );
         }
 
         if (allowInvertImage !== undefined) {
-            requestQueryParameters['AllowInvertImage'] = ObjectSerializer.serialize(allowInvertImage, "boolean");
+            requestQueryParameters['AllowInvertImage'] = ObjectSerializer.serialize(allowInvertImage, 'boolean');
         }
 
         if (allowMicroWhiteSpotsRemoving !== undefined) {
-            requestQueryParameters['AllowMicroWhiteSpotsRemoving'] = ObjectSerializer.serialize(allowMicroWhiteSpotsRemoving, "boolean");
+            requestQueryParameters['AllowMicroWhiteSpotsRemoving'] = ObjectSerializer.serialize(
+                allowMicroWhiteSpotsRemoving,
+                'boolean'
+            );
         }
 
         if (allowOneDFastBarcodesDetector !== undefined) {
-            requestQueryParameters['AllowOneDFastBarcodesDetector'] = ObjectSerializer.serialize(allowOneDFastBarcodesDetector, "boolean");
+            requestQueryParameters['AllowOneDFastBarcodesDetector'] = ObjectSerializer.serialize(
+                allowOneDFastBarcodesDetector,
+                'boolean'
+            );
         }
 
         if (allowOneDWipedBarsRestoration !== undefined) {
-            requestQueryParameters['AllowOneDWipedBarsRestoration'] = ObjectSerializer.serialize(allowOneDWipedBarsRestoration, "boolean");
+            requestQueryParameters['AllowOneDWipedBarsRestoration'] = ObjectSerializer.serialize(
+                allowOneDWipedBarsRestoration,
+                'boolean'
+            );
         }
 
         if (allowQRMicroQrRestoration !== undefined) {
-            requestQueryParameters['AllowQRMicroQrRestoration'] = ObjectSerializer.serialize(allowQRMicroQrRestoration, "boolean");
+            requestQueryParameters['AllowQRMicroQrRestoration'] = ObjectSerializer.serialize(
+                allowQRMicroQrRestoration,
+                'boolean'
+            );
         }
 
         if (allowRegularImage !== undefined) {
-            requestQueryParameters['AllowRegularImage'] = ObjectSerializer.serialize(allowRegularImage, "boolean");
+            requestQueryParameters['AllowRegularImage'] = ObjectSerializer.serialize(allowRegularImage, 'boolean');
         }
 
         if (allowSaltAndPepperFiltering !== undefined) {
-            requestQueryParameters['AllowSaltAndPepperFiltering'] = ObjectSerializer.serialize(allowSaltAndPepperFiltering, "boolean");
+            requestQueryParameters['AllowSaltAndPepperFiltering'] = ObjectSerializer.serialize(
+                allowSaltAndPepperFiltering,
+                'boolean'
+            );
         }
 
         if (allowWhiteSpotsRemoving !== undefined) {
-            requestQueryParameters['AllowWhiteSpotsRemoving'] = ObjectSerializer.serialize(allowWhiteSpotsRemoving, "boolean");
+            requestQueryParameters['AllowWhiteSpotsRemoving'] = ObjectSerializer.serialize(
+                allowWhiteSpotsRemoving,
+                'boolean'
+            );
         }
 
         if (regionLikelihoodThresholdPercent !== undefined) {
-            requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(regionLikelihoodThresholdPercent, "number");
+            requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
+                regionLikelihoodThresholdPercent,
+                'number'
+            );
         }
 
         if (scanWindowSizes !== undefined) {
-            requestQueryParameters['ScanWindowSizes'] = ObjectSerializer.serialize(scanWindowSizes, "Array<number>");
+            requestQueryParameters['ScanWindowSizes'] = ObjectSerializer.serialize(scanWindowSizes, 'Array<number>');
         }
 
         if (similarity !== undefined) {
-            requestQueryParameters['Similarity'] = ObjectSerializer.serialize(similarity, "number");
+            requestQueryParameters['Similarity'] = ObjectSerializer.serialize(similarity, 'number');
         }
 
         if (skipDiagonalSearch !== undefined) {
-            requestQueryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(skipDiagonalSearch, "boolean");
+            requestQueryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(skipDiagonalSearch, 'boolean');
         }
 
         if (australianPostEncodingTable !== undefined) {
-            requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(australianPostEncodingTable, "'CTable' | 'NTable' | 'Other'");
+            requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
+                australianPostEncodingTable,
+                "'CTable' | 'NTable' | 'Other'"
+            );
         }
 
         if (rectangleRegion !== undefined) {
-            requestQueryParameters['RectangleRegion'] = ObjectSerializer.serialize(rectangleRegion, "string");
+            requestQueryParameters['RectangleRegion'] = ObjectSerializer.serialize(rectangleRegion, 'string');
         }
 
         if (storage !== undefined) {
-            requestQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+            requestQueryParameters['storage'] = ObjectSerializer.serialize(storage, 'string');
         }
 
         if (folder !== undefined) {
-            requestQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+            requestQueryParameters['folder'] = ObjectSerializer.serialize(folder, 'string');
         }
 
         let requestUseFormData = false;
@@ -3384,8 +3498,8 @@ export class BarcodeApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: BarcodeResponseList; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -3408,18 +3522,18 @@ export class BarcodeApi {
     }
 
     /**
-     * 
-     * @summary Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.             
-     * @param type The type of barcode to read.             
-     * @param checksumValidation Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies             
+     *
+     * @summary Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.
+     * @param type The type of barcode to read.
+     * @param checksumValidation Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
      * @param detectEncoding A flag which force engine to detect codetext encoding for Unicode.
      * @param preset Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality.
-     * @param rectX Set X for area for recognition.             
-     * @param rectY Set Y for area for recognition.             
-     * @param rectWidth Set Width of area for recognition.             
-     * @param rectHeight Set Height of area for recognition.             
-     * @param stripFNC Value indicating whether FNC symbol strip must be done.             
-     * @param timeout Timeout of recognition process.             
+     * @param rectX Set X for area for recognition.
+     * @param rectY Set Y for area for recognition.
+     * @param rectWidth Set Width of area for recognition.
+     * @param rectHeight Set Height of area for recognition.
+     * @param stripFNC Value indicating whether FNC symbol strip must be done.
+     * @param timeout Timeout of recognition process.
      * @param medianSmoothingWindowSize Window size for median smoothing. Typical values are 3 or 4. Default value is 3. AllowMedianSmoothing must be set.
      * @param allowMedianSmoothing Allows engine to enable median smoothing as additional scan. Mode helps to recognize noised barcodes.
      * @param allowComplexBackground Allows engine to recognize color barcodes on color background as additional scan. Extremely slow mode.
@@ -3440,15 +3554,88 @@ export class BarcodeApi {
      * @param similarity Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      * @param skipDiagonalSearch Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param australianPostEncodingTable Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
-     * @param rectangleRegion 
+     * @param rectangleRegion
      * @param url The image file url.
      * @param image Image data
      */
     public async postBarcodeRecognizeFromUrlOrContent(
-        type?: 'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF',
+        type?:
+            | 'all'
+            | 'AustraliaPost'
+            | 'Aztec'
+            | 'ISBN'
+            | 'Codabar'
+            | 'Code11'
+            | 'Code128'
+            | 'GS1Code128'
+            | 'Code39Extended'
+            | 'Code39Standard'
+            | 'Code93Extended'
+            | 'Code93Standard'
+            | 'DataMatrix'
+            | 'DeutschePostIdentcode'
+            | 'DeutschePostLeitcode'
+            | 'EAN13'
+            | 'EAN14'
+            | 'EAN8'
+            | 'IATA2of5'
+            | 'Interleaved2of5'
+            | 'ISSN'
+            | 'ISMN'
+            | 'ItalianPost25'
+            | 'ITF14'
+            | 'ITF6'
+            | 'MacroPdf417'
+            | 'Matrix2of5'
+            | 'MSI'
+            | 'OneCode'
+            | 'OPC'
+            | 'PatchCode'
+            | 'Pdf417'
+            | 'MicroPdf417'
+            | 'Planet'
+            | 'Postnet'
+            | 'PZN'
+            | 'QR'
+            | 'MicroQR'
+            | 'RM4SCC'
+            | 'SCC14'
+            | 'SSCC18'
+            | 'Standard2of5'
+            | 'Supplement'
+            | 'UPCA'
+            | 'UPCE'
+            | 'VIN'
+            | 'Pharmacode'
+            | 'GS1DataMatrix'
+            | 'DatabarOmniDirectional'
+            | 'DatabarTruncated'
+            | 'DatabarLimited'
+            | 'DatabarExpanded'
+            | 'SwissPostParcel'
+            | 'AustralianPosteParcel'
+            | 'Code16K'
+            | 'DatabarStackedOmniDirectional'
+            | 'DatabarStacked'
+            | 'DatabarExpandedStacked'
+            | 'CompactPdf417'
+            | 'GS1QR'
+            | 'MaxiCode'
+            | 'MicrE13B'
+            | 'Code32'
+            | 'DataLogic2of5'
+            | 'DotCode'
+            | 'DutchKIX'
+            | 'CodablockF',
         checksumValidation?: 'Default' | 'On' | 'Off',
         detectEncoding?: boolean,
-        preset?: 'HighPerformance' | 'NormalQuality' | 'HighQualityDetection' | 'MaxQualityDetection' | 'HighQuality' | 'MaxBarCodes',
+        preset?:
+            | 'HighPerformance'
+            | 'NormalQuality'
+            | 'HighQualityDetection'
+            | 'MaxQualityDetection'
+            | 'HighQuality'
+            | 'MaxBarCodes',
         rectX?: number,
         rectY?: number,
         rectWidth?: number,
@@ -3478,140 +3665,186 @@ export class BarcodeApi {
         rectangleRegion?: string,
         url?: string,
         image?: Buffer
-    ): Promise<{ response: http.IncomingMessage; body: BarcodeResponseList;  }> {
-        const requestPath =
-            this._configuration.getApiBaseUrl() +
-            '/barcode/recognize';
+    ): Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }> {
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize';
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
 
         if (type !== undefined) {
-            requestQueryParameters['Type'] = ObjectSerializer.serialize(type, "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF'");
+            requestQueryParameters['Type'] = ObjectSerializer.serialize(
+                type,
+                "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF'"
+            );
         }
 
         if (checksumValidation !== undefined) {
-            requestQueryParameters['ChecksumValidation'] = ObjectSerializer.serialize(checksumValidation, "'Default' | 'On' | 'Off'");
+            requestQueryParameters['ChecksumValidation'] = ObjectSerializer.serialize(
+                checksumValidation,
+                "'Default' | 'On' | 'Off'"
+            );
         }
 
         if (detectEncoding !== undefined) {
-            requestQueryParameters['DetectEncoding'] = ObjectSerializer.serialize(detectEncoding, "boolean");
+            requestQueryParameters['DetectEncoding'] = ObjectSerializer.serialize(detectEncoding, 'boolean');
         }
 
         if (preset !== undefined) {
-            requestQueryParameters['Preset'] = ObjectSerializer.serialize(preset, "'HighPerformance' | 'NormalQuality' | 'HighQualityDetection' | 'MaxQualityDetection' | 'HighQuality' | 'MaxBarCodes'");
+            requestQueryParameters['Preset'] = ObjectSerializer.serialize(
+                preset,
+                "'HighPerformance' | 'NormalQuality' | 'HighQualityDetection' | 'MaxQualityDetection' | 'HighQuality' | 'MaxBarCodes'"
+            );
         }
 
         if (rectX !== undefined) {
-            requestQueryParameters['RectX'] = ObjectSerializer.serialize(rectX, "number");
+            requestQueryParameters['RectX'] = ObjectSerializer.serialize(rectX, 'number');
         }
 
         if (rectY !== undefined) {
-            requestQueryParameters['RectY'] = ObjectSerializer.serialize(rectY, "number");
+            requestQueryParameters['RectY'] = ObjectSerializer.serialize(rectY, 'number');
         }
 
         if (rectWidth !== undefined) {
-            requestQueryParameters['RectWidth'] = ObjectSerializer.serialize(rectWidth, "number");
+            requestQueryParameters['RectWidth'] = ObjectSerializer.serialize(rectWidth, 'number');
         }
 
         if (rectHeight !== undefined) {
-            requestQueryParameters['RectHeight'] = ObjectSerializer.serialize(rectHeight, "number");
+            requestQueryParameters['RectHeight'] = ObjectSerializer.serialize(rectHeight, 'number');
         }
 
         if (stripFNC !== undefined) {
-            requestQueryParameters['StripFNC'] = ObjectSerializer.serialize(stripFNC, "boolean");
+            requestQueryParameters['StripFNC'] = ObjectSerializer.serialize(stripFNC, 'boolean');
         }
 
         if (timeout !== undefined) {
-            requestQueryParameters['Timeout'] = ObjectSerializer.serialize(timeout, "number");
+            requestQueryParameters['Timeout'] = ObjectSerializer.serialize(timeout, 'number');
         }
 
         if (medianSmoothingWindowSize !== undefined) {
-            requestQueryParameters['MedianSmoothingWindowSize'] = ObjectSerializer.serialize(medianSmoothingWindowSize, "number");
+            requestQueryParameters['MedianSmoothingWindowSize'] = ObjectSerializer.serialize(
+                medianSmoothingWindowSize,
+                'number'
+            );
         }
 
         if (allowMedianSmoothing !== undefined) {
-            requestQueryParameters['AllowMedianSmoothing'] = ObjectSerializer.serialize(allowMedianSmoothing, "boolean");
+            requestQueryParameters['AllowMedianSmoothing'] = ObjectSerializer.serialize(
+                allowMedianSmoothing,
+                'boolean'
+            );
         }
 
         if (allowComplexBackground !== undefined) {
-            requestQueryParameters['AllowComplexBackground'] = ObjectSerializer.serialize(allowComplexBackground, "boolean");
+            requestQueryParameters['AllowComplexBackground'] = ObjectSerializer.serialize(
+                allowComplexBackground,
+                'boolean'
+            );
         }
 
         if (allowDatamatrixIndustrialBarcodes !== undefined) {
-            requestQueryParameters['AllowDatamatrixIndustrialBarcodes'] = ObjectSerializer.serialize(allowDatamatrixIndustrialBarcodes, "boolean");
+            requestQueryParameters['AllowDatamatrixIndustrialBarcodes'] = ObjectSerializer.serialize(
+                allowDatamatrixIndustrialBarcodes,
+                'boolean'
+            );
         }
 
         if (allowDecreasedImage !== undefined) {
-            requestQueryParameters['AllowDecreasedImage'] = ObjectSerializer.serialize(allowDecreasedImage, "boolean");
+            requestQueryParameters['AllowDecreasedImage'] = ObjectSerializer.serialize(allowDecreasedImage, 'boolean');
         }
 
         if (allowDetectScanGap !== undefined) {
-            requestQueryParameters['AllowDetectScanGap'] = ObjectSerializer.serialize(allowDetectScanGap, "boolean");
+            requestQueryParameters['AllowDetectScanGap'] = ObjectSerializer.serialize(allowDetectScanGap, 'boolean');
         }
 
         if (allowIncorrectBarcodes !== undefined) {
-            requestQueryParameters['AllowIncorrectBarcodes'] = ObjectSerializer.serialize(allowIncorrectBarcodes, "boolean");
+            requestQueryParameters['AllowIncorrectBarcodes'] = ObjectSerializer.serialize(
+                allowIncorrectBarcodes,
+                'boolean'
+            );
         }
 
         if (allowInvertImage !== undefined) {
-            requestQueryParameters['AllowInvertImage'] = ObjectSerializer.serialize(allowInvertImage, "boolean");
+            requestQueryParameters['AllowInvertImage'] = ObjectSerializer.serialize(allowInvertImage, 'boolean');
         }
 
         if (allowMicroWhiteSpotsRemoving !== undefined) {
-            requestQueryParameters['AllowMicroWhiteSpotsRemoving'] = ObjectSerializer.serialize(allowMicroWhiteSpotsRemoving, "boolean");
+            requestQueryParameters['AllowMicroWhiteSpotsRemoving'] = ObjectSerializer.serialize(
+                allowMicroWhiteSpotsRemoving,
+                'boolean'
+            );
         }
 
         if (allowOneDFastBarcodesDetector !== undefined) {
-            requestQueryParameters['AllowOneDFastBarcodesDetector'] = ObjectSerializer.serialize(allowOneDFastBarcodesDetector, "boolean");
+            requestQueryParameters['AllowOneDFastBarcodesDetector'] = ObjectSerializer.serialize(
+                allowOneDFastBarcodesDetector,
+                'boolean'
+            );
         }
 
         if (allowOneDWipedBarsRestoration !== undefined) {
-            requestQueryParameters['AllowOneDWipedBarsRestoration'] = ObjectSerializer.serialize(allowOneDWipedBarsRestoration, "boolean");
+            requestQueryParameters['AllowOneDWipedBarsRestoration'] = ObjectSerializer.serialize(
+                allowOneDWipedBarsRestoration,
+                'boolean'
+            );
         }
 
         if (allowQRMicroQrRestoration !== undefined) {
-            requestQueryParameters['AllowQRMicroQrRestoration'] = ObjectSerializer.serialize(allowQRMicroQrRestoration, "boolean");
+            requestQueryParameters['AllowQRMicroQrRestoration'] = ObjectSerializer.serialize(
+                allowQRMicroQrRestoration,
+                'boolean'
+            );
         }
 
         if (allowRegularImage !== undefined) {
-            requestQueryParameters['AllowRegularImage'] = ObjectSerializer.serialize(allowRegularImage, "boolean");
+            requestQueryParameters['AllowRegularImage'] = ObjectSerializer.serialize(allowRegularImage, 'boolean');
         }
 
         if (allowSaltAndPepperFiltering !== undefined) {
-            requestQueryParameters['AllowSaltAndPepperFiltering'] = ObjectSerializer.serialize(allowSaltAndPepperFiltering, "boolean");
+            requestQueryParameters['AllowSaltAndPepperFiltering'] = ObjectSerializer.serialize(
+                allowSaltAndPepperFiltering,
+                'boolean'
+            );
         }
 
         if (allowWhiteSpotsRemoving !== undefined) {
-            requestQueryParameters['AllowWhiteSpotsRemoving'] = ObjectSerializer.serialize(allowWhiteSpotsRemoving, "boolean");
+            requestQueryParameters['AllowWhiteSpotsRemoving'] = ObjectSerializer.serialize(
+                allowWhiteSpotsRemoving,
+                'boolean'
+            );
         }
 
         if (regionLikelihoodThresholdPercent !== undefined) {
-            requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(regionLikelihoodThresholdPercent, "number");
+            requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
+                regionLikelihoodThresholdPercent,
+                'number'
+            );
         }
 
         if (scanWindowSizes !== undefined) {
-            requestQueryParameters['ScanWindowSizes'] = ObjectSerializer.serialize(scanWindowSizes, "Array<number>");
+            requestQueryParameters['ScanWindowSizes'] = ObjectSerializer.serialize(scanWindowSizes, 'Array<number>');
         }
 
         if (similarity !== undefined) {
-            requestQueryParameters['Similarity'] = ObjectSerializer.serialize(similarity, "number");
+            requestQueryParameters['Similarity'] = ObjectSerializer.serialize(similarity, 'number');
         }
 
         if (skipDiagonalSearch !== undefined) {
-            requestQueryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(skipDiagonalSearch, "boolean");
+            requestQueryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(skipDiagonalSearch, 'boolean');
         }
 
         if (australianPostEncodingTable !== undefined) {
-            requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(australianPostEncodingTable, "'CTable' | 'NTable' | 'Other'");
+            requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
+                australianPostEncodingTable,
+                "'CTable' | 'NTable' | 'Other'"
+            );
         }
 
         if (rectangleRegion !== undefined) {
-            requestQueryParameters['RectangleRegion'] = ObjectSerializer.serialize(rectangleRegion, "string");
+            requestQueryParameters['RectangleRegion'] = ObjectSerializer.serialize(rectangleRegion, 'string');
         }
 
         if (url !== undefined) {
-            requestQueryParameters['url'] = ObjectSerializer.serialize(url, "string");
+            requestQueryParameters['url'] = ObjectSerializer.serialize(url, 'string');
         }
 
         let requestUseFormData = false;
@@ -3627,12 +3860,12 @@ export class BarcodeApi {
             qs: requestQueryParameters,
             headers: requestHeaderParams,
             uri: requestPath,
-      body: image,
+            body: image,
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: BarcodeResponseList; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -3655,29 +3888,29 @@ export class BarcodeApi {
     }
 
     /**
-     * 
-     * @summary Generate multiple barcodes and return in response stream             
+     *
+     * @summary Generate multiple barcodes and return in response stream
      * @param generatorParamsList List of barcodes
      * @param format Format to return stream in
      */
     public async postGenerateMultiple(
         generatorParamsList: GeneratorParamsList,
         format?: string
-    ): Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
-        const requestPath =
-            this._configuration.getApiBaseUrl() +
-            '/barcode/generateMultiple';
+    ): Promise<{ response: http.IncomingMessage; body: Buffer }> {
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generateMultiple';
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
 
         // verify required parameter 'generatorParamsList' is not null or undefined
         if (generatorParamsList === null || generatorParamsList === undefined) {
-            throw new Error('Required parameter generatorParamsList was null or undefined when calling postGenerateMultiple.');
+            throw new Error(
+                'Required parameter generatorParamsList was null or undefined when calling postGenerateMultiple.'
+            );
         }
 
         if (format !== undefined) {
-            requestQueryParameters['format'] = ObjectSerializer.serialize(format, "string");
+            requestQueryParameters['format'] = ObjectSerializer.serialize(format, 'string');
         }
 
         let requestUseFormData = false;
@@ -3693,8 +3926,8 @@ export class BarcodeApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: Buffer; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: Buffer }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -3717,26 +3950,26 @@ export class BarcodeApi {
     }
 
     /**
-     * 
-     * @summary Generate barcode and save on server (from query params or from file with json or xml content)             
+     *
+     * @summary Generate barcode and save on server (from query params or from file with json or xml content)
      * @param name The image file name.
-     * @param type Type of barcode to generate.             
-     * @param text Text to encode.             
+     * @param type Type of barcode to generate.
+     * @param text Text to encode.
      * @param twoDDisplayText Text that will be displayed instead of codetext in 2D barcodes. Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
      * @param textLocation Specify the displaying Text Location, set to CodeLocation.None to hide CodeText. Default value: CodeLocation.Below.
-     * @param textAlignment Text alignment.             
+     * @param textAlignment Text alignment.
      * @param textColor Specify the displaying CodeText&#39;s Color. Default value: Color.Black.
      * @param fontSizeMode Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto.
      * @param resolution Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
-     * @param resolutionX DEPRECATED: Use &#39;Resolution&#39; instead.             
-     * @param resolutionY DEPRECATED: Use &#39;Resolution&#39; instead.             
+     * @param resolutionX DEPRECATED: Use &#39;Resolution&#39; instead.
+     * @param resolutionY DEPRECATED: Use &#39;Resolution&#39; instead.
      * @param dimensionX The smallest width of the unit of BarCode bars or spaces. Increase this will increase the whole barcode image width. Ignored if AutoSizeMode property is set to AutoSizeMode.Nearest or AutoSizeMode.Interpolation.
      * @param textSpace Space between the CodeText and the BarCode in Unit value. Default value: 2pt. Ignored for EAN8, EAN13, UPCE, UPCA, ISBN, ISMN, ISSN, UpcaGs1DatabarCoupon.
-     * @param units Common Units for all measuring in query. Default units: pixel.             
+     * @param units Common Units for all measuring in query. Default units: pixel.
      * @param sizeMode Specifies the different types of automatic sizing modes. Default value: AutoSizeMode.None.
-     * @param barHeight Height of the barcode in given units. Default units: pixel.             
-     * @param imageHeight Height of the barcode image in given units. Default units: pixel.             
-     * @param imageWidth Width of the barcode image in given units. Default units: pixel.             
+     * @param barHeight Height of the barcode in given units. Default units: pixel.
+     * @param imageHeight Height of the barcode image in given units. Default units: pixel.
+     * @param imageWidth Width of the barcode image in given units. Default units: pixel.
      * @param rotationAngle BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation. If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image. Default value: 0.
      * @param backColor Background color of the barcode image. Default value: Color.White.
      * @param barColor Bars color. Default value: Color.Black.
@@ -3744,10 +3977,10 @@ export class BarcodeApi {
      * @param borderWidth Border width. Default value: 0. Ignored if Visible is set to false.
      * @param borderDashStyle Border dash style. Default value: BorderDashStyle.Solid.
      * @param borderVisible Border visibility. If false than parameter Width is always ignored (0). Default value: false.
-     * @param enableChecksum Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology             
+     * @param enableChecksum Enable checksum during generation 1D barcodes. Default is treated as Yes for symbology which must contain checksum, as No where checksum only possible. Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN, Codabar Checksum always used: Rest symbology
      * @param enableEscape Indicates whether explains the character \&quot;\\\&quot; as an escape character in CodeText property. Used for Pdf417, DataMatrix, Code128 only If the EnableEscape is true, \&quot;\\\&quot; will be explained as a special escape character. Otherwise, \&quot;\\\&quot; acts as normal characters. Aspose.BarCode supports input decimal ascii code and mnemonic for ASCII control-code characters. For example, \\013 and \\\\CR stands for CR.
      * @param filledBars Value indicating whether bars are filled. Only for 1D barcodes. Default value: true.
-     * @param alwaysShowChecksum Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.             
+     * @param alwaysShowChecksum Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.
      * @param wideNarrowRatio Wide bars to Narrow bars ratio. Default value: 3, that is, wide bars are 3 times as wide as narrow bars. Used for ITF, PZN, PharmaCode, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, IATA2of5, VIN, DeutschePost, OPC, Code32, DataLogic2of5, PatchCode, Code39Extended, Code39Standard
      * @param validateText Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingapurePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
      * @param supplementData Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
@@ -3758,7 +3991,73 @@ export class BarcodeApi {
      */
     public async putBarcodeGenerateFile(
         name: string,
-        type: 'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF',
+        type:
+            | 'Codabar'
+            | 'Code11'
+            | 'Code39Standard'
+            | 'Code39Extended'
+            | 'Code93Standard'
+            | 'Code93Extended'
+            | 'Code128'
+            | 'GS1Code128'
+            | 'EAN8'
+            | 'EAN13'
+            | 'EAN14'
+            | 'SCC14'
+            | 'SSCC18'
+            | 'UPCA'
+            | 'UPCE'
+            | 'ISBN'
+            | 'ISSN'
+            | 'ISMN'
+            | 'Standard2of5'
+            | 'Interleaved2of5'
+            | 'Matrix2of5'
+            | 'ItalianPost25'
+            | 'IATA2of5'
+            | 'ITF14'
+            | 'ITF6'
+            | 'MSI'
+            | 'VIN'
+            | 'DeutschePostIdentcode'
+            | 'DeutschePostLeitcode'
+            | 'OPC'
+            | 'PZN'
+            | 'Code16K'
+            | 'Pharmacode'
+            | 'DataMatrix'
+            | 'QR'
+            | 'Aztec'
+            | 'Pdf417'
+            | 'MacroPdf417'
+            | 'AustraliaPost'
+            | 'Postnet'
+            | 'Planet'
+            | 'OneCode'
+            | 'RM4SCC'
+            | 'DatabarOmniDirectional'
+            | 'DatabarTruncated'
+            | 'DatabarLimited'
+            | 'DatabarExpanded'
+            | 'SingaporePost'
+            | 'GS1DataMatrix'
+            | 'AustralianPosteParcel'
+            | 'SwissPostParcel'
+            | 'PatchCode'
+            | 'DatabarExpandedStacked'
+            | 'DatabarStacked'
+            | 'DatabarStackedOmniDirectional'
+            | 'MicroPdf417'
+            | 'GS1QR'
+            | 'MaxiCode'
+            | 'Code32'
+            | 'DataLogic2of5'
+            | 'DotCode'
+            | 'DutchKIX'
+            | 'UpcaGs1Code128Coupon'
+            | 'UpcaGs1DatabarCoupon'
+            | 'CodablockF'
+            | 'GS1CodablockF',
         text: string,
         twoDDisplayText?: string,
         textLocation?: 'Below' | 'Above' | 'None',
@@ -3793,13 +4092,10 @@ export class BarcodeApi {
         storage?: string,
         folder?: string,
         format?: string
-    ): Promise<{ response: http.IncomingMessage; body: ResultImageInfo;  }> {
+    ): Promise<{ response: http.IncomingMessage; body: ResultImageInfo }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/generate'.replace(
-                '{' + 'name' + '}',
-                encodeURIComponent(String(name))
-            );
+            '/barcode/{name}/generate'.replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -3820,27 +4116,36 @@ export class BarcodeApi {
         }
 
         if (type !== undefined) {
-            requestQueryParameters['Type'] = ObjectSerializer.serialize(type, "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF'");
+            requestQueryParameters['Type'] = ObjectSerializer.serialize(
+                type,
+                "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF'"
+            );
         }
 
         if (text !== undefined) {
-            requestQueryParameters['Text'] = ObjectSerializer.serialize(text, "string");
+            requestQueryParameters['Text'] = ObjectSerializer.serialize(text, 'string');
         }
 
         if (twoDDisplayText !== undefined) {
-            requestQueryParameters['TwoDDisplayText'] = ObjectSerializer.serialize(twoDDisplayText, "string");
+            requestQueryParameters['TwoDDisplayText'] = ObjectSerializer.serialize(twoDDisplayText, 'string');
         }
 
         if (textLocation !== undefined) {
-            requestQueryParameters['TextLocation'] = ObjectSerializer.serialize(textLocation, "'Below' | 'Above' | 'None'");
+            requestQueryParameters['TextLocation'] = ObjectSerializer.serialize(
+                textLocation,
+                "'Below' | 'Above' | 'None'"
+            );
         }
 
         if (textAlignment !== undefined) {
-            requestQueryParameters['TextAlignment'] = ObjectSerializer.serialize(textAlignment, "'Left' | 'Center' | 'Right'");
+            requestQueryParameters['TextAlignment'] = ObjectSerializer.serialize(
+                textAlignment,
+                "'Left' | 'Center' | 'Right'"
+            );
         }
 
         if (textColor !== undefined) {
-            requestQueryParameters['TextColor'] = ObjectSerializer.serialize(textColor, "string");
+            requestQueryParameters['TextColor'] = ObjectSerializer.serialize(textColor, 'string');
         }
 
         if (fontSizeMode !== undefined) {
@@ -3848,115 +4153,127 @@ export class BarcodeApi {
         }
 
         if (resolution !== undefined) {
-            requestQueryParameters['Resolution'] = ObjectSerializer.serialize(resolution, "number");
+            requestQueryParameters['Resolution'] = ObjectSerializer.serialize(resolution, 'number');
         }
 
         if (resolutionX !== undefined) {
-            requestQueryParameters['ResolutionX'] = ObjectSerializer.serialize(resolutionX, "number");
+            requestQueryParameters['ResolutionX'] = ObjectSerializer.serialize(resolutionX, 'number');
         }
 
         if (resolutionY !== undefined) {
-            requestQueryParameters['ResolutionY'] = ObjectSerializer.serialize(resolutionY, "number");
+            requestQueryParameters['ResolutionY'] = ObjectSerializer.serialize(resolutionY, 'number');
         }
 
         if (dimensionX !== undefined) {
-            requestQueryParameters['DimensionX'] = ObjectSerializer.serialize(dimensionX, "number");
+            requestQueryParameters['DimensionX'] = ObjectSerializer.serialize(dimensionX, 'number');
         }
 
         if (textSpace !== undefined) {
-            requestQueryParameters['TextSpace'] = ObjectSerializer.serialize(textSpace, "number");
+            requestQueryParameters['TextSpace'] = ObjectSerializer.serialize(textSpace, 'number');
         }
 
         if (units !== undefined) {
-            requestQueryParameters['Units'] = ObjectSerializer.serialize(units, "'Pixel' | 'Point' | 'Inch' | 'Millimeter'");
+            requestQueryParameters['Units'] = ObjectSerializer.serialize(
+                units,
+                "'Pixel' | 'Point' | 'Inch' | 'Millimeter'"
+            );
         }
 
         if (sizeMode !== undefined) {
-            requestQueryParameters['SizeMode'] = ObjectSerializer.serialize(sizeMode, "'None' | 'Nearest' | 'Interpolation'");
+            requestQueryParameters['SizeMode'] = ObjectSerializer.serialize(
+                sizeMode,
+                "'None' | 'Nearest' | 'Interpolation'"
+            );
         }
 
         if (barHeight !== undefined) {
-            requestQueryParameters['BarHeight'] = ObjectSerializer.serialize(barHeight, "number");
+            requestQueryParameters['BarHeight'] = ObjectSerializer.serialize(barHeight, 'number');
         }
 
         if (imageHeight !== undefined) {
-            requestQueryParameters['ImageHeight'] = ObjectSerializer.serialize(imageHeight, "number");
+            requestQueryParameters['ImageHeight'] = ObjectSerializer.serialize(imageHeight, 'number');
         }
 
         if (imageWidth !== undefined) {
-            requestQueryParameters['ImageWidth'] = ObjectSerializer.serialize(imageWidth, "number");
+            requestQueryParameters['ImageWidth'] = ObjectSerializer.serialize(imageWidth, 'number');
         }
 
         if (rotationAngle !== undefined) {
-            requestQueryParameters['RotationAngle'] = ObjectSerializer.serialize(rotationAngle, "number");
+            requestQueryParameters['RotationAngle'] = ObjectSerializer.serialize(rotationAngle, 'number');
         }
 
         if (backColor !== undefined) {
-            requestQueryParameters['BackColor'] = ObjectSerializer.serialize(backColor, "string");
+            requestQueryParameters['BackColor'] = ObjectSerializer.serialize(backColor, 'string');
         }
 
         if (barColor !== undefined) {
-            requestQueryParameters['BarColor'] = ObjectSerializer.serialize(barColor, "string");
+            requestQueryParameters['BarColor'] = ObjectSerializer.serialize(barColor, 'string');
         }
 
         if (borderColor !== undefined) {
-            requestQueryParameters['BorderColor'] = ObjectSerializer.serialize(borderColor, "string");
+            requestQueryParameters['BorderColor'] = ObjectSerializer.serialize(borderColor, 'string');
         }
 
         if (borderWidth !== undefined) {
-            requestQueryParameters['BorderWidth'] = ObjectSerializer.serialize(borderWidth, "number");
+            requestQueryParameters['BorderWidth'] = ObjectSerializer.serialize(borderWidth, 'number');
         }
 
         if (borderDashStyle !== undefined) {
-            requestQueryParameters['BorderDashStyle'] = ObjectSerializer.serialize(borderDashStyle, "'Solid' | 'Dash' | 'Dot' | 'DashDot' | 'DashDotDot'");
+            requestQueryParameters['BorderDashStyle'] = ObjectSerializer.serialize(
+                borderDashStyle,
+                "'Solid' | 'Dash' | 'Dot' | 'DashDot' | 'DashDotDot'"
+            );
         }
 
         if (borderVisible !== undefined) {
-            requestQueryParameters['BorderVisible'] = ObjectSerializer.serialize(borderVisible, "boolean");
+            requestQueryParameters['BorderVisible'] = ObjectSerializer.serialize(borderVisible, 'boolean');
         }
 
         if (enableChecksum !== undefined) {
-            requestQueryParameters['EnableChecksum'] = ObjectSerializer.serialize(enableChecksum, "'Default' | 'Yes' | 'No'");
+            requestQueryParameters['EnableChecksum'] = ObjectSerializer.serialize(
+                enableChecksum,
+                "'Default' | 'Yes' | 'No'"
+            );
         }
 
         if (enableEscape !== undefined) {
-            requestQueryParameters['EnableEscape'] = ObjectSerializer.serialize(enableEscape, "boolean");
+            requestQueryParameters['EnableEscape'] = ObjectSerializer.serialize(enableEscape, 'boolean');
         }
 
         if (filledBars !== undefined) {
-            requestQueryParameters['FilledBars'] = ObjectSerializer.serialize(filledBars, "boolean");
+            requestQueryParameters['FilledBars'] = ObjectSerializer.serialize(filledBars, 'boolean');
         }
 
         if (alwaysShowChecksum !== undefined) {
-            requestQueryParameters['AlwaysShowChecksum'] = ObjectSerializer.serialize(alwaysShowChecksum, "boolean");
+            requestQueryParameters['AlwaysShowChecksum'] = ObjectSerializer.serialize(alwaysShowChecksum, 'boolean');
         }
 
         if (wideNarrowRatio !== undefined) {
-            requestQueryParameters['WideNarrowRatio'] = ObjectSerializer.serialize(wideNarrowRatio, "number");
+            requestQueryParameters['WideNarrowRatio'] = ObjectSerializer.serialize(wideNarrowRatio, 'number');
         }
 
         if (validateText !== undefined) {
-            requestQueryParameters['ValidateText'] = ObjectSerializer.serialize(validateText, "boolean");
+            requestQueryParameters['ValidateText'] = ObjectSerializer.serialize(validateText, 'boolean');
         }
 
         if (supplementData !== undefined) {
-            requestQueryParameters['SupplementData'] = ObjectSerializer.serialize(supplementData, "string");
+            requestQueryParameters['SupplementData'] = ObjectSerializer.serialize(supplementData, 'string');
         }
 
         if (supplementSpace !== undefined) {
-            requestQueryParameters['SupplementSpace'] = ObjectSerializer.serialize(supplementSpace, "number");
+            requestQueryParameters['SupplementSpace'] = ObjectSerializer.serialize(supplementSpace, 'number');
         }
 
         if (storage !== undefined) {
-            requestQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+            requestQueryParameters['storage'] = ObjectSerializer.serialize(storage, 'string');
         }
 
         if (folder !== undefined) {
-            requestQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+            requestQueryParameters['folder'] = ObjectSerializer.serialize(folder, 'string');
         }
 
         if (format !== undefined) {
-            requestQueryParameters['format'] = ObjectSerializer.serialize(format, "string");
+            requestQueryParameters['format'] = ObjectSerializer.serialize(format, 'string');
         }
 
         let requestUseFormData = false;
@@ -3969,8 +4286,8 @@ export class BarcodeApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: ResultImageInfo; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: ResultImageInfo }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -3993,27 +4310,91 @@ export class BarcodeApi {
     }
 
     /**
-     * 
-     * @summary Recognition of a barcode from file on server with parameters in body.             
+     *
+     * @summary Recognition of a barcode from file on server with parameters in body.
      * @param name The image file name.
      * @param readerParams BarcodeReader object with parameters.
-     * @param type 
+     * @param type
      * @param storage The storage name
      * @param folder The image folder.
      */
     public async putBarcodeRecognizeFromBody(
         name: string,
         readerParams: ReaderParams,
-        type?: 'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF',
+        type?:
+            | 'all'
+            | 'AustraliaPost'
+            | 'Aztec'
+            | 'ISBN'
+            | 'Codabar'
+            | 'Code11'
+            | 'Code128'
+            | 'GS1Code128'
+            | 'Code39Extended'
+            | 'Code39Standard'
+            | 'Code93Extended'
+            | 'Code93Standard'
+            | 'DataMatrix'
+            | 'DeutschePostIdentcode'
+            | 'DeutschePostLeitcode'
+            | 'EAN13'
+            | 'EAN14'
+            | 'EAN8'
+            | 'IATA2of5'
+            | 'Interleaved2of5'
+            | 'ISSN'
+            | 'ISMN'
+            | 'ItalianPost25'
+            | 'ITF14'
+            | 'ITF6'
+            | 'MacroPdf417'
+            | 'Matrix2of5'
+            | 'MSI'
+            | 'OneCode'
+            | 'OPC'
+            | 'PatchCode'
+            | 'Pdf417'
+            | 'MicroPdf417'
+            | 'Planet'
+            | 'Postnet'
+            | 'PZN'
+            | 'QR'
+            | 'MicroQR'
+            | 'RM4SCC'
+            | 'SCC14'
+            | 'SSCC18'
+            | 'Standard2of5'
+            | 'Supplement'
+            | 'UPCA'
+            | 'UPCE'
+            | 'VIN'
+            | 'Pharmacode'
+            | 'GS1DataMatrix'
+            | 'DatabarOmniDirectional'
+            | 'DatabarTruncated'
+            | 'DatabarLimited'
+            | 'DatabarExpanded'
+            | 'SwissPostParcel'
+            | 'AustralianPosteParcel'
+            | 'Code16K'
+            | 'DatabarStackedOmniDirectional'
+            | 'DatabarStacked'
+            | 'DatabarExpandedStacked'
+            | 'CompactPdf417'
+            | 'GS1QR'
+            | 'MaxiCode'
+            | 'MicrE13B'
+            | 'Code32'
+            | 'DataLogic2of5'
+            | 'DotCode'
+            | 'DutchKIX'
+            | 'CodablockF',
         storage?: string,
         folder?: string
-    ): Promise<{ response: http.IncomingMessage; body: BarcodeResponseList;  }> {
+    ): Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/recognize'.replace(
-                '{' + 'name' + '}',
-                encodeURIComponent(String(name))
-            );
+            '/barcode/{name}/recognize'.replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4025,19 +4406,24 @@ export class BarcodeApi {
 
         // verify required parameter 'readerParams' is not null or undefined
         if (readerParams === null || readerParams === undefined) {
-            throw new Error('Required parameter readerParams was null or undefined when calling putBarcodeRecognizeFromBody.');
+            throw new Error(
+                'Required parameter readerParams was null or undefined when calling putBarcodeRecognizeFromBody.'
+            );
         }
 
         if (type !== undefined) {
-            requestQueryParameters['type'] = ObjectSerializer.serialize(type, "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF'");
+            requestQueryParameters['type'] = ObjectSerializer.serialize(
+                type,
+                "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF'"
+            );
         }
 
         if (storage !== undefined) {
-            requestQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+            requestQueryParameters['storage'] = ObjectSerializer.serialize(storage, 'string');
         }
 
         if (folder !== undefined) {
-            requestQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+            requestQueryParameters['folder'] = ObjectSerializer.serialize(folder, 'string');
         }
 
         let requestUseFormData = false;
@@ -4052,8 +4438,8 @@ export class BarcodeApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: BarcodeResponseList; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4076,8 +4462,8 @@ export class BarcodeApi {
     }
 
     /**
-     * 
-     * @summary Generate image with multiple barcodes and put new file on server             
+     *
+     * @summary Generate image with multiple barcodes and put new file on server
      * @param name New filename
      * @param generatorParamsList List of barcodes
      * @param format Format of file
@@ -4090,13 +4476,10 @@ export class BarcodeApi {
         format?: string,
         folder?: string,
         storage?: string
-    ): Promise<{ response: http.IncomingMessage; body: ResultImageInfo;  }> {
+    ): Promise<{ response: http.IncomingMessage; body: ResultImageInfo }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/generateMultiple'.replace(
-                '{' + 'name' + '}',
-                encodeURIComponent(String(name))
-            );
+            '/barcode/{name}/generateMultiple'.replace('{' + 'name' + '}', encodeURIComponent(String(name)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4108,19 +4491,21 @@ export class BarcodeApi {
 
         // verify required parameter 'generatorParamsList' is not null or undefined
         if (generatorParamsList === null || generatorParamsList === undefined) {
-            throw new Error('Required parameter generatorParamsList was null or undefined when calling putGenerateMultiple.');
+            throw new Error(
+                'Required parameter generatorParamsList was null or undefined when calling putGenerateMultiple.'
+            );
         }
 
         if (format !== undefined) {
-            requestQueryParameters['format'] = ObjectSerializer.serialize(format, "string");
+            requestQueryParameters['format'] = ObjectSerializer.serialize(format, 'string');
         }
 
         if (folder !== undefined) {
-            requestQueryParameters['folder'] = ObjectSerializer.serialize(folder, "string");
+            requestQueryParameters['folder'] = ObjectSerializer.serialize(folder, 'string');
         }
 
         if (storage !== undefined) {
-            requestQueryParameters['storage'] = ObjectSerializer.serialize(storage, "string");
+            requestQueryParameters['storage'] = ObjectSerializer.serialize(storage, 'string');
         }
 
         let requestUseFormData = false;
@@ -4135,8 +4520,8 @@ export class BarcodeApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: ResultImageInfo; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: ResultImageInfo }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4167,9 +4552,8 @@ export class FileApi {
         this._configuration = configuration;
     }
 
-
     /**
-     * 
+     *
      * @summary Copy file
      * @param srcPath Source file path e.g. &#39;/folder/file.ext&#39;
      * @param destPath Destination file path
@@ -4183,13 +4567,10 @@ export class FileApi {
         srcStorageName?: string,
         destStorageName?: string,
         versionId?: string
-    ): Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/copy/{srcPath}'.replace(
-                '{' + 'srcPath' + '}',
-                encodeURIComponent(String(srcPath))
-            );
+            '/barcode/storage/file/copy/{srcPath}'.replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4205,19 +4586,19 @@ export class FileApi {
         }
 
         if (destPath !== undefined) {
-            requestQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, "string");
+            requestQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, 'string');
         }
 
         if (srcStorageName !== undefined) {
-            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, "string");
+            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, 'string');
         }
 
         if (destStorageName !== undefined) {
-            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, "string");
+            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, 'string');
         }
 
         if (versionId !== undefined) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
+            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, 'string');
         }
 
         let requestUseFormData = false;
@@ -4230,8 +4611,8 @@ export class FileApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body?: any; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4253,7 +4634,7 @@ export class FileApi {
     }
 
     /**
-     * 
+     *
      * @summary Delete file
      * @param path File path e.g. &#39;/folder/file.ext&#39;
      * @param storageName Storage name
@@ -4263,13 +4644,10 @@ export class FileApi {
         path: string,
         storageName?: string,
         versionId?: string
-    ): Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/{path}'.replace(
-                '{' + 'path' + '}',
-                encodeURIComponent(String(path))
-            );
+            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4280,11 +4658,11 @@ export class FileApi {
         }
 
         if (storageName !== undefined) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, 'string');
         }
 
         if (versionId !== undefined) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
+            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, 'string');
         }
 
         let requestUseFormData = false;
@@ -4297,8 +4675,8 @@ export class FileApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body?: any; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4320,7 +4698,7 @@ export class FileApi {
     }
 
     /**
-     * 
+     *
      * @summary Download file
      * @param path File path e.g. &#39;/folder/file.ext&#39;
      * @param storageName Storage name
@@ -4330,13 +4708,10 @@ export class FileApi {
         path: string,
         storageName?: string,
         versionId?: string
-    ): Promise<{ response: http.IncomingMessage; body: Buffer;  }> {
+    ): Promise<{ response: http.IncomingMessage; body: Buffer }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/{path}'.replace(
-                '{' + 'path' + '}',
-                encodeURIComponent(String(path))
-            );
+            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4347,11 +4722,11 @@ export class FileApi {
         }
 
         if (storageName !== undefined) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, 'string');
         }
 
         if (versionId !== undefined) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
+            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, 'string');
         }
 
         let requestUseFormData = false;
@@ -4365,8 +4740,8 @@ export class FileApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: Buffer; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: Buffer }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4389,7 +4764,7 @@ export class FileApi {
     }
 
     /**
-     * 
+     *
      * @summary Move file
      * @param srcPath Source file path e.g. &#39;/src.ext&#39;
      * @param destPath Destination file path e.g. &#39;/dest.ext&#39;
@@ -4403,13 +4778,10 @@ export class FileApi {
         srcStorageName?: string,
         destStorageName?: string,
         versionId?: string
-    ): Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/move/{srcPath}'.replace(
-                '{' + 'srcPath' + '}',
-                encodeURIComponent(String(srcPath))
-            );
+            '/barcode/storage/file/move/{srcPath}'.replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4425,19 +4797,19 @@ export class FileApi {
         }
 
         if (destPath !== undefined) {
-            requestQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, "string");
+            requestQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, 'string');
         }
 
         if (srcStorageName !== undefined) {
-            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, "string");
+            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, 'string');
         }
 
         if (destStorageName !== undefined) {
-            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, "string");
+            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, 'string');
         }
 
         if (versionId !== undefined) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
+            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, 'string');
         }
 
         let requestUseFormData = false;
@@ -4450,8 +4822,8 @@ export class FileApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body?: any; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4473,9 +4845,9 @@ export class FileApi {
     }
 
     /**
-     * 
+     *
      * @summary Upload file
-     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.             
+     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.
      * @param file File to upload
      * @param storageName Storage name
      */
@@ -4483,13 +4855,10 @@ export class FileApi {
         path: string,
         file: Buffer,
         storageName?: string
-    ): Promise<{ response: http.IncomingMessage; body: FilesUploadResult;  }> {
+    ): Promise<{ response: http.IncomingMessage; body: FilesUploadResult }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/{path}'.replace(
-                '{' + 'path' + '}',
-                encodeURIComponent(String(path))
-            );
+            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4505,7 +4874,7 @@ export class FileApi {
         }
 
         if (storageName !== undefined) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, 'string');
         }
 
         let requestUseFormData = false;
@@ -4521,12 +4890,12 @@ export class FileApi {
             qs: requestQueryParameters,
             headers: requestHeaderParams,
             uri: requestPath,
-      body: file,
+            body: file,
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: FilesUploadResult; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: FilesUploadResult }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4557,9 +4926,8 @@ export class FolderApi {
         this._configuration = configuration;
     }
 
-
     /**
-     * 
+     *
      * @summary Copy folder
      * @param srcPath Source folder path e.g. &#39;/src&#39;
      * @param destPath Destination folder path e.g. &#39;/dst&#39;
@@ -4571,7 +4939,7 @@ export class FolderApi {
         destPath: string,
         srcStorageName?: string,
         destStorageName?: string
-    ): Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/folder/copy/{srcPath}'.replace(
@@ -4593,15 +4961,15 @@ export class FolderApi {
         }
 
         if (destPath !== undefined) {
-            requestQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, "string");
+            requestQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, 'string');
         }
 
         if (srcStorageName !== undefined) {
-            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, "string");
+            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, 'string');
         }
 
         if (destStorageName !== undefined) {
-            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, "string");
+            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, 'string');
         }
 
         let requestUseFormData = false;
@@ -4614,8 +4982,8 @@ export class FolderApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body?: any; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4637,7 +5005,7 @@ export class FolderApi {
     }
 
     /**
-     * 
+     *
      * @summary Create the folder
      * @param path Folder path to create e.g. &#39;folder_1/folder_2/&#39;
      * @param storageName Storage name
@@ -4645,13 +5013,10 @@ export class FolderApi {
     public async createFolder(
         path: string,
         storageName?: string
-    ): Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/{path}'.replace(
-                '{' + 'path' + '}',
-                encodeURIComponent(String(path))
-            );
+            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4662,7 +5027,7 @@ export class FolderApi {
         }
 
         if (storageName !== undefined) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, 'string');
         }
 
         let requestUseFormData = false;
@@ -4675,8 +5040,8 @@ export class FolderApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body?: any; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4698,7 +5063,7 @@ export class FolderApi {
     }
 
     /**
-     * 
+     *
      * @summary Delete folder
      * @param path Folder path e.g. &#39;/folder&#39;
      * @param storageName Storage name
@@ -4708,13 +5073,10 @@ export class FolderApi {
         path: string,
         storageName?: string,
         recursive?: boolean
-    ): Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/{path}'.replace(
-                '{' + 'path' + '}',
-                encodeURIComponent(String(path))
-            );
+            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4725,11 +5087,11 @@ export class FolderApi {
         }
 
         if (storageName !== undefined) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, 'string');
         }
 
         if (recursive !== undefined) {
-            requestQueryParameters['recursive'] = ObjectSerializer.serialize(recursive, "boolean");
+            requestQueryParameters['recursive'] = ObjectSerializer.serialize(recursive, 'boolean');
         }
 
         let requestUseFormData = false;
@@ -4742,8 +5104,8 @@ export class FolderApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body?: any; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4765,7 +5127,7 @@ export class FolderApi {
     }
 
     /**
-     * 
+     *
      * @summary Get all files and folders within a folder
      * @param path Folder path e.g. &#39;/folder&#39;
      * @param storageName Storage name
@@ -4773,13 +5135,10 @@ export class FolderApi {
     public async getFilesList(
         path: string,
         storageName?: string
-    ): Promise<{ response: http.IncomingMessage; body: FilesList;  }> {
+    ): Promise<{ response: http.IncomingMessage; body: FilesList }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/{path}'.replace(
-                '{' + 'path' + '}',
-                encodeURIComponent(String(path))
-            );
+            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4790,7 +5149,7 @@ export class FolderApi {
         }
 
         if (storageName !== undefined) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, 'string');
         }
 
         let requestUseFormData = false;
@@ -4803,8 +5162,8 @@ export class FolderApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: FilesList; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: FilesList }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4827,7 +5186,7 @@ export class FolderApi {
     }
 
     /**
-     * 
+     *
      * @summary Move folder
      * @param srcPath Folder path to move e.g. &#39;/folder&#39;
      * @param destPath Destination folder path to move to e.g &#39;/dst&#39;
@@ -4839,7 +5198,7 @@ export class FolderApi {
         destPath: string,
         srcStorageName?: string,
         destStorageName?: string
-    ): Promise<{ response: http.IncomingMessage; body?: any;  }> {
+    ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/folder/move/{srcPath}'.replace(
@@ -4861,15 +5220,15 @@ export class FolderApi {
         }
 
         if (destPath !== undefined) {
-            requestQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, "string");
+            requestQueryParameters['destPath'] = ObjectSerializer.serialize(destPath, 'string');
         }
 
         if (srcStorageName !== undefined) {
-            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, "string");
+            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(srcStorageName, 'string');
         }
 
         if (destStorageName !== undefined) {
-            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, "string");
+            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(destStorageName, 'string');
         }
 
         let requestUseFormData = false;
@@ -4882,8 +5241,8 @@ export class FolderApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body?: any; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4913,24 +5272,19 @@ export class StorageApi {
         this._configuration = configuration;
     }
 
-
     /**
-     * 
+     *
      * @summary Get disc usage
      * @param storageName Storage name
      */
-    public async getDiscUsage(
-        storageName?: string
-    ): Promise<{ response: http.IncomingMessage; body: DiscUsage;  }> {
-        const requestPath =
-            this._configuration.getApiBaseUrl() +
-            '/barcode/storage/disc';
+    public async getDiscUsage(storageName?: string): Promise<{ response: http.IncomingMessage; body: DiscUsage }> {
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/storage/disc';
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
 
         if (storageName !== undefined) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, 'string');
         }
 
         let requestUseFormData = false;
@@ -4943,8 +5297,8 @@ export class StorageApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: DiscUsage; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: DiscUsage }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -4967,7 +5321,7 @@ export class StorageApi {
     }
 
     /**
-     * 
+     *
      * @summary Get file versions
      * @param path File path e.g. &#39;/file.ext&#39;
      * @param storageName Storage name
@@ -4975,13 +5329,10 @@ export class StorageApi {
     public async getFileVersions(
         path: string,
         storageName?: string
-    ): Promise<{ response: http.IncomingMessage; body: FileVersions;  }> {
+    ): Promise<{ response: http.IncomingMessage; body: FileVersions }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/version/{path}'.replace(
-                '{' + 'path' + '}',
-                encodeURIComponent(String(path))
-            );
+            '/barcode/storage/version/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4992,7 +5343,7 @@ export class StorageApi {
         }
 
         if (storageName !== undefined) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, 'string');
         }
 
         let requestUseFormData = false;
@@ -5005,8 +5356,8 @@ export class StorageApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: FileVersions; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: FileVersions }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -5029,7 +5380,7 @@ export class StorageApi {
     }
 
     /**
-     * 
+     *
      * @summary Check if file or folder exists
      * @param path File or folder path e.g. &#39;/file.ext&#39; or &#39;/folder&#39;
      * @param storageName Storage name
@@ -5039,13 +5390,10 @@ export class StorageApi {
         path: string,
         storageName?: string,
         versionId?: string
-    ): Promise<{ response: http.IncomingMessage; body: ObjectExist;  }> {
+    ): Promise<{ response: http.IncomingMessage; body: ObjectExist }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/exist/{path}'.replace(
-                '{' + 'path' + '}',
-                encodeURIComponent(String(path))
-            );
+            '/barcode/storage/exist/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -5056,11 +5404,11 @@ export class StorageApi {
         }
 
         if (storageName !== undefined) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, "string");
+            requestQueryParameters['storageName'] = ObjectSerializer.serialize(storageName, 'string');
         }
 
         if (versionId !== undefined) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, "string");
+            requestQueryParameters['versionId'] = ObjectSerializer.serialize(versionId, 'string');
         }
 
         let requestUseFormData = false;
@@ -5073,8 +5421,8 @@ export class StorageApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: ObjectExist; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: ObjectExist }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
@@ -5097,13 +5445,11 @@ export class StorageApi {
     }
 
     /**
-     * 
+     *
      * @summary Check if storage exists
      * @param storageName Storage name
      */
-    public async storageExists(
-        storageName: string
-    ): Promise<{ response: http.IncomingMessage; body: StorageExist;  }> {
+    public async storageExists(storageName: string): Promise<{ response: http.IncomingMessage; body: StorageExist }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/{storageName}/exist'.replace(
@@ -5129,8 +5475,8 @@ export class StorageApi {
         };
 
         await this._configuration.authentication.applyToRequest(requestOptions);
-        
-        return await new Promise<{ response: http.IncomingMessage; body: StorageExist; }>((resolve, reject) => {
+
+        return await new Promise<{ response: http.IncomingMessage; body: StorageExist }>((resolve, reject) => {
             const handler = async (error, response, body, allowRepeat) => {
                 if (error) {
                     reject(error);
