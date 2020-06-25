@@ -3,12 +3,12 @@ import fs from 'fs';
 import assert from 'assert';
 
 import * as Barcode from '../src/api';
-import { LoadConfigurationFromFile } from './helpers';
+import { LoadTestConfiguration } from './helpers';
 
 describe('postBarcodeRecognizeFromUrlOrContent', () => {
     jest.setTimeout(60000);
 
-    const api = new Barcode.BarcodeApi(LoadConfigurationFromFile('./test/configuration.json'));
+    const api = new Barcode.BarcodeApi(LoadTestConfiguration());
 
     const imageBuffer = fs.readFileSync('./testdata/pdf417Sample.png');
 

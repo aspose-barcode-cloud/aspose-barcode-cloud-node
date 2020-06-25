@@ -21,3 +21,13 @@ export function LoadConfigurationFromEnv(prefix?: string): Configuration {
 
     return new Configuration(appSID, appKey, baseUrl, accessToken);
 }
+
+export function LoadTestConfiguration(): Configuration {
+    const configFile = './test/configuration.json';
+
+    if (fs.existsSync(configFile)) {
+        return LoadConfigurationFromFile(configFile);
+    }
+
+    return LoadConfigurationFromEnv();
+}

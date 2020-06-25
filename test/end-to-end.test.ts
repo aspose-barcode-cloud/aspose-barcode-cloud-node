@@ -1,13 +1,12 @@
 import assert from 'assert';
 
 import * as Barcode from '../src/api';
-import { LoadConfigurationFromEnv } from './helpers';
+import { LoadTestConfiguration } from './helpers';
 
 describe('Generate and recognize', () => {
     jest.setTimeout(60000);
 
-    //const api = new Barcode.BarcodeApi(LoadConfigurationFromFile('./test/configuration.json'));
-    const api = new Barcode.BarcodeApi(LoadConfigurationFromEnv());
+    const api = new Barcode.BarcodeApi(LoadTestConfiguration());
 
     it('should recognize generated code', async () => {
         const generated = await api.getBarcodeGenerate(Barcode.EncodeBarcodeType.QR, 'Testing generator');

@@ -1,7 +1,7 @@
 import assert from 'assert';
 
 import { Configuration } from '../src';
-import { LoadConfigurationFromEnv, LoadConfigurationFromFile } from './helpers';
+import { LoadConfigurationFromEnv, LoadConfigurationFromFile, LoadTestConfiguration } from './helpers';
 
 describe('LoadConfigurationFromFile', () => {
     it('should return Configuration', () => {
@@ -16,6 +16,16 @@ describe('LoadConfigurationFromFile', () => {
 describe('LoadConfigurationFromEnv', () => {
     it('should return Configuration', () => {
         const config = LoadConfigurationFromEnv();
+
+        assert.ok(config.hasOwnProperty('appSID'));
+        assert.ok(config.hasOwnProperty('appKey'));
+        assert.ok(config.hasOwnProperty('baseUrl'));
+    });
+});
+
+describe('LoadTestConfiguration', () => {
+    it('should load something', () => {
+        const config = LoadTestConfiguration();
 
         assert.ok(config.hasOwnProperty('appSID'));
         assert.ok(config.hasOwnProperty('appKey'));
