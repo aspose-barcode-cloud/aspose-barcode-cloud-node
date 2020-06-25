@@ -1,4 +1,5 @@
 # Models
+
 ## AustralianPostParams
 
 AustralianPost barcode parameters.
@@ -1723,7 +1724,6 @@ enum TextAlignment {
 ```
 
 ## FileVersion
-
 ```ts
 interface FileVersion {
 
@@ -1763,3 +1763,4 @@ interface FileVersion {
     isLatest: boolean;
 }
 ```
+

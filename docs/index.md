@@ -10,7 +10,7 @@ Generate barcode.
 getBarcodeGenerate(type: 'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF', text: string): Buffer;
 ```
 
-#### Parameters
+#### BarcodeApi.getBarcodeGenerate parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -48,9 +48,9 @@ Name | Type | Description  | Notes
  **supplementSpace** | **number**| Space between main the BarCode and supplement BarCode. | [optional]
  **format** | **string**| Result image format. | [optional]
 
-#### Return type
+#### BarcodeApi.getBarcodeGenerate return type
 
-**Buffer**
+Buffer
 
 ---
 
@@ -62,7 +62,7 @@ Recognize barcode from a file on server.
 getBarcodeRecognize(name: string): BarcodeResponseList;
 ```
 
-#### Parameters
+#### BarcodeApi.getBarcodeRecognize parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
  **storage** | **string**| The image storage. | [optional]
  **folder** | **string**| The image folder. | [optional]
 
-#### Return type
+#### BarcodeApi.getBarcodeRecognize return type
 
 [**BarcodeResponseList**](models.md#BarcodeResponseList)
 
@@ -115,7 +115,7 @@ Recognize barcode from an url or from request body. Request body can contain raw
 postBarcodeRecognizeFromUrlOrContent(): BarcodeResponseList;
 ```
 
-#### Parameters
+#### BarcodeApi.postBarcodeRecognizeFromUrlOrContent parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -153,7 +153,7 @@ Name | Type | Description  | Notes
  **url** | **string**| The image file url. | [optional]
  **image** | **Buffer**| Image data | [optional]
 
-#### Return type
+#### BarcodeApi.postBarcodeRecognizeFromUrlOrContent return type
 
 [**BarcodeResponseList**](models.md#BarcodeResponseList)
 
@@ -167,16 +167,16 @@ Generate multiple barcodes and return in response stream
 postGenerateMultiple(generatorParamsList: GeneratorParamsList): Buffer;
 ```
 
-#### Parameters
+#### BarcodeApi.postGenerateMultiple parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **generatorParamsList** | [**GeneratorParamsList**](models.md#GeneratorParamsList)| List of barcodes |
  **format** | **string**| Format to return stream in | [optional] [default to 'png']
 
-#### Return type
+#### BarcodeApi.postGenerateMultiple return type
 
-**Buffer**
+Buffer
 
 ---
 
@@ -188,7 +188,7 @@ Generate barcode and save on server (from query params or from file with json or
 putBarcodeGenerateFile(name: string, type: 'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF', text: string): ResultImageInfo;
 ```
 
-#### Parameters
+#### BarcodeApi.putBarcodeGenerateFile parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -229,7 +229,7 @@ Name | Type | Description  | Notes
  **folder** | **string**| Image&#39;s folder. | [optional]
  **format** | **string**| The image format. | [optional]
 
-#### Return type
+#### BarcodeApi.putBarcodeGenerateFile return type
 
 [**ResultImageInfo**](models.md#ResultImageInfo)
 
@@ -243,7 +243,7 @@ Recognition of a barcode from file on server with parameters in body.
 putBarcodeRecognizeFromBody(name: string, readerParams: ReaderParams): BarcodeResponseList;
 ```
 
-#### Parameters
+#### BarcodeApi.putBarcodeRecognizeFromBody parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -253,7 +253,7 @@ Name | Type | Description  | Notes
  **storage** | **string**| The storage name | [optional]
  **folder** | **string**| The image folder. | [optional]
 
-#### Return type
+#### BarcodeApi.putBarcodeRecognizeFromBody return type
 
 [**BarcodeResponseList**](models.md#BarcodeResponseList)
 
@@ -267,7 +267,7 @@ Generate image with multiple barcodes and put new file on server
 putGenerateMultiple(name: string, generatorParamsList: GeneratorParamsList): ResultImageInfo;
 ```
 
-#### Parameters
+#### BarcodeApi.putGenerateMultiple parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -277,12 +277,11 @@ Name | Type | Description  | Notes
  **folder** | **string**| Folder to place file to | [optional]
  **storage** | **string**| The storage name | [optional]
 
-#### Return type
+#### BarcodeApi.putGenerateMultiple return type
 
 [**ResultImageInfo**](models.md#ResultImageInfo)
 
 ---
-
 
 ## class FileApi
 
@@ -294,7 +293,7 @@ Copy file
 copyFile(srcPath: string, destPath: string): void;
 ```
 
-#### Parameters
+#### FileApi.copyFile parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -303,11 +302,6 @@ Name | Type | Description  | Notes
  **srcStorageName** | **string**| Source storage name | [optional]
  **destStorageName** | **string**| Destination storage name | [optional]
  **versionId** | **string**| File version ID to copy | [optional]
-
-#### Return type
-
-**undefined**
-
 ---
 
 ### deleteFile
@@ -318,18 +312,13 @@ Delete file
 deleteFile(path: string): void;
 ```
 
-#### Parameters
+#### FileApi.deleteFile parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **path** | **string**| File path e.g. &#39;/folder/file.ext&#39; |
  **storageName** | **string**| Storage name | [optional]
  **versionId** | **string**| File version ID to delete | [optional]
-
-#### Return type
-
-**undefined**
-
 ---
 
 ### downloadFile
@@ -340,7 +329,7 @@ Download file
 downloadFile(path: string): Buffer;
 ```
 
-#### Parameters
+#### FileApi.downloadFile parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -348,9 +337,9 @@ Name | Type | Description  | Notes
  **storageName** | **string**| Storage name | [optional]
  **versionId** | **string**| File version ID to download | [optional]
 
-#### Return type
+#### FileApi.downloadFile return type
 
-**Buffer**
+Buffer
 
 ---
 
@@ -362,7 +351,7 @@ Move file
 moveFile(srcPath: string, destPath: string): void;
 ```
 
-#### Parameters
+#### FileApi.moveFile parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -371,11 +360,6 @@ Name | Type | Description  | Notes
  **srcStorageName** | **string**| Source storage name | [optional]
  **destStorageName** | **string**| Destination storage name | [optional]
  **versionId** | **string**| File version ID to move | [optional]
-
-#### Return type
-
-**undefined**
-
 ---
 
 ### uploadFile
@@ -386,7 +370,7 @@ Upload file
 uploadFile(path: string, file: Buffer): FilesUploadResult;
 ```
 
-#### Parameters
+#### FileApi.uploadFile parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -394,12 +378,11 @@ Name | Type | Description  | Notes
  **file** | **Buffer**| File to upload |
  **storageName** | **string**| Storage name | [optional]
 
-#### Return type
+#### FileApi.uploadFile return type
 
 [**FilesUploadResult**](models.md#FilesUploadResult)
 
 ---
-
 
 ## class FolderApi
 
@@ -411,7 +394,7 @@ Copy folder
 copyFolder(srcPath: string, destPath: string): void;
 ```
 
-#### Parameters
+#### FolderApi.copyFolder parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -419,11 +402,6 @@ Name | Type | Description  | Notes
  **destPath** | **string**| Destination folder path e.g. &#39;/dst&#39; |
  **srcStorageName** | **string**| Source storage name | [optional]
  **destStorageName** | **string**| Destination storage name | [optional]
-
-#### Return type
-
-**undefined**
-
 ---
 
 ### createFolder
@@ -434,17 +412,12 @@ Create the folder
 createFolder(path: string): void;
 ```
 
-#### Parameters
+#### FolderApi.createFolder parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **path** | **string**| Folder path to create e.g. &#39;folder_1/folder_2/&#39; |
  **storageName** | **string**| Storage name | [optional]
-
-#### Return type
-
-**undefined**
-
 ---
 
 ### deleteFolder
@@ -455,18 +428,13 @@ Delete folder
 deleteFolder(path: string): void;
 ```
 
-#### Parameters
+#### FolderApi.deleteFolder parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **path** | **string**| Folder path e.g. &#39;/folder&#39; |
  **storageName** | **string**| Storage name | [optional]
  **recursive** | **boolean**| Enable to delete folders, subfolders and files | [optional] [default to 'false']
-
-#### Return type
-
-**undefined**
-
 ---
 
 ### getFilesList
@@ -477,14 +445,14 @@ Get all files and folders within a folder
 getFilesList(path: string): FilesList;
 ```
 
-#### Parameters
+#### FolderApi.getFilesList parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **path** | **string**| Folder path e.g. &#39;/folder&#39; |
  **storageName** | **string**| Storage name | [optional]
 
-#### Return type
+#### FolderApi.getFilesList return type
 
 [**FilesList**](models.md#FilesList)
 
@@ -498,7 +466,7 @@ Move folder
 moveFolder(srcPath: string, destPath: string): void;
 ```
 
-#### Parameters
+#### FolderApi.moveFolder parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -506,13 +474,7 @@ Name | Type | Description  | Notes
  **destPath** | **string**| Destination folder path to move to e.g &#39;/dst&#39; |
  **srcStorageName** | **string**| Source storage name | [optional]
  **destStorageName** | **string**| Destination storage name | [optional]
-
-#### Return type
-
-**undefined**
-
 ---
-
 
 ## class StorageApi
 
@@ -524,13 +486,13 @@ Get disc usage
 getDiscUsage(): DiscUsage;
 ```
 
-#### Parameters
+#### StorageApi.getDiscUsage parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **storageName** | **string**| Storage name | [optional]
 
-#### Return type
+#### StorageApi.getDiscUsage return type
 
 [**DiscUsage**](models.md#DiscUsage)
 
@@ -544,14 +506,14 @@ Get file versions
 getFileVersions(path: string): FileVersions;
 ```
 
-#### Parameters
+#### StorageApi.getFileVersions parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **path** | **string**| File path e.g. &#39;/file.ext&#39; |
  **storageName** | **string**| Storage name | [optional]
 
-#### Return type
+#### StorageApi.getFileVersions return type
 
 [**FileVersions**](models.md#FileVersions)
 
@@ -565,7 +527,7 @@ Check if file or folder exists
 objectExists(path: string): ObjectExist;
 ```
 
-#### Parameters
+#### StorageApi.objectExists parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -573,7 +535,7 @@ Name | Type | Description  | Notes
  **storageName** | **string**| Storage name | [optional]
  **versionId** | **string**| File version ID | [optional]
 
-#### Return type
+#### StorageApi.objectExists return type
 
 [**ObjectExist**](models.md#ObjectExist)
 
@@ -587,14 +549,15 @@ Check if storage exists
 storageExists(storageName: string): StorageExist;
 ```
 
-#### Parameters
+#### StorageApi.storageExists parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **storageName** | **string**| Storage name |
 
-#### Return type
+#### StorageApi.storageExists return type
 
 [**StorageExist**](models.md#StorageExist)
 
 ---
+

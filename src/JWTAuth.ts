@@ -1,7 +1,7 @@
 import Request from 'request';
 
-import { Configuration } from 'Configuration';
-import { Authentication } from 'Authentication';
+import { Configuration } from './Configuration';
+import { Authentication } from './Authentication';
 
 export class JWTAuth implements Authentication {
     private _accessToken?: string;
