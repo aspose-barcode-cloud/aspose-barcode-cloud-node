@@ -32,10 +32,10 @@ check_git:
 	git fetch origin
 	git diff origin/master --exit-code
 
-.PHONY: clean
-clean:
-	npm run clear
+.PHONY: ci
+ci:
+	npm ci
 
 .PHONY: publish
-publish: clean format update_packages check_git test
+publish: format update_packages ci check_git test
 	npm publish
