@@ -39,3 +39,4 @@ ci:
 .PHONY: publish
 publish: format update_packages ci check_git test
 	npm publish
+	npm logout
