@@ -2,12 +2,12 @@ import assert from 'assert';
 import { v4 as uuidv4 } from 'uuid';
 
 import * as Barcode from '../src/api';
-import { LoadConfigurationFromFile } from './LoadConfigurationFromFile';
+import { LoadTestConfiguration } from './helpers';
 
 describe('putBarcodeGenerateFile', () => {
     jest.setTimeout(60000);
 
-    const api = new Barcode.BarcodeApi(LoadConfigurationFromFile('./test/configuration.json'));
+    const api = new Barcode.BarcodeApi(LoadTestConfiguration());
     const tempFolderPath = `BarcodeTests/${uuidv4()}`;
     const filename = 'Test_putBarcodeGenerateFile.png';
 

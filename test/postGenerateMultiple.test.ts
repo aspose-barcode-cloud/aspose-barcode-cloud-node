@@ -1,12 +1,12 @@
 import assert from 'assert';
 
 import * as Barcode from '../src/api';
-import { LoadConfigurationFromFile } from './LoadConfigurationFromFile';
+import { LoadTestConfiguration } from './helpers';
 
 describe('postGenerateMultiple', () => {
     jest.setTimeout(60000);
 
-    const api = new Barcode.BarcodeApi(LoadConfigurationFromFile('./test/configuration.json'));
+    const api = new Barcode.BarcodeApi(LoadTestConfiguration());
 
     const firstBarcode = new Barcode.GeneratorParams();
     firstBarcode.typeOfBarcode = Barcode.EncodeBarcodeType.Code128;
