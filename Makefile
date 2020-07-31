@@ -22,8 +22,9 @@ cover:
 lint:
 	npm run lint
 
-.PHONY: update_packages
-update_packages:
+.PHONY: update_modules
+update_modules:
+	ncu -u
 	npm update
 	npm outdated
 
@@ -37,5 +38,6 @@ ci:
 	npm ci
 
 .PHONY: publish
-publish: format update_packages ci check_git test
+publish: format update_modules ci check_git test
 	npm publish
+	npm logout
