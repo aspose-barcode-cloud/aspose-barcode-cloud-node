@@ -702,6 +702,8 @@ export enum DataMatrixEncodeMode {
     Custom = 'Custom',
     C40 = 'C40',
     Text = 'Text',
+    EDIFACT = 'EDIFACT',
+    ANSIX12 = 'ANSIX12',
 }
 
 /**
@@ -1321,7 +1323,7 @@ export class GeneratorParams {
      */
     'wideNarrowRatio'?: number;
     /**
-     * Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode's specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingapurePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
+     * Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode's specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
      */
     'validateText'?: boolean;
     /**
@@ -1388,6 +1390,10 @@ export class GeneratorParams {
      * QR params.
      */
     'QR'?: QrParams;
+    /**
+     * PatchCode params.
+     */
+    'patchCode'?: PatchCodeParams;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -1639,6 +1645,11 @@ export class GeneratorParams {
             name: 'QR',
             baseName: 'QR',
             type: 'QrParams',
+        },
+        {
+            name: 'patchCode',
+            baseName: 'PatchCode',
+            type: 'PatchCodeParams',
         },
     ];
 
@@ -1896,6 +1907,48 @@ export class Padding {
     static getAttributeTypeMap() {
         return Padding.attributeTypeMap;
     }
+}
+
+/**
+ * PatchCode parameters.
+ */
+export class PatchCodeParams {
+    /**
+     * Specifies codetext for an extra QR barcode, when PatchCode is generated in page mode.
+     */
+    'extraBarcodeText'?: string;
+    /**
+     * PatchCode format. Choose PatchOnly to generate single PatchCode. Use page format to generate Patch page with PatchCodes as borders. Default value: PatchFormat.PatchOnly
+     */
+    'patchFormat'?: PatchFormat;
+
+    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
+        {
+            name: 'extraBarcodeText',
+            baseName: 'ExtraBarcodeText',
+            type: 'string',
+        },
+        {
+            name: 'patchFormat',
+            baseName: 'PatchFormat',
+            type: 'PatchFormat',
+        },
+    ];
+
+    static getAttributeTypeMap() {
+        return PatchCodeParams.attributeTypeMap;
+    }
+}
+
+/**
+ *
+ */
+export enum PatchFormat {
+    PatchOnly = 'PatchOnly',
+    A4 = 'A4',
+    A4LANDSCAPE = 'A4_LANDSCAPE',
+    USLetter = 'US_Letter',
+    USLetterLANDSCAPE = 'US_Letter_LANDSCAPE',
 }
 
 /**
@@ -2323,19 +2376,19 @@ export class ReaderParams {
      */
     'allowWhiteSpotsRemoving'?: boolean;
     /**
-     * Sets threshold for detected regions that may contain barcodes.  Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
+     * Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      */
     'regionLikelihoodThresholdPercent'?: number;
     /**
-     * Scan window sizes in pixels.  Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
+     * Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
      */
     'scanWindowSizes'?: Array<number>;
     /**
-     * Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
+     * Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      */
     'similarity'?: number;
     /**
-     * Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
+     * Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      */
     'skipDiagonalSearch'?: boolean;
     /**
@@ -2753,6 +2806,7 @@ let enumsMap: { [index: string]: any } = {
     FontMode: FontMode,
     FontStyle: FontStyle,
     ITF14BorderType: ITF14BorderType,
+    PatchFormat: PatchFormat,
     Pdf417CompactionMode: Pdf417CompactionMode,
     Pdf417ErrorLevel: Pdf417ErrorLevel,
     PresetType: PresetType,
@@ -2790,6 +2844,7 @@ let typeMap: { [index: string]: any } = {
     ModelError: ModelError,
     ObjectExist: ObjectExist,
     Padding: Padding,
+    PatchCodeParams: PatchCodeParams,
     Pdf417Params: Pdf417Params,
     PostalParams: PostalParams,
     QrParams: QrParams,
@@ -2841,7 +2896,7 @@ export class BarcodeApi {
      * @param filledBars Value indicating whether bars are filled. Only for 1D barcodes. Default value: true.
      * @param alwaysShowChecksum Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.
      * @param wideNarrowRatio Wide bars to Narrow bars ratio. Default value: 3, that is, wide bars are 3 times as wide as narrow bars. Used for ITF, PZN, PharmaCode, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, IATA2of5, VIN, DeutschePost, OPC, Code32, DataLogic2of5, PatchCode, Code39Extended, Code39Standard
-     * @param validateText Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingapurePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
+     * @param validateText Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
      * @param supplementData Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
      * @param supplementSpace Space between main the BarCode and supplement BarCode.
      * @param format Result image format.
@@ -3128,7 +3183,7 @@ export class BarcodeApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: Buffer }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: Buffer, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -3178,10 +3233,10 @@ export class BarcodeApi {
      * @param allowRegularImage Allows engine to recognize regular image without any restorations as main scan. Mode to recognize image as is.
      * @param allowSaltAndPepperFiltering Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots.
      * @param allowWhiteSpotsRemoving Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering.
-     * @param regionLikelihoodThresholdPercent Sets threshold for detected regions that may contain barcodes.  Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
-     * @param scanWindowSizes Scan window sizes in pixels.  Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
-     * @param similarity Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
-     * @param skipDiagonalSearch Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
+     * @param regionLikelihoodThresholdPercent Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
+     * @param scanWindowSizes Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
+     * @param similarity Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
+     * @param skipDiagonalSearch Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param australianPostEncodingTable Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
      * @param rectangleRegion
      * @param storage The image storage.
@@ -3297,8 +3352,7 @@ export class BarcodeApi {
         folder?: string
     ): Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }> {
         const requestPath =
-            this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/recognize'.replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            this._configuration.getApiBaseUrl() + '/barcode/{name}/recognize'.replace('{' + 'name' + '}', String(name));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -3500,7 +3554,12 @@ export class BarcodeApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (
+                error: any,
+                response: Request.Response,
+                body: BarcodeResponseList,
+                allowRepeat: boolean
+            ) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -3549,10 +3608,10 @@ export class BarcodeApi {
      * @param allowRegularImage Allows engine to recognize regular image without any restorations as main scan. Mode to recognize image as is.
      * @param allowSaltAndPepperFiltering Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots.
      * @param allowWhiteSpotsRemoving Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering.
-     * @param regionLikelihoodThresholdPercent Sets threshold for detected regions that may contain barcodes.  Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
-     * @param scanWindowSizes Scan window sizes in pixels.  Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
-     * @param similarity Similarity coefficient depends on how homogeneous barcodes are.  Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
-     * @param skipDiagonalSearch Allows detector to skip search for diagonal barcodes.  Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
+     * @param regionLikelihoodThresholdPercent Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
+     * @param scanWindowSizes Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
+     * @param similarity Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
+     * @param skipDiagonalSearch Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      * @param australianPostEncodingTable Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
      * @param rectangleRegion
      * @param url The image file url.
@@ -3866,7 +3925,12 @@ export class BarcodeApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (
+                error: any,
+                response: Request.Response,
+                body: BarcodeResponseList,
+                allowRepeat: boolean
+            ) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -3928,7 +3992,7 @@ export class BarcodeApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: Buffer }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: Buffer, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -3982,7 +4046,7 @@ export class BarcodeApi {
      * @param filledBars Value indicating whether bars are filled. Only for 1D barcodes. Default value: true.
      * @param alwaysShowChecksum Always display checksum digit in the human readable text for Code128 and GS1Code128 barcodes.
      * @param wideNarrowRatio Wide bars to Narrow bars ratio. Default value: 3, that is, wide bars are 3 times as wide as narrow bars. Used for ITF, PZN, PharmaCode, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, IATA2of5, VIN, DeutschePost, OPC, Code32, DataLogic2of5, PatchCode, Code39Extended, Code39Standard
-     * @param validateText Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingapurePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
+     * @param validateText Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
      * @param supplementData Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
      * @param supplementSpace Space between main the BarCode and supplement BarCode.
      * @param storage Image&#39;s storage.
@@ -4094,8 +4158,7 @@ export class BarcodeApi {
         format?: string
     ): Promise<{ response: http.IncomingMessage; body: ResultImageInfo }> {
         const requestPath =
-            this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/generate'.replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            this._configuration.getApiBaseUrl() + '/barcode/{name}/generate'.replace('{' + 'name' + '}', String(name));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4288,7 +4351,12 @@ export class BarcodeApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: ResultImageInfo }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (
+                error: any,
+                response: Request.Response,
+                body: ResultImageInfo,
+                allowRepeat: boolean
+            ) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -4393,8 +4461,7 @@ export class BarcodeApi {
         folder?: string
     ): Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }> {
         const requestPath =
-            this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/recognize'.replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            this._configuration.getApiBaseUrl() + '/barcode/{name}/recognize'.replace('{' + 'name' + '}', String(name));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4440,7 +4507,12 @@ export class BarcodeApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: BarcodeResponseList }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (
+                error: any,
+                response: Request.Response,
+                body: BarcodeResponseList,
+                allowRepeat: boolean
+            ) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -4479,7 +4551,7 @@ export class BarcodeApi {
     ): Promise<{ response: http.IncomingMessage; body: ResultImageInfo }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/generateMultiple'.replace('{' + 'name' + '}', encodeURIComponent(String(name)));
+            '/barcode/{name}/generateMultiple'.replace('{' + 'name' + '}', String(name));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4522,7 +4594,12 @@ export class BarcodeApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: ResultImageInfo }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (
+                error: any,
+                response: Request.Response,
+                body: ResultImageInfo,
+                allowRepeat: boolean
+            ) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -4570,7 +4647,7 @@ export class FileApi {
     ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/copy/{srcPath}'.replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+            '/barcode/storage/file/copy/{srcPath}'.replace('{' + 'srcPath' + '}', String(srcPath));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4613,7 +4690,7 @@ export class FileApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: any, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -4647,7 +4724,7 @@ export class FileApi {
     ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', String(path));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4677,7 +4754,7 @@ export class FileApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: any, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -4711,7 +4788,7 @@ export class FileApi {
     ): Promise<{ response: http.IncomingMessage; body: Buffer }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', String(path));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4742,7 +4819,7 @@ export class FileApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: Buffer }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: Buffer, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -4781,7 +4858,7 @@ export class FileApi {
     ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/move/{srcPath}'.replace('{' + 'srcPath' + '}', encodeURIComponent(String(srcPath)));
+            '/barcode/storage/file/move/{srcPath}'.replace('{' + 'srcPath' + '}', String(srcPath));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4824,7 +4901,7 @@ export class FileApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: any, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -4847,7 +4924,7 @@ export class FileApi {
     /**
      *
      * @summary Upload file
-     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext             If the content is multipart and path does not contains the file name it tries to get them from filename parameter             from Content-Disposition header.
+     * @param path Path where to upload including filename and extension e.g. /file.ext or /Folder 1/file.ext  If the content is multipart and path does not contains the file name it tries to get them from filename parameter  from Content-Disposition header.
      * @param file File to upload
      * @param storageName Storage name
      */
@@ -4858,7 +4935,7 @@ export class FileApi {
     ): Promise<{ response: http.IncomingMessage; body: FilesUploadResult }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', String(path));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4896,7 +4973,12 @@ export class FileApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: FilesUploadResult }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (
+                error: any,
+                response: Request.Response,
+                body: FilesUploadResult,
+                allowRepeat: boolean
+            ) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -4942,10 +5024,7 @@ export class FolderApi {
     ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/copy/{srcPath}'.replace(
-                '{' + 'srcPath' + '}',
-                encodeURIComponent(String(srcPath))
-            );
+            '/barcode/storage/folder/copy/{srcPath}'.replace('{' + 'srcPath' + '}', String(srcPath));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -4984,7 +5063,7 @@ export class FolderApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: any, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -5016,7 +5095,7 @@ export class FolderApi {
     ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', String(path));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -5042,7 +5121,7 @@ export class FolderApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: any, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -5076,7 +5155,7 @@ export class FolderApi {
     ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', String(path));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -5106,7 +5185,7 @@ export class FolderApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: any, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -5138,7 +5217,7 @@ export class FolderApi {
     ): Promise<{ response: http.IncomingMessage; body: FilesList }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', String(path));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -5164,7 +5243,7 @@ export class FolderApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: FilesList }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: FilesList, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -5201,10 +5280,7 @@ export class FolderApi {
     ): Promise<{ response: http.IncomingMessage; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/move/{srcPath}'.replace(
-                '{' + 'srcPath' + '}',
-                encodeURIComponent(String(srcPath))
-            );
+            '/barcode/storage/folder/move/{srcPath}'.replace('{' + 'srcPath' + '}', String(srcPath));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -5243,7 +5319,7 @@ export class FolderApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body?: any }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: any, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -5299,7 +5375,7 @@ export class StorageApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: DiscUsage }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: DiscUsage, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -5332,7 +5408,7 @@ export class StorageApi {
     ): Promise<{ response: http.IncomingMessage; body: FileVersions }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/version/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            '/barcode/storage/version/{path}'.replace('{' + 'path' + '}', String(path));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -5358,7 +5434,12 @@ export class StorageApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: FileVersions }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (
+                error: any,
+                response: Request.Response,
+                body: FileVersions,
+                allowRepeat: boolean
+            ) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -5393,7 +5474,7 @@ export class StorageApi {
     ): Promise<{ response: http.IncomingMessage; body: ObjectExist }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/exist/{path}'.replace('{' + 'path' + '}', encodeURIComponent(String(path)));
+            '/barcode/storage/exist/{path}'.replace('{' + 'path' + '}', String(path));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -5423,7 +5504,7 @@ export class StorageApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: ObjectExist }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (error: any, response: Request.Response, body: ObjectExist, allowRepeat: boolean) => {
                 if (error) {
                     reject(error);
                 } else {
@@ -5452,10 +5533,7 @@ export class StorageApi {
     public async storageExists(storageName: string): Promise<{ response: http.IncomingMessage; body: StorageExist }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/{storageName}/exist'.replace(
-                '{' + 'storageName' + '}',
-                encodeURIComponent(String(storageName))
-            );
+            '/barcode/storage/{storageName}/exist'.replace('{' + 'storageName' + '}', String(storageName));
         let requestQueryParameters: any = {};
         let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
         let requestFormParams: any = {};
@@ -5477,7 +5555,12 @@ export class StorageApi {
         await this._configuration.authentication.applyToRequest(requestOptions);
 
         return await new Promise<{ response: http.IncomingMessage; body: StorageExist }>((resolve, reject) => {
-            const handler = async (error, response, body, allowRepeat) => {
+            const handler = async (
+                error: any,
+                response: Request.Response,
+                body: StorageExist,
+                allowRepeat: boolean
+            ) => {
                 if (error) {
                     reject(error);
                 } else {
