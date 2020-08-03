@@ -39,5 +39,5 @@ ci:
 
 .PHONY: publish
 publish: format update_modules ci check_git test
-	npm publish
-	npm logout
+	npm login
+	npm publish ; npm logout
