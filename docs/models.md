@@ -1,5 +1,24 @@
 # Models
 
+## ApiError
+```ts
+interface ApiError {
+    code?: string;
+    message?: string;
+    description?: string;
+    dateTime?: Date;
+    innerError?: ApiError;
+}
+```
+
+## ApiErrorResponse
+```ts
+interface ApiErrorResponse {
+    requestId?: string;
+    error?: ApiError;
+}
+```
+
 ## AustralianPostParams
 
 AustralianPost barcode parameters.
@@ -83,20 +102,6 @@ enum AztecSymbolMode {
     Compact = 'Compact',
     FullRange = 'FullRange',
     Rune = 'Rune'
-}
-```
-
-## BarCodeErrorResponse
-
-BarCodeErrorResponse
-
-```ts
-interface BarCodeErrorResponse {
-
-    /**
-     * Error
-     */
-    error?: Error;
 }
 ```
 
@@ -558,6 +563,7 @@ interface DotCodeParams {
 
 ```ts
 enum ECIEncodings {
+    NONE = 'NONE',
     ISO88591 = 'ISO_8859_1',
     ISO88592 = 'ISO_8859_2',
     ISO88593 = 'ISO_8859_3',
@@ -977,6 +983,11 @@ interface GeneratorParams {
     supplementSpace?: number;
 
     /**
+     * Bars reduction value that is used to compensate ink spread while printing.
+     */
+    barWidthReduction?: number;
+
+    /**
      * AustralianPost params.
      */
     australianPost?: AustralianPostParams;
@@ -1331,6 +1342,16 @@ interface Pdf417Params {
      * Whether Pdf417 symbology type of BarCode is truncated (to reduce space).
      */
     truncate?: boolean;
+
+    /**
+     * Extended Channel Interpretation Identifiers. It is used to tell the barcode reader details about the used references for encoding the data in the symbol. Current implementation consists all well known charset encodings.
+     */
+    pdf417ECIEncoding?: ECIEncodings;
+
+    /**
+     * Used to instruct the reader to interpret the data contained within the symbol as programming for reader initialization
+     */
+    isReaderInitialization?: boolean;
 }
 ```
 
@@ -1652,6 +1673,11 @@ interface ReaderParams {
      * Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
      */
     skipDiagonalSearch?: boolean;
+
+    /**
+     * Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
+     */
+    readTinyBarcodes?: boolean;
 
     /**
      * Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
