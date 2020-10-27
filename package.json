@@ -26,7 +26,7 @@
     "build": "tsc --build",
     "test": "tsdx test",
     "cover": "tsdx test --collect-coverage",
-    "lint": "tsdx lint",
+    "lint": "tsc --strict",
     "format": "tsdx lint --fix",
     "prepare": "tsdx build --target=node",
     "clear": "rm dist/* || DEL /S /Q dist"

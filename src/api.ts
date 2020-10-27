@@ -161,7 +161,7 @@ class ObjectSerializer {
         let instance = new typeMap[type]();
         let attributeTypes = typeMap[type].getAttributeTypeMap();
         for (const attributeType of attributeTypes) {
-            const key = attributeType.baseName.replace(/^(.)/, $1 => {
+            const key = attributeType.baseName.replace(/^(.)/, ($1: string) => {
                 return $1.toLowerCase();
             });
             const value = ObjectSerializer.deserialize(data[key], attributeType.type);
