@@ -24,7 +24,7 @@ lint:
 
 .PHONY: update_modules
 update_modules:
-	ncu -u
+	npm run check-updates
 	npm update
 	npm outdated
 
@@ -38,6 +38,6 @@ ci:
 	npm ci
 
 .PHONY: publish
-publish: format update_modules ci check_git test
+publish: format update_modules check_git test
 	npm login
 	npm publish ; npm logout
