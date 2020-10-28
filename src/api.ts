@@ -161,7 +161,7 @@ class ObjectSerializer {
         let instance = new typeMap[type]();
         let attributeTypes = typeMap[type].getAttributeTypeMap();
         for (const attributeType of attributeTypes) {
-            const key = attributeType.baseName.replace(/^(.)/, $1 => {
+            const key = attributeType.baseName.replace(/^(.)/, ($1: string) => {
                 return $1.toLowerCase();
             });
             const value = ObjectSerializer.deserialize(data[key], attributeType.type);
@@ -169,6 +169,68 @@ class ObjectSerializer {
         }
 
         return instance;
+    }
+}
+
+export class ApiError {
+    'code'?: string;
+    'message'?: string;
+    'description'?: string;
+    'dateTime'?: Date;
+    'innerError'?: ApiError;
+
+    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
+        {
+            name: 'code',
+            baseName: 'Code',
+            type: 'string',
+        },
+        {
+            name: 'message',
+            baseName: 'Message',
+            type: 'string',
+        },
+        {
+            name: 'description',
+            baseName: 'Description',
+            type: 'string',
+        },
+        {
+            name: 'dateTime',
+            baseName: 'DateTime',
+            type: 'Date',
+        },
+        {
+            name: 'innerError',
+            baseName: 'InnerError',
+            type: 'ApiError',
+        },
+    ];
+
+    static getAttributeTypeMap() {
+        return ApiError.attributeTypeMap;
+    }
+}
+
+export class ApiErrorResponse {
+    'requestId'?: string;
+    'error'?: ApiError;
+
+    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
+        {
+            name: 'requestId',
+            baseName: 'RequestId',
+            type: 'string',
+        },
+        {
+            name: 'error',
+            baseName: 'Error',
+            type: 'ApiError',
+        },
+    ];
+
+    static getAttributeTypeMap() {
+        return ApiErrorResponse.attributeTypeMap;
     }
 }
 
@@ -279,28 +341,6 @@ export enum AztecSymbolMode {
     Compact = 'Compact',
     FullRange = 'FullRange',
     Rune = 'Rune',
-}
-
-/**
- * BarCodeErrorResponse
- */
-export class BarCodeErrorResponse {
-    /**
-     * Error
-     */
-    'error'?: Error;
-
-    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
-        {
-            name: 'error',
-            baseName: 'Error',
-            type: 'Error',
-        },
-    ];
-
-    static getAttributeTypeMap() {
-        return BarCodeErrorResponse.attributeTypeMap;
-    }
 }
 
 /**
@@ -912,6 +952,7 @@ export class DotCodeParams {
  *
  */
 export enum ECIEncodings {
+    NONE = 'NONE',
     ISO88591 = 'ISO_8859_1',
     ISO88592 = 'ISO_8859_2',
     ISO88593 = 'ISO_8859_3',
@@ -1335,6 +1376,10 @@ export class GeneratorParams {
      */
     'supplementSpace'?: number;
     /**
+     * Bars reduction value that is used to compensate ink spread while printing.
+     */
+    'barWidthReduction'?: number;
+    /**
      * AustralianPost params.
      */
     'australianPost'?: AustralianPostParams;
@@ -1574,6 +1619,11 @@ export class GeneratorParams {
         {
             name: 'supplementSpace',
             baseName: 'SupplementSpace',
+            type: 'number',
+        },
+        {
+            name: 'barWidthReduction',
+            baseName: 'BarWidthReduction',
             type: 'number',
         },
         {
@@ -2020,6 +2070,14 @@ export class Pdf417Params {
      * Whether Pdf417 symbology type of BarCode is truncated (to reduce space).
      */
     'truncate'?: boolean;
+    /**
+     * Extended Channel Interpretation Identifiers. It is used to tell the barcode reader details about the used references for encoding the data in the symbol. Current implementation consists all well known charset encodings.
+     */
+    'pdf417ECIEncoding'?: ECIEncodings;
+    /**
+     * Used to instruct the reader to interpret the data contained within the symbol as programming for reader initialization
+     */
+    'isReaderInitialization'?: boolean;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -2070,6 +2128,16 @@ export class Pdf417Params {
         {
             name: 'truncate',
             baseName: 'Truncate',
+            type: 'boolean',
+        },
+        {
+            name: 'pdf417ECIEncoding',
+            baseName: 'Pdf417ECIEncoding',
+            type: 'ECIEncodings',
+        },
+        {
+            name: 'isReaderInitialization',
+            baseName: 'IsReaderInitialization',
             type: 'boolean',
         },
     ];
@@ -2392,6 +2460,10 @@ export class ReaderParams {
      */
     'skipDiagonalSearch'?: boolean;
     /**
+     * Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
+     */
+    'readTinyBarcodes'?: boolean;
+    /**
      * Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
      */
     'australianPostEncodingTable'?: CustomerInformationInterpretingType;
@@ -2540,6 +2612,11 @@ export class ReaderParams {
         {
             name: 'skipDiagonalSearch',
             baseName: 'SkipDiagonalSearch',
+            type: 'boolean',
+        },
+        {
+            name: 'readTinyBarcodes',
+            baseName: 'ReadTinyBarcodes',
             type: 'boolean',
         },
         {
@@ -2818,9 +2895,10 @@ let enumsMap: { [index: string]: any } = {
 };
 
 let typeMap: { [index: string]: any } = {
+    ApiError: ApiError,
+    ApiErrorResponse: ApiErrorResponse,
     AustralianPostParams: AustralianPostParams,
     AztecParams: AztecParams,
-    BarCodeErrorResponse: BarCodeErrorResponse,
     BarcodeResponse: BarcodeResponse,
     BarcodeResponseList: BarcodeResponseList,
     CaptionParams: CaptionParams,
@@ -2899,6 +2977,7 @@ export class BarcodeApi {
      * @param validateText Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
      * @param supplementData Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
      * @param supplementSpace Space between main the BarCode and supplement BarCode.
+     * @param barWidthReduction Bars reduction value that is used to compensate ink spread while printing.
      * @param format Result image format.
      */
     public async getBarcodeGenerate(
@@ -3000,6 +3079,7 @@ export class BarcodeApi {
         validateText?: boolean,
         supplementData?: string,
         supplementSpace?: number,
+        barWidthReduction?: number,
         format?: string
     ): Promise<{ response: http.IncomingMessage; body: Buffer }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate';
@@ -3166,6 +3246,10 @@ export class BarcodeApi {
             requestQueryParameters['SupplementSpace'] = ObjectSerializer.serialize(supplementSpace, 'number');
         }
 
+        if (barWidthReduction !== undefined) {
+            requestQueryParameters['BarWidthReduction'] = ObjectSerializer.serialize(barWidthReduction, 'number');
+        }
+
         if (format !== undefined) {
             requestQueryParameters['format'] = ObjectSerializer.serialize(format, 'string');
         }
@@ -3237,6 +3321,7 @@ export class BarcodeApi {
      * @param scanWindowSizes Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
      * @param similarity Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      * @param skipDiagonalSearch Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
+     * @param readTinyBarcodes Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param australianPostEncodingTable Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
      * @param rectangleRegion
      * @param storage The image storage.
@@ -3346,6 +3431,7 @@ export class BarcodeApi {
         scanWindowSizes?: Array<number>,
         similarity?: number,
         skipDiagonalSearch?: boolean,
+        readTinyBarcodes?: boolean,
         australianPostEncodingTable?: 'CTable' | 'NTable' | 'Other',
         rectangleRegion?: string,
         storage?: string,
@@ -3523,6 +3609,10 @@ export class BarcodeApi {
             requestQueryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(skipDiagonalSearch, 'boolean');
         }
 
+        if (readTinyBarcodes !== undefined) {
+            requestQueryParameters['ReadTinyBarcodes'] = ObjectSerializer.serialize(readTinyBarcodes, 'boolean');
+        }
+
         if (australianPostEncodingTable !== undefined) {
             requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
                 australianPostEncodingTable,
@@ -3612,6 +3702,7 @@ export class BarcodeApi {
      * @param scanWindowSizes Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
      * @param similarity Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      * @param skipDiagonalSearch Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time.
+     * @param readTinyBarcodes Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False.
      * @param australianPostEncodingTable Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
      * @param rectangleRegion
      * @param url The image file url.
@@ -3720,6 +3811,7 @@ export class BarcodeApi {
         scanWindowSizes?: Array<number>,
         similarity?: number,
         skipDiagonalSearch?: boolean,
+        readTinyBarcodes?: boolean,
         australianPostEncodingTable?: 'CTable' | 'NTable' | 'Other',
         rectangleRegion?: string,
         url?: string,
@@ -3891,6 +3983,10 @@ export class BarcodeApi {
             requestQueryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(skipDiagonalSearch, 'boolean');
         }
 
+        if (readTinyBarcodes !== undefined) {
+            requestQueryParameters['ReadTinyBarcodes'] = ObjectSerializer.serialize(readTinyBarcodes, 'boolean');
+        }
+
         if (australianPostEncodingTable !== undefined) {
             requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
                 australianPostEncodingTable,
@@ -4049,6 +4145,7 @@ export class BarcodeApi {
      * @param validateText Only for 1D barcodes. If codetext is incorrect and value set to true - exception will be thrown. Otherwise codetext will be corrected to match barcode&#39;s specification. Exception always will be thrown for: Databar symbology if codetext is incorrect. Exception always will not be thrown for: AustraliaPost, SingaporePost, Code39Extended, Code93Extended, Code16K, Code128 symbology if codetext is incorrect.
      * @param supplementData Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN.
      * @param supplementSpace Space between main the BarCode and supplement BarCode.
+     * @param barWidthReduction Bars reduction value that is used to compensate ink spread while printing.
      * @param storage Image&#39;s storage.
      * @param folder Image&#39;s folder.
      * @param format The image format.
@@ -4153,6 +4250,7 @@ export class BarcodeApi {
         validateText?: boolean,
         supplementData?: string,
         supplementSpace?: number,
+        barWidthReduction?: number,
         storage?: string,
         folder?: string,
         format?: string
@@ -4325,6 +4423,10 @@ export class BarcodeApi {
 
         if (supplementSpace !== undefined) {
             requestQueryParameters['SupplementSpace'] = ObjectSerializer.serialize(supplementSpace, 'number');
+        }
+
+        if (barWidthReduction !== undefined) {
+            requestQueryParameters['BarWidthReduction'] = ObjectSerializer.serialize(barWidthReduction, 'number');
         }
 
         if (storage !== undefined) {
