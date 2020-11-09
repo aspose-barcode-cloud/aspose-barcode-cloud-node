@@ -1,4 +1,4 @@
 {
-    "appSID": "App SID from https://dashboard.aspose.cloud/#/apps",
-    "appKey": "App Key from https://dashboard.aspose.cloud/#/apps"
+    "clientId": "Client Id from https://dashboard.aspose.cloud/applications",
+    "clientSecret": "Client Secret from https://dashboard.aspose.cloud/applications"
 }

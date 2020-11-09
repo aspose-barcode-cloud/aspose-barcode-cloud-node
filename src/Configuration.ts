@@ -38,14 +38,14 @@ export class Configuration {
     public authentication: Authentication;
 
     /**
-     * App SID.
+     * Client Id.
      */
-    public appSID: string;
+    public clientId: string;
 
     /**
-     * App key.
+     * Client Secret.
      */
-    public appKey: string;
+    public clientSecret: string;
 
     /**
      * Base Url.
@@ -55,9 +55,9 @@ export class Configuration {
     readonly version: ApiVersion = ApiVersion.v3;
     readonly accessToken: string;
 
-    constructor(appSID: string, appKey: string, baseUrl?: string, accessToken?: string) {
-        this.appSID = appSID;
-        this.appKey = appKey;
+    constructor(clientId: string, clientSecret: string, baseUrl?: string, accessToken?: string) {
+        this.clientId = clientId;
+        this.clientSecret = clientSecret;
         if (baseUrl) {
             this.baseUrl = baseUrl;
         } else {

@@ -32,10 +32,10 @@ export class JWTAuth implements Authentication {
     }
 
     public async applyUnauthorized(): Promise<void> {
-        if (this._configuration.appSID && this._configuration.appKey) {
+        if (this._configuration.clientId && this._configuration.clientSecret) {
             await this.requestToken();
         } else {
-            throw new Error("Required 'appSID' or 'appKey' not specified in configuration.");
+            throw new Error("Required 'clientId' or 'clientSecret' not specified in configuration.");
         }
     }
 
@@ -46,8 +46,8 @@ export class JWTAuth implements Authentication {
             uri: this._configuration.baseUrl + '/connect/token',
             form: {
                 grant_type: 'client_credentials',
-                client_id: this._configuration.appSID,
-                client_secret: this._configuration.appKey,
+                client_id: this._configuration.clientId,
+                client_secret: this._configuration.clientSecret,
             },
         };
 
