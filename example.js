@@ -2,8 +2,8 @@
 const Barcode = require('aspose-barcode-cloud-node');
 
 const config = new Barcode.Configuration(
-    'App SID from https://dashboard.aspose.cloud/#/apps',
-    'App Key from https://dashboard.aspose.cloud/#/apps'
+    'Client Id from https://dashboard.aspose.cloud/applications',
+    'Client Secret from https://dashboard.aspose.cloud/applications'
 );
 
 async function generate(api) {

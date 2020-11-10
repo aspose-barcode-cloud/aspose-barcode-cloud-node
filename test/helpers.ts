@@ -6,7 +6,7 @@ export function LoadConfigurationFromFile(filename: string): Configuration {
     const text: string = fs.readFileSync(filename, 'utf-8');
     const json = JSON.parse(text);
 
-    return new Configuration(json.appSID, json.appKey, json.baseUrl, json.accessToken);
+    return new Configuration(json.clientId, json.clientSecret, json.baseUrl, json.accessToken);
 }
 
 export function LoadConfigurationFromEnv(prefix?: string): Configuration {
@@ -14,12 +14,12 @@ export function LoadConfigurationFromEnv(prefix?: string): Configuration {
         prefix = 'TEST_CONFIGURATION_';
     }
 
-    const appSID = process.env[prefix + 'APP_SID'];
-    const appKey = process.env[prefix + 'APP_KEY'];
+    const clientId = process.env[prefix + 'CLIENT_ID'];
+    const clientSecret = process.env[prefix + 'CLIENT_SECRET'];
     const baseUrl = process.env[prefix + 'BASE_URL'];
     const accessToken = process.env[prefix + 'ACCESS_TOKEN'];
 
-    return new Configuration(appSID, appKey, baseUrl, accessToken);
+    return new Configuration(clientId, clientSecret, baseUrl, accessToken);
 }
 
 export function LoadTestConfiguration(): Configuration {

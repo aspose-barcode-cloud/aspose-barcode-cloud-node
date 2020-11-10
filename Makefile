@@ -6,8 +6,12 @@ format:
 	./scripts/docs_format.sh
 	npm run format
 
+.PHONY: clean
+clean:
+	npm run clean
+
 .PHONY: build
-build:
+build: clean
 	npm run build
 
 .PHONY: test
@@ -27,6 +31,7 @@ update_modules:
 	npm run check-updates
 	npm update
 	npm outdated
+	npm run prepare
 
 .PHONY: check_git
 check_git:
