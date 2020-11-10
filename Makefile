@@ -31,7 +31,7 @@ update_modules:
 	npm run check-updates
 	npm update
 	npm outdated
-	npm run prepare
+	npm install --package-lock-only
 
 .PHONY: check_git
 check_git:
