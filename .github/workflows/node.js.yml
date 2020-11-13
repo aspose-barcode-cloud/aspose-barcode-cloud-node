@@ -31,8 +31,7 @@ jobs:
     - run: npm run build
     - run: npm test
       env:
-          TEST_CONFIGURATION_BASE_URL: ${{ secrets.TEST_CONFIGURATION_BASE_URL }}
-          TEST_CONFIGURATION_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
+        TEST_CONFIGURATION_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
     - run: scripts/run_example.sh
       env:
         TEST_CONFIGURATION_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
