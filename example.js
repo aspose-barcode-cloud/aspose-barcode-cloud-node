@@ -3,7 +3,9 @@ const Barcode = require('aspose-barcode-cloud-node');
 
 const config = new Barcode.Configuration(
     'Client Id from https://dashboard.aspose.cloud/applications',
-    'Client Secret from https://dashboard.aspose.cloud/applications'
+    'Client Secret from https://dashboard.aspose.cloud/applications',
+    null,
+    process.env['TEST_CONFIGURATION_ACCESS_TOKEN']
 );
 
 async function generate(api) {
@@ -17,4 +19,4 @@ async function generate(api) {
 }
 
 const api = new Barcode.BarcodeApi(config);
-generate(api).catch(err => console.error(err));
+generate(api).catch(err => { console.error(err); process.exitCode = 1; });
