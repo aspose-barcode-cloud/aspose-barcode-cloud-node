@@ -27,5 +27,6 @@ jobs:
     - run: npm ci
     - run: npm run build
     - run: npm test
+    - run: scripts/run_example.sh
       env:
         TEST_CONFIGURATION_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
