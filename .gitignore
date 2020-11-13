@@ -6,3 +6,4 @@
 /test/configuration*.json
 /coverage/
 *.d.ts
+demo/
