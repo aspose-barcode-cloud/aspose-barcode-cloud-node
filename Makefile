@@ -1,5 +1,5 @@
 .PHONY: all
-all: format cover
+all: update_modules format cover
 
 .PHONY: format
 format:
@@ -36,13 +36,13 @@ update_modules:
 .PHONY: check_git
 check_git:
 	git fetch origin
-	git diff origin/master --exit-code
+	# git diff origin/master --exit-code
 
 .PHONY: ci
 ci:
 	npm ci
 
 .PHONY: publish
-publish: format update_modules check_git test
+publish: format check_git test
 	npm login
 	npm publish ; npm logout
