@@ -35,7 +35,7 @@ update_modules:
 
 .PHONY: check_git
 check_git:
-	git fetch origin
+	git fetch --depth 1 origin
 	# git diff origin/master --exit-code
 
 .PHONY: ci
@@ -44,5 +44,4 @@ ci:
 
 .PHONY: publish
 publish: format check_git test
-	npm login
-	npm publish ; npm logout
+	npm publish
