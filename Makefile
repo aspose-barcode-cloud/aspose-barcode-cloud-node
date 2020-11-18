@@ -1,5 +1,5 @@
 .PHONY: all
-all: update_modules format cover
+all: clean ci update_modules format lint cover
 
 .PHONY: format
 format:
@@ -8,15 +8,16 @@ format:
 
 .PHONY: clean
 clean:
-	npm run clean
+	rm -rf built dist node_modules || true
 
 .PHONY: build
-build: clean
-	npm run build
+build:
+	npm run prepare
 
 .PHONY: test
 test: build
 	npm test
+	./scripts/run_example.sh
 
 .PHONY: cover
 cover:
@@ -36,12 +37,12 @@ update_modules:
 .PHONY: check_git
 check_git:
 	git fetch --depth 1 origin
-	# git diff origin/master --exit-code
+	git diff origin/master --exit-code
 
 .PHONY: ci
 ci:
-	npm ci
+	npm ci || true
 
 .PHONY: publish
-publish: format check_git test
+publish: clean ci test check_git
 	npm publish
