@@ -48,6 +48,7 @@ describe('putBarcodeGenerateFile', () => {
             undefined,
             undefined,
             undefined,
+            undefined,
             tempFolderPath,
             undefined
         );

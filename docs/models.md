@@ -198,6 +198,11 @@ interface CaptionParams {
      * Padding.
      */
     padding?: Padding;
+
+    /**
+     * Specify word wraps (line breaks) within text. Default value: false.
+     */
+    noWrap?: boolean;
 }
 ```
 
@@ -368,6 +373,16 @@ interface DataBarParams {
      * Rows count.
      */
     rows?: number;
+
+    /**
+     * Enables flag of 2D composite component with DataBar barcode
+     */
+    is2DCompositeComponent?: boolean;
+
+    /**
+     * If this flag is set, it allows only GS1 encoding standard for Databar barcode types
+     */
+    isAllowOnlyGS1Encoding?: boolean;
 }
 ```
 
@@ -400,7 +415,8 @@ enum DataMatrixEncodeMode {
     C40 = 'C40',
     Text = 'Text',
     EDIFACT = 'EDIFACT',
-    ANSIX12 = 'ANSIX12'
+    ANSIX12 = 'ANSIX12',
+    ExtendedCodetext = 'ExtendedCodetext'
 }
 ```
 
@@ -440,6 +456,11 @@ interface DataMatrixParams {
      * Rows count.
      */
     rows?: number;
+
+    /**
+     * Macro Characters 05 and 06 values are used to obtain more compact encoding in special modes. Can be used only with DataMatrixEccType.Ecc200 or DataMatrixEccType.EccAuto. Cannot be used with EncodeTypes.GS1DataMatrix Default value: MacroCharacters.None.
+     */
+    macroCharacters?: MacroCharacter;
 }
 ```
 
@@ -843,6 +864,11 @@ interface GeneratorParams {
     fontSizeMode?: FontMode;
 
     /**
+     * Specify word wraps (line breaks) within text. Default value: false.
+     */
+    noWrap?: boolean;
+
+    /**
      * Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
      */
     resolution?: number;
@@ -1123,6 +1149,18 @@ interface ITFParams {
      * Size of the quiet zones in xDimension. Default value: 10, meaning if xDimension = 2px than quiet zones will be 20px.
      */
     quietZoneCoef?: number;
+}
+```
+
+## MacroCharacter
+
+
+
+```ts
+enum MacroCharacter {
+    None = 'None',
+    Macro05 = 'Macro05',
+    Macro06 = 'Macro06'
 }
 ```
 
@@ -1519,6 +1557,11 @@ interface QrParams {
      * Version of QR Code. From Version1 to Version40 for QR code and from M1 to M4 for MicroQr. Default value is QRVersion.Auto.
      */
     version?: QRVersion;
+
+    /**
+     * QR structured append parameters.
+     */
+    structuredAppend?: StructuredAppend;
 }
 ```
 
@@ -1774,6 +1817,30 @@ interface StorageFile {
      * File or folder path.
      */
     path?: string;
+}
+```
+
+## StructuredAppend
+
+QR structured append parameters.
+
+```ts
+interface StructuredAppend {
+
+    /**
+     * The index of the QR structured append mode barcode. Index starts from 0.
+     */
+    sequenceIndicator?: number;
+
+    /**
+     * Gets or sets the QR structured append mode barcodes quantity. Max value is 16.
+     */
+    totalCount?: number;
+
+    /**
+     * Gets or sets the QR structured append mode parity data.
+     */
+    parityByte?: number;
 }
 ```
 

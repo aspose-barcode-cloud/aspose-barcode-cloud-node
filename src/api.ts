@@ -453,6 +453,10 @@ export class CaptionParams {
      * Padding.
      */
     'padding'?: Padding;
+    /**
+     * Specify word wraps (line breaks) within text. Default value: false.
+     */
+    'noWrap'?: boolean;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -484,6 +488,11 @@ export class CaptionParams {
             name: 'padding',
             baseName: 'Padding',
             type: 'Padding',
+        },
+        {
+            name: 'noWrap',
+            baseName: 'NoWrap',
+            type: 'boolean',
         },
     ];
 
@@ -695,6 +704,14 @@ export class DataBarParams {
      * Rows count.
      */
     'rows'?: number;
+    /**
+     * Enables flag of 2D composite component with DataBar barcode
+     */
+    'is2DCompositeComponent'?: boolean;
+    /**
+     * If this flag is set, it allows only GS1 encoding standard for Databar barcode types
+     */
+    'isAllowOnlyGS1Encoding'?: boolean;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -711,6 +728,16 @@ export class DataBarParams {
             name: 'rows',
             baseName: 'Rows',
             type: 'number',
+        },
+        {
+            name: 'is2DCompositeComponent',
+            baseName: 'Is2DCompositeComponent',
+            type: 'boolean',
+        },
+        {
+            name: 'isAllowOnlyGS1Encoding',
+            baseName: 'IsAllowOnlyGS1Encoding',
+            type: 'boolean',
         },
     ];
 
@@ -744,6 +771,7 @@ export enum DataMatrixEncodeMode {
     Text = 'Text',
     EDIFACT = 'EDIFACT',
     ANSIX12 = 'ANSIX12',
+    ExtendedCodetext = 'ExtendedCodetext',
 }
 
 /**
@@ -774,6 +802,10 @@ export class DataMatrixParams {
      * Rows count.
      */
     'rows'?: number;
+    /**
+     * Macro Characters 05 and 06 values are used to obtain more compact encoding in special modes. Can be used only with DataMatrixEccType.Ecc200 or DataMatrixEccType.EccAuto. Cannot be used with EncodeTypes.GS1DataMatrix Default value: MacroCharacters.None.
+     */
+    'macroCharacters'?: MacroCharacter;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -805,6 +837,11 @@ export class DataMatrixParams {
             name: 'rows',
             baseName: 'Rows',
             type: 'number',
+        },
+        {
+            name: 'macroCharacters',
+            baseName: 'MacroCharacters',
+            type: 'MacroCharacter',
         },
     ];
 
@@ -1264,6 +1301,10 @@ export class GeneratorParams {
      */
     'fontSizeMode'?: FontMode;
     /**
+     * Specify word wraps (line breaks) within text. Default value: false.
+     */
+    'noWrap'?: boolean;
+    /**
      * Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
      */
     'resolution'?: number;
@@ -1480,6 +1521,11 @@ export class GeneratorParams {
             name: 'fontSizeMode',
             baseName: 'FontSizeMode',
             type: 'FontMode',
+        },
+        {
+            name: 'noWrap',
+            baseName: 'NoWrap',
+            type: 'boolean',
         },
         {
             name: 'resolution',
@@ -1797,6 +1843,15 @@ export class ITFParams {
     static getAttributeTypeMap() {
         return ITFParams.attributeTypeMap;
     }
+}
+
+/**
+ *
+ */
+export enum MacroCharacter {
+    None = 'None',
+    Macro05 = 'Macro05',
+    Macro06 = 'Macro06',
 }
 
 /**
@@ -2295,6 +2350,10 @@ export class QrParams {
      * Version of QR Code. From Version1 to Version40 for QR code and from M1 to M4 for MicroQr. Default value is QRVersion.Auto.
      */
     'version'?: QRVersion;
+    /**
+     * QR structured append parameters.
+     */
+    'structuredAppend'?: StructuredAppend;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -2331,6 +2390,11 @@ export class QrParams {
             name: 'version',
             baseName: 'Version',
             type: 'QRVersion',
+        },
+        {
+            name: 'structuredAppend',
+            baseName: 'StructuredAppend',
+            type: 'StructuredAppend',
         },
     ];
 
@@ -2783,6 +2847,46 @@ export class StorageFile {
 }
 
 /**
+ * QR structured append parameters.
+ */
+export class StructuredAppend {
+    /**
+     * The index of the QR structured append mode barcode. Index starts from 0.
+     */
+    'sequenceIndicator'?: number;
+    /**
+     * Gets or sets the QR structured append mode barcodes quantity. Max value is 16.
+     */
+    'totalCount'?: number;
+    /**
+     * Gets or sets the QR structured append mode parity data.
+     */
+    'parityByte'?: number;
+
+    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
+        {
+            name: 'sequenceIndicator',
+            baseName: 'SequenceIndicator',
+            type: 'number',
+        },
+        {
+            name: 'totalCount',
+            baseName: 'TotalCount',
+            type: 'number',
+        },
+        {
+            name: 'parityByte',
+            baseName: 'ParityByte',
+            type: 'number',
+        },
+    ];
+
+    static getAttributeTypeMap() {
+        return StructuredAppend.attributeTypeMap;
+    }
+}
+
+/**
  *
  */
 export enum TextAlignment {
@@ -2883,6 +2987,7 @@ let enumsMap: { [index: string]: any } = {
     FontMode: FontMode,
     FontStyle: FontStyle,
     ITF14BorderType: ITF14BorderType,
+    MacroCharacter: MacroCharacter,
     PatchFormat: PatchFormat,
     Pdf417CompactionMode: Pdf417CompactionMode,
     Pdf417ErrorLevel: Pdf417ErrorLevel,
@@ -2931,6 +3036,7 @@ let typeMap: { [index: string]: any } = {
     ResultImageInfo: ResultImageInfo,
     StorageExist: StorageExist,
     StorageFile: StorageFile,
+    StructuredAppend: StructuredAppend,
     FileVersion: FileVersion,
 };
 
@@ -2952,6 +3058,7 @@ export class BarcodeApi {
      * @param textAlignment Text alignment.
      * @param textColor Specify the displaying CodeText&#39;s Color. Default value: Color.Black.
      * @param fontSizeMode Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto.
+     * @param noWrap Specify word wraps (line breaks) within text. Default value: false.
      * @param resolution Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
      * @param resolutionX DEPRECATED: Use &#39;Resolution&#39; instead.
      * @param resolutionY DEPRECATED: Use &#39;Resolution&#39; instead.
@@ -3054,6 +3161,7 @@ export class BarcodeApi {
         textAlignment?: 'Left' | 'Center' | 'Right',
         textColor?: string,
         fontSizeMode?: 'Auto' | 'Manual',
+        noWrap?: boolean,
         resolution?: number,
         resolutionX?: number,
         resolutionY?: number,
@@ -3132,6 +3240,10 @@ export class BarcodeApi {
 
         if (fontSizeMode !== undefined) {
             requestQueryParameters['FontSizeMode'] = ObjectSerializer.serialize(fontSizeMode, "'Auto' | 'Manual'");
+        }
+
+        if (noWrap !== undefined) {
+            requestQueryParameters['NoWrap'] = ObjectSerializer.serialize(noWrap, 'boolean');
         }
 
         if (resolution !== undefined) {
@@ -4120,6 +4232,7 @@ export class BarcodeApi {
      * @param textAlignment Text alignment.
      * @param textColor Specify the displaying CodeText&#39;s Color. Default value: Color.Black.
      * @param fontSizeMode Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value. It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation. Default value: FontSizeMode.Auto.
+     * @param noWrap Specify word wraps (line breaks) within text. Default value: false.
      * @param resolution Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi.
      * @param resolutionX DEPRECATED: Use &#39;Resolution&#39; instead.
      * @param resolutionY DEPRECATED: Use &#39;Resolution&#39; instead.
@@ -4225,6 +4338,7 @@ export class BarcodeApi {
         textAlignment?: 'Left' | 'Center' | 'Right',
         textColor?: string,
         fontSizeMode?: 'Auto' | 'Manual',
+        noWrap?: boolean,
         resolution?: number,
         resolutionX?: number,
         resolutionY?: number,
@@ -4311,6 +4425,10 @@ export class BarcodeApi {
 
         if (fontSizeMode !== undefined) {
             requestQueryParameters['FontSizeMode'] = ObjectSerializer.serialize(fontSizeMode, "'Auto' | 'Manual'");
+        }
+
+        if (noWrap !== undefined) {
+            requestQueryParameters['NoWrap'] = ObjectSerializer.serialize(noWrap, 'boolean');
         }
 
         if (resolution !== undefined) {
