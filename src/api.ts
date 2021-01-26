@@ -2133,6 +2133,34 @@ export class Pdf417Params {
      * Used to instruct the reader to interpret the data contained within the symbol as programming for reader initialization
      */
     'isReaderInitialization'?: boolean;
+    /**
+     * Macro Pdf417 barcode time stamp
+     */
+    'macroTimeStamp'?: Date;
+    /**
+     * Macro Pdf417 barcode sender name
+     */
+    'macroSender'?: string;
+    /**
+     * Macro Pdf417 file size. The file size field contains the size in bytes of the entire source file
+     */
+    'macroFileSize'?: number;
+    /**
+     * Macro Pdf417 barcode checksum. The checksum field contains the value of the 16-bit (2 bytes) CRC checksum using the CCITT-16 polynomial
+     */
+    'macroChecksum'?: number;
+    /**
+     * Macro Pdf417 barcode file name
+     */
+    'macroFileName'?: string;
+    /**
+     * Macro Pdf417 barcode addressee name
+     */
+    'macroAddressee'?: string;
+    /**
+     * Extended Channel Interpretation Identifiers. Applies for Macro PDF417 text fields.
+     */
+    'macroECIEncoding'?: ECIEncodings;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -2194,6 +2222,41 @@ export class Pdf417Params {
             name: 'isReaderInitialization',
             baseName: 'IsReaderInitialization',
             type: 'boolean',
+        },
+        {
+            name: 'macroTimeStamp',
+            baseName: 'MacroTimeStamp',
+            type: 'Date',
+        },
+        {
+            name: 'macroSender',
+            baseName: 'MacroSender',
+            type: 'string',
+        },
+        {
+            name: 'macroFileSize',
+            baseName: 'MacroFileSize',
+            type: 'number',
+        },
+        {
+            name: 'macroChecksum',
+            baseName: 'MacroChecksum',
+            type: 'number',
+        },
+        {
+            name: 'macroFileName',
+            baseName: 'MacroFileName',
+            type: 'string',
+        },
+        {
+            name: 'macroAddressee',
+            baseName: 'MacroAddressee',
+            type: 'string',
+        },
+        {
+            name: 'macroECIEncoding',
+            baseName: 'MacroECIEncoding',
+            type: 'ECIEncodings',
         },
     ];
 
@@ -2508,6 +2571,10 @@ export class ReaderParams {
      */
     'allowWhiteSpotsRemoving'?: boolean;
     /**
+     * Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
+     */
+    'checkMore1DVariants'?: boolean;
+    /**
      * Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      */
     'regionLikelihoodThresholdPercent'?: number;
@@ -2656,6 +2723,11 @@ export class ReaderParams {
         {
             name: 'allowWhiteSpotsRemoving',
             baseName: 'AllowWhiteSpotsRemoving',
+            type: 'boolean',
+        },
+        {
+            name: 'checkMore1DVariants',
+            baseName: 'CheckMore1DVariants',
             type: 'boolean',
         },
         {
@@ -2855,11 +2927,11 @@ export class StructuredAppend {
      */
     'sequenceIndicator'?: number;
     /**
-     * Gets or sets the QR structured append mode barcodes quantity. Max value is 16.
+     * QR structured append mode barcodes quantity. Max value is 16.
      */
     'totalCount'?: number;
     /**
-     * Gets or sets the QR structured append mode parity data.
+     * QR structured append mode parity data.
      */
     'parityByte'?: number;
 
@@ -3429,6 +3501,7 @@ export class BarcodeApi {
      * @param allowRegularImage Allows engine to recognize regular image without any restorations as main scan. Mode to recognize image as is.
      * @param allowSaltAndPepperFiltering Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots.
      * @param allowWhiteSpotsRemoving Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering.
+     * @param checkMore1DVariants Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
      * @param regionLikelihoodThresholdPercent Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      * @param scanWindowSizes Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
      * @param similarity Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
@@ -3539,6 +3612,7 @@ export class BarcodeApi {
         allowRegularImage?: boolean,
         allowSaltAndPepperFiltering?: boolean,
         allowWhiteSpotsRemoving?: boolean,
+        checkMore1DVariants?: boolean,
         regionLikelihoodThresholdPercent?: number,
         scanWindowSizes?: Array<number>,
         similarity?: number,
@@ -3702,6 +3776,10 @@ export class BarcodeApi {
             );
         }
 
+        if (checkMore1DVariants !== undefined) {
+            requestQueryParameters['CheckMore1DVariants'] = ObjectSerializer.serialize(checkMore1DVariants, 'boolean');
+        }
+
         if (regionLikelihoodThresholdPercent !== undefined) {
             requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
                 regionLikelihoodThresholdPercent,
@@ -3810,6 +3888,7 @@ export class BarcodeApi {
      * @param allowRegularImage Allows engine to recognize regular image without any restorations as main scan. Mode to recognize image as is.
      * @param allowSaltAndPepperFiltering Allows engine to recognize barcodes with salt and pepper noise type. Mode can remove small noise with white and black dots.
      * @param allowWhiteSpotsRemoving Allows engine to recognize image without small white spots as additional scan. Mode helps to recognize noised image as well as median smoothing filtering.
+     * @param checkMore1DVariants Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
      * @param regionLikelihoodThresholdPercent Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      * @param scanWindowSizes Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality.
      * @param similarity Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
@@ -3919,6 +3998,7 @@ export class BarcodeApi {
         allowRegularImage?: boolean,
         allowSaltAndPepperFiltering?: boolean,
         allowWhiteSpotsRemoving?: boolean,
+        checkMore1DVariants?: boolean,
         regionLikelihoodThresholdPercent?: number,
         scanWindowSizes?: Array<number>,
         similarity?: number,
@@ -4074,6 +4154,10 @@ export class BarcodeApi {
                 allowWhiteSpotsRemoving,
                 'boolean'
             );
+        }
+
+        if (checkMore1DVariants !== undefined) {
+            requestQueryParameters['CheckMore1DVariants'] = ObjectSerializer.serialize(checkMore1DVariants, 'boolean');
         }
 
         if (regionLikelihoodThresholdPercent !== undefined) {

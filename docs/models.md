@@ -1390,6 +1390,41 @@ interface Pdf417Params {
      * Used to instruct the reader to interpret the data contained within the symbol as programming for reader initialization
      */
     isReaderInitialization?: boolean;
+
+    /**
+     * Macro Pdf417 barcode time stamp
+     */
+    macroTimeStamp?: Date;
+
+    /**
+     * Macro Pdf417 barcode sender name
+     */
+    macroSender?: string;
+
+    /**
+     * Macro Pdf417 file size. The file size field contains the size in bytes of the entire source file
+     */
+    macroFileSize?: number;
+
+    /**
+     * Macro Pdf417 barcode checksum. The checksum field contains the value of the 16-bit (2 bytes) CRC checksum using the CCITT-16 polynomial
+     */
+    macroChecksum?: number;
+
+    /**
+     * Macro Pdf417 barcode file name
+     */
+    macroFileName?: string;
+
+    /**
+     * Macro Pdf417 barcode addressee name
+     */
+    macroAddressee?: string;
+
+    /**
+     * Extended Channel Interpretation Identifiers. Applies for Macro PDF417 text fields.
+     */
+    macroECIEncoding?: ECIEncodings;
 }
 ```
 
@@ -1698,6 +1733,11 @@ interface ReaderParams {
     allowWhiteSpotsRemoving?: boolean;
 
     /**
+     * Allows engine to recognize 1D barcodes with checksum by checking more recognition variants. Default value: False.
+     */
+    checkMore1DVariants?: boolean;
+
+    /**
      * Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      */
     regionLikelihoodThresholdPercent?: number;
@@ -1833,12 +1873,12 @@ interface StructuredAppend {
     sequenceIndicator?: number;
 
     /**
-     * Gets or sets the QR structured append mode barcodes quantity. Max value is 16.
+     * QR structured append mode barcodes quantity. Max value is 16.
      */
     totalCount?: number;
 
     /**
-     * Gets or sets the QR structured append mode parity data.
+     * QR structured append mode parity data.
      */
     parityByte?: number;
 }
