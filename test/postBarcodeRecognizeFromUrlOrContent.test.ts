@@ -47,6 +47,7 @@ describe('postBarcodeRecognizeFromUrlOrContent', () => {
             undefined,
             undefined,
             undefined,
+            undefined,
             imageBuffer
         );
 

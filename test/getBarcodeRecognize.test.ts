@@ -59,6 +59,7 @@ describe('getBarcodeRecognize', () => {
             undefined,
             undefined,
             undefined,
+            undefined,
             tempFolderPath
         );
 
