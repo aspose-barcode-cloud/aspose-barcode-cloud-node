@@ -290,6 +290,19 @@ interface CodablockParams {
 }
 ```
 
+## Code128Emulation
+
+
+
+```ts
+enum Code128Emulation {
+    None = 'None',
+    Code903 = 'Code903',
+    Code904 = 'Code904',
+    Code905 = 'Code905'
+}
+```
+
 ## Code16KParams
 
 Code16K parameters.
@@ -1425,6 +1438,11 @@ interface Pdf417Params {
      * Extended Channel Interpretation Identifiers. Applies for Macro PDF417 text fields.
      */
     macroECIEncoding?: ECIEncodings;
+
+    /**
+     * Function codeword for Code 128 emulation. Applied for MicroPDF417 only. Ignored for PDF417 and MacroPDF417 barcodes.
+     */
+    code128Emulation?: Code128Emulation;
 }
 ```
 

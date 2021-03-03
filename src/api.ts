@@ -609,6 +609,16 @@ export class CodablockParams {
 }
 
 /**
+ *
+ */
+export enum Code128Emulation {
+    None = 'None',
+    Code903 = 'Code903',
+    Code904 = 'Code904',
+    Code905 = 'Code905',
+}
+
+/**
  * Code16K parameters.
  */
 export class Code16KParams {
@@ -2161,6 +2171,10 @@ export class Pdf417Params {
      * Extended Channel Interpretation Identifiers. Applies for Macro PDF417 text fields.
      */
     'macroECIEncoding'?: ECIEncodings;
+    /**
+     * Function codeword for Code 128 emulation. Applied for MicroPDF417 only. Ignored for PDF417 and MacroPDF417 barcodes.
+     */
+    'code128Emulation'?: Code128Emulation;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -2257,6 +2271,11 @@ export class Pdf417Params {
             name: 'macroECIEncoding',
             baseName: 'MacroECIEncoding',
             type: 'ECIEncodings',
+        },
+        {
+            name: 'code128Emulation',
+            baseName: 'Code128Emulation',
+            type: 'Code128Emulation',
         },
     ];
 
@@ -3048,6 +3067,7 @@ let enumsMap: { [index: string]: any } = {
     ChecksumValidation: ChecksumValidation,
     CodabarChecksumMode: CodabarChecksumMode,
     CodabarSymbol: CodabarSymbol,
+    Code128Emulation: Code128Emulation,
     CodeLocation: CodeLocation,
     CustomerInformationInterpretingType: CustomerInformationInterpretingType,
     DataMatrixEccType: DataMatrixEccType,
