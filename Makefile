@@ -1,6 +1,10 @@
 .PHONY: all
 all: clean ci update_modules format lint cover
 
+.PHONY: init
+init:
+	npm install
+
 .PHONY: format
 format:
 	./scripts/docs_format.sh
@@ -27,8 +31,8 @@ cover:
 lint:
 	npm run lint
 
-.PHONY: update_modules
-update_modules:
+.PHONY: update
+update:
 	npm run check-updates
 	npm update
 	npm outdated
