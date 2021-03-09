@@ -4,7 +4,6 @@ import assert from 'assert';
 import { v4 as uuidv4 } from 'uuid';
 
 import * as Barcode from '../src/api';
-import * as Models from '../src/models';
 import { LoadTestConfiguration } from './helpers';
 
 describe('getBarcodeRecognize', () => {
@@ -20,20 +19,20 @@ describe('getBarcodeRecognize', () => {
     const imageBuffer = fs.readFileSync('./testdata/pdf417Sample.png');
 
     it('getBarcodeRecognize should recognize uploaded image', async () => {
-        const uploadRequest = new Models.UploadFileRequest(`${tempFolderPath}/${filename}`, imageBuffer);
+        const uploadRequest = new Barcode.UploadFileRequest(`${tempFolderPath}/${filename}`, imageBuffer);
         const uploaded = await fileApi.uploadFile(uploadRequest);
 
         assert.strictEqual(uploaded.body.errors.length, 0, JSON.stringify(uploaded.body.errors));
         assert.strictEqual(uploaded.body.uploaded[0], filename);
 
-        const recognizeRequest = new Models.GetBarcodeRecognizeRequest(filename);
-        recognizeRequest.preset = Models.PresetType.HighPerformance;
+        const recognizeRequest = new Barcode.GetBarcodeRecognizeRequest(filename);
+        recognizeRequest.preset = Barcode.PresetType.HighPerformance;
         recognizeRequest.folder = tempFolderPath;
         const recognized = await api.getBarcodeRecognize(recognizeRequest);
 
         assert.strictEqual(recognized.body.barcodes.length, 1);
         const barcode = recognized.body.barcodes[0];
-        assert.strictEqual(barcode.type, Models.DecodeBarcodeType.Pdf417);
+        assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.Pdf417);
         assert.strictEqual(barcode.barcodeValue, 'Aspose.BarCode for Cloud Sample');
 
         assert.strictEqual(barcode.region.length, 4);

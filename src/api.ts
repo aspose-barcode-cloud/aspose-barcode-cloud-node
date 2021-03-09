@@ -31,8 +31,6 @@ import Request from 'request';
 
 import { Configuration } from 'Configuration';
 
-import * as models from './models';
-
 import {
     ApiError,
     ApiErrorResponse,

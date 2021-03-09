@@ -1,7 +1,6 @@
 import assert from 'assert';
 
 import * as Barcode from '../src/api';
-import * as Models from '../src/models';
 import { LoadTestConfiguration } from './helpers';
 
 describe('getBarcodeGenerate', () => {
@@ -10,7 +9,7 @@ describe('getBarcodeGenerate', () => {
     const api = new Barcode.BarcodeApi(LoadTestConfiguration());
 
     it('should generate image', async () => {
-        const request = new Models.GetBarcodeGenerateRequest(Models.EncodeBarcodeType.QR, 'Testing generator');
+        const request = new Barcode.GetBarcodeGenerateRequest(Barcode.EncodeBarcodeType.QR, 'Testing generator');
         const generated = await api.getBarcodeGenerate(request);
 
         const imageSize = generated.body.buffer.byteLength;

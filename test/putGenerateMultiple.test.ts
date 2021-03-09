@@ -2,7 +2,6 @@ import assert from 'assert';
 import { v4 as uuidv4 } from 'uuid';
 
 import * as Barcode from '../src/api';
-import * as Models from '../src/models';
 import { LoadTestConfiguration } from './helpers';
 
 describe('putGenerateMultiple', () => {
@@ -12,21 +11,21 @@ describe('putGenerateMultiple', () => {
     const tempFolderPath = `BarcodeTests/${uuidv4()}`;
     const filename = 'Test_putGenerateMultiple.png';
 
-    const firstBarcode = new Models.GeneratorParams();
-    firstBarcode.typeOfBarcode = Models.EncodeBarcodeType.Code128;
+    const firstBarcode = new Barcode.GeneratorParams();
+    firstBarcode.typeOfBarcode = Barcode.EncodeBarcodeType.Code128;
     firstBarcode.text = 'First barcode';
 
-    const secondBarcode = new Models.GeneratorParams();
-    secondBarcode.typeOfBarcode = Models.EncodeBarcodeType.QR;
+    const secondBarcode = new Barcode.GeneratorParams();
+    secondBarcode.typeOfBarcode = Barcode.EncodeBarcodeType.QR;
     secondBarcode.text = 'Second barcode';
 
-    const params = new Models.GeneratorParamsList();
+    const params = new Barcode.GeneratorParamsList();
     params.barcodeBuilders = [firstBarcode, secondBarcode];
     params.xStep = 0;
     params.yStep = 1;
 
     it('should create file on server', async () => {
-        const request = new Models.PutGenerateMultipleRequest(filename, params);
+        const request = new Barcode.PutGenerateMultipleRequest(filename, params);
         request.folder = tempFolderPath;
         const response = await api.putGenerateMultiple(request);
 

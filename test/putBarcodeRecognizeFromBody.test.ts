@@ -4,7 +4,6 @@ import assert from 'assert';
 import { v4 as uuidv4 } from 'uuid';
 
 import * as Barcode from '../src/api';
-import * as Models from '../src/models';
 import { LoadTestConfiguration } from './helpers';
 
 describe('putBarcodeRecognizeFromBody', () => {
@@ -19,25 +18,25 @@ describe('putBarcodeRecognizeFromBody', () => {
 
     const imageBuffer = fs.readFileSync('./testdata/pdf417Sample.png');
 
-    const readerParams = new Models.ReaderParams();
-    readerParams.type = Models.DecodeBarcodeType.Pdf417;
-    readerParams.preset = Models.PresetType.HighPerformance;
+    const readerParams = new Barcode.ReaderParams();
+    readerParams.type = Barcode.DecodeBarcodeType.Pdf417;
+    readerParams.preset = Barcode.PresetType.HighPerformance;
 
     it('putBarcodeRecognizeFromBody should recognize uploaded image', async () => {
-        const uploadRequest = new Models.UploadFileRequest(`${tempFolderPath}/${filename}`, imageBuffer);
+        const uploadRequest = new Barcode.UploadFileRequest(`${tempFolderPath}/${filename}`, imageBuffer);
         const uploaded = await fileApi.uploadFile(uploadRequest);
 
         assert.strictEqual(uploaded.body.errors.length, 0, JSON.stringify(uploaded.body.errors));
         assert.strictEqual(uploaded.body.uploaded[0], filename);
 
-        const recognizeRequest = new Models.PutBarcodeRecognizeFromBodyRequest(filename, readerParams);
+        const recognizeRequest = new Barcode.PutBarcodeRecognizeFromBodyRequest(filename, readerParams);
         recognizeRequest.folder = tempFolderPath;
         const recognized = await api.putBarcodeRecognizeFromBody(recognizeRequest);
 
         assert.ok(recognized);
         assert.strictEqual(recognized.body.barcodes.length, 1, JSON.stringify(recognized.response));
         const barcode = recognized.body.barcodes[0];
-        assert.strictEqual(barcode.type, Models.DecodeBarcodeType.Pdf417);
+        assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.Pdf417);
         assert.strictEqual(barcode.barcodeValue, 'Aspose.BarCode for Cloud Sample');
 
         assert.strictEqual(barcode.region.length, 4);
