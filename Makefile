@@ -1,5 +1,5 @@
 .PHONY: all
-all: clean ci update format lint cover
+all: clean ci lint build cover
 
 .PHONY: init
 init:

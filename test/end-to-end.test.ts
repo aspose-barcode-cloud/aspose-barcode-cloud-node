@@ -1,6 +1,7 @@
 import assert from 'assert';
 
 import * as Barcode from '../src/api';
+import * as Models from '../src/models';
 import { LoadTestConfiguration } from './helpers';
 
 describe('Generate and recognize', () => {
@@ -9,53 +10,22 @@ describe('Generate and recognize', () => {
     const api = new Barcode.BarcodeApi(LoadTestConfiguration());
 
     it('should recognize generated code', async () => {
-        const generated = await api.getBarcodeGenerate(Barcode.EncodeBarcodeType.QR, 'Testing generator');
+        const generateRequest = new Models.GetBarcodeGenerateRequest(Models.EncodeBarcodeType.QR, 'Testing generator');
+        const generated = await api.getBarcodeGenerate(generateRequest);
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
 
-        const recognized = await api.postBarcodeRecognizeFromUrlOrContent(
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            generated.body
-        );
+        const recognizeRequest = new Models.PostBarcodeRecognizeFromUrlOrContentRequest();
+        recognizeRequest.image = generated.body;
+        const recognized = await api.postBarcodeRecognizeFromUrlOrContent(recognizeRequest);
 
         const barcodes = recognized.body.barcodes;
+        assert.ok(barcodes);
         assert.strictEqual(barcodes.length, 1);
 
         const barcode = barcodes[0];
-        assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.QR);
+        assert.ok(barcode);
+        assert.strictEqual(barcode.type, Models.DecodeBarcodeType.QR);
         assert.strictEqual(barcode.barcodeValue, 'Testing generator');
 
         assert.strictEqual(barcode.region.length, 4);

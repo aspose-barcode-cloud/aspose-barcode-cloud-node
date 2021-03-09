@@ -9,14 +9,17 @@ const config = new Barcode.Configuration(
 );
 
 async function generate(api) {
-    const oneBarcode = await api.getBarcodeGenerate(
+    const request = new Barcode.GetBarcodeGenerateRequest(
         Barcode.EncodeBarcodeType.Pdf417,
-        'Aspose.BarCode for Cloud Sample'
-    );
+        'Aspose.BarCode for Cloud Sample');
+    const oneBarcode = await api.getBarcodeGenerate(request);
 
     fs.writeFileSync('out.png', oneBarcode.body);
     console.log('Saved to out.png');
 }
 
 const api = new Barcode.BarcodeApi(config);
-generate(api).catch(err => { console.error(err); process.exitCode = 1; });
+generate(api).catch(err => {
+    console.error(err);
+    process.exitCode = 1;
+});

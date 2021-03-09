@@ -2,6 +2,7 @@ import assert from 'assert';
 import { v4 as uuidv4 } from 'uuid';
 
 import * as Barcode from '../src/api';
+import * as Models from '../src/models';
 import { LoadTestConfiguration } from './helpers';
 
 describe('putBarcodeGenerateFile', () => {
@@ -12,46 +13,9 @@ describe('putBarcodeGenerateFile', () => {
     const filename = 'Test_putBarcodeGenerateFile.png';
 
     it('should create file on server', async function() {
-        const response = await api.putBarcodeGenerateFile(
-            filename,
-            Barcode.EncodeBarcodeType.Code128,
-            'Hello!',
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            tempFolderPath,
-            undefined
-        );
+        const request = new Models.PutBarcodeGenerateFileRequest(filename, Models.EncodeBarcodeType.Code128, 'Hello!');
+        request.folder = tempFolderPath;
+        const response = await api.putBarcodeGenerateFile(request);
 
         assert.ok(response.body.fileSize > 0);
         assert.ok(response.body.imageWidth > 0);
