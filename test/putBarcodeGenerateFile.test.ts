@@ -12,7 +12,11 @@ describe('putBarcodeGenerateFile', () => {
     const filename = 'Test_putBarcodeGenerateFile.png';
 
     it('should create file on server', async function() {
-        const request = new Barcode.PutBarcodeGenerateFileRequest(filename, Barcode.EncodeBarcodeType.Code128, 'Hello!');
+        const request = new Barcode.PutBarcodeGenerateFileRequest(
+            filename,
+            Barcode.EncodeBarcodeType.Code128,
+            'Hello!'
+        );
         request.folder = tempFolderPath;
         const response = await api.putBarcodeGenerateFile(request);
 

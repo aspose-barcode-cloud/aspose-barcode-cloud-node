@@ -9,7 +9,10 @@ describe('Generate and recognize', () => {
     const api = new Barcode.BarcodeApi(LoadTestConfiguration());
 
     it('should recognize generated code', async () => {
-        const generateRequest = new Barcode.GetBarcodeGenerateRequest(Barcode.EncodeBarcodeType.QR, 'Testing generator');
+        const generateRequest = new Barcode.GetBarcodeGenerateRequest(
+            Barcode.EncodeBarcodeType.QR,
+            'Testing generator'
+        );
         const generated = await api.getBarcodeGenerate(generateRequest);
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
