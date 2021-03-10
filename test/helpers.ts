@@ -19,7 +19,7 @@ export function LoadConfigurationFromEnv(prefix?: string): Configuration {
     const baseUrl = process.env[prefix + 'BASE_URL'];
     const accessToken = process.env[prefix + 'ACCESS_TOKEN'];
 
-    return new Configuration(clientId, clientSecret, baseUrl, accessToken);
+    return new Configuration(clientId!, clientSecret!, baseUrl, accessToken);
 }
 
 export function LoadTestConfiguration(): Configuration {

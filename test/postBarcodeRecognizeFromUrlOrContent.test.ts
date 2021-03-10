@@ -13,43 +13,10 @@ describe('postBarcodeRecognizeFromUrlOrContent', () => {
     const imageBuffer = fs.readFileSync('./testdata/pdf417Sample.png');
 
     it('should recognize from body', async () => {
-        const recognized = await api.postBarcodeRecognizeFromUrlOrContent(
-            undefined,
-            undefined,
-            undefined,
-            Barcode.PresetType.HighPerformance,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            imageBuffer
-        );
+        const request = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
+        request.preset = Barcode.PresetType.HighPerformance;
+        request.image = imageBuffer;
+        const recognized = await api.postBarcodeRecognizeFromUrlOrContent(request);
 
         const barcodes = recognized.body.barcodes;
         assert.strictEqual(barcodes.length, 1);

@@ -22,7 +22,9 @@ describe('postGenerateMultiple', () => {
     params.yStep = 1;
 
     it('should generate image', async () => {
-        const generated = await api.postGenerateMultiple(params, 'png');
+        const request = new Barcode.PostGenerateMultipleRequest(params);
+        request.format = 'png';
+        const generated = await api.postGenerateMultiple(request);
 
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);

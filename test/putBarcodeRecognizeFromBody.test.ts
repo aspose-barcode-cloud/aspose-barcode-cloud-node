@@ -23,19 +23,17 @@ describe('putBarcodeRecognizeFromBody', () => {
     readerParams.preset = Barcode.PresetType.HighPerformance;
 
     it('putBarcodeRecognizeFromBody should recognize uploaded image', async () => {
-        const uploaded = await fileApi.uploadFile(`${tempFolderPath}/${filename}`, imageBuffer); //, "First Storage");
+        const uploadRequest = new Barcode.UploadFileRequest(`${tempFolderPath}/${filename}`, imageBuffer);
+        const uploaded = await fileApi.uploadFile(uploadRequest);
 
         assert.strictEqual(uploaded.body.errors.length, 0, JSON.stringify(uploaded.body.errors));
         assert.strictEqual(uploaded.body.uploaded[0], filename);
 
-        const recognized = await api.putBarcodeRecognizeFromBody(
-            filename,
-            readerParams,
-            undefined,
-            undefined,
-            tempFolderPath
-        );
+        const recognizeRequest = new Barcode.PutBarcodeRecognizeFromBodyRequest(filename, readerParams);
+        recognizeRequest.folder = tempFolderPath;
+        const recognized = await api.putBarcodeRecognizeFromBody(recognizeRequest);
 
+        assert.ok(recognized);
         assert.strictEqual(recognized.body.barcodes.length, 1, JSON.stringify(recognized.response));
         const barcode = recognized.body.barcodes[0];
         assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.Pdf417);

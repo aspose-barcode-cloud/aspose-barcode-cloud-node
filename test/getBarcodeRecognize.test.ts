@@ -19,49 +19,16 @@ describe('getBarcodeRecognize', () => {
     const imageBuffer = fs.readFileSync('./testdata/pdf417Sample.png');
 
     it('getBarcodeRecognize should recognize uploaded image', async () => {
-        const uploaded = await fileApi.uploadFile(`${tempFolderPath}/${filename}`, imageBuffer); //, "First Storage");
+        const uploadRequest = new Barcode.UploadFileRequest(`${tempFolderPath}/${filename}`, imageBuffer);
+        const uploaded = await fileApi.uploadFile(uploadRequest);
 
         assert.strictEqual(uploaded.body.errors.length, 0, JSON.stringify(uploaded.body.errors));
         assert.strictEqual(uploaded.body.uploaded[0], filename);
 
-        const recognized = await api.getBarcodeRecognize(
-            filename,
-            undefined,
-            undefined,
-            undefined,
-            Barcode.PresetType.HighPerformance,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            tempFolderPath
-        );
+        const recognizeRequest = new Barcode.GetBarcodeRecognizeRequest(filename);
+        recognizeRequest.preset = Barcode.PresetType.HighPerformance;
+        recognizeRequest.folder = tempFolderPath;
+        const recognized = await api.getBarcodeRecognize(recognizeRequest);
 
         assert.strictEqual(recognized.body.barcodes.length, 1);
         const barcode = recognized.body.barcodes[0];

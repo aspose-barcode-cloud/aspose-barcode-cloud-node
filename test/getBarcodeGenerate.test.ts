@@ -9,7 +9,8 @@ describe('getBarcodeGenerate', () => {
     const api = new Barcode.BarcodeApi(LoadTestConfiguration());
 
     it('should generate image', async () => {
-        const generated = await api.getBarcodeGenerate(Barcode.EncodeBarcodeType.QR, 'Testing generator');
+        const request = new Barcode.GetBarcodeGenerateRequest(Barcode.EncodeBarcodeType.QR, 'Testing generator');
+        const generated = await api.getBarcodeGenerate(request);
 
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);

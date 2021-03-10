@@ -9,52 +9,24 @@ describe('Generate and recognize', () => {
     const api = new Barcode.BarcodeApi(LoadTestConfiguration());
 
     it('should recognize generated code', async () => {
-        const generated = await api.getBarcodeGenerate(Barcode.EncodeBarcodeType.QR, 'Testing generator');
+        const generateRequest = new Barcode.GetBarcodeGenerateRequest(
+            Barcode.EncodeBarcodeType.QR,
+            'Testing generator'
+        );
+        const generated = await api.getBarcodeGenerate(generateRequest);
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
 
-        const recognized = await api.postBarcodeRecognizeFromUrlOrContent(
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            undefined,
-            generated.body
-        );
+        const recognizeRequest = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
+        recognizeRequest.image = generated.body;
+        const recognized = await api.postBarcodeRecognizeFromUrlOrContent(recognizeRequest);
 
         const barcodes = recognized.body.barcodes;
+        assert.ok(barcodes);
         assert.strictEqual(barcodes.length, 1);
 
         const barcode = barcodes[0];
+        assert.ok(barcode);
         assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.QR);
         assert.strictEqual(barcode.barcodeValue, 'Testing generator');
 

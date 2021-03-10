@@ -25,7 +25,9 @@ describe('putGenerateMultiple', () => {
     params.yStep = 1;
 
     it('should create file on server', async () => {
-        const response = await api.putGenerateMultiple(filename, params, undefined, tempFolderPath);
+        const request = new Barcode.PutGenerateMultipleRequest(filename, params);
+        request.folder = tempFolderPath;
+        const response = await api.putGenerateMultiple(request);
 
         assert.ok(response.body.fileSize > 0);
         assert.ok(response.body.imageWidth > 0);
