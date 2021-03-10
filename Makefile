@@ -1,6 +1,9 @@
 .PHONY: all
 all: clean ci lint build cover
 
+.PHONY: github-ci
+github-ci: ci lint test
+
 .PHONY: init
 init:
 	npm install
@@ -38,8 +41,8 @@ update:
 	npm outdated
 	npm install --package-lock-only
 
-.PHONY: check_git
-check_git:
+.PHONY: check-git
+check-git:
 	git fetch --depth 1 origin
 	git diff origin/master --exit-code
 
@@ -48,9 +51,9 @@ ci:
 	npm ci || true
 
 .PHONY: publish
-publish: clean ci test check_git
+publish: clean ci test check-git
 	npm publish
 
-.PHONY: publish_docker
-publish: ci test
+.PHONY: publish-docker
+publish-docker: ci test
 	npm publish
