@@ -6,8 +6,6 @@ FROM node:14
 
 WORKDIR /aspose-barcode-cloud-node
 COPY . .
-RUN npm ci
 RUN echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
 
-ENTRYPOINT ["make"]
-CMD ["publish-docker"]
+ENTRYPOINT ["make", "publish-docker"]
