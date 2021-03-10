@@ -50,3 +50,7 @@ ci:
 .PHONY: publish
 publish: clean ci test check_git
 	npm publish
+
+.PHONY: publish_docker
+publish: ci test
+	npm publish
