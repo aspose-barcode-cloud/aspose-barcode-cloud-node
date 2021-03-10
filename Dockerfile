@@ -10,4 +10,4 @@ RUN npm ci
 RUN echo '//registry.npmjs.org/:_authToken=${NPM_TOKEN}' > .npmrc
 
 ENTRYPOINT ["make"]
-CMD ["publish"]
+CMD ["publish-docker"]
