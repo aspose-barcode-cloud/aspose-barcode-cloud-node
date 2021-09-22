@@ -149,14 +149,14 @@
   },
   "devDependencies": {
     "@types/uuid": "^8.3.1",
-    "npm-check-updates": "^11.8.3",
+    "npm-check-updates": "^11.8.5",
     "tsdx": "^0.14.1",
-    "tslib": "^2.3.0",
-    "typescript": "^4.3.5",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.3",
     "uuid": "^8.3.2"
   },
   "dependencies": {
-    "@types/request": "^2.48.6",
+    "@types/request": "^2.48.7",
     "request": "^2.88.2"
   },
   "bugs": {
