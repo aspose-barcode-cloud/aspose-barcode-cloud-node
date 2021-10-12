@@ -756,6 +756,10 @@ export class BarcodeApi {
             );
         }
 
+        if (request.fastScanOnly != null) {
+            requestQueryParameters['FastScanOnly'] = ObjectSerializer.serialize(request.fastScanOnly, 'boolean');
+        }
+
         if (request.regionLikelihoodThresholdPercent != null) {
             requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
                 request.regionLikelihoodThresholdPercent,
@@ -792,6 +796,13 @@ export class BarcodeApi {
             requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
                 request.australianPostEncodingTable,
                 "'CTable' | 'NTable' | 'Other'"
+            );
+        }
+
+        if (request.ignoreEndingFillingPatternsForCTable != null) {
+            requestQueryParameters['IgnoreEndingFillingPatternsForCTable'] = ObjectSerializer.serialize(
+                request.ignoreEndingFillingPatternsForCTable,
+                'boolean'
             );
         }
 
@@ -1019,6 +1030,10 @@ export class BarcodeApi {
             );
         }
 
+        if (request.fastScanOnly != null) {
+            requestQueryParameters['FastScanOnly'] = ObjectSerializer.serialize(request.fastScanOnly, 'boolean');
+        }
+
         if (request.regionLikelihoodThresholdPercent != null) {
             requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
                 request.regionLikelihoodThresholdPercent,
@@ -1055,6 +1070,13 @@ export class BarcodeApi {
             requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
                 request.australianPostEncodingTable,
                 "'CTable' | 'NTable' | 'Other'"
+            );
+        }
+
+        if (request.ignoreEndingFillingPatternsForCTable != null) {
+            requestQueryParameters['IgnoreEndingFillingPatternsForCTable'] = ObjectSerializer.serialize(
+                request.ignoreEndingFillingPatternsForCTable,
+                'boolean'
             );
         }
 
