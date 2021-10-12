@@ -1756,6 +1756,11 @@ interface ReaderParams {
     checkMore1DVariants?: boolean;
 
     /**
+     * Allows engine for 1D barcodes to quickly recognize middle slice of an image and return result without using any time-consuming algorithms. Default value: False.
+     */
+    fastScanOnly?: boolean;
+
+    /**
      * Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
      */
     regionLikelihoodThresholdPercent?: number;
@@ -1784,6 +1789,11 @@ interface ReaderParams {
      * Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other.
      */
     australianPostEncodingTable?: CustomerInformationInterpretingType;
+
+    /**
+     * The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method.  CTable encoding method does not have any gaps in encoding table and sequnce \"333\" of filling paterns is decoded as letter \"z\".
+     */
+    ignoreEndingFillingPatternsForCTable?: boolean;
 }
 ```
 
