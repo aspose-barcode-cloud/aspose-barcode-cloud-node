@@ -549,7 +549,8 @@ enum DecodeBarcodeType {
     DataLogic2of5 = 'DataLogic2of5',
     DotCode = 'DotCode',
     DutchKIX = 'DutchKIX',
-    CodablockF = 'CodablockF'
+    CodablockF = 'CodablockF',
+    Mailmark = 'Mailmark'
 }
 ```
 
@@ -710,7 +711,8 @@ enum EncodeBarcodeType {
     UpcaGs1Code128Coupon = 'UpcaGs1Code128Coupon',
     UpcaGs1DatabarCoupon = 'UpcaGs1DatabarCoupon',
     CodablockF = 'CodablockF',
-    GS1CodablockF = 'GS1CodablockF'
+    GS1CodablockF = 'GS1CodablockF',
+    Mailmark = 'Mailmark'
 }
 ```
 
