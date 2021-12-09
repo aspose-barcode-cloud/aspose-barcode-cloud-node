@@ -13,6 +13,10 @@ format:
 	./scripts/docs_format.sh
 	npm run format
 
+.PHONY: lock
+lock:
+	npm install --package-lock-only
+
 .PHONY: clean
 clean:
 	rm -rf built dist node_modules || true
