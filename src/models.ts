@@ -780,6 +780,7 @@ export enum DecodeBarcodeType {
     DotCode = 'DotCode',
     DutchKIX = 'DutchKIX',
     CodablockF = 'CodablockF',
+    Mailmark = 'Mailmark',
 }
 
 /**
@@ -956,6 +957,7 @@ export enum EncodeBarcodeType {
     UpcaGs1DatabarCoupon = 'UpcaGs1DatabarCoupon',
     CodablockF = 'CodablockF',
     GS1CodablockF = 'GS1CodablockF',
+    Mailmark = 'Mailmark',
 }
 
 /**
@@ -3000,7 +3002,8 @@ export class GetBarcodeGenerateRequest {
         | 'UpcaGs1Code128Coupon'
         | 'UpcaGs1DatabarCoupon'
         | 'CodablockF'
-        | 'GS1CodablockF';
+        | 'GS1CodablockF'
+        | 'Mailmark';
     /**
      * Text to encode.
      */
@@ -3245,7 +3248,8 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'UpcaGs1Code128Coupon'
             | 'UpcaGs1DatabarCoupon'
             | 'CodablockF'
-            | 'GS1CodablockF',
+            | 'GS1CodablockF'
+            | 'Mailmark',
         text: string
     ) {
         this.type = type;
@@ -3331,7 +3335,8 @@ export class GetBarcodeRecognizeRequest {
         | 'DataLogic2of5'
         | 'DotCode'
         | 'DutchKIX'
-        | 'CodablockF';
+        | 'CodablockF'
+        | 'Mailmark';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -3591,7 +3596,8 @@ export class PostBarcodeRecognizeFromUrlOrContentRequest {
         | 'DataLogic2of5'
         | 'DotCode'
         | 'DutchKIX'
-        | 'CodablockF';
+        | 'CodablockF'
+        | 'Mailmark';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -3868,7 +3874,8 @@ export class PutBarcodeGenerateFileRequest {
         | 'UpcaGs1Code128Coupon'
         | 'UpcaGs1DatabarCoupon'
         | 'CodablockF'
-        | 'GS1CodablockF';
+        | 'GS1CodablockF'
+        | 'Mailmark';
     /**
      * Text to encode.
      */
@@ -4124,7 +4131,8 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'UpcaGs1Code128Coupon'
             | 'UpcaGs1DatabarCoupon'
             | 'CodablockF'
-            | 'GS1CodablockF',
+            | 'GS1CodablockF'
+            | 'Mailmark',
         text: string
     ) {
         this.name = name;
@@ -4215,7 +4223,8 @@ export class PutBarcodeRecognizeFromBodyRequest {
         | 'DataLogic2of5'
         | 'DotCode'
         | 'DutchKIX'
-        | 'CodablockF';
+        | 'CodablockF'
+        | 'Mailmark';
     /**
      * The storage name
      */
