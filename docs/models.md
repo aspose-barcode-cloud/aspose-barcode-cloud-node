@@ -1793,7 +1793,7 @@ interface ReaderParams {
     australianPostEncodingTable?: CustomerInformationInterpretingType;
 
     /**
-     * The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method.  CTable encoding method does not have any gaps in encoding table and sequnce \"333\" of filling paterns is decoded as letter \"z\".
+     * The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequnce \"333\" of filling paterns is decoded as letter \"z\".
      */
     ignoreEndingFillingPatternsForCTable?: boolean;
 }
