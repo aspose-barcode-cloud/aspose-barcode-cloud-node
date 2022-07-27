@@ -1,6 +1,6 @@
 {
   "name": "aspose-barcode-cloud-node",
-  "version": "22.3.0",
+  "version": "22.7.0",
   "description": "Aspose.BarCode Cloud SDK for Node.js",
   "homepage": "https://products.aspose.cloud/barcode/nodejs",
   "repository": {
@@ -149,10 +149,10 @@
   },
   "devDependencies": {
     "@types/uuid": "^8.3.4",
-    "npm-check-updates": "^12.5.4",
+    "npm-check-updates": "^16.0.1",
     "tsdx": "^0.14.1",
-    "tslib": "^2.3.1",
-    "typescript": "^4.6.3",
+    "tslib": "^2.4.0",
+    "typescript": "^4.7.4",
     "uuid": "^8.3.2"
   },
   "dependencies": {
