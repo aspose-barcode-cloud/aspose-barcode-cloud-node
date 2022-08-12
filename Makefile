@@ -1,12 +1,12 @@
 .PHONY: all
-all: clean ci lint build cover
+all: init lint build cover
 
 .PHONY: github-ci
-github-ci: ci lint test
+github-ci: init lint test
 
 .PHONY: init
 init:
-	npm install
+	-npm clean-install
 
 .PHONY: format
 format:
@@ -19,7 +19,7 @@ lock:
 
 .PHONY: clean
 clean:
-	rm -rf built dist node_modules || true
+	-rm -rf built dist node_modules coverage
 
 .PHONY: build
 build:
@@ -50,14 +50,10 @@ check-git:
 	git fetch --depth 1 origin
 	git diff origin/main --exit-code
 
-.PHONY: ci
-ci:
-	npm ci || true
-
 .PHONY: publish
-publish: clean ci test check-git
+publish: clean init test check-git
 	npm publish
 
 .PHONY: publish-docker
-publish-docker: ci test
+publish-docker: init test
 	npm publish

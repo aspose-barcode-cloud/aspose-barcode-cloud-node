@@ -8,3 +8,4 @@
 *.d.ts
 demo/
 env/
+package-lock.json
