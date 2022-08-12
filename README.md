@@ -63,7 +63,9 @@ async function generateBarcode(api) {
 async function recognizeBarcode(api, fileName) {
     const request = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
     request.image = fs.readFileSync(fileName);
+    request.type = Barcode.DecodeBarcodeType.QR;
     request.preset = Barcode.PresetType.HighPerformance;
+    request.fastScanOnly = true;
 
     const result = await api.postBarcodeRecognizeFromUrlOrContent(request);
 

@@ -18,6 +18,10 @@ describe('Generate and recognize', () => {
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
 
         const recognizeRequest = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
+        recognizeRequest.type = Barcode.DecodeBarcodeType.QR;
+        recognizeRequest.preset = Barcode.PresetType.HighPerformance;
+        recognizeRequest.fastScanOnly = true;
+
         recognizeRequest.image = generated.body;
         const recognized = await api.postBarcodeRecognizeFromUrlOrContent(recognizeRequest);
 
@@ -30,6 +34,7 @@ describe('Generate and recognize', () => {
         assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.QR);
         assert.strictEqual(barcode.barcodeValue, 'Testing generator');
 
+        assert.ok(barcode.region);
         assert.strictEqual(barcode.region.length, 4);
         assert.ok(barcode.region[0].X > 0, `X=${barcode.region[0].X}`);
         assert.ok(barcode.region[0].Y > 0, `Y=${barcode.region[0].Y}`);

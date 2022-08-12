@@ -22,19 +22,26 @@ describe('getBarcodeRecognize', () => {
         const uploadRequest = new Barcode.UploadFileRequest(`${tempFolderPath}/${filename}`, imageBuffer);
         const uploaded = await fileApi.uploadFile(uploadRequest);
 
+        assert.ok(uploaded.body.errors);
         assert.strictEqual(uploaded.body.errors.length, 0, JSON.stringify(uploaded.body.errors));
+        assert.ok(uploaded.body.uploaded);
         assert.strictEqual(uploaded.body.uploaded[0], filename);
 
         const recognizeRequest = new Barcode.GetBarcodeRecognizeRequest(filename);
+        recognizeRequest.type = Barcode.DecodeBarcodeType.Pdf417;
         recognizeRequest.preset = Barcode.PresetType.HighPerformance;
+        recognizeRequest.fastScanOnly = true;
+
         recognizeRequest.folder = tempFolderPath;
         const recognized = await api.getBarcodeRecognize(recognizeRequest);
 
+        assert.ok(recognized.body.barcodes);
         assert.strictEqual(recognized.body.barcodes.length, 1);
         const barcode = recognized.body.barcodes[0];
         assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.Pdf417);
         assert.strictEqual(barcode.barcodeValue, 'Aspose.BarCode for Cloud Sample');
 
+        assert.ok(barcode.region);
         assert.strictEqual(barcode.region.length, 4);
 
         assert.strictEqual(barcode.region[0].X, 16);
