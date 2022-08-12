@@ -50,11 +50,11 @@ const config = new Barcode.Configuration(
 
 async function generateBarcode(api) {
     const request = new Barcode.GetBarcodeGenerateRequest(
-        Barcode.EncodeBarcodeType.Pdf417,
+        Barcode.EncodeBarcodeType.QR,
         'Aspose.BarCode for Cloud Sample');
     const oneBarcode = await api.getBarcodeGenerate(request);
 
-    const fileName = 'Pdf417.png'
+    const fileName = 'QR.png'
     fs.writeFileSync(fileName, oneBarcode.body);
 
     return fileName;
