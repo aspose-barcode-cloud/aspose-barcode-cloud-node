@@ -11,8 +11,8 @@ cp example.js "${TEST_DIR}"
 pushd ${TEST_DIR}
 mkdir -p node_modules/aspose-barcode-cloud-node
 pushd "$_"
-ln -sv --force ../../../package.json
-ln -sv --force ../../../dist/
+ln -sv --force ../../../package.json .
+ln -sv --force ../../../dist/ .
 popd
 
 # Run

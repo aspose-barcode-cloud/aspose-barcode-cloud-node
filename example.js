@@ -1,4 +1,4 @@
-﻿const fs = require('fs');
+const fs = require('fs');
 const Barcode = require('aspose-barcode-cloud-node');
 
 const config = new Barcode.Configuration(

@@ -131,6 +131,10 @@
   "engines": {
     "node": ">=12"
   },
+  "dependencies": {
+    "@types/request": "^2.48.8",
+    "request": "^2.88.2"
+  },
   "scripts": {
     "test": "tsdx test",
     "cover": "tsdx test --collect-coverage",
@@ -146,13 +150,8 @@
     "trailingComma": "es5",
     "tabWidth": 4
   },
-  "dependencies": {
-    "@types/request": "^2.48.8",
-    "request": "^2.88.2"
-  },
   "devDependencies": {
     "@types/uuid": "^8.3.4",
-    "caniuse-lite": "^1.0.30001375",
     "npm-check-updates": "^12.5.12",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",

@@ -25,10 +25,12 @@ clean:
 build:
 	npm run prepare
 
-.PHONY: test
-test: build
+.PHONY: npm-test
+npm-test: build
 	npm test
-	./scripts/run_example.sh
+
+.PHONY: test
+test: npm-test example
 
 .PHONY: cover
 cover:
@@ -57,3 +59,8 @@ publish: clean init test check-git
 .PHONY: publish-docker
 publish-docker: init test
 	npm publish
+
+.PHONY: example
+example:
+	./scripts/extract_js_from_README.sh > "example.js"
+	./scripts/run_example.sh
