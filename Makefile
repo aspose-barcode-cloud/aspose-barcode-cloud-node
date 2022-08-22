@@ -48,7 +48,7 @@ update:
 .PHONY: check-git
 check-git:
 	git fetch --depth 1 origin
-	git diff origin/master --exit-code
+	git diff origin/main --exit-code
 
 .PHONY: ci
 ci:
