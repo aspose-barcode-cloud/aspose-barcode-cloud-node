@@ -11,7 +11,7 @@ trim_trailing_whitespace = true
 
 [*.{js,ts}]
 indent_style = space
-tab_width = 4
+indent_size = 4
 max_line_length = 120
 
 [CODEOWNERS]
