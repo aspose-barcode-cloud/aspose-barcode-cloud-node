@@ -30,7 +30,9 @@ describe('putGenerateMultiple', () => {
         const response = await api.putGenerateMultiple(request);
 
         assert.ok(response.body.fileSize > 0);
+        assert.ok(response.body.imageWidth);
         assert.ok(response.body.imageWidth > 0);
+        assert.ok(response.body.imageHeight);
         assert.ok(response.body.imageHeight > 0);
     });
 });
