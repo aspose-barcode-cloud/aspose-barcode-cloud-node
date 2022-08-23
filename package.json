@@ -129,7 +129,11 @@
     "dist"
   ],
   "engines": {
-    "node": ">=10"
+    "node": ">=12"
+  },
+  "dependencies": {
+    "@types/request": "^2.48.8",
+    "request": "^2.88.2"
   },
   "scripts": {
     "test": "tsdx test",
@@ -137,9 +141,8 @@
     "lint": "tsc --strict",
     "format": "tsdx lint --fix",
     "prepare": "tsdx build --target=node",
-    "check-updates": "ncu -u"
+    "check-updates": "ncu -u --enginesNode"
   },
-  "peerDependencies": {},
   "prettier": {
     "printWidth": 120,
     "semi": true,
@@ -149,15 +152,11 @@
   },
   "devDependencies": {
     "@types/uuid": "^8.3.4",
-    "npm-check-updates": "^16.0.1",
+    "npm-check-updates": "^12.5.12",
     "tsdx": "^0.14.1",
     "tslib": "^2.4.0",
     "typescript": "^4.7.4",
     "uuid": "^8.3.2"
-  },
-  "dependencies": {
-    "@types/request": "^2.48.8",
-    "request": "^2.88.2"
   },
   "bugs": {
     "url": "https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/issues"
