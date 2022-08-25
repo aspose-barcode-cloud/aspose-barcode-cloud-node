@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/aspose-barcode-cloud-node)](https://www.npmjs.com/package/aspose-barcode-cloud-node)
 
 + API version: 3.0
-+ Package version: 22.7.0
++ Package version: 22.8.0
 
 ## Demo applications
 
@@ -35,7 +35,7 @@ npm install aspose-barcode-cloud-node --save
 
 ### Sample usage
 
-The examples below show how your application have to generate PDF417 barcode and save it on local storage:
+The examples below show how your application have to generate QR code and save it on local storage:
 
 ```js
 const fs = require('fs');
@@ -43,16 +43,18 @@ const Barcode = require('aspose-barcode-cloud-node');
 
 const config = new Barcode.Configuration(
     'Client Id from https://dashboard.aspose.cloud/applications',
-    'Client Secret from https://dashboard.aspose.cloud/applications'
+    'Client Secret from https://dashboard.aspose.cloud/applications',
+    null,
+    process.env['TEST_CONFIGURATION_ACCESS_TOKEN']
 );
 
 async function generateBarcode(api) {
     const request = new Barcode.GetBarcodeGenerateRequest(
-        Barcode.EncodeBarcodeType.Pdf417,
+        Barcode.EncodeBarcodeType.QR,
         'Aspose.BarCode for Cloud Sample');
     const oneBarcode = await api.getBarcodeGenerate(request);
 
-    const fileName = 'Pdf417.png'
+    const fileName = 'QR.png'
     fs.writeFileSync(fileName, oneBarcode.body);
 
     return fileName;
@@ -61,7 +63,9 @@ async function generateBarcode(api) {
 async function recognizeBarcode(api, fileName) {
     const request = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
     request.image = fs.readFileSync(fileName);
+    request.type = Barcode.DecodeBarcodeType.QR;
     request.preset = Barcode.PresetType.HighPerformance;
+    request.fastScanOnly = true;
 
     const result = await api.postBarcodeRecognizeFromUrlOrContent(request);
 
