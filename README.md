@@ -105,7 +105,7 @@ All Aspose.BarCode for Cloud SDKs, helper scripts and templates are licensed und
 + [**Documentation**](https://docs.aspose.cloud/barcode/)
 + [**Free Support Forum**](https://forum.aspose.cloud/c/barcode)
 + [**Paid Support Helpdesk**](https://helpdesk.aspose.cloud/)
-+ [**Blog**](https://blog.aspose.cloud/category/barcode/)
++ [**Blog**](https://blog.aspose.cloud/categories/aspose.barcode-cloud-product-family/)
 
 ## Documentation for API Endpoints
 
