@@ -1179,6 +1179,20 @@ enum MacroCharacter {
 }
 ```
 
+## MaxiCodeMode
+
+
+
+```ts
+enum MaxiCodeMode {
+    Mode2 = 'Mode2',
+    Mode3 = 'Mode3',
+    Mode4 = 'Mode4',
+    Mode5 = 'Mode5',
+    Mode6 = 'Mode6'
+}
+```
+
 ## MaxiCodeParams
 
 MaxiCode parameters.
@@ -1192,9 +1206,9 @@ interface MaxiCodeParams {
     aspectRatio?: number;
 
     /**
-     * MaxiCode encode mode.
+     * Encoding mode for MaxiCode barcodes.
      */
-    encodeMode?: number;
+    mode?: MaxiCodeMode;
 }
 ```
 
