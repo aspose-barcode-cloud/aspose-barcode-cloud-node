@@ -1716,6 +1716,17 @@ export enum MacroCharacter {
 }
 
 /**
+ *
+ */
+export enum MaxiCodeMode {
+    Mode2 = 'Mode2',
+    Mode3 = 'Mode3',
+    Mode4 = 'Mode4',
+    Mode5 = 'Mode5',
+    Mode6 = 'Mode6',
+}
+
+/**
  * MaxiCode parameters.
  */
 export class MaxiCodeParams {
@@ -1724,9 +1735,9 @@ export class MaxiCodeParams {
      */
     'aspectRatio'?: number;
     /**
-     * MaxiCode encode mode.
+     * Encoding mode for MaxiCode barcodes.
      */
-    'encodeMode'?: number;
+    'mode'?: MaxiCodeMode;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -1735,9 +1746,9 @@ export class MaxiCodeParams {
             type: 'number',
         },
         {
-            name: 'encodeMode',
-            baseName: 'EncodeMode',
-            type: 'number',
+            name: 'mode',
+            baseName: 'Mode',
+            type: 'MaxiCodeMode',
         },
     ];
 
