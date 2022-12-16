@@ -586,7 +586,7 @@ interface DotCodeParams {
     aspectRatio?: number;
 
     /**
-     * Mask of Dotcode barcode. Default value: -1.
+     * DEPRECATED: DotCodeMask is now calculated automatically
      */
     dotCodeMask?: number;
 }
