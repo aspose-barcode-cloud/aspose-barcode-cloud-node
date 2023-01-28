@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2022 Aspose Pty Ltd
+* Copyright (c) 2023 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -781,6 +781,17 @@ export enum DecodeBarcodeType {
     DutchKIX = 'DutchKIX',
     CodablockF = 'CodablockF',
     Mailmark = 'Mailmark',
+    GS1DotCode = 'GS1DotCode',
+    HIBCCode39LIC = 'HIBCCode39LIC',
+    HIBCCode128LIC = 'HIBCCode128LIC',
+    HIBCAztecLIC = 'HIBCAztecLIC',
+    HIBCDataMatrixLIC = 'HIBCDataMatrixLIC',
+    HIBCQRLIC = 'HIBCQRLIC',
+    HIBCCode39PAS = 'HIBCCode39PAS',
+    HIBCCode128PAS = 'HIBCCode128PAS',
+    HIBCAztecPAS = 'HIBCAztecPAS',
+    HIBCDataMatrixPAS = 'HIBCDataMatrixPAS',
+    HIBCQRPAS = 'HIBCQRPAS',
 }
 
 /**
@@ -815,6 +826,15 @@ export class DiscUsage {
 }
 
 /**
+ *
+ */
+export enum DotCodeEncodeMode {
+    Auto = 'Auto',
+    Bytes = 'Bytes',
+    ExtendedCodetext = 'ExtendedCodetext',
+}
+
+/**
  * DotCode parameters.
  */
 export class DotCodeParams {
@@ -823,9 +843,25 @@ export class DotCodeParams {
      */
     'aspectRatio'?: number;
     /**
-     * DEPRECATED: DotCodeMask is now calculated automatically
+     * Identifies columns count. Sum of the number of rows plus the number of columns of a DotCode symbol must be odd. Number of columns must be at least 5.
      */
-    'dotCodeMask'?: number;
+    'columns'?: number;
+    /**
+     * Identifies DotCode encode mode. Default value: Auto.
+     */
+    'encodeMode'?: DotCodeEncodeMode;
+    /**
+     * Identifies ECI encoding. Used when DotCodeEncodeMode is Auto. Default value: ISO-8859-1.
+     */
+    'eCIEncoding'?: ECIEncodings;
+    /**
+     * Indicates whether code is used for instruct reader to interpret the following data as instructions for initialization or reprogramming of the bar code reader. Default value is false.
+     */
+    'isReaderInitialization'?: boolean;
+    /**
+     * Identifies rows count. Sum of the number of rows plus the number of columns of a DotCode symbol must be odd. Number of rows must be at least 5.
+     */
+    'rows'?: number;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -834,8 +870,28 @@ export class DotCodeParams {
             type: 'number',
         },
         {
-            name: 'dotCodeMask',
-            baseName: 'DotCodeMask',
+            name: 'columns',
+            baseName: 'Columns',
+            type: 'number',
+        },
+        {
+            name: 'encodeMode',
+            baseName: 'EncodeMode',
+            type: 'DotCodeEncodeMode',
+        },
+        {
+            name: 'eCIEncoding',
+            baseName: 'ECIEncoding',
+            type: 'ECIEncodings',
+        },
+        {
+            name: 'isReaderInitialization',
+            baseName: 'IsReaderInitialization',
+            type: 'boolean',
+        },
+        {
+            name: 'rows',
+            baseName: 'Rows',
             type: 'number',
         },
     ];
@@ -958,6 +1014,7 @@ export enum EncodeBarcodeType {
     CodablockF = 'CodablockF',
     GS1CodablockF = 'GS1CodablockF',
     Mailmark = 'Mailmark',
+    GS1DotCode = 'GS1DotCode',
 }
 
 /**
@@ -1718,6 +1775,15 @@ export enum MacroCharacter {
 /**
  *
  */
+export enum MaxiCodeEncodeMode {
+    Auto = 'Auto',
+    Bytes = 'Bytes',
+    ExtendedCodetext = 'ExtendedCodetext',
+}
+
+/**
+ *
+ */
 export enum MaxiCodeMode {
     Mode2 = 'Mode2',
     Mode3 = 'Mode3',
@@ -1735,9 +1801,13 @@ export class MaxiCodeParams {
      */
     'aspectRatio'?: number;
     /**
-     * Encoding mode for MaxiCode barcodes.
+     * Mode for MaxiCode barcodes.
      */
     'mode'?: MaxiCodeMode;
+    /**
+     * Encoding mode for MaxiCode barcodes.
+     */
+    'encodeMode'?: MaxiCodeEncodeMode;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -1749,6 +1819,11 @@ export class MaxiCodeParams {
             name: 'mode',
             baseName: 'Mode',
             type: 'MaxiCodeMode',
+        },
+        {
+            name: 'encodeMode',
+            baseName: 'EncodeMode',
+            type: 'MaxiCodeEncodeMode',
         },
     ];
 
@@ -3032,7 +3107,8 @@ export class GetBarcodeGenerateRequest {
         | 'UpcaGs1DatabarCoupon'
         | 'CodablockF'
         | 'GS1CodablockF'
-        | 'Mailmark';
+        | 'Mailmark'
+        | 'GS1DotCode';
     /**
      * Text to encode.
      */
@@ -3278,7 +3354,8 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'UpcaGs1DatabarCoupon'
             | 'CodablockF'
             | 'GS1CodablockF'
-            | 'Mailmark',
+            | 'Mailmark'
+            | 'GS1DotCode',
         text: string
     ) {
         this.type = type;
@@ -3365,7 +3442,18 @@ export class GetBarcodeRecognizeRequest {
         | 'DotCode'
         | 'DutchKIX'
         | 'CodablockF'
-        | 'Mailmark';
+        | 'Mailmark'
+        | 'GS1DotCode'
+        | 'HIBCCode39LIC'
+        | 'HIBCCode128LIC'
+        | 'HIBCAztecLIC'
+        | 'HIBCDataMatrixLIC'
+        | 'HIBCQRLIC'
+        | 'HIBCCode39PAS'
+        | 'HIBCCode128PAS'
+        | 'HIBCAztecPAS'
+        | 'HIBCDataMatrixPAS'
+        | 'HIBCQRPAS';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -3626,7 +3714,18 @@ export class PostBarcodeRecognizeFromUrlOrContentRequest {
         | 'DotCode'
         | 'DutchKIX'
         | 'CodablockF'
-        | 'Mailmark';
+        | 'Mailmark'
+        | 'GS1DotCode'
+        | 'HIBCCode39LIC'
+        | 'HIBCCode128LIC'
+        | 'HIBCAztecLIC'
+        | 'HIBCDataMatrixLIC'
+        | 'HIBCQRLIC'
+        | 'HIBCCode39PAS'
+        | 'HIBCCode128PAS'
+        | 'HIBCAztecPAS'
+        | 'HIBCDataMatrixPAS'
+        | 'HIBCQRPAS';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -3904,7 +4003,8 @@ export class PutBarcodeGenerateFileRequest {
         | 'UpcaGs1DatabarCoupon'
         | 'CodablockF'
         | 'GS1CodablockF'
-        | 'Mailmark';
+        | 'Mailmark'
+        | 'GS1DotCode';
     /**
      * Text to encode.
      */
@@ -4161,7 +4261,8 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'UpcaGs1DatabarCoupon'
             | 'CodablockF'
             | 'GS1CodablockF'
-            | 'Mailmark',
+            | 'Mailmark'
+            | 'GS1DotCode',
         text: string
     ) {
         this.name = name;
@@ -4253,7 +4354,18 @@ export class PutBarcodeRecognizeFromBodyRequest {
         | 'DotCode'
         | 'DutchKIX'
         | 'CodablockF'
-        | 'Mailmark';
+        | 'Mailmark'
+        | 'GS1DotCode'
+        | 'HIBCCode39LIC'
+        | 'HIBCCode128LIC'
+        | 'HIBCAztecLIC'
+        | 'HIBCDataMatrixLIC'
+        | 'HIBCQRLIC'
+        | 'HIBCCode39PAS'
+        | 'HIBCCode128PAS'
+        | 'HIBCAztecPAS'
+        | 'HIBCDataMatrixPAS'
+        | 'HIBCQRPAS';
     /**
      * The storage name
      */

@@ -550,7 +550,18 @@ enum DecodeBarcodeType {
     DotCode = 'DotCode',
     DutchKIX = 'DutchKIX',
     CodablockF = 'CodablockF',
-    Mailmark = 'Mailmark'
+    Mailmark = 'Mailmark',
+    GS1DotCode = 'GS1DotCode',
+    HIBCCode39LIC = 'HIBCCode39LIC',
+    HIBCCode128LIC = 'HIBCCode128LIC',
+    HIBCAztecLIC = 'HIBCAztecLIC',
+    HIBCDataMatrixLIC = 'HIBCDataMatrixLIC',
+    HIBCQRLIC = 'HIBCQRLIC',
+    HIBCCode39PAS = 'HIBCCode39PAS',
+    HIBCCode128PAS = 'HIBCCode128PAS',
+    HIBCAztecPAS = 'HIBCAztecPAS',
+    HIBCDataMatrixPAS = 'HIBCDataMatrixPAS',
+    HIBCQRPAS = 'HIBCQRPAS'
 }
 ```
 
@@ -573,6 +584,18 @@ interface DiscUsage {
 }
 ```
 
+## DotCodeEncodeMode
+
+
+
+```ts
+enum DotCodeEncodeMode {
+    Auto = 'Auto',
+    Bytes = 'Bytes',
+    ExtendedCodetext = 'ExtendedCodetext'
+}
+```
+
 ## DotCodeParams
 
 DotCode parameters.
@@ -586,9 +609,29 @@ interface DotCodeParams {
     aspectRatio?: number;
 
     /**
-     * DEPRECATED: DotCodeMask is now calculated automatically
+     * Identifies columns count. Sum of the number of rows plus the number of columns of a DotCode symbol must be odd. Number of columns must be at least 5.
      */
-    dotCodeMask?: number;
+    columns?: number;
+
+    /**
+     * Identifies DotCode encode mode. Default value: Auto.
+     */
+    encodeMode?: DotCodeEncodeMode;
+
+    /**
+     * Identifies ECI encoding. Used when DotCodeEncodeMode is Auto. Default value: ISO-8859-1.
+     */
+    eCIEncoding?: ECIEncodings;
+
+    /**
+     * Indicates whether code is used for instruct reader to interpret the following data as instructions for initialization or reprogramming of the bar code reader. Default value is false.
+     */
+    isReaderInitialization?: boolean;
+
+    /**
+     * Identifies rows count. Sum of the number of rows plus the number of columns of a DotCode symbol must be odd. Number of rows must be at least 5.
+     */
+    rows?: number;
 }
 ```
 
@@ -712,7 +755,8 @@ enum EncodeBarcodeType {
     UpcaGs1DatabarCoupon = 'UpcaGs1DatabarCoupon',
     CodablockF = 'CodablockF',
     GS1CodablockF = 'GS1CodablockF',
-    Mailmark = 'Mailmark'
+    Mailmark = 'Mailmark',
+    GS1DotCode = 'GS1DotCode'
 }
 ```
 
@@ -1179,6 +1223,18 @@ enum MacroCharacter {
 }
 ```
 
+## MaxiCodeEncodeMode
+
+
+
+```ts
+enum MaxiCodeEncodeMode {
+    Auto = 'Auto',
+    Bytes = 'Bytes',
+    ExtendedCodetext = 'ExtendedCodetext'
+}
+```
+
 ## MaxiCodeMode
 
 
@@ -1206,9 +1262,14 @@ interface MaxiCodeParams {
     aspectRatio?: number;
 
     /**
-     * Encoding mode for MaxiCode barcodes.
+     * Mode for MaxiCode barcodes.
      */
     mode?: MaxiCodeMode;
+
+    /**
+     * Encoding mode for MaxiCode barcodes.
+     */
+    encodeMode?: MaxiCodeEncodeMode;
 }
 ```
 
