@@ -115,7 +115,7 @@ Class | Method | HTTP request | Description
 ----- | ------ | ------------ | -----------
 BarcodeApi | [**getBarcodeGenerate**](docs/index.md#getbarcodegenerate) | **GET** /barcode/generate | Generate barcode.
 BarcodeApi | [**getBarcodeRecognize**](docs/index.md#getbarcoderecognize) | **GET** /barcode/{name}/recognize | Recognize barcode from a file on server.
-BarcodeApi | [**postBarcodeRecognizeFromUrlOrContent**](docs/index.md#postbarcoderecognizefromurlorcontent) | **POST** /barcode/recognize | Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.
+BarcodeApi | [**postBarcodeRecognizeFromUrlOrContent**](docs/index.md#postbarcoderecognizefromurlorcontent) | **POST** /barcode/recognize | Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image with content-type \&quot;application/octet-stream\&quot;. An image can also be passed as a form field.
 BarcodeApi | [**postGenerateMultiple**](docs/index.md#postgeneratemultiple) | **POST** /barcode/generateMultiple | Generate multiple barcodes and return in response stream
 BarcodeApi | [**putBarcodeGenerateFile**](docs/index.md#putbarcodegeneratefile) | **PUT** /barcode/{name}/generate | Generate barcode and save on server (from query params or from file with json or xml content)
 BarcodeApi | [**putBarcodeRecognizeFromBody**](docs/index.md#putbarcoderecognizefrombody) | **PUT** /barcode/{name}/recognize | Recognition of a barcode from file on server with parameters in body.

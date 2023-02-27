@@ -1765,7 +1765,7 @@ interface ReaderParams {
     stripFNC?: boolean;
 
     /**
-     * Timeout of recognition process.
+     * Timeout of recognition process in milliseconds. Default value is 15_000 (15 seconds). In case of a timeout RequestTimeout (408) status will be returned. Try reducing the image size to avoid timeout.
      */
     timeout?: number;
 
@@ -1885,7 +1885,7 @@ interface ReaderParams {
     australianPostEncodingTable?: CustomerInformationInterpretingType;
 
     /**
-     * The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequnce \"333\" of filling paterns is decoded as letter \"z\".
+     * The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \"333\" of filling patterns is decoded as letter \"z\".
      */
     ignoreEndingFillingPatternsForCTable?: boolean;
 }
