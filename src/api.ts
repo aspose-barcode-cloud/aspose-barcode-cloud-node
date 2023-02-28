@@ -866,7 +866,7 @@ export class BarcodeApi {
 
     /**
      *
-     * @summary Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image or encoded with base64.
+     * @summary Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image with content-type \"application/octet-stream\". An image can also be passed as a form field.
      * @param request PostBarcodeRecognizeFromUrlOrContentRequest
      */
     public async postBarcodeRecognizeFromUrlOrContent(

@@ -44,7 +44,7 @@ lint:
 update:
 	npm run check-updates
 	npm update
-	npm outdated
+	npm outdated || true
 	npm install --package-lock-only
 
 .PHONY: check-git
