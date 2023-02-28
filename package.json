@@ -139,7 +139,7 @@
     "test": "tsdx test",
     "cover": "tsdx test --collect-coverage",
     "lint": "tsc --strict",
-    "format": "tsdx lint --fix",
+    "format": "tsdx lint src test --fix",
     "prepare": "tsdx build --target=node",
     "check-updates": "ncu -u --enginesNode"
   },
