@@ -2,8 +2,6 @@
 import { Authentication } from './Authentication';
 
 export enum ApiVersion {
-    v1 = 'v1',
-    v2 = 'v1.1',
     v3 = 'v3.0',
 }
 
@@ -30,15 +28,20 @@ export class Configuration {
 
     readonly version: ApiVersion = ApiVersion.v3;
     readonly accessToken: string;
+    readonly tokenUrl: string;
 
-    constructor(clientId: string, clientSecret: string, baseUrl?: string, accessToken?: string) {
+    constructor(clientId: string, clientSecret: string, baseUrl?: string, accessToken?: string, tokenUrl?: string) {
         this.clientId = clientId;
         this.clientSecret = clientSecret;
+
         if (baseUrl) {
             this.baseUrl = baseUrl;
         } else {
             this.baseUrl = 'https://api.aspose.cloud';
         }
+
+        this.tokenUrl = tokenUrl ?? this.baseUrl + '/connect/token';
+
         if (accessToken) {
             this.accessToken = accessToken;
         } else {

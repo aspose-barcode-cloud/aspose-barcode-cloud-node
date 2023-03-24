@@ -26,7 +26,7 @@ build:
 	npm run prepare
 
 .PHONY: npm-test
-npm-test: build
+npm-test:
 	npm test
 
 .PHONY: test

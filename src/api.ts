@@ -199,7 +199,7 @@ class ObjectSerializer {
         }
 
         if (!typeMap[type]) {
-            // in case we dont know the type
+            // in case we don't know the type
             return data;
         }
 
@@ -248,7 +248,7 @@ class ObjectSerializer {
         }
 
         if (!typeMap[type]) {
-            // dont know the type
+            // don't know the type
             return data;
         }
 
@@ -263,8 +263,7 @@ class ObjectSerializer {
             const key = attributeType.baseName.replace(/^(.)/, ($1: string) => {
                 return $1.toLowerCase();
             });
-            const value = ObjectSerializer.deserialize(data[key], attributeType.type);
-            instance[attributeType.name] = value;
+            instance[attributeType.name] = ObjectSerializer.deserialize(data[key], attributeType.type);
         }
 
         return instance;

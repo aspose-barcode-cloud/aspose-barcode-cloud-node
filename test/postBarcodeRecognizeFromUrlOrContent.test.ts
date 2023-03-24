@@ -4,6 +4,7 @@ import assert from 'assert';
 
 import * as Barcode from '../src/api';
 import { LoadTestConfiguration } from './helpers';
+import Request from 'request';
 
 describe('postBarcodeRecognizeFromUrlOrContent', () => {
     jest.setTimeout(60000);
@@ -33,5 +34,26 @@ describe('postBarcodeRecognizeFromUrlOrContent', () => {
         assert.strictEqual(barcode.region.length, 4);
         assert.ok(barcode.region[0].X > 0, `X=${barcode.region[0].X}`);
         assert.ok(barcode.region[0].Y > 0, `Y=${barcode.region[0].Y}`);
+    });
+
+    it('should fail with Timeout', async () => {
+        const request = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
+        request.type = Barcode.DecodeBarcodeType.Pdf417;
+        request.preset = Barcode.PresetType.HighPerformance;
+        request.fastScanOnly = true;
+
+        request.image = imageBuffer;
+        request.timeout = 1;
+        await assert.rejects(
+            async () => {
+                await api.postBarcodeRecognizeFromUrlOrContent(request);
+            },
+            (rejected: any) => {
+                const response: Request.Response = rejected.response;
+                assert.strictEqual(response.statusCode, 408);
+                assert.strictEqual(response.statusMessage, 'Request Timeout');
+                return true;
+            }
+        );
     });
 });
