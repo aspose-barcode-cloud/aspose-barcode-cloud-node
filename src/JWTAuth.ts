@@ -43,7 +43,7 @@ export class JWTAuth implements Authentication {
         const requestOptions: Request.Options = {
             method: 'POST',
             json: true,
-            uri: this._configuration.baseUrl + '/connect/token',
+            uri: this._configuration.tokenUrl,
             form: {
                 grant_type: 'client_credentials',
                 client_id: this._configuration.clientId,
@@ -61,7 +61,10 @@ export class JWTAuth implements Authentication {
                         self._accessToken = response.body.access_token;
                         resolve();
                     } else {
-                        reject(response.body);
+                        reject(
+                            response.body ??
+                                `Error fetching token from '${requestOptions.uri}': ${response.statusCode} ${response.statusMessage}`
+                        );
                     }
                 }
             });

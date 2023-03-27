@@ -1,6 +1,5 @@
 .vs
 /node_modules
-*.js
 *.js.map
 *.user
 /test/configuration*.json
@@ -8,3 +7,4 @@
 *.d.ts
 demo/
 env/
+dist/
