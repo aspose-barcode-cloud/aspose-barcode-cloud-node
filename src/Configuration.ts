@@ -1,5 +1,5 @@
 ﻿import { JWTAuth } from './JWTAuth';
-import { Authentication } from 'Authentication';
+import { Authentication } from './Authentication';
 
 export enum ApiVersion {
     v3 = 'v3.0',

@@ -1,5 +1,5 @@
-import { Configuration } from 'Configuration';
-import { Authentication } from 'Authentication';
+import { Configuration } from './Configuration';
+import { Authentication } from './Authentication';
 import { HttpClient, HttpOptions } from './httpClient';
 
 export class JWTAuth implements Authentication {
