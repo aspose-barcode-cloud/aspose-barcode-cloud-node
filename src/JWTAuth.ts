@@ -1,11 +1,11 @@
-import Request from 'request';
-
 import { Configuration } from './Configuration';
 import { Authentication } from './Authentication';
+import { HttpClient, HttpOptions } from './httpClient';
 
 export class JWTAuth implements Authentication {
     private _accessToken?: string;
     private readonly _configuration: Configuration;
+    private _client: HttpClient;
 
     constructor(configuration: Configuration) {
         this._configuration = configuration;
@@ -14,14 +14,15 @@ export class JWTAuth implements Authentication {
             // Use saved token
             this._accessToken = configuration.accessToken;
         }
+        this._client = new HttpClient();
     }
 
     /**
      * Apply authentication settings to header and query params.
      */
-    public async applyToRequest(requestOptions: Request.Options): Promise<void> {
+    public async applyToRequest(requestOptions: HttpOptions): Promise<void> {
         if (this._accessToken == null) {
-            await this.requestToken();
+            this._accessToken = await this.requestToken();
         }
 
         if (requestOptions && requestOptions.headers) {
@@ -31,18 +32,12 @@ export class JWTAuth implements Authentication {
         return Promise.resolve();
     }
 
-    public async applyUnauthorized(): Promise<void> {
-        if (this._configuration.clientId && this._configuration.clientSecret) {
-            await this.requestToken();
-        } else {
+    private async requestToken(): Promise<string> {
+        if (!this._configuration.clientId || !this._configuration.clientSecret) {
             throw new Error("Required 'clientId' or 'clientSecret' not specified in configuration.");
         }
-    }
-
-    private requestToken(): Promise<void> {
-        const requestOptions: Request.Options = {
+        const requestOptions: HttpOptions = {
             method: 'POST',
-            json: true,
             uri: this._configuration.tokenUrl,
             form: {
                 grant_type: 'client_credentials',
@@ -51,23 +46,8 @@ export class JWTAuth implements Authentication {
             },
         };
 
-        return new Promise<void>((resolve, reject) => {
-            const self = this;
-            Request(requestOptions, (error, response) => {
-                if (error) {
-                    reject(error);
-                } else {
-                    if (response.statusCode && response.statusCode >= 200 && response.statusCode <= 299) {
-                        self._accessToken = response.body.access_token;
-                        resolve();
-                    } else {
-                        reject(
-                            response.body ??
-                                `Error fetching token from '${requestOptions.uri}': ${response.statusCode} ${response.statusMessage}`
-                        );
-                    }
-                }
-            });
-        });
+        const result = await this._client.requestAsync(requestOptions);
+        const parsed = JSON.parse(result.body);
+        return parsed.access_token;
     }
 }
