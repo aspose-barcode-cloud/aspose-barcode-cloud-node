@@ -64,3 +64,6 @@ publish-docker: init test
 example:
 	./scripts/extract_js_from_README.sh > "example.js"
 	./scripts/run_example.sh
+
+.PHONY: after-gen
+after-gen: format lock

@@ -4,7 +4,7 @@ import assert from 'assert';
 
 import * as Barcode from '../src/api';
 import { LoadTestConfiguration } from './helpers';
-import Request from 'request';
+import { HttpRejectType } from '../src';
 
 describe('postBarcodeRecognizeFromUrlOrContent', () => {
     jest.setTimeout(60000);
@@ -48,10 +48,10 @@ describe('postBarcodeRecognizeFromUrlOrContent', () => {
             async () => {
                 await api.postBarcodeRecognizeFromUrlOrContent(request);
             },
-            (rejected: any) => {
-                const response: Request.Response = rejected.response;
-                assert.strictEqual(response.statusCode, 408);
-                assert.strictEqual(response.statusMessage, 'Request Timeout');
+            (rejected: HttpRejectType) => {
+                const response = rejected.response;
+                assert.strictEqual(response!.statusCode, 408);
+                assert.strictEqual(response!.statusMessage, 'Request Timeout');
                 return true;
             }
         );

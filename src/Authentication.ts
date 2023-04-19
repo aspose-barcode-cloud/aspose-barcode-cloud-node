@@ -1,10 +1,8 @@
-import Request from 'request';
+import { HttpOptions } from './httpClient';
 
 export interface Authentication {
     /**
      * Apply authentication settings to header and query params.
      */
-    applyToRequest(requestOptions: Request.Options): void;
-
-    applyUnauthorized(): void;
+    applyToRequest(requestOptions: HttpOptions): void;
 }
