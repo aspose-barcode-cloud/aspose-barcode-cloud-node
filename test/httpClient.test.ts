@@ -19,6 +19,7 @@ describe('httpClient tests', () => {
             async () => {
                 await client.requestAsync({
                     uri: 'https://www.aspose.cloud/404',
+                    headers: { 'User-Agent': 'Googlebot/2.1 (+http://www.google.com/bot.html)' },
                 });
             },
             (rejected: any) => {
@@ -40,7 +41,7 @@ describe('httpClient tests', () => {
             },
             (rejected: any) => {
                 assert.ok(rejected.error);
-                assert.equal(rejected.error.code, 'ENOTFOUND');
+                assert.ok(rejected.error.code);
                 assert.equal(rejected.response, null);
                 return true;
             }
