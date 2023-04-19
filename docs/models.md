@@ -779,6 +779,22 @@ interface ErrorDetails {
 }
 ```
 
+## FileVersion
+```ts
+interface FileVersion {
+
+    /**
+     * File Version ID.
+     */
+    versionId?: string;
+
+    /**
+     * Specifies whether the file is (true) or is not (false) the latest version of an file.
+     */
+    isLatest: boolean;
+}
+```
+
 ## FileVersions
 
 File versions FileVersion.
@@ -2015,47 +2031,6 @@ enum TextAlignment {
     Left = 'Left',
     Center = 'Center',
     Right = 'Right'
-}
-```
-
-## FileVersion
-```ts
-interface FileVersion {
-
-    /**
-     * File or folder name.
-     */
-    name?: string;
-
-    /**
-     * True if it is a folder.
-     */
-    isFolder: boolean;
-
-    /**
-     * File or folder last modified DateTime.
-     */
-    modifiedDate?: Date;
-
-    /**
-     * File or folder size.
-     */
-    size: number;
-
-    /**
-     * File or folder path.
-     */
-    path?: string;
-
-    /**
-     * File Version ID.
-     */
-    versionId?: string;
-
-    /**
-     * Specifies whether the file is (true) or is not (false) the latest version of an file.
-     */
-    isLatest: boolean;
 }
 ```
 
