@@ -1089,6 +1089,11 @@ interface GeneratorParams {
     barWidthReduction?: number;
 
     /**
+     * Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
+     */
+    useAntiAlias?: boolean;
+
+    /**
      * AustralianPost params.
      */
     australianPost?: AustralianPostParams;
@@ -1756,12 +1761,12 @@ interface ReaderParams {
     preset?: PresetType;
 
     /**
-     * Set X for area for recognition.
+     * Set X of top left corner of area for recognition.
      */
     rectX?: number;
 
     /**
-     * Set Y for area for recognition.
+     * Set Y of top left corner of area for recognition.
      */
     rectY?: number;
 

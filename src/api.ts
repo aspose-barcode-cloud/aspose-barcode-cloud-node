@@ -543,6 +543,10 @@ export class BarcodeApi {
             );
         }
 
+        if (request.useAntiAlias != null) {
+            requestQueryParameters['UseAntiAlias'] = ObjectSerializer.serialize(request.useAntiAlias, 'boolean');
+        }
+
         if (request.format != null) {
             requestQueryParameters['format'] = ObjectSerializer.serialize(request.format, 'string');
         }
@@ -795,10 +799,6 @@ export class BarcodeApi {
             );
         }
 
-        if (request.rectangleRegion != null) {
-            requestQueryParameters['RectangleRegion'] = ObjectSerializer.serialize(request.rectangleRegion, 'string');
-        }
-
         if (request.storage != null) {
             requestQueryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
         }
@@ -1046,10 +1046,6 @@ export class BarcodeApi {
                 request.ignoreEndingFillingPatternsForCTable,
                 'boolean'
             );
-        }
-
-        if (request.rectangleRegion != null) {
-            requestQueryParameters['RectangleRegion'] = ObjectSerializer.serialize(request.rectangleRegion, 'string');
         }
 
         if (request.url != null) {
@@ -1320,6 +1316,10 @@ export class BarcodeApi {
                 request.barWidthReduction,
                 'number'
             );
+        }
+
+        if (request.useAntiAlias != null) {
+            requestQueryParameters['UseAntiAlias'] = ObjectSerializer.serialize(request.useAntiAlias, 'boolean');
         }
 
         if (request.storage != null) {

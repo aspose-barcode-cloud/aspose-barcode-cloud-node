@@ -1366,6 +1366,10 @@ export class GeneratorParams {
      */
     'barWidthReduction'?: number;
     /**
+     * Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
+     */
+    'useAntiAlias'?: boolean;
+    /**
      * AustralianPost params.
      */
     'australianPost'?: AustralianPostParams;
@@ -1616,6 +1620,11 @@ export class GeneratorParams {
             name: 'barWidthReduction',
             baseName: 'BarWidthReduction',
             type: 'number',
+        },
+        {
+            name: 'useAntiAlias',
+            baseName: 'UseAntiAlias',
+            type: 'boolean',
         },
         {
             name: 'australianPost',
@@ -2488,11 +2497,11 @@ export class ReaderParams {
      */
     'preset'?: PresetType;
     /**
-     * Set X for area for recognition.
+     * Set X of top left corner of area for recognition.
      */
     'rectX'?: number;
     /**
-     * Set Y for area for recognition.
+     * Set Y of top left corner of area for recognition.
      */
     'rectY'?: number;
     /**
@@ -3232,6 +3241,10 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
      */
     'barWidthReduction'?: number;
     /**
+     * Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
+     */
+    'useAntiAlias'?: boolean;
+    /**
      * Result image format.
      */
     'format'?: string;
@@ -3435,11 +3448,11 @@ Default value of Preset is NormalQuality.
         | 'HighQuality'
         | 'MaxBarCodes';
     /**
-     * Set X for area for recognition.
+     * Set X of top left corner of area for recognition.
      */
     'rectX'?: number;
     /**
-     * Set Y for area for recognition.
+     * Set Y of top left corner of area for recognition.
      */
     'rectY'?: number;
     /**
@@ -3577,10 +3590,6 @@ Enabling of diagonal search leads to a bigger detection time.
 CTable encoding method does not have any gaps in encoding table and sequence "333" of filling patterns is decoded as letter "z".
      */
     'ignoreEndingFillingPatternsForCTable'?: boolean;
-    /**
-     *
-     */
-    'rectangleRegion'?: string;
     /**
      * The image storage.
      */
@@ -3711,11 +3720,11 @@ Default value of Preset is NormalQuality.
         | 'HighQuality'
         | 'MaxBarCodes';
     /**
-     * Set X for area for recognition.
+     * Set X of top left corner of area for recognition.
      */
     'rectX'?: number;
     /**
-     * Set Y for area for recognition.
+     * Set Y of top left corner of area for recognition.
      */
     'rectY'?: number;
     /**
@@ -3853,10 +3862,6 @@ Enabling of diagonal search leads to a bigger detection time.
 CTable encoding method does not have any gaps in encoding table and sequence "333" of filling patterns is decoded as letter "z".
      */
     'ignoreEndingFillingPatternsForCTable'?: boolean;
-    /**
-     *
-     */
-    'rectangleRegion'?: string;
     /**
      * The image file url.
      */
@@ -4135,6 +4140,10 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
      * Bars reduction value that is used to compensate ink spread while printing.
      */
     'barWidthReduction'?: number;
+    /**
+     * Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
+     */
+    'useAntiAlias'?: boolean;
     /**
      * Image's storage.
      */

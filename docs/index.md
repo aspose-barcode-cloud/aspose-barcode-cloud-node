@@ -48,6 +48,7 @@ Name | Type | Description  | Notes
  **supplementData** | **string**| Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN. | [optional]
  **supplementSpace** | **number**| Space between main the BarCode and supplement BarCode. | [optional]
  **barWidthReduction** | **number**| Bars reduction value that is used to compensate ink spread while printing. | [optional]
+ **useAntiAlias** | **boolean**| Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing. | [optional]
  **format** | **string**| Result image format. | [optional]
 
 #### BarcodeApi.getBarcodeGenerate return type
@@ -73,8 +74,8 @@ Name | Type | Description  | Notes
  **checksumValidation** |  &#39;Default&#39;, &#39;On&#39;, &#39;Off&#39; | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies | [optional]
  **detectEncoding** | **boolean**| A flag which force engine to detect codetext encoding for Unicode. | [optional]
  **preset** |  &#39;HighPerformance&#39;, &#39;NormalQuality&#39;, &#39;HighQualityDetection&#39;, &#39;MaxQualityDetection&#39;, &#39;HighQuality&#39;, &#39;MaxBarCodes&#39; | Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality. | [optional]
- **rectX** | **number**| Set X for area for recognition. | [optional]
- **rectY** | **number**| Set Y for area for recognition. | [optional]
+ **rectX** | **number**| Set X of top left corner of area for recognition. | [optional]
+ **rectY** | **number**| Set Y of top left corner of area for recognition. | [optional]
  **rectWidth** | **number**| Set Width of area for recognition. | [optional]
  **rectHeight** | **number**| Set Height of area for recognition. | [optional]
  **stripFNC** | **boolean**| Value indicating whether FNC symbol strip must be done. | [optional]
@@ -103,7 +104,6 @@ Name | Type | Description  | Notes
  **readTinyBarcodes** | **boolean**| Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. | [optional]
  **australianPostEncodingTable** |  &#39;CTable&#39;, &#39;NTable&#39;, &#39;Other&#39; | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. | [optional]
  **ignoreEndingFillingPatternsForCTable** | **boolean**| The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \&quot;333\&quot; of filling patterns is decoded as letter \&quot;z\&quot;. | [optional]
- **rectangleRegion** | **string**|  | [optional]
  **storage** | **string**| The image storage. | [optional]
  **folder** | **string**| The image folder. | [optional]
 
@@ -129,8 +129,8 @@ Name | Type | Description  | Notes
  **checksumValidation** |  &#39;Default&#39;, &#39;On&#39;, &#39;Off&#39; | Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies | [optional]
  **detectEncoding** | **boolean**| A flag which force engine to detect codetext encoding for Unicode. | [optional]
  **preset** |  &#39;HighPerformance&#39;, &#39;NormalQuality&#39;, &#39;HighQualityDetection&#39;, &#39;MaxQualityDetection&#39;, &#39;HighQuality&#39;, &#39;MaxBarCodes&#39; | Preset allows to configure recognition quality and speed manually. You can quickly set up Preset by embedded presets: HighPerformance, NormalQuality, HighQuality, MaxBarCodes or you can manually configure separate options. Default value of Preset is NormalQuality. | [optional]
- **rectX** | **number**| Set X for area for recognition. | [optional]
- **rectY** | **number**| Set Y for area for recognition. | [optional]
+ **rectX** | **number**| Set X of top left corner of area for recognition. | [optional]
+ **rectY** | **number**| Set Y of top left corner of area for recognition. | [optional]
  **rectWidth** | **number**| Set Width of area for recognition. | [optional]
  **rectHeight** | **number**| Set Height of area for recognition. | [optional]
  **stripFNC** | **boolean**| Value indicating whether FNC symbol strip must be done. | [optional]
@@ -159,7 +159,6 @@ Name | Type | Description  | Notes
  **readTinyBarcodes** | **boolean**| Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. | [optional]
  **australianPostEncodingTable** |  &#39;CTable&#39;, &#39;NTable&#39;, &#39;Other&#39; | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. | [optional]
  **ignoreEndingFillingPatternsForCTable** | **boolean**| The flag which force AustraliaPost decoder to ignore last filling patterns in Customer Information Field during decoding as CTable method. CTable encoding method does not have any gaps in encoding table and sequence \&quot;333\&quot; of filling patterns is decoded as letter \&quot;z\&quot;. | [optional]
- **rectangleRegion** | **string**|  | [optional]
  **url** | **string**| The image file url. | [optional]
  **image** | **Buffer**| Image data | [optional]
 
@@ -237,6 +236,7 @@ Name | Type | Description  | Notes
  **supplementData** | **string**| Supplement parameters. Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISMN. | [optional]
  **supplementSpace** | **number**| Space between main the BarCode and supplement BarCode. | [optional]
  **barWidthReduction** | **number**| Bars reduction value that is used to compensate ink spread while printing. | [optional]
+ **useAntiAlias** | **boolean**| Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing. | [optional]
  **storage** | **string**| Image&#39;s storage. | [optional]
  **folder** | **string**| Image&#39;s folder. | [optional]
  **format** | **string**| The image format. | [optional]
