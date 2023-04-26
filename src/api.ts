@@ -63,7 +63,6 @@ import {
     EnableChecksum,
     EncodeBarcodeType,
     ErrorDetails,
-    FileVersion,
     FileVersions,
     FilesList,
     FilesUploadResult,
@@ -101,6 +100,7 @@ import {
     StorageFile,
     StructuredAppend,
     TextAlignment,
+    FileVersion,
 } from './models';
 
 import {
@@ -321,7 +321,6 @@ let typeMap: { [index: string]: any } = {
     DiscUsage: DiscUsage,
     DotCodeParams: DotCodeParams,
     ErrorDetails: ErrorDetails,
-    FileVersion: FileVersion,
     FileVersions: FileVersions,
     FilesList: FilesList,
     FilesUploadResult: FilesUploadResult,
@@ -343,6 +342,7 @@ let typeMap: { [index: string]: any } = {
     StorageExist: StorageExist,
     StorageFile: StorageFile,
     StructuredAppend: StructuredAppend,
+    FileVersion: FileVersion,
 };
 
 export class BarcodeApi {

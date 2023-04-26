@@ -1047,33 +1047,6 @@ export class ErrorDetails {
         return ErrorDetails.attributeTypeMap;
     }
 }
-export class FileVersion {
-    /**
-     * File Version ID.
-     */
-    'versionId'?: string;
-    /**
-     * Specifies whether the file is (true) or is not (false) the latest version of an file.
-     */
-    'isLatest': boolean;
-
-    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
-        {
-            name: 'versionId',
-            baseName: 'VersionId',
-            type: 'string',
-        },
-        {
-            name: 'isLatest',
-            baseName: 'IsLatest',
-            type: 'boolean',
-        },
-    ];
-
-    static getAttributeTypeMap() {
-        return FileVersion.attributeTypeMap;
-    }
-}
 
 /**
  * File versions FileVersion.
@@ -2993,6 +2966,78 @@ export enum TextAlignment {
     Left = 'Left',
     Center = 'Center',
     Right = 'Right',
+}
+export class FileVersion {
+    /**
+     * File or folder name.
+     */
+    'name'?: string;
+    /**
+     * True if it is a folder.
+     */
+    'isFolder': boolean;
+    /**
+     * File or folder last modified DateTime.
+     */
+    'modifiedDate'?: Date;
+    /**
+     * File or folder size.
+     */
+    'size': number;
+    /**
+     * File or folder path.
+     */
+    'path'?: string;
+    /**
+     * File Version ID.
+     */
+    'versionId'?: string;
+    /**
+     * Specifies whether the file is (true) or is not (false) the latest version of an file.
+     */
+    'isLatest': boolean;
+
+    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
+        {
+            name: 'name',
+            baseName: 'Name',
+            type: 'string',
+        },
+        {
+            name: 'isFolder',
+            baseName: 'IsFolder',
+            type: 'boolean',
+        },
+        {
+            name: 'modifiedDate',
+            baseName: 'ModifiedDate',
+            type: 'Date',
+        },
+        {
+            name: 'size',
+            baseName: 'Size',
+            type: 'number',
+        },
+        {
+            name: 'path',
+            baseName: 'Path',
+            type: 'string',
+        },
+        {
+            name: 'versionId',
+            baseName: 'VersionId',
+            type: 'string',
+        },
+        {
+            name: 'isLatest',
+            baseName: 'IsLatest',
+            type: 'boolean',
+        },
+    ];
+
+    static getAttributeTypeMap() {
+        return FileVersion.attributeTypeMap;
+    }
 }
 
 // BarcodeApi
