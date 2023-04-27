@@ -1047,33 +1047,6 @@ export class ErrorDetails {
         return ErrorDetails.attributeTypeMap;
     }
 }
-export class FileVersion {
-    /**
-     * File Version ID.
-     */
-    'versionId'?: string;
-    /**
-     * Specifies whether the file is (true) or is not (false) the latest version of an file.
-     */
-    'isLatest': boolean;
-
-    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
-        {
-            name: 'versionId',
-            baseName: 'VersionId',
-            type: 'string',
-        },
-        {
-            name: 'isLatest',
-            baseName: 'IsLatest',
-            type: 'boolean',
-        },
-    ];
-
-    static getAttributeTypeMap() {
-        return FileVersion.attributeTypeMap;
-    }
-}
 
 /**
  * File versions FileVersion.
@@ -1366,6 +1339,10 @@ export class GeneratorParams {
      */
     'barWidthReduction'?: number;
     /**
+     * Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
+     */
+    'useAntiAlias'?: boolean;
+    /**
      * AustralianPost params.
      */
     'australianPost'?: AustralianPostParams;
@@ -1616,6 +1593,11 @@ export class GeneratorParams {
             name: 'barWidthReduction',
             baseName: 'BarWidthReduction',
             type: 'number',
+        },
+        {
+            name: 'useAntiAlias',
+            baseName: 'UseAntiAlias',
+            type: 'boolean',
         },
         {
             name: 'australianPost',
@@ -2488,11 +2470,11 @@ export class ReaderParams {
      */
     'preset'?: PresetType;
     /**
-     * Set X for area for recognition.
+     * Set X of top left corner of area for recognition.
      */
     'rectX'?: number;
     /**
-     * Set Y for area for recognition.
+     * Set Y of top left corner of area for recognition.
      */
     'rectY'?: number;
     /**
@@ -2985,6 +2967,78 @@ export enum TextAlignment {
     Center = 'Center',
     Right = 'Right',
 }
+export class FileVersion {
+    /**
+     * File or folder name.
+     */
+    'name'?: string;
+    /**
+     * True if it is a folder.
+     */
+    'isFolder': boolean;
+    /**
+     * File or folder last modified DateTime.
+     */
+    'modifiedDate'?: Date;
+    /**
+     * File or folder size.
+     */
+    'size': number;
+    /**
+     * File or folder path.
+     */
+    'path'?: string;
+    /**
+     * File Version ID.
+     */
+    'versionId'?: string;
+    /**
+     * Specifies whether the file is (true) or is not (false) the latest version of an file.
+     */
+    'isLatest': boolean;
+
+    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
+        {
+            name: 'name',
+            baseName: 'Name',
+            type: 'string',
+        },
+        {
+            name: 'isFolder',
+            baseName: 'IsFolder',
+            type: 'boolean',
+        },
+        {
+            name: 'modifiedDate',
+            baseName: 'ModifiedDate',
+            type: 'Date',
+        },
+        {
+            name: 'size',
+            baseName: 'Size',
+            type: 'number',
+        },
+        {
+            name: 'path',
+            baseName: 'Path',
+            type: 'string',
+        },
+        {
+            name: 'versionId',
+            baseName: 'VersionId',
+            type: 'string',
+        },
+        {
+            name: 'isLatest',
+            baseName: 'IsLatest',
+            type: 'boolean',
+        },
+    ];
+
+    static getAttributeTypeMap() {
+        return FileVersion.attributeTypeMap;
+    }
+}
 
 // BarcodeApi
 
@@ -3232,6 +3286,10 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
      */
     'barWidthReduction'?: number;
     /**
+     * Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
+     */
+    'useAntiAlias'?: boolean;
+    /**
      * Result image format.
      */
     'format'?: string;
@@ -3435,11 +3493,11 @@ Default value of Preset is NormalQuality.
         | 'HighQuality'
         | 'MaxBarCodes';
     /**
-     * Set X for area for recognition.
+     * Set X of top left corner of area for recognition.
      */
     'rectX'?: number;
     /**
-     * Set Y for area for recognition.
+     * Set Y of top left corner of area for recognition.
      */
     'rectY'?: number;
     /**
@@ -3577,10 +3635,6 @@ Enabling of diagonal search leads to a bigger detection time.
 CTable encoding method does not have any gaps in encoding table and sequence "333" of filling patterns is decoded as letter "z".
      */
     'ignoreEndingFillingPatternsForCTable'?: boolean;
-    /**
-     *
-     */
-    'rectangleRegion'?: string;
     /**
      * The image storage.
      */
@@ -3711,11 +3765,11 @@ Default value of Preset is NormalQuality.
         | 'HighQuality'
         | 'MaxBarCodes';
     /**
-     * Set X for area for recognition.
+     * Set X of top left corner of area for recognition.
      */
     'rectX'?: number;
     /**
-     * Set Y for area for recognition.
+     * Set Y of top left corner of area for recognition.
      */
     'rectY'?: number;
     /**
@@ -3853,10 +3907,6 @@ Enabling of diagonal search leads to a bigger detection time.
 CTable encoding method does not have any gaps in encoding table and sequence "333" of filling patterns is decoded as letter "z".
      */
     'ignoreEndingFillingPatternsForCTable'?: boolean;
-    /**
-     *
-     */
-    'rectangleRegion'?: string;
     /**
      * The image file url.
      */
@@ -4135,6 +4185,10 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
      * Bars reduction value that is used to compensate ink spread while printing.
      */
     'barWidthReduction'?: number;
+    /**
+     * Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
+     */
+    'useAntiAlias'?: boolean;
     /**
      * Image's storage.
      */

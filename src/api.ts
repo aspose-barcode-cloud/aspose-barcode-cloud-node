@@ -63,7 +63,6 @@ import {
     EnableChecksum,
     EncodeBarcodeType,
     ErrorDetails,
-    FileVersion,
     FileVersions,
     FilesList,
     FilesUploadResult,
@@ -101,6 +100,7 @@ import {
     StorageFile,
     StructuredAppend,
     TextAlignment,
+    FileVersion,
 } from './models';
 
 import {
@@ -321,7 +321,6 @@ let typeMap: { [index: string]: any } = {
     DiscUsage: DiscUsage,
     DotCodeParams: DotCodeParams,
     ErrorDetails: ErrorDetails,
-    FileVersion: FileVersion,
     FileVersions: FileVersions,
     FilesList: FilesList,
     FilesUploadResult: FilesUploadResult,
@@ -343,6 +342,7 @@ let typeMap: { [index: string]: any } = {
     StorageExist: StorageExist,
     StorageFile: StorageFile,
     StructuredAppend: StructuredAppend,
+    FileVersion: FileVersion,
 };
 
 export class BarcodeApi {
@@ -541,6 +541,10 @@ export class BarcodeApi {
                 request.barWidthReduction,
                 'number'
             );
+        }
+
+        if (request.useAntiAlias != null) {
+            requestQueryParameters['UseAntiAlias'] = ObjectSerializer.serialize(request.useAntiAlias, 'boolean');
         }
 
         if (request.format != null) {
@@ -795,10 +799,6 @@ export class BarcodeApi {
             );
         }
 
-        if (request.rectangleRegion != null) {
-            requestQueryParameters['RectangleRegion'] = ObjectSerializer.serialize(request.rectangleRegion, 'string');
-        }
-
         if (request.storage != null) {
             requestQueryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
         }
@@ -1046,10 +1046,6 @@ export class BarcodeApi {
                 request.ignoreEndingFillingPatternsForCTable,
                 'boolean'
             );
-        }
-
-        if (request.rectangleRegion != null) {
-            requestQueryParameters['RectangleRegion'] = ObjectSerializer.serialize(request.rectangleRegion, 'string');
         }
 
         if (request.url != null) {
@@ -1320,6 +1316,10 @@ export class BarcodeApi {
                 request.barWidthReduction,
                 'number'
             );
+        }
+
+        if (request.useAntiAlias != null) {
+            requestQueryParameters['UseAntiAlias'] = ObjectSerializer.serialize(request.useAntiAlias, 'boolean');
         }
 
         if (request.storage != null) {

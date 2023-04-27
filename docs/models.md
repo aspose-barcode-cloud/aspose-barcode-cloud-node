@@ -779,22 +779,6 @@ interface ErrorDetails {
 }
 ```
 
-## FileVersion
-```ts
-interface FileVersion {
-
-    /**
-     * File Version ID.
-     */
-    versionId?: string;
-
-    /**
-     * Specifies whether the file is (true) or is not (false) the latest version of an file.
-     */
-    isLatest: boolean;
-}
-```
-
 ## FileVersions
 
 File versions FileVersion.
@@ -1087,6 +1071,11 @@ interface GeneratorParams {
      * Bars reduction value that is used to compensate ink spread while printing.
      */
     barWidthReduction?: number;
+
+    /**
+     * Indicates whether is used anti-aliasing mode to render image. Anti-aliasing mode is applied to barcode and text drawing.
+     */
+    useAntiAlias?: boolean;
 
     /**
      * AustralianPost params.
@@ -1756,12 +1745,12 @@ interface ReaderParams {
     preset?: PresetType;
 
     /**
-     * Set X for area for recognition.
+     * Set X of top left corner of area for recognition.
      */
     rectX?: number;
 
     /**
-     * Set Y for area for recognition.
+     * Set Y of top left corner of area for recognition.
      */
     rectY?: number;
 
@@ -2031,6 +2020,47 @@ enum TextAlignment {
     Left = 'Left',
     Center = 'Center',
     Right = 'Right'
+}
+```
+
+## FileVersion
+```ts
+interface FileVersion {
+
+    /**
+     * File or folder name.
+     */
+    name?: string;
+
+    /**
+     * True if it is a folder.
+     */
+    isFolder: boolean;
+
+    /**
+     * File or folder last modified DateTime.
+     */
+    modifiedDate?: Date;
+
+    /**
+     * File or folder size.
+     */
+    size: number;
+
+    /**
+     * File or folder path.
+     */
+    path?: string;
+
+    /**
+     * File Version ID.
+     */
+    versionId?: string;
+
+    /**
+     * Specifies whether the file is (true) or is not (false) the latest version of an file.
+     */
+    isLatest: boolean;
 }
 ```
 
