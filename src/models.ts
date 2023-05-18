@@ -468,6 +468,41 @@ export enum Code128Emulation {
 }
 
 /**
+ *
+ */
+export enum Code128EncodeMode {
+    Auto = 'Auto',
+    CodeA = 'CodeA',
+    CodeB = 'CodeB',
+    CodeAB = 'CodeAB',
+    CodeC = 'CodeC',
+    CodeAC = 'CodeAC',
+    CodeBC = 'CodeBC',
+}
+
+/**
+ * Code128 params.
+ */
+export class Code128Params {
+    /**
+     * Encoding mode for Code128 barcodes. Code 128 specification Default value: Code128EncodeMode.Auto.
+     */
+    'encodeMode'?: Code128EncodeMode;
+
+    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
+        {
+            name: 'encodeMode',
+            baseName: 'EncodeMode',
+            type: 'Code128EncodeMode',
+        },
+    ];
+
+    static getAttributeTypeMap() {
+        return Code128Params.attributeTypeMap;
+    }
+}
+
+/**
  * Code16K parameters.
  */
 export class Code16KParams {
@@ -1402,6 +1437,10 @@ export class GeneratorParams {
      * PatchCode params.
      */
     'patchCode'?: PatchCodeParams;
+    /**
+     * Code128 params.
+     */
+    'code128'?: Code128Params;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -1673,6 +1712,11 @@ export class GeneratorParams {
             name: 'patchCode',
             baseName: 'PatchCode',
             type: 'PatchCodeParams',
+        },
+        {
+            name: 'code128',
+            baseName: 'Code128',
+            type: 'Code128Params',
         },
     ];
 
