@@ -303,6 +303,36 @@ enum Code128Emulation {
 }
 ```
 
+## Code128EncodeMode
+
+
+
+```ts
+enum Code128EncodeMode {
+    Auto = 'Auto',
+    CodeA = 'CodeA',
+    CodeB = 'CodeB',
+    CodeAB = 'CodeAB',
+    CodeC = 'CodeC',
+    CodeAC = 'CodeAC',
+    CodeBC = 'CodeBC'
+}
+```
+
+## Code128Params
+
+Code128 params.
+
+```ts
+interface Code128Params {
+
+    /**
+     * Encoding mode for Code128 barcodes. Code 128 specification Default value: Code128EncodeMode.Auto.
+     */
+    encodeMode?: Code128EncodeMode;
+}
+```
+
 ## Code16KParams
 
 Code16K parameters.
@@ -1151,6 +1181,11 @@ interface GeneratorParams {
      * PatchCode params.
      */
     patchCode?: PatchCodeParams;
+
+    /**
+     * Code128 params.
+     */
+    code128?: Code128Params;
 }
 ```
 
