@@ -6,7 +6,7 @@ github-ci: init lint test
 
 .PHONY: init
 init:
-	-npm clean-install
+	-npm install
 
 .PHONY: format
 format:
