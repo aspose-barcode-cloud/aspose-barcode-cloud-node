@@ -20,7 +20,7 @@ jobs:
     strategy:
       matrix:
         # see https://nodejs.dev/en/about/releases/ for active releases
-        node-version: [ 14.x, 16.x, 18.x, 19.x, 20.x, lts, latest ]
+        node-version: [ 14, 16, 18, 19, 20, lts/*, latest ]
 
     steps:
     - uses: actions/checkout@v3
