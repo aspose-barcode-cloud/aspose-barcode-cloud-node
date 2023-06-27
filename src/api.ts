@@ -73,6 +73,10 @@ import {
     FontStyle,
     GeneratorParams,
     GeneratorParamsList,
+    HanXinEncodeMode,
+    HanXinErrorLevel,
+    HanXinParams,
+    HanXinVersion,
     ITF14BorderType,
     ITFParams,
     MacroCharacter,
@@ -291,6 +295,9 @@ let enumsMap: { [index: string]: any } = {
     EncodeBarcodeType: EncodeBarcodeType,
     FontMode: FontMode,
     FontStyle: FontStyle,
+    HanXinEncodeMode: HanXinEncodeMode,
+    HanXinErrorLevel: HanXinErrorLevel,
+    HanXinVersion: HanXinVersion,
     ITF14BorderType: ITF14BorderType,
     MacroCharacter: MacroCharacter,
     MaxiCodeEncodeMode: MaxiCodeEncodeMode,
@@ -331,6 +338,7 @@ let typeMap: { [index: string]: any } = {
     FontParams: FontParams,
     GeneratorParams: GeneratorParams,
     GeneratorParamsList: GeneratorParamsList,
+    HanXinParams: HanXinParams,
     ITFParams: ITFParams,
     MaxiCodeParams: MaxiCodeParams,
     ModelError: ModelError,
@@ -384,7 +392,7 @@ export class BarcodeApi {
         if (request.type != null) {
             requestQueryParameters['Type'] = ObjectSerializer.serialize(
                 request.type,
-                "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF' | 'Mailmark' | 'GS1DotCode'"
+                "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
@@ -595,7 +603,7 @@ export class BarcodeApi {
         if (request.type != null) {
             requestQueryParameters['Type'] = ObjectSerializer.serialize(
                 request.type,
-                "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HIBCCode39LIC' | 'HIBCCode128LIC' | 'HIBCAztecLIC' | 'HIBCDataMatrixLIC' | 'HIBCQRLIC' | 'HIBCCode39PAS' | 'HIBCCode128PAS' | 'HIBCAztecPAS' | 'HIBCDataMatrixPAS' | 'HIBCQRPAS'"
+                "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HIBCCode39LIC' | 'HIBCCode128LIC' | 'HIBCAztecLIC' | 'HIBCDataMatrixLIC' | 'HIBCQRLIC' | 'HIBCCode39PAS' | 'HIBCCode128PAS' | 'HIBCAztecPAS' | 'HIBCDataMatrixPAS' | 'HIBCQRPAS' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
@@ -844,7 +852,7 @@ export class BarcodeApi {
         if (request.type != null) {
             requestQueryParameters['Type'] = ObjectSerializer.serialize(
                 request.type,
-                "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HIBCCode39LIC' | 'HIBCCode128LIC' | 'HIBCAztecLIC' | 'HIBCDataMatrixLIC' | 'HIBCQRLIC' | 'HIBCCode39PAS' | 'HIBCCode128PAS' | 'HIBCAztecPAS' | 'HIBCDataMatrixPAS' | 'HIBCQRPAS'"
+                "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HIBCCode39LIC' | 'HIBCCode128LIC' | 'HIBCAztecLIC' | 'HIBCDataMatrixLIC' | 'HIBCQRLIC' | 'HIBCCode39PAS' | 'HIBCCode128PAS' | 'HIBCAztecPAS' | 'HIBCDataMatrixPAS' | 'HIBCQRPAS' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
@@ -1159,7 +1167,7 @@ export class BarcodeApi {
         if (request.type != null) {
             requestQueryParameters['Type'] = ObjectSerializer.serialize(
                 request.type,
-                "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF' | 'Mailmark' | 'GS1DotCode'"
+                "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
@@ -1386,7 +1394,7 @@ export class BarcodeApi {
         if (request.type != null) {
             requestQueryParameters['type'] = ObjectSerializer.serialize(
                 request.type,
-                "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HIBCCode39LIC' | 'HIBCCode128LIC' | 'HIBCAztecLIC' | 'HIBCDataMatrixLIC' | 'HIBCQRLIC' | 'HIBCCode39PAS' | 'HIBCCode128PAS' | 'HIBCAztecPAS' | 'HIBCDataMatrixPAS' | 'HIBCQRPAS'"
+                "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HIBCCode39LIC' | 'HIBCCode128LIC' | 'HIBCAztecLIC' | 'HIBCDataMatrixLIC' | 'HIBCQRLIC' | 'HIBCCode39PAS' | 'HIBCCode128PAS' | 'HIBCAztecPAS' | 'HIBCDataMatrixPAS' | 'HIBCQRPAS' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
