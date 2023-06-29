@@ -827,6 +827,8 @@ export enum DecodeBarcodeType {
     HIBCAztecPAS = 'HIBCAztecPAS',
     HIBCDataMatrixPAS = 'HIBCDataMatrixPAS',
     HIBCQRPAS = 'HIBCQRPAS',
+    HanXin = 'HanXin',
+    GS1HanXin = 'GS1HanXin',
 }
 
 /**
@@ -1050,6 +1052,8 @@ export enum EncodeBarcodeType {
     GS1CodablockF = 'GS1CodablockF',
     Mailmark = 'Mailmark',
     GS1DotCode = 'GS1DotCode',
+    HanXin = 'HanXin',
+    GS1HanXin = 'GS1HanXin',
 }
 
 /**
@@ -1441,6 +1445,10 @@ export class GeneratorParams {
      * Code128 params.
      */
     'code128'?: Code128Params;
+    /**
+     * HanXin params.
+     */
+    'hanXin'?: HanXinParams;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -1718,6 +1726,11 @@ export class GeneratorParams {
             baseName: 'Code128',
             type: 'Code128Params',
         },
+        {
+            name: 'hanXin',
+            baseName: 'HanXin',
+            type: 'HanXinParams',
+        },
     ];
 
     static getAttributeTypeMap() {
@@ -1763,6 +1776,168 @@ export class GeneratorParamsList {
     static getAttributeTypeMap() {
         return GeneratorParamsList.attributeTypeMap;
     }
+}
+
+/**
+ *
+ */
+export enum HanXinEncodeMode {
+    Auto = 'Auto',
+    Binary = 'Binary',
+    ECI = 'ECI',
+    Unicode = 'Unicode',
+    URI = 'URI',
+    Extended = 'Extended',
+}
+
+/**
+ *
+ */
+export enum HanXinErrorLevel {
+    L1 = 'L1',
+    L2 = 'L2',
+    L3 = 'L3',
+    L4 = 'L4',
+}
+
+/**
+ * HanXin params.
+ */
+export class HanXinParams {
+    /**
+     * Encoding mode for XanXin barcodes. Default value: HanXinEncodeMode.Auto.
+     */
+    'encodeMode'?: HanXinEncodeMode;
+    /**
+     * Allowed Han Xin error correction levels from L1 to L4. Default value: HanXinErrorLevel.L1.
+     */
+    'errorLevel'?: HanXinErrorLevel;
+    /**
+     * Allowed Han Xin versions, Auto and Version01 - Version84. Default value: HanXinVersion.Auto.
+     */
+    'version'?: HanXinVersion;
+    /**
+     * Extended Channel Interpretation Identifiers. It is used to tell the barcode reader details about the used references for encoding the data in the symbol. Current implementation consists all well known charset encodings. Default value: ECIEncodings.ISO_8859_1
+     */
+    'eCIEncoding'?: ECIEncodings;
+
+    static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
+        {
+            name: 'encodeMode',
+            baseName: 'EncodeMode',
+            type: 'HanXinEncodeMode',
+        },
+        {
+            name: 'errorLevel',
+            baseName: 'ErrorLevel',
+            type: 'HanXinErrorLevel',
+        },
+        {
+            name: 'version',
+            baseName: 'Version',
+            type: 'HanXinVersion',
+        },
+        {
+            name: 'eCIEncoding',
+            baseName: 'ECIEncoding',
+            type: 'ECIEncodings',
+        },
+    ];
+
+    static getAttributeTypeMap() {
+        return HanXinParams.attributeTypeMap;
+    }
+}
+
+/**
+ *
+ */
+export enum HanXinVersion {
+    Auto = 'Auto',
+    Version01 = 'Version01',
+    Version02 = 'Version02',
+    Version03 = 'Version03',
+    Version04 = 'Version04',
+    Version05 = 'Version05',
+    Version06 = 'Version06',
+    Version07 = 'Version07',
+    Version08 = 'Version08',
+    Version09 = 'Version09',
+    Version10 = 'Version10',
+    Version11 = 'Version11',
+    Version12 = 'Version12',
+    Version13 = 'Version13',
+    Version14 = 'Version14',
+    Version15 = 'Version15',
+    Version16 = 'Version16',
+    Version17 = 'Version17',
+    Version18 = 'Version18',
+    Version19 = 'Version19',
+    Version20 = 'Version20',
+    Version21 = 'Version21',
+    Version22 = 'Version22',
+    Version23 = 'Version23',
+    Version24 = 'Version24',
+    Version25 = 'Version25',
+    Version26 = 'Version26',
+    Version27 = 'Version27',
+    Version28 = 'Version28',
+    Version29 = 'Version29',
+    Version30 = 'Version30',
+    Version31 = 'Version31',
+    Version32 = 'Version32',
+    Version33 = 'Version33',
+    Version34 = 'Version34',
+    Version35 = 'Version35',
+    Version36 = 'Version36',
+    Version37 = 'Version37',
+    Version38 = 'Version38',
+    Version39 = 'Version39',
+    Version40 = 'Version40',
+    Version41 = 'Version41',
+    Version42 = 'Version42',
+    Version43 = 'Version43',
+    Version44 = 'Version44',
+    Version45 = 'Version45',
+    Version46 = 'Version46',
+    Version47 = 'Version47',
+    Version48 = 'Version48',
+    Version49 = 'Version49',
+    Version50 = 'Version50',
+    Version51 = 'Version51',
+    Version52 = 'Version52',
+    Version53 = 'Version53',
+    Version54 = 'Version54',
+    Version55 = 'Version55',
+    Version56 = 'Version56',
+    Version57 = 'Version57',
+    Version58 = 'Version58',
+    Version59 = 'Version59',
+    Version60 = 'Version60',
+    Version61 = 'Version61',
+    Version62 = 'Version62',
+    Version63 = 'Version63',
+    Version64 = 'Version64',
+    Version65 = 'Version65',
+    Version66 = 'Version66',
+    Version67 = 'Version67',
+    Version68 = 'Version68',
+    Version69 = 'Version69',
+    Version70 = 'Version70',
+    Version71 = 'Version71',
+    Version72 = 'Version72',
+    Version73 = 'Version73',
+    Version74 = 'Version74',
+    Version75 = 'Version75',
+    Version76 = 'Version76',
+    Version77 = 'Version77',
+    Version78 = 'Version78',
+    Version79 = 'Version79',
+    Version80 = 'Version80',
+    Version81 = 'Version81',
+    Version82 = 'Version82',
+    Version83 = 'Version83',
+    Version84 = 'Version84',
 }
 
 /**
@@ -3161,7 +3336,9 @@ export class GetBarcodeGenerateRequest {
         | 'CodablockF'
         | 'GS1CodablockF'
         | 'Mailmark'
-        | 'GS1DotCode';
+        | 'GS1DotCode'
+        | 'HanXin'
+        | 'GS1HanXin';
     /**
      * Text to encode.
      */
@@ -3412,7 +3589,9 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'CodablockF'
             | 'GS1CodablockF'
             | 'Mailmark'
-            | 'GS1DotCode',
+            | 'GS1DotCode'
+            | 'HanXin'
+            | 'GS1HanXin',
         text: string
     ) {
         this.type = type;
@@ -3510,7 +3689,9 @@ export class GetBarcodeRecognizeRequest {
         | 'HIBCCode128PAS'
         | 'HIBCAztecPAS'
         | 'HIBCDataMatrixPAS'
-        | 'HIBCQRPAS';
+        | 'HIBCQRPAS'
+        | 'HanXin'
+        | 'GS1HanXin';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -3782,7 +3963,9 @@ export class PostBarcodeRecognizeFromUrlOrContentRequest {
         | 'HIBCCode128PAS'
         | 'HIBCAztecPAS'
         | 'HIBCDataMatrixPAS'
-        | 'HIBCQRPAS';
+        | 'HIBCQRPAS'
+        | 'HanXin'
+        | 'GS1HanXin';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -4061,7 +4244,9 @@ export class PutBarcodeGenerateFileRequest {
         | 'CodablockF'
         | 'GS1CodablockF'
         | 'Mailmark'
-        | 'GS1DotCode';
+        | 'GS1DotCode'
+        | 'HanXin'
+        | 'GS1HanXin';
     /**
      * Text to encode.
      */
@@ -4323,7 +4508,9 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'CodablockF'
             | 'GS1CodablockF'
             | 'Mailmark'
-            | 'GS1DotCode',
+            | 'GS1DotCode'
+            | 'HanXin'
+            | 'GS1HanXin',
         text: string
     ) {
         this.name = name;
@@ -4426,7 +4613,9 @@ export class PutBarcodeRecognizeFromBodyRequest {
         | 'HIBCCode128PAS'
         | 'HIBCAztecPAS'
         | 'HIBCDataMatrixPAS'
-        | 'HIBCQRPAS';
+        | 'HIBCQRPAS'
+        | 'HanXin'
+        | 'GS1HanXin';
     /**
      * The storage name
      */

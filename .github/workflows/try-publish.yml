@@ -2,13 +2,12 @@ name: Try publish to NPM
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   publish:
-
     runs-on: ubuntu-latest
     defaults:
       run:
