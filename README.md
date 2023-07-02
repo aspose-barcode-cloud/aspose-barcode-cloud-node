@@ -1,7 +1,7 @@
 # Aspose.BarCode Cloud SDK for Node.js
 
 [![License](https://img.shields.io/github/license/aspose-barcode-cloud/aspose-barcode-cloud-node)](LICENSE)
-[![Node.js CI](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/actions/workflows/node.js.yml/badge.svg)](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/actions/workflows/node.js.yml)
+[![Node.js CI](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/actions/workflows/node.js.yml)
 [![npm](https://img.shields.io/npm/v/aspose-barcode-cloud-node)](https://www.npmjs.com/package/aspose-barcode-cloud-node)
 
 + API version: 3.0
