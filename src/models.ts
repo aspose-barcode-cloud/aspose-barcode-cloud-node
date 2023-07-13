@@ -654,7 +654,7 @@ export enum DataMatrixEccType {
 }
 
 /**
- *
+ * DataMatrix encoder's encoding mode, default to Auto
  */
 export enum DataMatrixEncodeMode {
     Auto = 'Auto',
@@ -681,7 +681,7 @@ export class DataMatrixParams {
      */
     'textEncoding'?: string;
     /**
-     * Columns count.
+     * DEPRECATED: Will be replaced with 'DataMatrix.Version' in the next release  Columns count.
      */
     'columns'?: number;
     /**
@@ -693,7 +693,7 @@ export class DataMatrixParams {
      */
     'dataMatrixEncodeMode'?: DataMatrixEncodeMode;
     /**
-     * Rows count.
+     * DEPRECATED: Will be replaced with 'DataMatrix.Version' in the next release  Rows count.
      */
     'rows'?: number;
     /**
