@@ -10,6 +10,7 @@ init:
 
 .PHONY: format
 format:
+	./scripts/annotate-deprecated.bash
 	./scripts/docs_format.sh
 	npm run format
 
