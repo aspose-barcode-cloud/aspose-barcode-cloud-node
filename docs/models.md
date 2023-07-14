@@ -447,7 +447,7 @@ enum DataMatrixEccType {
 
 ## DataMatrixEncodeMode
 
-
+DataMatrix encoder's encoding mode, default to Auto
 
 ```ts
 enum DataMatrixEncodeMode {
@@ -481,7 +481,7 @@ interface DataMatrixParams {
     textEncoding?: string;
 
     /**
-     * Columns count.
+     * DEPRECATED: Will be replaced with 'DataMatrix.Version' in the next release  Columns count.
      */
     columns?: number;
 
@@ -496,7 +496,7 @@ interface DataMatrixParams {
     dataMatrixEncodeMode?: DataMatrixEncodeMode;
 
     /**
-     * Rows count.
+     * DEPRECATED: Will be replaced with 'DataMatrix.Version' in the next release  Rows count.
      */
     rows?: number;
 

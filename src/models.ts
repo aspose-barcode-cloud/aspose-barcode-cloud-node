@@ -654,7 +654,7 @@ export enum DataMatrixEccType {
 }
 
 /**
- *
+ * DataMatrix encoder's encoding mode, default to Auto
  */
 export enum DataMatrixEncodeMode {
     Auto = 'Auto',
@@ -681,7 +681,7 @@ export class DataMatrixParams {
      */
     'textEncoding'?: string;
     /**
-     * Columns count.
+     * @deprecated Will be replaced with 'DataMatrix.Version' in the next release  Columns count.
      */
     'columns'?: number;
     /**
@@ -693,7 +693,7 @@ export class DataMatrixParams {
      */
     'dataMatrixEncodeMode'?: DataMatrixEncodeMode;
     /**
-     * Rows count.
+     * @deprecated Will be replaced with 'DataMatrix.Version' in the next release  Rows count.
      */
     'rows'?: number;
     /**
@@ -1266,11 +1266,11 @@ export class GeneratorParams {
      */
     'resolution'?: number;
     /**
-     * DEPRECATED: Use 'Resolution' instead.
+     * @deprecated Use 'Resolution' instead.
      */
     'resolutionX'?: number;
     /**
-     * DEPRECATED: Use 'Resolution' instead.
+     * @deprecated Use 'Resolution' instead.
      */
     'resolutionY'?: number;
     /**
@@ -3380,11 +3380,11 @@ Default value: 96 dpi.
      */
     'resolution'?: number;
     /**
-     * DEPRECATED: Use 'Resolution' instead.
+     * @deprecated Use 'Resolution' instead.
      */
     'resolutionX'?: number;
     /**
-     * DEPRECATED: Use 'Resolution' instead.
+     * @deprecated Use 'Resolution' instead.
      */
     'resolutionY'?: number;
     /**
@@ -4288,11 +4288,11 @@ Default value: 96 dpi.
      */
     'resolution'?: number;
     /**
-     * DEPRECATED: Use 'Resolution' instead.
+     * @deprecated Use 'Resolution' instead.
      */
     'resolutionX'?: number;
     /**
-     * DEPRECATED: Use 'Resolution' instead.
+     * @deprecated Use 'Resolution' instead.
      */
     'resolutionY'?: number;
     /**

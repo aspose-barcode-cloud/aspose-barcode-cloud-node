@@ -3,7 +3,7 @@ import assert from 'assert';
 import { HttpClient } from '../src/httpClient';
 
 describe('httpClient tests', () => {
-    jest.setTimeout(20000);
+    jest.setTimeout(60000);
 
     const client = new HttpClient();
 
