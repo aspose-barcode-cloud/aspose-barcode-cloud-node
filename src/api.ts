@@ -57,6 +57,7 @@ import {
     DataMatrixEccType,
     DataMatrixEncodeMode,
     DataMatrixParams,
+    DataMatrixVersion,
     DecodeBarcodeType,
     DiscUsage,
     DotCodeEncodeMode,
@@ -288,6 +289,7 @@ let enumsMap: { [index: string]: any } = {
     CustomerInformationInterpretingType: CustomerInformationInterpretingType,
     DataMatrixEccType: DataMatrixEccType,
     DataMatrixEncodeMode: DataMatrixEncodeMode,
+    DataMatrixVersion: DataMatrixVersion,
     DecodeBarcodeType: DecodeBarcodeType,
     DotCodeEncodeMode: DotCodeEncodeMode,
     ECIEncodings: ECIEncodings,
@@ -765,6 +767,13 @@ export class BarcodeApi {
             requestQueryParameters['FastScanOnly'] = ObjectSerializer.serialize(request.fastScanOnly, 'boolean');
         }
 
+        if (request.allowAdditionalRestorations != null) {
+            requestQueryParameters['AllowAdditionalRestorations'] = ObjectSerializer.serialize(
+                request.allowAdditionalRestorations,
+                'boolean'
+            );
+        }
+
         if (request.regionLikelihoodThresholdPercent != null) {
             requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
                 request.regionLikelihoodThresholdPercent,
@@ -1012,6 +1021,13 @@ export class BarcodeApi {
 
         if (request.fastScanOnly != null) {
             requestQueryParameters['FastScanOnly'] = ObjectSerializer.serialize(request.fastScanOnly, 'boolean');
+        }
+
+        if (request.allowAdditionalRestorations != null) {
+            requestQueryParameters['AllowAdditionalRestorations'] = ObjectSerializer.serialize(
+                request.allowAdditionalRestorations,
+                'boolean'
+            );
         }
 
         if (request.regionLikelihoodThresholdPercent != null) {

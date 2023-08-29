@@ -504,6 +504,91 @@ interface DataMatrixParams {
      * Macro Characters 05 and 06 values are used to obtain more compact encoding in special modes. Can be used only with DataMatrixEccType.Ecc200 or DataMatrixEccType.EccAuto. Cannot be used with EncodeTypes.GS1DataMatrix Default value: MacroCharacters.None.
      */
     macroCharacters?: MacroCharacter;
+
+    /**
+     * Sets a Datamatrix symbol size. Default value: DataMatrixVersion.Auto.
+     */
+    version?: DataMatrixVersion;
+}
+```
+
+## DataMatrixVersion
+
+
+
+```ts
+enum DataMatrixVersion {
+    Auto = 'Auto',
+    RowsColumns = 'RowsColumns',
+    ECC0009x9 = 'ECC000_9x9',
+    ECC00005011x11 = 'ECC000_050_11x11',
+    ECC00010013x13 = 'ECC000_100_13x13',
+    ECC00010015x15 = 'ECC000_100_15x15',
+    ECC00014017x17 = 'ECC000_140_17x17',
+    ECC00014019x19 = 'ECC000_140_19x19',
+    ECC00014021x21 = 'ECC000_140_21x21',
+    ECC00014023x23 = 'ECC000_140_23x23',
+    ECC00014025x25 = 'ECC000_140_25x25',
+    ECC00014027x27 = 'ECC000_140_27x27',
+    ECC00014029x29 = 'ECC000_140_29x29',
+    ECC00014031x31 = 'ECC000_140_31x31',
+    ECC00014033x33 = 'ECC000_140_33x33',
+    ECC00014035x35 = 'ECC000_140_35x35',
+    ECC00014037x37 = 'ECC000_140_37x37',
+    ECC00014039x39 = 'ECC000_140_39x39',
+    ECC00014041x41 = 'ECC000_140_41x41',
+    ECC00014043x43 = 'ECC000_140_43x43',
+    ECC00014045x45 = 'ECC000_140_45x45',
+    ECC00014047x47 = 'ECC000_140_47x47',
+    ECC00014049x49 = 'ECC000_140_49x49',
+    ECC20010x10 = 'ECC200_10x10',
+    ECC20012x12 = 'ECC200_12x12',
+    ECC20014x14 = 'ECC200_14x14',
+    ECC20016x16 = 'ECC200_16x16',
+    ECC20018x18 = 'ECC200_18x18',
+    ECC20020x20 = 'ECC200_20x20',
+    ECC20022x22 = 'ECC200_22x22',
+    ECC20024x24 = 'ECC200_24x24',
+    ECC20026x26 = 'ECC200_26x26',
+    ECC20032x32 = 'ECC200_32x32',
+    ECC20036x36 = 'ECC200_36x36',
+    ECC20040x40 = 'ECC200_40x40',
+    ECC20044x44 = 'ECC200_44x44',
+    ECC20048x48 = 'ECC200_48x48',
+    ECC20052x52 = 'ECC200_52x52',
+    ECC20064x64 = 'ECC200_64x64',
+    ECC20072x72 = 'ECC200_72x72',
+    ECC20080x80 = 'ECC200_80x80',
+    ECC20088x88 = 'ECC200_88x88',
+    ECC20096x96 = 'ECC200_96x96',
+    ECC200104x104 = 'ECC200_104x104',
+    ECC200120x120 = 'ECC200_120x120',
+    ECC200132x132 = 'ECC200_132x132',
+    ECC200144x144 = 'ECC200_144x144',
+    ECC2008x18 = 'ECC200_8x18',
+    ECC2008x32 = 'ECC200_8x32',
+    ECC20012x26 = 'ECC200_12x26',
+    ECC20012x36 = 'ECC200_12x36',
+    ECC20016x36 = 'ECC200_16x36',
+    ECC20016x48 = 'ECC200_16x48',
+    DMRE8x48 = 'DMRE_8x48',
+    DMRE8x64 = 'DMRE_8x64',
+    DMRE8x80 = 'DMRE_8x80',
+    DMRE8x96 = 'DMRE_8x96',
+    DMRE8x120 = 'DMRE_8x120',
+    DMRE8x144 = 'DMRE_8x144',
+    DMRE12x64 = 'DMRE_12x64',
+    DMRE12x88 = 'DMRE_12x88',
+    DMRE16x64 = 'DMRE_16x64',
+    DMRE20x36 = 'DMRE_20x36',
+    DMRE20x44 = 'DMRE_20x44',
+    DMRE20x64 = 'DMRE_20x64',
+    DMRE22x48 = 'DMRE_22x48',
+    DMRE24x48 = 'DMRE_24x48',
+    DMRE24x64 = 'DMRE_24x64',
+    DMRE26x40 = 'DMRE_26x40',
+    DMRE26x48 = 'DMRE_26x48',
+    DMRE26x64 = 'DMRE_26x64'
 }
 ```
 
@@ -2053,6 +2138,11 @@ interface ReaderParams {
      * Allows engine for 1D barcodes to quickly recognize middle slice of an image and return result without using any time-consuming algorithms. Default value: False.
      */
     fastScanOnly?: boolean;
+
+    /**
+     * Allows engine using additional image restorations to recognize corrupted barcodes. At this time, it is used only in MicroPdf417 barcode type. Default value: False.
+     */
+    allowAdditionalRestorations?: boolean;
 
     /**
      * Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time.
