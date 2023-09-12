@@ -20,7 +20,7 @@ export class JWTAuth implements Authentication {
     /**
      * Apply authentication settings to header and query params.
      */
-    public async applyToRequest(requestOptions: HttpOptions): Promise<void> {
+    public async applyToRequestAsync(requestOptions: HttpOptions): Promise<void> {
         if (this._accessToken == null) {
             this._accessToken = await this.requestToken();
         }

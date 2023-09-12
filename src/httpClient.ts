@@ -34,11 +34,6 @@ export interface HttpRejectType {
 
 export class HttpClient {
     public requestAsync(options: HttpOptions): Promise<HttpResult> {
-        //return this.doWithRequest(options);
-        return this.doWithHttp(options);
-    }
-
-    private doWithHttp(options: HttpOptions): Promise<HttpResult> {
         const url: URL = options.qs
             ? new URL(`?${new URLSearchParams(options.qs).toString()}`, options.uri)
             : new URL(options.uri);

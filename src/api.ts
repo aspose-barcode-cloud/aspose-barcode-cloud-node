@@ -573,7 +573,7 @@ export class BarcodeApi {
             encoding: null,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -835,7 +835,7 @@ export class BarcodeApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1092,7 +1092,7 @@ export class BarcodeApi {
             body: request.image,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1135,7 +1135,7 @@ export class BarcodeApi {
             encoding: null,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1369,7 +1369,7 @@ export class BarcodeApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1431,7 +1431,7 @@ export class BarcodeApi {
             json: true,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1488,7 +1488,7 @@ export class BarcodeApi {
             json: true,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1554,7 +1554,7 @@ export class FileApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1593,7 +1593,7 @@ export class FileApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1633,7 +1633,7 @@ export class FileApi {
             encoding: null,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1688,7 +1688,7 @@ export class FileApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1734,7 +1734,7 @@ export class FileApi {
             body: request.file,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1796,7 +1796,7 @@ export class FolderApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1831,7 +1831,7 @@ export class FolderApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1870,7 +1870,7 @@ export class FolderApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1905,7 +1905,7 @@ export class FolderApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1956,7 +1956,7 @@ export class FolderApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -1995,7 +1995,7 @@ export class StorageApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -2035,7 +2035,7 @@ export class StorageApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -2077,7 +2077,7 @@ export class StorageApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
@@ -2111,7 +2111,7 @@ export class StorageApi {
             uri: requestPath,
         };
 
-        await this._configuration.authentication.applyToRequest(requestOptions);
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
         const result: HttpResult = await this._client.requestAsync(requestOptions);
 
