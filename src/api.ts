@@ -360,7 +360,10 @@ let typeMap: { [index: string]: any } = {
 };
 
 export class BarcodeApi {
-    protected defaultHeaders: any = {};
+    protected defaultHeaders: any = {
+        'x-aspose-client': 'nodejs sdk',
+        'x-aspose-client-version': '23.8.0',
+    };
     protected _configuration: Configuration;
     private _client: HttpClient;
 
@@ -1500,7 +1503,10 @@ export class BarcodeApi {
 }
 
 export class FileApi {
-    protected defaultHeaders: any = {};
+    protected defaultHeaders: any = {
+        'x-aspose-client': 'nodejs sdk',
+        'x-aspose-client-version': '23.8.0',
+    };
     protected _configuration: Configuration;
     private _client: HttpClient;
 
@@ -1746,7 +1752,10 @@ export class FileApi {
 }
 
 export class FolderApi {
-    protected defaultHeaders: any = {};
+    protected defaultHeaders: any = {
+        'x-aspose-client': 'nodejs sdk',
+        'x-aspose-client-version': '23.8.0',
+    };
     protected _configuration: Configuration;
     private _client: HttpClient;
 
@@ -1965,7 +1974,10 @@ export class FolderApi {
 }
 
 export class StorageApi {
-    protected defaultHeaders: any = {};
+    protected defaultHeaders: any = {
+        'x-aspose-client': 'nodejs sdk',
+        'x-aspose-client-version': '23.8.0',
+    };
     protected _configuration: Configuration;
     private _client: HttpClient;
 
