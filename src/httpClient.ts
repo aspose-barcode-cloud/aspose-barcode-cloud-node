@@ -1,4 +1,5 @@
-import http from 'https';
+import http from 'http';
+import https from 'https';
 
 interface StringKeyWithStringValue {
     [key: string]: string;
@@ -82,7 +83,7 @@ export class HttpClient {
         responseEncoding: BufferEncoding | null
     ): Promise<HttpResult> {
         return new Promise((resolve, reject: (result: HttpRejectType) => void) => {
-            const req = http.request(url, requestOptions, res => {
+            function requestCallback(res: http.IncomingMessage) {
                 if (responseEncoding) {
                     // encoding = null for binary responses
                     res.setEncoding(responseEncoding);
@@ -115,7 +116,12 @@ export class HttpClient {
                         });
                     }
                 });
-            });
+            }
+
+            const req =
+                url.protocol === 'http:'
+                    ? http.request(url, requestOptions, requestCallback)
+                    : https.request(url, requestOptions, requestCallback);
 
             req.on('error', error => {
                 reject({
