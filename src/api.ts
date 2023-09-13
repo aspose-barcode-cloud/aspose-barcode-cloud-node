@@ -381,8 +381,8 @@ export class BarcodeApi {
         request: GetBarcodeGenerateRequest
     ): Promise<{ response: HttpResponse; body: Buffer }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate';
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.type' is not null or undefined
         if (request.type == null) {
@@ -395,183 +395,174 @@ export class BarcodeApi {
         }
 
         if (request.type != null) {
-            requestQueryParameters['Type'] = ObjectSerializer.serialize(
+            queryParameters['Type'] = ObjectSerializer.serialize(
                 request.type,
                 "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
         if (request.text != null) {
-            requestQueryParameters['Text'] = ObjectSerializer.serialize(request.text, 'string');
+            queryParameters['Text'] = ObjectSerializer.serialize(request.text, 'string');
         }
 
         if (request.twoDDisplayText != null) {
-            requestQueryParameters['TwoDDisplayText'] = ObjectSerializer.serialize(request.twoDDisplayText, 'string');
+            queryParameters['TwoDDisplayText'] = ObjectSerializer.serialize(request.twoDDisplayText, 'string');
         }
 
         if (request.textLocation != null) {
-            requestQueryParameters['TextLocation'] = ObjectSerializer.serialize(
+            queryParameters['TextLocation'] = ObjectSerializer.serialize(
                 request.textLocation,
                 "'Below' | 'Above' | 'None'"
             );
         }
 
         if (request.textAlignment != null) {
-            requestQueryParameters['TextAlignment'] = ObjectSerializer.serialize(
+            queryParameters['TextAlignment'] = ObjectSerializer.serialize(
                 request.textAlignment,
                 "'Left' | 'Center' | 'Right'"
             );
         }
 
         if (request.textColor != null) {
-            requestQueryParameters['TextColor'] = ObjectSerializer.serialize(request.textColor, 'string');
+            queryParameters['TextColor'] = ObjectSerializer.serialize(request.textColor, 'string');
         }
 
         if (request.fontSizeMode != null) {
-            requestQueryParameters['FontSizeMode'] = ObjectSerializer.serialize(
-                request.fontSizeMode,
-                "'Auto' | 'Manual'"
-            );
+            queryParameters['FontSizeMode'] = ObjectSerializer.serialize(request.fontSizeMode, "'Auto' | 'Manual'");
         }
 
         if (request.noWrap != null) {
-            requestQueryParameters['NoWrap'] = ObjectSerializer.serialize(request.noWrap, 'boolean');
+            queryParameters['NoWrap'] = ObjectSerializer.serialize(request.noWrap, 'boolean');
         }
 
         if (request.resolution != null) {
-            requestQueryParameters['Resolution'] = ObjectSerializer.serialize(request.resolution, 'number');
+            queryParameters['Resolution'] = ObjectSerializer.serialize(request.resolution, 'number');
         }
 
         if (request.resolutionX != null) {
-            requestQueryParameters['ResolutionX'] = ObjectSerializer.serialize(request.resolutionX, 'number');
+            queryParameters['ResolutionX'] = ObjectSerializer.serialize(request.resolutionX, 'number');
         }
 
         if (request.resolutionY != null) {
-            requestQueryParameters['ResolutionY'] = ObjectSerializer.serialize(request.resolutionY, 'number');
+            queryParameters['ResolutionY'] = ObjectSerializer.serialize(request.resolutionY, 'number');
         }
 
         if (request.dimensionX != null) {
-            requestQueryParameters['DimensionX'] = ObjectSerializer.serialize(request.dimensionX, 'number');
+            queryParameters['DimensionX'] = ObjectSerializer.serialize(request.dimensionX, 'number');
         }
 
         if (request.textSpace != null) {
-            requestQueryParameters['TextSpace'] = ObjectSerializer.serialize(request.textSpace, 'number');
+            queryParameters['TextSpace'] = ObjectSerializer.serialize(request.textSpace, 'number');
         }
 
         if (request.units != null) {
-            requestQueryParameters['Units'] = ObjectSerializer.serialize(
+            queryParameters['Units'] = ObjectSerializer.serialize(
                 request.units,
                 "'Pixel' | 'Point' | 'Inch' | 'Millimeter'"
             );
         }
 
         if (request.sizeMode != null) {
-            requestQueryParameters['SizeMode'] = ObjectSerializer.serialize(
+            queryParameters['SizeMode'] = ObjectSerializer.serialize(
                 request.sizeMode,
                 "'None' | 'Nearest' | 'Interpolation'"
             );
         }
 
         if (request.barHeight != null) {
-            requestQueryParameters['BarHeight'] = ObjectSerializer.serialize(request.barHeight, 'number');
+            queryParameters['BarHeight'] = ObjectSerializer.serialize(request.barHeight, 'number');
         }
 
         if (request.imageHeight != null) {
-            requestQueryParameters['ImageHeight'] = ObjectSerializer.serialize(request.imageHeight, 'number');
+            queryParameters['ImageHeight'] = ObjectSerializer.serialize(request.imageHeight, 'number');
         }
 
         if (request.imageWidth != null) {
-            requestQueryParameters['ImageWidth'] = ObjectSerializer.serialize(request.imageWidth, 'number');
+            queryParameters['ImageWidth'] = ObjectSerializer.serialize(request.imageWidth, 'number');
         }
 
         if (request.rotationAngle != null) {
-            requestQueryParameters['RotationAngle'] = ObjectSerializer.serialize(request.rotationAngle, 'number');
+            queryParameters['RotationAngle'] = ObjectSerializer.serialize(request.rotationAngle, 'number');
         }
 
         if (request.backColor != null) {
-            requestQueryParameters['BackColor'] = ObjectSerializer.serialize(request.backColor, 'string');
+            queryParameters['BackColor'] = ObjectSerializer.serialize(request.backColor, 'string');
         }
 
         if (request.barColor != null) {
-            requestQueryParameters['BarColor'] = ObjectSerializer.serialize(request.barColor, 'string');
+            queryParameters['BarColor'] = ObjectSerializer.serialize(request.barColor, 'string');
         }
 
         if (request.borderColor != null) {
-            requestQueryParameters['BorderColor'] = ObjectSerializer.serialize(request.borderColor, 'string');
+            queryParameters['BorderColor'] = ObjectSerializer.serialize(request.borderColor, 'string');
         }
 
         if (request.borderWidth != null) {
-            requestQueryParameters['BorderWidth'] = ObjectSerializer.serialize(request.borderWidth, 'number');
+            queryParameters['BorderWidth'] = ObjectSerializer.serialize(request.borderWidth, 'number');
         }
 
         if (request.borderDashStyle != null) {
-            requestQueryParameters['BorderDashStyle'] = ObjectSerializer.serialize(
+            queryParameters['BorderDashStyle'] = ObjectSerializer.serialize(
                 request.borderDashStyle,
                 "'Solid' | 'Dash' | 'Dot' | 'DashDot' | 'DashDotDot'"
             );
         }
 
         if (request.borderVisible != null) {
-            requestQueryParameters['BorderVisible'] = ObjectSerializer.serialize(request.borderVisible, 'boolean');
+            queryParameters['BorderVisible'] = ObjectSerializer.serialize(request.borderVisible, 'boolean');
         }
 
         if (request.enableChecksum != null) {
-            requestQueryParameters['EnableChecksum'] = ObjectSerializer.serialize(
+            queryParameters['EnableChecksum'] = ObjectSerializer.serialize(
                 request.enableChecksum,
                 "'Default' | 'Yes' | 'No'"
             );
         }
 
         if (request.enableEscape != null) {
-            requestQueryParameters['EnableEscape'] = ObjectSerializer.serialize(request.enableEscape, 'boolean');
+            queryParameters['EnableEscape'] = ObjectSerializer.serialize(request.enableEscape, 'boolean');
         }
 
         if (request.filledBars != null) {
-            requestQueryParameters['FilledBars'] = ObjectSerializer.serialize(request.filledBars, 'boolean');
+            queryParameters['FilledBars'] = ObjectSerializer.serialize(request.filledBars, 'boolean');
         }
 
         if (request.alwaysShowChecksum != null) {
-            requestQueryParameters['AlwaysShowChecksum'] = ObjectSerializer.serialize(
-                request.alwaysShowChecksum,
-                'boolean'
-            );
+            queryParameters['AlwaysShowChecksum'] = ObjectSerializer.serialize(request.alwaysShowChecksum, 'boolean');
         }
 
         if (request.wideNarrowRatio != null) {
-            requestQueryParameters['WideNarrowRatio'] = ObjectSerializer.serialize(request.wideNarrowRatio, 'number');
+            queryParameters['WideNarrowRatio'] = ObjectSerializer.serialize(request.wideNarrowRatio, 'number');
         }
 
         if (request.validateText != null) {
-            requestQueryParameters['ValidateText'] = ObjectSerializer.serialize(request.validateText, 'boolean');
+            queryParameters['ValidateText'] = ObjectSerializer.serialize(request.validateText, 'boolean');
         }
 
         if (request.supplementData != null) {
-            requestQueryParameters['SupplementData'] = ObjectSerializer.serialize(request.supplementData, 'string');
+            queryParameters['SupplementData'] = ObjectSerializer.serialize(request.supplementData, 'string');
         }
 
         if (request.supplementSpace != null) {
-            requestQueryParameters['SupplementSpace'] = ObjectSerializer.serialize(request.supplementSpace, 'number');
+            queryParameters['SupplementSpace'] = ObjectSerializer.serialize(request.supplementSpace, 'number');
         }
 
         if (request.barWidthReduction != null) {
-            requestQueryParameters['BarWidthReduction'] = ObjectSerializer.serialize(
-                request.barWidthReduction,
-                'number'
-            );
+            queryParameters['BarWidthReduction'] = ObjectSerializer.serialize(request.barWidthReduction, 'number');
         }
 
         if (request.useAntiAlias != null) {
-            requestQueryParameters['UseAntiAlias'] = ObjectSerializer.serialize(request.useAntiAlias, 'boolean');
+            queryParameters['UseAntiAlias'] = ObjectSerializer.serialize(request.useAntiAlias, 'boolean');
         }
 
         if (request.format != null) {
-            requestQueryParameters['format'] = ObjectSerializer.serialize(request.format, 'string');
+            queryParameters['format'] = ObjectSerializer.serialize(request.format, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'GET',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
             encoding: null,
         };
@@ -597,8 +588,8 @@ export class BarcodeApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/{name}/recognize'.replace('{' + 'name' + '}', String(request.name));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.name' is not null or undefined
         if (request.name == null) {
@@ -606,235 +597,211 @@ export class BarcodeApi {
         }
 
         if (request.type != null) {
-            requestQueryParameters['Type'] = ObjectSerializer.serialize(
+            queryParameters['Type'] = ObjectSerializer.serialize(
                 request.type,
                 "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HIBCCode39LIC' | 'HIBCCode128LIC' | 'HIBCAztecLIC' | 'HIBCDataMatrixLIC' | 'HIBCQRLIC' | 'HIBCCode39PAS' | 'HIBCCode128PAS' | 'HIBCAztecPAS' | 'HIBCDataMatrixPAS' | 'HIBCQRPAS' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
         if (request.checksumValidation != null) {
-            requestQueryParameters['ChecksumValidation'] = ObjectSerializer.serialize(
+            queryParameters['ChecksumValidation'] = ObjectSerializer.serialize(
                 request.checksumValidation,
                 "'Default' | 'On' | 'Off'"
             );
         }
 
         if (request.detectEncoding != null) {
-            requestQueryParameters['DetectEncoding'] = ObjectSerializer.serialize(request.detectEncoding, 'boolean');
+            queryParameters['DetectEncoding'] = ObjectSerializer.serialize(request.detectEncoding, 'boolean');
         }
 
         if (request.preset != null) {
-            requestQueryParameters['Preset'] = ObjectSerializer.serialize(
+            queryParameters['Preset'] = ObjectSerializer.serialize(
                 request.preset,
                 "'HighPerformance' | 'NormalQuality' | 'HighQualityDetection' | 'MaxQualityDetection' | 'HighQuality' | 'MaxBarCodes'"
             );
         }
 
         if (request.rectX != null) {
-            requestQueryParameters['RectX'] = ObjectSerializer.serialize(request.rectX, 'number');
+            queryParameters['RectX'] = ObjectSerializer.serialize(request.rectX, 'number');
         }
 
         if (request.rectY != null) {
-            requestQueryParameters['RectY'] = ObjectSerializer.serialize(request.rectY, 'number');
+            queryParameters['RectY'] = ObjectSerializer.serialize(request.rectY, 'number');
         }
 
         if (request.rectWidth != null) {
-            requestQueryParameters['RectWidth'] = ObjectSerializer.serialize(request.rectWidth, 'number');
+            queryParameters['RectWidth'] = ObjectSerializer.serialize(request.rectWidth, 'number');
         }
 
         if (request.rectHeight != null) {
-            requestQueryParameters['RectHeight'] = ObjectSerializer.serialize(request.rectHeight, 'number');
+            queryParameters['RectHeight'] = ObjectSerializer.serialize(request.rectHeight, 'number');
         }
 
         if (request.stripFNC != null) {
-            requestQueryParameters['StripFNC'] = ObjectSerializer.serialize(request.stripFNC, 'boolean');
+            queryParameters['StripFNC'] = ObjectSerializer.serialize(request.stripFNC, 'boolean');
         }
 
         if (request.timeout != null) {
-            requestQueryParameters['Timeout'] = ObjectSerializer.serialize(request.timeout, 'number');
+            queryParameters['Timeout'] = ObjectSerializer.serialize(request.timeout, 'number');
         }
 
         if (request.medianSmoothingWindowSize != null) {
-            requestQueryParameters['MedianSmoothingWindowSize'] = ObjectSerializer.serialize(
+            queryParameters['MedianSmoothingWindowSize'] = ObjectSerializer.serialize(
                 request.medianSmoothingWindowSize,
                 'number'
             );
         }
 
         if (request.allowMedianSmoothing != null) {
-            requestQueryParameters['AllowMedianSmoothing'] = ObjectSerializer.serialize(
+            queryParameters['AllowMedianSmoothing'] = ObjectSerializer.serialize(
                 request.allowMedianSmoothing,
                 'boolean'
             );
         }
 
         if (request.allowComplexBackground != null) {
-            requestQueryParameters['AllowComplexBackground'] = ObjectSerializer.serialize(
+            queryParameters['AllowComplexBackground'] = ObjectSerializer.serialize(
                 request.allowComplexBackground,
                 'boolean'
             );
         }
 
         if (request.allowDatamatrixIndustrialBarcodes != null) {
-            requestQueryParameters['AllowDatamatrixIndustrialBarcodes'] = ObjectSerializer.serialize(
+            queryParameters['AllowDatamatrixIndustrialBarcodes'] = ObjectSerializer.serialize(
                 request.allowDatamatrixIndustrialBarcodes,
                 'boolean'
             );
         }
 
         if (request.allowDecreasedImage != null) {
-            requestQueryParameters['AllowDecreasedImage'] = ObjectSerializer.serialize(
-                request.allowDecreasedImage,
-                'boolean'
-            );
+            queryParameters['AllowDecreasedImage'] = ObjectSerializer.serialize(request.allowDecreasedImage, 'boolean');
         }
 
         if (request.allowDetectScanGap != null) {
-            requestQueryParameters['AllowDetectScanGap'] = ObjectSerializer.serialize(
-                request.allowDetectScanGap,
-                'boolean'
-            );
+            queryParameters['AllowDetectScanGap'] = ObjectSerializer.serialize(request.allowDetectScanGap, 'boolean');
         }
 
         if (request.allowIncorrectBarcodes != null) {
-            requestQueryParameters['AllowIncorrectBarcodes'] = ObjectSerializer.serialize(
+            queryParameters['AllowIncorrectBarcodes'] = ObjectSerializer.serialize(
                 request.allowIncorrectBarcodes,
                 'boolean'
             );
         }
 
         if (request.allowInvertImage != null) {
-            requestQueryParameters['AllowInvertImage'] = ObjectSerializer.serialize(
-                request.allowInvertImage,
-                'boolean'
-            );
+            queryParameters['AllowInvertImage'] = ObjectSerializer.serialize(request.allowInvertImage, 'boolean');
         }
 
         if (request.allowMicroWhiteSpotsRemoving != null) {
-            requestQueryParameters['AllowMicroWhiteSpotsRemoving'] = ObjectSerializer.serialize(
+            queryParameters['AllowMicroWhiteSpotsRemoving'] = ObjectSerializer.serialize(
                 request.allowMicroWhiteSpotsRemoving,
                 'boolean'
             );
         }
 
         if (request.allowOneDFastBarcodesDetector != null) {
-            requestQueryParameters['AllowOneDFastBarcodesDetector'] = ObjectSerializer.serialize(
+            queryParameters['AllowOneDFastBarcodesDetector'] = ObjectSerializer.serialize(
                 request.allowOneDFastBarcodesDetector,
                 'boolean'
             );
         }
 
         if (request.allowOneDWipedBarsRestoration != null) {
-            requestQueryParameters['AllowOneDWipedBarsRestoration'] = ObjectSerializer.serialize(
+            queryParameters['AllowOneDWipedBarsRestoration'] = ObjectSerializer.serialize(
                 request.allowOneDWipedBarsRestoration,
                 'boolean'
             );
         }
 
         if (request.allowQRMicroQrRestoration != null) {
-            requestQueryParameters['AllowQRMicroQrRestoration'] = ObjectSerializer.serialize(
+            queryParameters['AllowQRMicroQrRestoration'] = ObjectSerializer.serialize(
                 request.allowQRMicroQrRestoration,
                 'boolean'
             );
         }
 
         if (request.allowRegularImage != null) {
-            requestQueryParameters['AllowRegularImage'] = ObjectSerializer.serialize(
-                request.allowRegularImage,
-                'boolean'
-            );
+            queryParameters['AllowRegularImage'] = ObjectSerializer.serialize(request.allowRegularImage, 'boolean');
         }
 
         if (request.allowSaltAndPepperFiltering != null) {
-            requestQueryParameters['AllowSaltAndPepperFiltering'] = ObjectSerializer.serialize(
+            queryParameters['AllowSaltAndPepperFiltering'] = ObjectSerializer.serialize(
                 request.allowSaltAndPepperFiltering,
                 'boolean'
             );
         }
 
         if (request.allowWhiteSpotsRemoving != null) {
-            requestQueryParameters['AllowWhiteSpotsRemoving'] = ObjectSerializer.serialize(
+            queryParameters['AllowWhiteSpotsRemoving'] = ObjectSerializer.serialize(
                 request.allowWhiteSpotsRemoving,
                 'boolean'
             );
         }
 
         if (request.checkMore1DVariants != null) {
-            requestQueryParameters['CheckMore1DVariants'] = ObjectSerializer.serialize(
-                request.checkMore1DVariants,
-                'boolean'
-            );
+            queryParameters['CheckMore1DVariants'] = ObjectSerializer.serialize(request.checkMore1DVariants, 'boolean');
         }
 
         if (request.fastScanOnly != null) {
-            requestQueryParameters['FastScanOnly'] = ObjectSerializer.serialize(request.fastScanOnly, 'boolean');
+            queryParameters['FastScanOnly'] = ObjectSerializer.serialize(request.fastScanOnly, 'boolean');
         }
 
         if (request.allowAdditionalRestorations != null) {
-            requestQueryParameters['AllowAdditionalRestorations'] = ObjectSerializer.serialize(
+            queryParameters['AllowAdditionalRestorations'] = ObjectSerializer.serialize(
                 request.allowAdditionalRestorations,
                 'boolean'
             );
         }
 
         if (request.regionLikelihoodThresholdPercent != null) {
-            requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
+            queryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
                 request.regionLikelihoodThresholdPercent,
                 'number'
             );
         }
 
         if (request.scanWindowSizes != null) {
-            requestQueryParameters['ScanWindowSizes'] = ObjectSerializer.serialize(
-                request.scanWindowSizes,
-                'Array<number>'
-            );
+            queryParameters['ScanWindowSizes'] = ObjectSerializer.serialize(request.scanWindowSizes, 'Array<number>');
         }
 
         if (request.similarity != null) {
-            requestQueryParameters['Similarity'] = ObjectSerializer.serialize(request.similarity, 'number');
+            queryParameters['Similarity'] = ObjectSerializer.serialize(request.similarity, 'number');
         }
 
         if (request.skipDiagonalSearch != null) {
-            requestQueryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(
-                request.skipDiagonalSearch,
-                'boolean'
-            );
+            queryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(request.skipDiagonalSearch, 'boolean');
         }
 
         if (request.readTinyBarcodes != null) {
-            requestQueryParameters['ReadTinyBarcodes'] = ObjectSerializer.serialize(
-                request.readTinyBarcodes,
-                'boolean'
-            );
+            queryParameters['ReadTinyBarcodes'] = ObjectSerializer.serialize(request.readTinyBarcodes, 'boolean');
         }
 
         if (request.australianPostEncodingTable != null) {
-            requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
+            queryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
                 request.australianPostEncodingTable,
                 "'CTable' | 'NTable' | 'Other'"
             );
         }
 
         if (request.ignoreEndingFillingPatternsForCTable != null) {
-            requestQueryParameters['IgnoreEndingFillingPatternsForCTable'] = ObjectSerializer.serialize(
+            queryParameters['IgnoreEndingFillingPatternsForCTable'] = ObjectSerializer.serialize(
                 request.ignoreEndingFillingPatternsForCTable,
                 'boolean'
             );
         }
 
         if (request.storage != null) {
-            requestQueryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
+            queryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
         }
 
         if (request.folder != null) {
-            requestQueryParameters['folder'] = ObjectSerializer.serialize(request.folder, 'string');
+            queryParameters['folder'] = ObjectSerializer.serialize(request.folder, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'GET',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -857,240 +824,216 @@ export class BarcodeApi {
         request: PostBarcodeRecognizeFromUrlOrContentRequest
     ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize';
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
-        let requestFormParams: any = {};
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let formParams: any = {};
 
         if (request.type != null) {
-            requestQueryParameters['Type'] = ObjectSerializer.serialize(
+            queryParameters['Type'] = ObjectSerializer.serialize(
                 request.type,
                 "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HIBCCode39LIC' | 'HIBCCode128LIC' | 'HIBCAztecLIC' | 'HIBCDataMatrixLIC' | 'HIBCQRLIC' | 'HIBCCode39PAS' | 'HIBCCode128PAS' | 'HIBCAztecPAS' | 'HIBCDataMatrixPAS' | 'HIBCQRPAS' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
         if (request.checksumValidation != null) {
-            requestQueryParameters['ChecksumValidation'] = ObjectSerializer.serialize(
+            queryParameters['ChecksumValidation'] = ObjectSerializer.serialize(
                 request.checksumValidation,
                 "'Default' | 'On' | 'Off'"
             );
         }
 
         if (request.detectEncoding != null) {
-            requestQueryParameters['DetectEncoding'] = ObjectSerializer.serialize(request.detectEncoding, 'boolean');
+            queryParameters['DetectEncoding'] = ObjectSerializer.serialize(request.detectEncoding, 'boolean');
         }
 
         if (request.preset != null) {
-            requestQueryParameters['Preset'] = ObjectSerializer.serialize(
+            queryParameters['Preset'] = ObjectSerializer.serialize(
                 request.preset,
                 "'HighPerformance' | 'NormalQuality' | 'HighQualityDetection' | 'MaxQualityDetection' | 'HighQuality' | 'MaxBarCodes'"
             );
         }
 
         if (request.rectX != null) {
-            requestQueryParameters['RectX'] = ObjectSerializer.serialize(request.rectX, 'number');
+            queryParameters['RectX'] = ObjectSerializer.serialize(request.rectX, 'number');
         }
 
         if (request.rectY != null) {
-            requestQueryParameters['RectY'] = ObjectSerializer.serialize(request.rectY, 'number');
+            queryParameters['RectY'] = ObjectSerializer.serialize(request.rectY, 'number');
         }
 
         if (request.rectWidth != null) {
-            requestQueryParameters['RectWidth'] = ObjectSerializer.serialize(request.rectWidth, 'number');
+            queryParameters['RectWidth'] = ObjectSerializer.serialize(request.rectWidth, 'number');
         }
 
         if (request.rectHeight != null) {
-            requestQueryParameters['RectHeight'] = ObjectSerializer.serialize(request.rectHeight, 'number');
+            queryParameters['RectHeight'] = ObjectSerializer.serialize(request.rectHeight, 'number');
         }
 
         if (request.stripFNC != null) {
-            requestQueryParameters['StripFNC'] = ObjectSerializer.serialize(request.stripFNC, 'boolean');
+            queryParameters['StripFNC'] = ObjectSerializer.serialize(request.stripFNC, 'boolean');
         }
 
         if (request.timeout != null) {
-            requestQueryParameters['Timeout'] = ObjectSerializer.serialize(request.timeout, 'number');
+            queryParameters['Timeout'] = ObjectSerializer.serialize(request.timeout, 'number');
         }
 
         if (request.medianSmoothingWindowSize != null) {
-            requestQueryParameters['MedianSmoothingWindowSize'] = ObjectSerializer.serialize(
+            queryParameters['MedianSmoothingWindowSize'] = ObjectSerializer.serialize(
                 request.medianSmoothingWindowSize,
                 'number'
             );
         }
 
         if (request.allowMedianSmoothing != null) {
-            requestQueryParameters['AllowMedianSmoothing'] = ObjectSerializer.serialize(
+            queryParameters['AllowMedianSmoothing'] = ObjectSerializer.serialize(
                 request.allowMedianSmoothing,
                 'boolean'
             );
         }
 
         if (request.allowComplexBackground != null) {
-            requestQueryParameters['AllowComplexBackground'] = ObjectSerializer.serialize(
+            queryParameters['AllowComplexBackground'] = ObjectSerializer.serialize(
                 request.allowComplexBackground,
                 'boolean'
             );
         }
 
         if (request.allowDatamatrixIndustrialBarcodes != null) {
-            requestQueryParameters['AllowDatamatrixIndustrialBarcodes'] = ObjectSerializer.serialize(
+            queryParameters['AllowDatamatrixIndustrialBarcodes'] = ObjectSerializer.serialize(
                 request.allowDatamatrixIndustrialBarcodes,
                 'boolean'
             );
         }
 
         if (request.allowDecreasedImage != null) {
-            requestQueryParameters['AllowDecreasedImage'] = ObjectSerializer.serialize(
-                request.allowDecreasedImage,
-                'boolean'
-            );
+            queryParameters['AllowDecreasedImage'] = ObjectSerializer.serialize(request.allowDecreasedImage, 'boolean');
         }
 
         if (request.allowDetectScanGap != null) {
-            requestQueryParameters['AllowDetectScanGap'] = ObjectSerializer.serialize(
-                request.allowDetectScanGap,
-                'boolean'
-            );
+            queryParameters['AllowDetectScanGap'] = ObjectSerializer.serialize(request.allowDetectScanGap, 'boolean');
         }
 
         if (request.allowIncorrectBarcodes != null) {
-            requestQueryParameters['AllowIncorrectBarcodes'] = ObjectSerializer.serialize(
+            queryParameters['AllowIncorrectBarcodes'] = ObjectSerializer.serialize(
                 request.allowIncorrectBarcodes,
                 'boolean'
             );
         }
 
         if (request.allowInvertImage != null) {
-            requestQueryParameters['AllowInvertImage'] = ObjectSerializer.serialize(
-                request.allowInvertImage,
-                'boolean'
-            );
+            queryParameters['AllowInvertImage'] = ObjectSerializer.serialize(request.allowInvertImage, 'boolean');
         }
 
         if (request.allowMicroWhiteSpotsRemoving != null) {
-            requestQueryParameters['AllowMicroWhiteSpotsRemoving'] = ObjectSerializer.serialize(
+            queryParameters['AllowMicroWhiteSpotsRemoving'] = ObjectSerializer.serialize(
                 request.allowMicroWhiteSpotsRemoving,
                 'boolean'
             );
         }
 
         if (request.allowOneDFastBarcodesDetector != null) {
-            requestQueryParameters['AllowOneDFastBarcodesDetector'] = ObjectSerializer.serialize(
+            queryParameters['AllowOneDFastBarcodesDetector'] = ObjectSerializer.serialize(
                 request.allowOneDFastBarcodesDetector,
                 'boolean'
             );
         }
 
         if (request.allowOneDWipedBarsRestoration != null) {
-            requestQueryParameters['AllowOneDWipedBarsRestoration'] = ObjectSerializer.serialize(
+            queryParameters['AllowOneDWipedBarsRestoration'] = ObjectSerializer.serialize(
                 request.allowOneDWipedBarsRestoration,
                 'boolean'
             );
         }
 
         if (request.allowQRMicroQrRestoration != null) {
-            requestQueryParameters['AllowQRMicroQrRestoration'] = ObjectSerializer.serialize(
+            queryParameters['AllowQRMicroQrRestoration'] = ObjectSerializer.serialize(
                 request.allowQRMicroQrRestoration,
                 'boolean'
             );
         }
 
         if (request.allowRegularImage != null) {
-            requestQueryParameters['AllowRegularImage'] = ObjectSerializer.serialize(
-                request.allowRegularImage,
-                'boolean'
-            );
+            queryParameters['AllowRegularImage'] = ObjectSerializer.serialize(request.allowRegularImage, 'boolean');
         }
 
         if (request.allowSaltAndPepperFiltering != null) {
-            requestQueryParameters['AllowSaltAndPepperFiltering'] = ObjectSerializer.serialize(
+            queryParameters['AllowSaltAndPepperFiltering'] = ObjectSerializer.serialize(
                 request.allowSaltAndPepperFiltering,
                 'boolean'
             );
         }
 
         if (request.allowWhiteSpotsRemoving != null) {
-            requestQueryParameters['AllowWhiteSpotsRemoving'] = ObjectSerializer.serialize(
+            queryParameters['AllowWhiteSpotsRemoving'] = ObjectSerializer.serialize(
                 request.allowWhiteSpotsRemoving,
                 'boolean'
             );
         }
 
         if (request.checkMore1DVariants != null) {
-            requestQueryParameters['CheckMore1DVariants'] = ObjectSerializer.serialize(
-                request.checkMore1DVariants,
-                'boolean'
-            );
+            queryParameters['CheckMore1DVariants'] = ObjectSerializer.serialize(request.checkMore1DVariants, 'boolean');
         }
 
         if (request.fastScanOnly != null) {
-            requestQueryParameters['FastScanOnly'] = ObjectSerializer.serialize(request.fastScanOnly, 'boolean');
+            queryParameters['FastScanOnly'] = ObjectSerializer.serialize(request.fastScanOnly, 'boolean');
         }
 
         if (request.allowAdditionalRestorations != null) {
-            requestQueryParameters['AllowAdditionalRestorations'] = ObjectSerializer.serialize(
+            queryParameters['AllowAdditionalRestorations'] = ObjectSerializer.serialize(
                 request.allowAdditionalRestorations,
                 'boolean'
             );
         }
 
         if (request.regionLikelihoodThresholdPercent != null) {
-            requestQueryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
+            queryParameters['RegionLikelihoodThresholdPercent'] = ObjectSerializer.serialize(
                 request.regionLikelihoodThresholdPercent,
                 'number'
             );
         }
 
         if (request.scanWindowSizes != null) {
-            requestQueryParameters['ScanWindowSizes'] = ObjectSerializer.serialize(
-                request.scanWindowSizes,
-                'Array<number>'
-            );
+            queryParameters['ScanWindowSizes'] = ObjectSerializer.serialize(request.scanWindowSizes, 'Array<number>');
         }
 
         if (request.similarity != null) {
-            requestQueryParameters['Similarity'] = ObjectSerializer.serialize(request.similarity, 'number');
+            queryParameters['Similarity'] = ObjectSerializer.serialize(request.similarity, 'number');
         }
 
         if (request.skipDiagonalSearch != null) {
-            requestQueryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(
-                request.skipDiagonalSearch,
-                'boolean'
-            );
+            queryParameters['SkipDiagonalSearch'] = ObjectSerializer.serialize(request.skipDiagonalSearch, 'boolean');
         }
 
         if (request.readTinyBarcodes != null) {
-            requestQueryParameters['ReadTinyBarcodes'] = ObjectSerializer.serialize(
-                request.readTinyBarcodes,
-                'boolean'
-            );
+            queryParameters['ReadTinyBarcodes'] = ObjectSerializer.serialize(request.readTinyBarcodes, 'boolean');
         }
 
         if (request.australianPostEncodingTable != null) {
-            requestQueryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
+            queryParameters['AustralianPostEncodingTable'] = ObjectSerializer.serialize(
                 request.australianPostEncodingTable,
                 "'CTable' | 'NTable' | 'Other'"
             );
         }
 
         if (request.ignoreEndingFillingPatternsForCTable != null) {
-            requestQueryParameters['IgnoreEndingFillingPatternsForCTable'] = ObjectSerializer.serialize(
+            queryParameters['IgnoreEndingFillingPatternsForCTable'] = ObjectSerializer.serialize(
                 request.ignoreEndingFillingPatternsForCTable,
                 'boolean'
             );
         }
 
         if (request.url != null) {
-            requestQueryParameters['url'] = ObjectSerializer.serialize(request.url, 'string');
+            queryParameters['url'] = ObjectSerializer.serialize(request.url, 'string');
         }
 
         if (request.image != null) {
-            requestFormParams['image'] = request.image;
+            formParams['image'] = request.image;
         }
 
         let requestOptions: HttpOptions = {
             method: 'POST',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
             body: request.image,
         };
@@ -1114,8 +1057,8 @@ export class BarcodeApi {
         request: PostGenerateMultipleRequest
     ): Promise<{ response: HttpResponse; body: Buffer }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generateMultiple';
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.generatorParamsList' is not null or undefined
         if (request.generatorParamsList == null) {
@@ -1125,13 +1068,13 @@ export class BarcodeApi {
         }
 
         if (request.format != null) {
-            requestQueryParameters['format'] = ObjectSerializer.serialize(request.format, 'string');
+            queryParameters['format'] = ObjectSerializer.serialize(request.format, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'POST',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
             body: ObjectSerializer.serialize(request.generatorParamsList, 'GeneratorParamsList'),
             json: true,
@@ -1159,8 +1102,8 @@ export class BarcodeApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/{name}/generate'.replace('{' + 'name' + '}', String(request.name));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.name' is not null or undefined
         if (request.name == null) {
@@ -1184,191 +1127,182 @@ export class BarcodeApi {
         }
 
         if (request.type != null) {
-            requestQueryParameters['Type'] = ObjectSerializer.serialize(
+            queryParameters['Type'] = ObjectSerializer.serialize(
                 request.type,
                 "'Codabar' | 'Code11' | 'Code39Standard' | 'Code39Extended' | 'Code93Standard' | 'Code93Extended' | 'Code128' | 'GS1Code128' | 'EAN8' | 'EAN13' | 'EAN14' | 'SCC14' | 'SSCC18' | 'UPCA' | 'UPCE' | 'ISBN' | 'ISSN' | 'ISMN' | 'Standard2of5' | 'Interleaved2of5' | 'Matrix2of5' | 'ItalianPost25' | 'IATA2of5' | 'ITF14' | 'ITF6' | 'MSI' | 'VIN' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'OPC' | 'PZN' | 'Code16K' | 'Pharmacode' | 'DataMatrix' | 'QR' | 'Aztec' | 'Pdf417' | 'MacroPdf417' | 'AustraliaPost' | 'Postnet' | 'Planet' | 'OneCode' | 'RM4SCC' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SingaporePost' | 'GS1DataMatrix' | 'AustralianPosteParcel' | 'SwissPostParcel' | 'PatchCode' | 'DatabarExpandedStacked' | 'DatabarStacked' | 'DatabarStackedOmniDirectional' | 'MicroPdf417' | 'GS1QR' | 'MaxiCode' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'UpcaGs1Code128Coupon' | 'UpcaGs1DatabarCoupon' | 'CodablockF' | 'GS1CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
         if (request.text != null) {
-            requestQueryParameters['Text'] = ObjectSerializer.serialize(request.text, 'string');
+            queryParameters['Text'] = ObjectSerializer.serialize(request.text, 'string');
         }
 
         if (request.twoDDisplayText != null) {
-            requestQueryParameters['TwoDDisplayText'] = ObjectSerializer.serialize(request.twoDDisplayText, 'string');
+            queryParameters['TwoDDisplayText'] = ObjectSerializer.serialize(request.twoDDisplayText, 'string');
         }
 
         if (request.textLocation != null) {
-            requestQueryParameters['TextLocation'] = ObjectSerializer.serialize(
+            queryParameters['TextLocation'] = ObjectSerializer.serialize(
                 request.textLocation,
                 "'Below' | 'Above' | 'None'"
             );
         }
 
         if (request.textAlignment != null) {
-            requestQueryParameters['TextAlignment'] = ObjectSerializer.serialize(
+            queryParameters['TextAlignment'] = ObjectSerializer.serialize(
                 request.textAlignment,
                 "'Left' | 'Center' | 'Right'"
             );
         }
 
         if (request.textColor != null) {
-            requestQueryParameters['TextColor'] = ObjectSerializer.serialize(request.textColor, 'string');
+            queryParameters['TextColor'] = ObjectSerializer.serialize(request.textColor, 'string');
         }
 
         if (request.fontSizeMode != null) {
-            requestQueryParameters['FontSizeMode'] = ObjectSerializer.serialize(
-                request.fontSizeMode,
-                "'Auto' | 'Manual'"
-            );
+            queryParameters['FontSizeMode'] = ObjectSerializer.serialize(request.fontSizeMode, "'Auto' | 'Manual'");
         }
 
         if (request.noWrap != null) {
-            requestQueryParameters['NoWrap'] = ObjectSerializer.serialize(request.noWrap, 'boolean');
+            queryParameters['NoWrap'] = ObjectSerializer.serialize(request.noWrap, 'boolean');
         }
 
         if (request.resolution != null) {
-            requestQueryParameters['Resolution'] = ObjectSerializer.serialize(request.resolution, 'number');
+            queryParameters['Resolution'] = ObjectSerializer.serialize(request.resolution, 'number');
         }
 
         if (request.resolutionX != null) {
-            requestQueryParameters['ResolutionX'] = ObjectSerializer.serialize(request.resolutionX, 'number');
+            queryParameters['ResolutionX'] = ObjectSerializer.serialize(request.resolutionX, 'number');
         }
 
         if (request.resolutionY != null) {
-            requestQueryParameters['ResolutionY'] = ObjectSerializer.serialize(request.resolutionY, 'number');
+            queryParameters['ResolutionY'] = ObjectSerializer.serialize(request.resolutionY, 'number');
         }
 
         if (request.dimensionX != null) {
-            requestQueryParameters['DimensionX'] = ObjectSerializer.serialize(request.dimensionX, 'number');
+            queryParameters['DimensionX'] = ObjectSerializer.serialize(request.dimensionX, 'number');
         }
 
         if (request.textSpace != null) {
-            requestQueryParameters['TextSpace'] = ObjectSerializer.serialize(request.textSpace, 'number');
+            queryParameters['TextSpace'] = ObjectSerializer.serialize(request.textSpace, 'number');
         }
 
         if (request.units != null) {
-            requestQueryParameters['Units'] = ObjectSerializer.serialize(
+            queryParameters['Units'] = ObjectSerializer.serialize(
                 request.units,
                 "'Pixel' | 'Point' | 'Inch' | 'Millimeter'"
             );
         }
 
         if (request.sizeMode != null) {
-            requestQueryParameters['SizeMode'] = ObjectSerializer.serialize(
+            queryParameters['SizeMode'] = ObjectSerializer.serialize(
                 request.sizeMode,
                 "'None' | 'Nearest' | 'Interpolation'"
             );
         }
 
         if (request.barHeight != null) {
-            requestQueryParameters['BarHeight'] = ObjectSerializer.serialize(request.barHeight, 'number');
+            queryParameters['BarHeight'] = ObjectSerializer.serialize(request.barHeight, 'number');
         }
 
         if (request.imageHeight != null) {
-            requestQueryParameters['ImageHeight'] = ObjectSerializer.serialize(request.imageHeight, 'number');
+            queryParameters['ImageHeight'] = ObjectSerializer.serialize(request.imageHeight, 'number');
         }
 
         if (request.imageWidth != null) {
-            requestQueryParameters['ImageWidth'] = ObjectSerializer.serialize(request.imageWidth, 'number');
+            queryParameters['ImageWidth'] = ObjectSerializer.serialize(request.imageWidth, 'number');
         }
 
         if (request.rotationAngle != null) {
-            requestQueryParameters['RotationAngle'] = ObjectSerializer.serialize(request.rotationAngle, 'number');
+            queryParameters['RotationAngle'] = ObjectSerializer.serialize(request.rotationAngle, 'number');
         }
 
         if (request.backColor != null) {
-            requestQueryParameters['BackColor'] = ObjectSerializer.serialize(request.backColor, 'string');
+            queryParameters['BackColor'] = ObjectSerializer.serialize(request.backColor, 'string');
         }
 
         if (request.barColor != null) {
-            requestQueryParameters['BarColor'] = ObjectSerializer.serialize(request.barColor, 'string');
+            queryParameters['BarColor'] = ObjectSerializer.serialize(request.barColor, 'string');
         }
 
         if (request.borderColor != null) {
-            requestQueryParameters['BorderColor'] = ObjectSerializer.serialize(request.borderColor, 'string');
+            queryParameters['BorderColor'] = ObjectSerializer.serialize(request.borderColor, 'string');
         }
 
         if (request.borderWidth != null) {
-            requestQueryParameters['BorderWidth'] = ObjectSerializer.serialize(request.borderWidth, 'number');
+            queryParameters['BorderWidth'] = ObjectSerializer.serialize(request.borderWidth, 'number');
         }
 
         if (request.borderDashStyle != null) {
-            requestQueryParameters['BorderDashStyle'] = ObjectSerializer.serialize(
+            queryParameters['BorderDashStyle'] = ObjectSerializer.serialize(
                 request.borderDashStyle,
                 "'Solid' | 'Dash' | 'Dot' | 'DashDot' | 'DashDotDot'"
             );
         }
 
         if (request.borderVisible != null) {
-            requestQueryParameters['BorderVisible'] = ObjectSerializer.serialize(request.borderVisible, 'boolean');
+            queryParameters['BorderVisible'] = ObjectSerializer.serialize(request.borderVisible, 'boolean');
         }
 
         if (request.enableChecksum != null) {
-            requestQueryParameters['EnableChecksum'] = ObjectSerializer.serialize(
+            queryParameters['EnableChecksum'] = ObjectSerializer.serialize(
                 request.enableChecksum,
                 "'Default' | 'Yes' | 'No'"
             );
         }
 
         if (request.enableEscape != null) {
-            requestQueryParameters['EnableEscape'] = ObjectSerializer.serialize(request.enableEscape, 'boolean');
+            queryParameters['EnableEscape'] = ObjectSerializer.serialize(request.enableEscape, 'boolean');
         }
 
         if (request.filledBars != null) {
-            requestQueryParameters['FilledBars'] = ObjectSerializer.serialize(request.filledBars, 'boolean');
+            queryParameters['FilledBars'] = ObjectSerializer.serialize(request.filledBars, 'boolean');
         }
 
         if (request.alwaysShowChecksum != null) {
-            requestQueryParameters['AlwaysShowChecksum'] = ObjectSerializer.serialize(
-                request.alwaysShowChecksum,
-                'boolean'
-            );
+            queryParameters['AlwaysShowChecksum'] = ObjectSerializer.serialize(request.alwaysShowChecksum, 'boolean');
         }
 
         if (request.wideNarrowRatio != null) {
-            requestQueryParameters['WideNarrowRatio'] = ObjectSerializer.serialize(request.wideNarrowRatio, 'number');
+            queryParameters['WideNarrowRatio'] = ObjectSerializer.serialize(request.wideNarrowRatio, 'number');
         }
 
         if (request.validateText != null) {
-            requestQueryParameters['ValidateText'] = ObjectSerializer.serialize(request.validateText, 'boolean');
+            queryParameters['ValidateText'] = ObjectSerializer.serialize(request.validateText, 'boolean');
         }
 
         if (request.supplementData != null) {
-            requestQueryParameters['SupplementData'] = ObjectSerializer.serialize(request.supplementData, 'string');
+            queryParameters['SupplementData'] = ObjectSerializer.serialize(request.supplementData, 'string');
         }
 
         if (request.supplementSpace != null) {
-            requestQueryParameters['SupplementSpace'] = ObjectSerializer.serialize(request.supplementSpace, 'number');
+            queryParameters['SupplementSpace'] = ObjectSerializer.serialize(request.supplementSpace, 'number');
         }
 
         if (request.barWidthReduction != null) {
-            requestQueryParameters['BarWidthReduction'] = ObjectSerializer.serialize(
-                request.barWidthReduction,
-                'number'
-            );
+            queryParameters['BarWidthReduction'] = ObjectSerializer.serialize(request.barWidthReduction, 'number');
         }
 
         if (request.useAntiAlias != null) {
-            requestQueryParameters['UseAntiAlias'] = ObjectSerializer.serialize(request.useAntiAlias, 'boolean');
+            queryParameters['UseAntiAlias'] = ObjectSerializer.serialize(request.useAntiAlias, 'boolean');
         }
 
         if (request.storage != null) {
-            requestQueryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
+            queryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
         }
 
         if (request.folder != null) {
-            requestQueryParameters['folder'] = ObjectSerializer.serialize(request.folder, 'string');
+            queryParameters['folder'] = ObjectSerializer.serialize(request.folder, 'string');
         }
 
         if (request.format != null) {
-            requestQueryParameters['format'] = ObjectSerializer.serialize(request.format, 'string');
+            queryParameters['format'] = ObjectSerializer.serialize(request.format, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'PUT',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -1393,8 +1327,8 @@ export class BarcodeApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/{name}/recognize'.replace('{' + 'name' + '}', String(request.name));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.name' is not null or undefined
         if (request.name == null) {
@@ -1411,24 +1345,24 @@ export class BarcodeApi {
         }
 
         if (request.type != null) {
-            requestQueryParameters['type'] = ObjectSerializer.serialize(
+            queryParameters['type'] = ObjectSerializer.serialize(
                 request.type,
                 "'all' | 'AustraliaPost' | 'Aztec' | 'ISBN' | 'Codabar' | 'Code11' | 'Code128' | 'GS1Code128' | 'Code39Extended' | 'Code39Standard' | 'Code93Extended' | 'Code93Standard' | 'DataMatrix' | 'DeutschePostIdentcode' | 'DeutschePostLeitcode' | 'EAN13' | 'EAN14' | 'EAN8' | 'IATA2of5' | 'Interleaved2of5' | 'ISSN' | 'ISMN' | 'ItalianPost25' | 'ITF14' | 'ITF6' | 'MacroPdf417' | 'Matrix2of5' | 'MSI' | 'OneCode' | 'OPC' | 'PatchCode' | 'Pdf417' | 'MicroPdf417' | 'Planet' | 'Postnet' | 'PZN' | 'QR' | 'MicroQR' | 'RM4SCC' | 'SCC14' | 'SSCC18' | 'Standard2of5' | 'Supplement' | 'UPCA' | 'UPCE' | 'VIN' | 'Pharmacode' | 'GS1DataMatrix' | 'DatabarOmniDirectional' | 'DatabarTruncated' | 'DatabarLimited' | 'DatabarExpanded' | 'SwissPostParcel' | 'AustralianPosteParcel' | 'Code16K' | 'DatabarStackedOmniDirectional' | 'DatabarStacked' | 'DatabarExpandedStacked' | 'CompactPdf417' | 'GS1QR' | 'MaxiCode' | 'MicrE13B' | 'Code32' | 'DataLogic2of5' | 'DotCode' | 'DutchKIX' | 'CodablockF' | 'Mailmark' | 'GS1DotCode' | 'HIBCCode39LIC' | 'HIBCCode128LIC' | 'HIBCAztecLIC' | 'HIBCDataMatrixLIC' | 'HIBCQRLIC' | 'HIBCCode39PAS' | 'HIBCCode128PAS' | 'HIBCAztecPAS' | 'HIBCDataMatrixPAS' | 'HIBCQRPAS' | 'HanXin' | 'GS1HanXin'"
             );
         }
 
         if (request.storage != null) {
-            requestQueryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
+            queryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
         }
 
         if (request.folder != null) {
-            requestQueryParameters['folder'] = ObjectSerializer.serialize(request.folder, 'string');
+            queryParameters['folder'] = ObjectSerializer.serialize(request.folder, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'PUT',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
             body: ObjectSerializer.serialize(request.readerParams, 'ReaderParams'),
             json: true,
@@ -1455,8 +1389,8 @@ export class BarcodeApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/{name}/generateMultiple'.replace('{' + 'name' + '}', String(request.name));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.name' is not null or undefined
         if (request.name == null) {
@@ -1471,21 +1405,21 @@ export class BarcodeApi {
         }
 
         if (request.format != null) {
-            requestQueryParameters['format'] = ObjectSerializer.serialize(request.format, 'string');
+            queryParameters['format'] = ObjectSerializer.serialize(request.format, 'string');
         }
 
         if (request.folder != null) {
-            requestQueryParameters['folder'] = ObjectSerializer.serialize(request.folder, 'string');
+            queryParameters['folder'] = ObjectSerializer.serialize(request.folder, 'string');
         }
 
         if (request.storage != null) {
-            requestQueryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
+            queryParameters['storage'] = ObjectSerializer.serialize(request.storage, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'PUT',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
             body: ObjectSerializer.serialize(request.generatorParamsList, 'GeneratorParamsList'),
             json: true,
@@ -1524,8 +1458,8 @@ export class FileApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/file/copy/{srcPath}'.replace('{' + 'srcPath' + '}', String(request.srcPath));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.srcPath' is not null or undefined
         if (request.srcPath == null) {
@@ -1538,25 +1472,25 @@ export class FileApi {
         }
 
         if (request.destPath != null) {
-            requestQueryParameters['destPath'] = ObjectSerializer.serialize(request.destPath, 'string');
+            queryParameters['destPath'] = ObjectSerializer.serialize(request.destPath, 'string');
         }
 
         if (request.srcStorageName != null) {
-            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(request.srcStorageName, 'string');
+            queryParameters['srcStorageName'] = ObjectSerializer.serialize(request.srcStorageName, 'string');
         }
 
         if (request.destStorageName != null) {
-            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(request.destStorageName, 'string');
+            queryParameters['destStorageName'] = ObjectSerializer.serialize(request.destStorageName, 'string');
         }
 
         if (request.versionId != null) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
+            queryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'PUT',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -1576,8 +1510,8 @@ export class FileApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', String(request.path));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.path' is not null or undefined
         if (request.path == null) {
@@ -1585,17 +1519,17 @@ export class FileApi {
         }
 
         if (request.storageName != null) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
+            queryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
         }
 
         if (request.versionId != null) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
+            queryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'DELETE',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -1615,8 +1549,8 @@ export class FileApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', String(request.path));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.path' is not null or undefined
         if (request.path == null) {
@@ -1624,17 +1558,17 @@ export class FileApi {
         }
 
         if (request.storageName != null) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
+            queryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
         }
 
         if (request.versionId != null) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
+            queryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'GET',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
             encoding: null,
         };
@@ -1658,8 +1592,8 @@ export class FileApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/file/move/{srcPath}'.replace('{' + 'srcPath' + '}', String(request.srcPath));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.srcPath' is not null or undefined
         if (request.srcPath == null) {
@@ -1672,25 +1606,25 @@ export class FileApi {
         }
 
         if (request.destPath != null) {
-            requestQueryParameters['destPath'] = ObjectSerializer.serialize(request.destPath, 'string');
+            queryParameters['destPath'] = ObjectSerializer.serialize(request.destPath, 'string');
         }
 
         if (request.srcStorageName != null) {
-            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(request.srcStorageName, 'string');
+            queryParameters['srcStorageName'] = ObjectSerializer.serialize(request.srcStorageName, 'string');
         }
 
         if (request.destStorageName != null) {
-            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(request.destStorageName, 'string');
+            queryParameters['destStorageName'] = ObjectSerializer.serialize(request.destStorageName, 'string');
         }
 
         if (request.versionId != null) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
+            queryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'PUT',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -1710,9 +1644,9 @@ export class FileApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', String(request.path));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
-        let requestFormParams: any = {};
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let formParams: any = {};
 
         // verify required parameter 'request.path' is not null or undefined
         if (request.path == null) {
@@ -1725,17 +1659,17 @@ export class FileApi {
         }
 
         if (request.storageName != null) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
+            queryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
         }
 
         if (request.file != null) {
-            requestFormParams['File'] = request.file;
+            formParams['File'] = request.file;
         }
 
         let requestOptions: HttpOptions = {
             method: 'PUT',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
             body: request.file,
         };
@@ -1773,8 +1707,8 @@ export class FolderApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/folder/copy/{srcPath}'.replace('{' + 'srcPath' + '}', String(request.srcPath));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.srcPath' is not null or undefined
         if (request.srcPath == null) {
@@ -1787,21 +1721,21 @@ export class FolderApi {
         }
 
         if (request.destPath != null) {
-            requestQueryParameters['destPath'] = ObjectSerializer.serialize(request.destPath, 'string');
+            queryParameters['destPath'] = ObjectSerializer.serialize(request.destPath, 'string');
         }
 
         if (request.srcStorageName != null) {
-            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(request.srcStorageName, 'string');
+            queryParameters['srcStorageName'] = ObjectSerializer.serialize(request.srcStorageName, 'string');
         }
 
         if (request.destStorageName != null) {
-            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(request.destStorageName, 'string');
+            queryParameters['destStorageName'] = ObjectSerializer.serialize(request.destStorageName, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'PUT',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -1821,8 +1755,8 @@ export class FolderApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', String(request.path));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.path' is not null or undefined
         if (request.path == null) {
@@ -1830,13 +1764,13 @@ export class FolderApi {
         }
 
         if (request.storageName != null) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
+            queryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'PUT',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -1856,8 +1790,8 @@ export class FolderApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', String(request.path));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.path' is not null or undefined
         if (request.path == null) {
@@ -1865,17 +1799,17 @@ export class FolderApi {
         }
 
         if (request.storageName != null) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
+            queryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
         }
 
         if (request.recursive != null) {
-            requestQueryParameters['recursive'] = ObjectSerializer.serialize(request.recursive, 'boolean');
+            queryParameters['recursive'] = ObjectSerializer.serialize(request.recursive, 'boolean');
         }
 
         let requestOptions: HttpOptions = {
             method: 'DELETE',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -1895,8 +1829,8 @@ export class FolderApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', String(request.path));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.path' is not null or undefined
         if (request.path == null) {
@@ -1904,13 +1838,13 @@ export class FolderApi {
         }
 
         if (request.storageName != null) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
+            queryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'GET',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -1933,8 +1867,8 @@ export class FolderApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/folder/move/{srcPath}'.replace('{' + 'srcPath' + '}', String(request.srcPath));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.srcPath' is not null or undefined
         if (request.srcPath == null) {
@@ -1947,21 +1881,21 @@ export class FolderApi {
         }
 
         if (request.destPath != null) {
-            requestQueryParameters['destPath'] = ObjectSerializer.serialize(request.destPath, 'string');
+            queryParameters['destPath'] = ObjectSerializer.serialize(request.destPath, 'string');
         }
 
         if (request.srcStorageName != null) {
-            requestQueryParameters['srcStorageName'] = ObjectSerializer.serialize(request.srcStorageName, 'string');
+            queryParameters['srcStorageName'] = ObjectSerializer.serialize(request.srcStorageName, 'string');
         }
 
         if (request.destStorageName != null) {
-            requestQueryParameters['destStorageName'] = ObjectSerializer.serialize(request.destStorageName, 'string');
+            queryParameters['destStorageName'] = ObjectSerializer.serialize(request.destStorageName, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'PUT',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -1993,17 +1927,17 @@ export class StorageApi {
      */
     public async getDiscUsage(request: GetDiscUsageRequest): Promise<{ response: HttpResponse; body: DiscUsage }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/storage/disc';
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         if (request.storageName != null) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
+            queryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'GET',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -2028,8 +1962,8 @@ export class StorageApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/version/{path}'.replace('{' + 'path' + '}', String(request.path));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.path' is not null or undefined
         if (request.path == null) {
@@ -2037,13 +1971,13 @@ export class StorageApi {
         }
 
         if (request.storageName != null) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
+            queryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'GET',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -2066,8 +2000,8 @@ export class StorageApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/exist/{path}'.replace('{' + 'path' + '}', String(request.path));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.path' is not null or undefined
         if (request.path == null) {
@@ -2075,17 +2009,17 @@ export class StorageApi {
         }
 
         if (request.storageName != null) {
-            requestQueryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
+            queryParameters['storageName'] = ObjectSerializer.serialize(request.storageName, 'string');
         }
 
         if (request.versionId != null) {
-            requestQueryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
+            queryParameters['versionId'] = ObjectSerializer.serialize(request.versionId, 'string');
         }
 
         let requestOptions: HttpOptions = {
             method: 'GET',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
@@ -2108,8 +2042,8 @@ export class StorageApi {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/storage/{storageName}/exist'.replace('{' + 'storageName' + '}', String(request.storageName));
-        let requestQueryParameters: any = {};
-        let requestHeaderParams: any = (Object as any).assign({}, this.defaultHeaders);
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.storageName' is not null or undefined
         if (request.storageName == null) {
@@ -2118,8 +2052,8 @@ export class StorageApi {
 
         let requestOptions: HttpOptions = {
             method: 'GET',
-            qs: requestQueryParameters,
-            headers: requestHeaderParams,
+            qs: queryParameters,
+            headers: headerParams,
             uri: requestPath,
         };
 
