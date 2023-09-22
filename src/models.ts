@@ -134,6 +134,15 @@ export enum AvailableGraphicsUnit {
 }
 
 /**
+ *
+ */
+export enum AztecEncodeMode {
+    Auto = 'Auto',
+    Bytes = 'Bytes',
+    ExtendedCodetext = 'ExtendedCodetext',
+}
+
+/**
  * Aztec parameters.
  */
 export class AztecParams {
@@ -150,9 +159,25 @@ export class AztecParams {
      */
     'symbolMode'?: AztecSymbolMode;
     /**
-     * Sets the encoding of codetext.
+     * @deprecated This property is obsolete and will be removed in future releases. Unicode symbols detection and encoding will be processed in Auto mode with Extended Channel Interpretation charset designator. Using of own encodings requires manual CodeText encoding into byte[] array.  Sets the encoding of codetext.
      */
     'textEncoding'?: string;
+    /**
+     * Encoding mode for Aztec barcodes. Default value: Auto
+     */
+    'encodeMode'?: AztecEncodeMode;
+    /**
+     * Identifies ECI encoding. Used when AztecEncodeMode is Auto. Default value: ISO-8859-1.
+     */
+    'eCIEncoding'?: ECIEncodings;
+    /**
+     * Used to instruct the reader to interpret the data contained within the symbol as programming for reader initialization.
+     */
+    'isReaderInitialization'?: boolean;
+    /**
+     * Gets or sets layers count of Aztec symbol. Layers count should be in range from 1 to 3 for Compact mode and in range from 1 to 32 for Full Range mode. Default value: 0 (auto).
+     */
+    'layersCount'?: number;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -174,6 +199,26 @@ export class AztecParams {
             name: 'textEncoding',
             baseName: 'TextEncoding',
             type: 'string',
+        },
+        {
+            name: 'encodeMode',
+            baseName: 'EncodeMode',
+            type: 'AztecEncodeMode',
+        },
+        {
+            name: 'eCIEncoding',
+            baseName: 'ECIEncoding',
+            type: 'ECIEncodings',
+        },
+        {
+            name: 'isReaderInitialization',
+            baseName: 'IsReaderInitialization',
+            type: 'boolean',
+        },
+        {
+            name: 'layersCount',
+            baseName: 'LayersCount',
+            type: 'number',
         },
     ];
 
@@ -677,7 +722,7 @@ export class DataMatrixParams {
      */
     'aspectRatio'?: number;
     /**
-     * Encoding of codetext.
+     * @deprecated This property is obsolete and will be removed in future releases. Unicode symbols detection and encoding will be processed in Auto mode with Extended Channel Interpretation charset designator. Using of own encodings requires manual CodeText encoding into byte[] array.  Sets the encoding of codetext.
      */
     'textEncoding'?: string;
     /**
@@ -915,6 +960,8 @@ export enum DecodeBarcodeType {
     HIBCQRPAS = 'HIBCQRPAS',
     HanXin = 'HanXin',
     GS1HanXin = 'GS1HanXin',
+    GS1Aztec = 'GS1Aztec',
+    GS1CompositeBar = 'GS1CompositeBar',
 }
 
 /**
@@ -1140,6 +1187,7 @@ export enum EncodeBarcodeType {
     GS1DotCode = 'GS1DotCode',
     HanXin = 'HanXin',
     GS1HanXin = 'GS1HanXin',
+    GS1Aztec = 'GS1Aztec',
 }
 
 /**
@@ -2360,7 +2408,7 @@ export class Pdf417Params {
      */
     'aspectRatio'?: number;
     /**
-     * Encoding of codetext.
+     * @deprecated This property is obsolete and will be removed in future releases. Unicode symbols detection and encoding will be processed in Auto mode with Extended Channel Interpretation charset designator. Using of own encodings requires manual CodeText encoding into byte[] array.  Sets the encoding of codetext.
      */
     'textEncoding'?: string;
     /**
@@ -2678,7 +2726,7 @@ export class QrParams {
      */
     'aspectRatio'?: number;
     /**
-     * Encoding of codetext.
+     * @deprecated This property is obsolete and will be removed in future releases. Unicode symbols detection and encoding will be processed in Auto mode with Extended Channel Interpretation charset designator. Using of own encodings requires manual CodeText encoding into byte[] array.  Sets the encoding of codetext.
      */
     'textEncoding'?: string;
     /**
@@ -3433,7 +3481,8 @@ export class GetBarcodeGenerateRequest {
         | 'Mailmark'
         | 'GS1DotCode'
         | 'HanXin'
-        | 'GS1HanXin';
+        | 'GS1HanXin'
+        | 'GS1Aztec';
     /**
      * Text to encode.
      */
@@ -3686,7 +3735,8 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'Mailmark'
             | 'GS1DotCode'
             | 'HanXin'
-            | 'GS1HanXin',
+            | 'GS1HanXin'
+            | 'GS1Aztec',
         text: string
     ) {
         this.type = type;
@@ -3786,7 +3836,9 @@ export class GetBarcodeRecognizeRequest {
         | 'HIBCDataMatrixPAS'
         | 'HIBCQRPAS'
         | 'HanXin'
-        | 'GS1HanXin';
+        | 'GS1HanXin'
+        | 'GS1Aztec'
+        | 'GS1CompositeBar';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -4065,7 +4117,9 @@ export class PostBarcodeRecognizeFromUrlOrContentRequest {
         | 'HIBCDataMatrixPAS'
         | 'HIBCQRPAS'
         | 'HanXin'
-        | 'GS1HanXin';
+        | 'GS1HanXin'
+        | 'GS1Aztec'
+        | 'GS1CompositeBar';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -4351,7 +4405,8 @@ export class PutBarcodeGenerateFileRequest {
         | 'Mailmark'
         | 'GS1DotCode'
         | 'HanXin'
-        | 'GS1HanXin';
+        | 'GS1HanXin'
+        | 'GS1Aztec';
     /**
      * Text to encode.
      */
@@ -4615,7 +4670,8 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'Mailmark'
             | 'GS1DotCode'
             | 'HanXin'
-            | 'GS1HanXin',
+            | 'GS1HanXin'
+            | 'GS1Aztec',
         text: string
     ) {
         this.name = name;
@@ -4720,7 +4776,9 @@ export class PutBarcodeRecognizeFromBodyRequest {
         | 'HIBCDataMatrixPAS'
         | 'HIBCQRPAS'
         | 'HanXin'
-        | 'GS1HanXin';
+        | 'GS1HanXin'
+        | 'GS1Aztec'
+        | 'GS1CompositeBar';
     /**
      * The storage name
      */

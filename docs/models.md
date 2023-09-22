@@ -63,6 +63,18 @@ enum AvailableGraphicsUnit {
 }
 ```
 
+## AztecEncodeMode
+
+
+
+```ts
+enum AztecEncodeMode {
+    Auto = 'Auto',
+    Bytes = 'Bytes',
+    ExtendedCodetext = 'ExtendedCodetext'
+}
+```
+
 ## AztecParams
 
 Aztec parameters.
@@ -86,9 +98,29 @@ interface AztecParams {
     symbolMode?: AztecSymbolMode;
 
     /**
-     * Sets the encoding of codetext.
+     * DEPRECATED: This property is obsolete and will be removed in future releases. Unicode symbols detection and encoding will be processed in Auto mode with Extended Channel Interpretation charset designator. Using of own encodings requires manual CodeText encoding into byte[] array.  Sets the encoding of codetext.
      */
     textEncoding?: string;
+
+    /**
+     * Encoding mode for Aztec barcodes. Default value: Auto
+     */
+    encodeMode?: AztecEncodeMode;
+
+    /**
+     * Identifies ECI encoding. Used when AztecEncodeMode is Auto. Default value: ISO-8859-1.
+     */
+    eCIEncoding?: ECIEncodings;
+
+    /**
+     * Used to instruct the reader to interpret the data contained within the symbol as programming for reader initialization.
+     */
+    isReaderInitialization?: boolean;
+
+    /**
+     * Gets or sets layers count of Aztec symbol. Layers count should be in range from 1 to 3 for Compact mode and in range from 1 to 32 for Full Range mode. Default value: 0 (auto).
+     */
+    layersCount?: number;
 }
 ```
 
@@ -476,7 +508,7 @@ interface DataMatrixParams {
     aspectRatio?: number;
 
     /**
-     * Encoding of codetext.
+     * DEPRECATED: This property is obsolete and will be removed in future releases. Unicode symbols detection and encoding will be processed in Auto mode with Extended Channel Interpretation charset designator. Using of own encodings requires manual CodeText encoding into byte[] array.  Sets the encoding of codetext.
      */
     textEncoding?: string;
 
@@ -678,7 +710,9 @@ enum DecodeBarcodeType {
     HIBCDataMatrixPAS = 'HIBCDataMatrixPAS',
     HIBCQRPAS = 'HIBCQRPAS',
     HanXin = 'HanXin',
-    GS1HanXin = 'GS1HanXin'
+    GS1HanXin = 'GS1HanXin',
+    GS1Aztec = 'GS1Aztec',
+    GS1CompositeBar = 'GS1CompositeBar'
 }
 ```
 
@@ -875,7 +909,8 @@ enum EncodeBarcodeType {
     Mailmark = 'Mailmark',
     GS1DotCode = 'GS1DotCode',
     HanXin = 'HanXin',
-    GS1HanXin = 'GS1HanXin'
+    GS1HanXin = 'GS1HanXin',
+    GS1Aztec = 'GS1Aztec'
 }
 ```
 
@@ -1724,7 +1759,7 @@ interface Pdf417Params {
     aspectRatio?: number;
 
     /**
-     * Encoding of codetext.
+     * DEPRECATED: This property is obsolete and will be removed in future releases. Unicode symbols detection and encoding will be processed in Auto mode with Extended Channel Interpretation charset designator. Using of own encodings requires manual CodeText encoding into byte[] array.  Sets the encoding of codetext.
      */
     textEncoding?: string;
 
@@ -1961,7 +1996,7 @@ interface QrParams {
     aspectRatio?: number;
 
     /**
-     * Encoding of codetext.
+     * DEPRECATED: This property is obsolete and will be removed in future releases. Unicode symbols detection and encoding will be processed in Auto mode with Extended Channel Interpretation charset designator. Using of own encodings requires manual CodeText encoding into byte[] array.  Sets the encoding of codetext.
      */
     textEncoding?: string;
 
