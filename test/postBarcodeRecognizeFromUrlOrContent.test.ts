@@ -4,7 +4,7 @@ import assert from 'assert';
 
 import * as Barcode from '../src/api';
 import { LoadTestConfiguration } from './helpers';
-import { HttpRejectType } from '../src';
+import { HttpRejectType } from '../src/httpClient';
 
 describe('postBarcodeRecognizeFromUrlOrContent', () => {
     jest.setTimeout(60000);
