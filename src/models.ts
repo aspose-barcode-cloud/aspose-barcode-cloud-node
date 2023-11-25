@@ -503,7 +503,7 @@ export class CodablockParams {
 }
 
 /**
- *
+ * DEPRECATED. This enum will be removed in future releases Function codewords for Code 128 emulation. Applied for MicroPDF417 only. Ignored for PDF417 and MacroPDF417 barcodes.
  */
 export enum Code128Emulation {
     None = 'None',
@@ -962,6 +962,7 @@ export enum DecodeBarcodeType {
     GS1HanXin = 'GS1HanXin',
     GS1Aztec = 'GS1Aztec',
     GS1CompositeBar = 'GS1CompositeBar',
+    GS1MicroPdf417 = 'GS1MicroPdf417',
 }
 
 /**
@@ -1188,6 +1189,7 @@ export enum EncodeBarcodeType {
     HanXin = 'HanXin',
     GS1HanXin = 'GS1HanXin',
     GS1Aztec = 'GS1Aztec',
+    GS1MicroPdf417 = 'GS1MicroPdf417',
 }
 
 /**
@@ -2480,13 +2482,25 @@ export class Pdf417Params {
      */
     'macroECIEncoding'?: ECIEncodings;
     /**
-     * Function codeword for Code 128 emulation. Applied for MicroPDF417 only. Ignored for PDF417 and MacroPDF417 barcodes.
+     * @deprecated This property is obsolete and will be removed in future releases. See samples of using new parameters on https://releases.aspose.com/barcode/net/release-notes/2023/aspose-barcode-for-net-23-10-release-notes/ Function codeword for Code 128 emulation. Applied for MicroPDF417 only. Ignored for PDF417 and MacroPDF417 barcodes.
      */
     'code128Emulation'?: Code128Emulation;
+    /**
+     * Can be used only with MicroPdf417 and encodes Code 128 emulation modes. Can encode FNC1 in second position modes 908 and 909, also can encode 910 and 911 which just indicate that recognized MicroPdf417 can be interpret as Code 128.
+     */
+    'isCode128Emulation'?: boolean;
     /**
      * Used to tell the encoder whether to add Macro PDF417 Terminator (codeword 922) to the segment. Applied only for Macro PDF417.
      */
     'pdf417MacroTerminator'?: Pdf417MacroTerminator;
+    /**
+     * Defines linked modes with GS1MicroPdf417, MicroPdf417 and Pdf417 barcodes. With GS1MicroPdf417 symbology encodes 906, 907, 912, 913, 914, 915 “Linked” UCC/EAN-128 modes. With MicroPdf417 and Pdf417 symbologies encodes 918 linkage flag to associated linear component other than an EAN.UCC.
+     */
+    'isLinked'?: boolean;
+    /**
+     * Macro Characters 05 and 06 values are used to obtain more compact encoding in special modes. Can be used only with MicroPdf417 and encodes 916 and 917 MicroPdf417 modes. Default value: MacroCharacters.None.
+     */
+    'macroCharacters'?: MacroCharacter;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
@@ -2590,9 +2604,24 @@ export class Pdf417Params {
             type: 'Code128Emulation',
         },
         {
+            name: 'isCode128Emulation',
+            baseName: 'IsCode128Emulation',
+            type: 'boolean',
+        },
+        {
             name: 'pdf417MacroTerminator',
             baseName: 'Pdf417MacroTerminator',
             type: 'Pdf417MacroTerminator',
+        },
+        {
+            name: 'isLinked',
+            baseName: 'IsLinked',
+            type: 'boolean',
+        },
+        {
+            name: 'macroCharacters',
+            baseName: 'MacroCharacters',
+            type: 'MacroCharacter',
         },
     ];
 
@@ -3482,7 +3511,8 @@ export class GetBarcodeGenerateRequest {
         | 'GS1DotCode'
         | 'HanXin'
         | 'GS1HanXin'
-        | 'GS1Aztec';
+        | 'GS1Aztec'
+        | 'GS1MicroPdf417';
     /**
      * Text to encode.
      */
@@ -3736,7 +3766,8 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'GS1DotCode'
             | 'HanXin'
             | 'GS1HanXin'
-            | 'GS1Aztec',
+            | 'GS1Aztec'
+            | 'GS1MicroPdf417',
         text: string
     ) {
         this.type = type;
@@ -3838,7 +3869,8 @@ export class GetBarcodeRecognizeRequest {
         | 'HanXin'
         | 'GS1HanXin'
         | 'GS1Aztec'
-        | 'GS1CompositeBar';
+        | 'GS1CompositeBar'
+        | 'GS1MicroPdf417';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -4119,7 +4151,8 @@ export class PostBarcodeRecognizeFromUrlOrContentRequest {
         | 'HanXin'
         | 'GS1HanXin'
         | 'GS1Aztec'
-        | 'GS1CompositeBar';
+        | 'GS1CompositeBar'
+        | 'GS1MicroPdf417';
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -4406,7 +4439,8 @@ export class PutBarcodeGenerateFileRequest {
         | 'GS1DotCode'
         | 'HanXin'
         | 'GS1HanXin'
-        | 'GS1Aztec';
+        | 'GS1Aztec'
+        | 'GS1MicroPdf417';
     /**
      * Text to encode.
      */
@@ -4671,7 +4705,8 @@ Used for Interleaved2of5, Standard2of5, EAN13, EAN8, UPCA, UPCE, ISBN, ISSN, ISM
             | 'GS1DotCode'
             | 'HanXin'
             | 'GS1HanXin'
-            | 'GS1Aztec',
+            | 'GS1Aztec'
+            | 'GS1MicroPdf417',
         text: string
     ) {
         this.name = name;
@@ -4778,7 +4813,8 @@ export class PutBarcodeRecognizeFromBodyRequest {
         | 'HanXin'
         | 'GS1HanXin'
         | 'GS1Aztec'
-        | 'GS1CompositeBar';
+        | 'GS1CompositeBar'
+        | 'GS1MicroPdf417';
     /**
      * The storage name
      */
