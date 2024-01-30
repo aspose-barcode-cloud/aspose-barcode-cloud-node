@@ -713,7 +713,8 @@ enum DecodeBarcodeType {
     GS1HanXin = 'GS1HanXin',
     GS1Aztec = 'GS1Aztec',
     GS1CompositeBar = 'GS1CompositeBar',
-    GS1MicroPdf417 = 'GS1MicroPdf417'
+    GS1MicroPdf417 = 'GS1MicroPdf417',
+    MostCommonlyUsed = 'mostCommonlyUsed'
 }
 ```
 
@@ -2060,6 +2061,11 @@ interface ReaderParams {
      * The type of barcode to read.
      */
     type?: DecodeBarcodeType;
+
+    /**
+     * Multiple barcode types to read.
+     */
+    types?: Array<DecodeBarcodeType>;
 
     /**
      * Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies

@@ -1,7 +1,7 @@
 /*
 * MIT License
 
-* Copyright (c) 2023 Aspose Pty Ltd
+* Copyright (c) 2024 Aspose Pty Ltd
 
 * Permission is hereby granted, free of charge, to any person obtaining a copy
 * of this software and associated documentation files (the "Software"), to deal
@@ -963,6 +963,7 @@ export enum DecodeBarcodeType {
     GS1Aztec = 'GS1Aztec',
     GS1CompositeBar = 'GS1CompositeBar',
     GS1MicroPdf417 = 'GS1MicroPdf417',
+    MostCommonlyUsed = 'mostCommonlyUsed',
 }
 
 /**
@@ -2840,6 +2841,10 @@ export class ReaderParams {
      */
     'type'?: DecodeBarcodeType;
     /**
+     * Multiple barcode types to read.
+     */
+    'types'?: Array<DecodeBarcodeType>;
+    /**
      * Enable checksum validation during recognition for 1D barcodes. Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible. Checksum never used: Codabar Checksum is possible: Code39 Standard/Extended, Standard2of5, Interleaved2of5, Matrix2of5, ItalianPost25, DeutschePostIdentcode, DeutschePostLeitcode, VIN Checksum always used: Rest symbologies
      */
     'checksumValidation'?: ChecksumValidation;
@@ -2981,6 +2986,11 @@ export class ReaderParams {
             name: 'type',
             baseName: 'Type',
             type: 'DecodeBarcodeType',
+        },
+        {
+            name: 'types',
+            baseName: 'Types',
+            type: 'Array<DecodeBarcodeType>',
         },
         {
             name: 'checksumValidation',
@@ -3870,7 +3880,12 @@ export class GetBarcodeRecognizeRequest {
         | 'GS1HanXin'
         | 'GS1Aztec'
         | 'GS1CompositeBar'
-        | 'GS1MicroPdf417';
+        | 'GS1MicroPdf417'
+        | 'mostCommonlyUsed';
+    /**
+     * Multiple barcode types to read.
+     */
+    'types'?: Array<DecodeBarcodeType>;
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -4152,7 +4167,12 @@ export class PostBarcodeRecognizeFromUrlOrContentRequest {
         | 'GS1HanXin'
         | 'GS1Aztec'
         | 'GS1CompositeBar'
-        | 'GS1MicroPdf417';
+        | 'GS1MicroPdf417'
+        | 'mostCommonlyUsed';
+    /**
+     * Multiple barcode types to read.
+     */
+    'types'?: Array<DecodeBarcodeType>;
     /**
      * Enable checksum validation during recognition for 1D barcodes.
 Default is treated as Yes for symbologies which must contain checksum, as No where checksum only possible.
@@ -4814,7 +4834,8 @@ export class PutBarcodeRecognizeFromBodyRequest {
         | 'GS1HanXin'
         | 'GS1Aztec'
         | 'GS1CompositeBar'
-        | 'GS1MicroPdf417';
+        | 'GS1MicroPdf417'
+        | 'mostCommonlyUsed';
     /**
      * The storage name
      */
