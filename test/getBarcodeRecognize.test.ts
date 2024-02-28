@@ -28,7 +28,7 @@ describe('getBarcodeRecognize', () => {
         assert.strictEqual(uploaded.body.uploaded[0], filename);
 
         const recognizeRequest = new Barcode.GetBarcodeRecognizeRequest(filename);
-        recognizeRequest.type = Barcode.DecodeBarcodeType.Pdf417;
+        recognizeRequest.types = [Barcode.DecodeBarcodeType.Pdf417];
         recognizeRequest.preset = Barcode.PresetType.HighPerformance;
         recognizeRequest.fastScanOnly = true;
 

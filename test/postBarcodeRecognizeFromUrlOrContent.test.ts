@@ -15,7 +15,7 @@ describe('postBarcodeRecognizeFromUrlOrContent', () => {
 
     it('should recognize from body', async () => {
         const request = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
-        request.type = Barcode.DecodeBarcodeType.Pdf417;
+        request.types = [Barcode.DecodeBarcodeType.Pdf417];
         request.preset = Barcode.PresetType.HighPerformance;
         request.fastScanOnly = true;
 
@@ -38,12 +38,9 @@ describe('postBarcodeRecognizeFromUrlOrContent', () => {
 
     it('should fail with Timeout', async () => {
         const request = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
-        request.type = Barcode.DecodeBarcodeType.Pdf417;
-        request.preset = Barcode.PresetType.HighPerformance;
-        request.fastScanOnly = true;
-
         request.image = imageBuffer;
         request.timeout = 1;
+
         await assert.rejects(
             async () => {
                 await api.postBarcodeRecognizeFromUrlOrContent(request);

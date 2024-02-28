@@ -18,7 +18,7 @@ describe('Generate and recognize', () => {
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
 
         const recognizeRequest = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
-        recognizeRequest.type = Barcode.DecodeBarcodeType.QR;
+        recognizeRequest.types = [Barcode.DecodeBarcodeType.QR];
         recognizeRequest.preset = Barcode.PresetType.HighPerformance;
         recognizeRequest.fastScanOnly = true;
 
