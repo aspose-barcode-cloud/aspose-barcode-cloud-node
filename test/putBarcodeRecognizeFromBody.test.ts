@@ -19,7 +19,7 @@ describe('putBarcodeRecognizeFromBody', () => {
     const imageBuffer = fs.readFileSync('./testdata/pdf417Sample.png');
 
     const readerParams = new Barcode.ReaderParams();
-    readerParams.type = Barcode.DecodeBarcodeType.Pdf417;
+    readerParams.types = [Barcode.DecodeBarcodeType.Pdf417];
     readerParams.preset = Barcode.PresetType.HighPerformance;
     readerParams.fastScanOnly = true;
 
