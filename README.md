@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/aspose-barcode-cloud-node)](https://www.npmjs.com/package/aspose-barcode-cloud-node)
 
 + API version: 3.0
-+ Package version: 24.2.0
++ Package version: 24.3.0
 
 ## Demo applications
 
@@ -52,6 +52,8 @@ async function generateBarcode(api) {
     const request = new Barcode.GetBarcodeGenerateRequest(
         Barcode.EncodeBarcodeType.QR,
         'Aspose.BarCode for Cloud Sample');
+        request.textLocation = "None";
+        
     const oneBarcode = await api.getBarcodeGenerate(request);
 
     const fileName = 'QR.png'
