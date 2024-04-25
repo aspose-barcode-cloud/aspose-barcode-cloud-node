@@ -61,7 +61,7 @@ describe('httpClient tests', () => {
         );
 
         const response = await client.requestAsync({
-            uri: 'http://localhost:47972/v3.0/barcode/scan',
+            uri: 'https://api.aspose.cloud/v3.0/barcode/scan',
             method: 'POST',
             headers: { ...authHeader, ...multipartForm.headers },
             body: multipartForm.body,
