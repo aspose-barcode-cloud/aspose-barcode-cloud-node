@@ -299,6 +299,28 @@ Name | Type | Description  | Notes
 
 ---
 
+### scanBarcode
+
+Quickly scan a barcode from an image.
+
+```ts
+scanBarcode(imageFile: Buffer): BarcodeResponseList;
+```
+
+#### BarcodeApi.scanBarcode parameters
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+ **imageFile** | **Buffer**| Image as file |
+ **decodeTypes** | **Array&lt;DecodeBarcodeType&gt;**| Types of barcode to recognize | [optional]
+ **timeout** | **number**| Timeout of recognition process in milliseconds.  Default value is 15_000 (15 seconds).  Maximum value is 30_000 (1/2 minute).  In case of a timeout RequestTimeout (408) status will be returned.  Try reducing the image size to avoid timeout. | [optional]
+
+#### BarcodeApi.scanBarcode return type
+
+[**BarcodeResponseList**](models.md#BarcodeResponseList)
+
+---
+
 ## class FileApi
 
 ### copyFile

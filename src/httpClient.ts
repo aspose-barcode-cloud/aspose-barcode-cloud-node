@@ -1,7 +1,7 @@
 import http from 'http';
 import https from 'https';
 
-interface StringKeyWithStringValue {
+export interface StringKeyWithStringValue {
     [key: string]: string;
 }
 

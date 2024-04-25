@@ -12,6 +12,8 @@ async function generateBarcode(api) {
     const request = new Barcode.GetBarcodeGenerateRequest(
         Barcode.EncodeBarcodeType.QR,
         'Aspose.BarCode for Cloud Sample');
+        request.textLocation = Barcode.CodeLocation.None;
+
     const oneBarcode = await api.getBarcodeGenerate(request);
 
     const fileName = 'QR.png'
@@ -20,14 +22,11 @@ async function generateBarcode(api) {
     return fileName;
 }
 
-async function recognizeBarcode(api, fileName) {
-    const request = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
-    request.image = fs.readFileSync(fileName);
-    request.type = Barcode.DecodeBarcodeType.QR;
-    request.preset = Barcode.PresetType.HighPerformance;
-    request.fastScanOnly = true;
+async function scanBarcode(api, fileName) {
+    const request = new Barcode.ScanBarcodeRequest(fs.readFileSync(fileName));
+    request.decodeTypes = [Barcode.DecodeBarcodeType.QR];
 
-    const result = await api.postBarcodeRecognizeFromUrlOrContent(request);
+    const result = await api.scanBarcode(request);
 
     return result.body.barcodes;
 }
@@ -40,7 +39,7 @@ generateBarcode(api)
         console.log('Barcode saved to ' + fileName);
 
         console.log('Trying to recognize barcode...');
-        recognizeBarcode(api, fileName)
+        scanBarcode(api, fileName)
             .then(barcodes => {
                 console.log('Recognized barcodes are:');
                 console.log(JSON.stringify(barcodes, null, 2));
