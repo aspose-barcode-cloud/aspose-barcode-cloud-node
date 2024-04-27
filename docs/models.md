@@ -27,7 +27,7 @@ AustralianPost barcode parameters.
 interface AustralianPostParams {
 
     /**
-     * Interpreting type for the Customer Information of AustralianPost, default to CustomerInformationInterpretingType.Other\"
+     * Interpreting type for the Customer Information of AustralianPost, default to CustomerInformationInterpretingType.Other
      */
     encodingTable?: CustomerInformationInterpretingType;
 
@@ -2213,7 +2213,7 @@ interface ReaderParams {
     scanWindowSizes?: Array<number>;
 
     /**
-     * Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
+     * Similarity coefficient depends on how homogeneous barcodes are. Use high value for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      */
     similarity?: number;
 
