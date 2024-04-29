@@ -1,6 +1,8 @@
+import fs from 'fs';
 import assert from 'assert';
 
 import { HttpClient } from '../src/httpClient';
+import { Multipart, FormFile } from '../src/multipart';
 
 describe('httpClient tests', () => {
     jest.setTimeout(60000);
@@ -46,5 +48,24 @@ describe('httpClient tests', () => {
                 return true;
             }
         );
+    });
+
+    it('should send file as multipart form', async () => {
+        const token = process.env['TEST_CONFIGURATION_ACCESS_TOKEN'];
+        assert.ok(token);
+
+        const authHeader = { Authorization: `Bearer ${token}` };
+        const multipartForm = new Multipart(
+            [['decodeTypes', 'QR']],
+            [new FormFile('imageFile', 'QR.png', fs.readFileSync('./testdata/QR_and_Code128.png'))]
+        );
+
+        const response = await client.requestAsync({
+            uri: 'https://api.aspose.cloud/v3.0/barcode/scan',
+            method: 'POST',
+            headers: { ...authHeader, ...multipartForm.headers },
+            body: multipartForm.body,
+        });
+        assert.ok(response);
     });
 });

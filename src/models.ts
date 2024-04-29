@@ -1,27 +1,3 @@
-/*
-* MIT License
-
-* Copyright (c) 2024 Aspose Pty Ltd
-
-* Permission is hereby granted, free of charge, to any person obtaining a copy
-* of this software and associated documentation files (the "Software"), to deal
-* in the Software without restriction, including without limitation the rights
-* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-* copies of the Software, and to permit persons to whom the Software is
-* furnished to do so, subject to the following conditions:
-
-* The above copyright notice and this permission notice shall be included in all
-* copies or substantial portions of the Software.
-
-* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-* SOFTWARE.
-*/
-
 export class ApiError {
     'code'?: string;
     'message'?: string;
@@ -88,7 +64,7 @@ export class ApiErrorResponse {
  */
 export class AustralianPostParams {
     /**
-     * Interpreting type for the Customer Information of AustralianPost, default to CustomerInformationInterpretingType.Other\"
+     * Interpreting type for the Customer Information of AustralianPost, default to CustomerInformationInterpretingType.Other
      */
     'encodingTable'?: CustomerInformationInterpretingType;
     /**
@@ -2961,7 +2937,7 @@ export class ReaderParams {
      */
     'scanWindowSizes'?: Array<number>;
     /**
-     * Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
+     * Similarity coefficient depends on how homogeneous barcodes are. Use high value for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9]
      */
     'similarity'?: number;
     /**
@@ -4035,7 +4011,7 @@ Combining of several window sizes can improve detection quality.
     'scanWindowSizes'?: Array<number>;
     /**
      * Similarity coefficient depends on how homogeneous barcodes are.
-Use high value for for clear barcodes.
+Use high value for clear barcodes.
 Use low values to detect barcodes that ara partly damaged or not lighten evenly.
 Similarity coefficient must be between [0.5, 0.9]
      */
@@ -4322,7 +4298,7 @@ Combining of several window sizes can improve detection quality.
     'scanWindowSizes'?: Array<number>;
     /**
      * Similarity coefficient depends on how homogeneous barcodes are.
-Use high value for for clear barcodes.
+Use high value for clear barcodes.
 Use low values to detect barcodes that ara partly damaged or not lighten evenly.
 Similarity coefficient must be between [0.5, 0.9]
      */
@@ -4889,6 +4865,35 @@ export class PutGenerateMultipleRequest {
     constructor(name: string, generatorParamsList: GeneratorParamsList) {
         this.name = name;
         this.generatorParamsList = generatorParamsList;
+    }
+}
+
+/**
+ * Quickly scan a barcode from an image.
+ */
+export class ScanBarcodeRequest {
+    /**
+     * Image as file
+     */
+    'imageFile': Buffer;
+    /**
+     * Types of barcode to recognize
+     */
+    'decodeTypes'?: Array<DecodeBarcodeType>;
+    /**
+     * Timeout of recognition process in milliseconds.
+ Default value is 15_000 (15 seconds).
+ Maximum value is 30_000 (1/2 minute).
+ In case of a timeout RequestTimeout (408) status will be returned.
+ Try reducing the image size to avoid timeout.
+     */
+    'timeout'?: number;
+
+    /**
+     * @param imageFile Image as file
+     */
+    constructor(imageFile: Buffer) {
+        this.imageFile = imageFile;
     }
 }
 

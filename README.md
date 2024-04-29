@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/aspose-barcode-cloud-node)](https://www.npmjs.com/package/aspose-barcode-cloud-node)
 
 + API version: 3.0
-+ Package version: 24.3.0
++ Package version: 24.4.0
 
 ## Demo applications
 
@@ -52,8 +52,8 @@ async function generateBarcode(api) {
     const request = new Barcode.GetBarcodeGenerateRequest(
         Barcode.EncodeBarcodeType.QR,
         'Aspose.BarCode for Cloud Sample');
-        request.textLocation = "None";
-        
+        request.textLocation = Barcode.CodeLocation.None;
+
     const oneBarcode = await api.getBarcodeGenerate(request);
 
     const fileName = 'QR.png'
@@ -62,14 +62,11 @@ async function generateBarcode(api) {
     return fileName;
 }
 
-async function recognizeBarcode(api, fileName) {
-    const request = new Barcode.PostBarcodeRecognizeFromUrlOrContentRequest();
-    request.image = fs.readFileSync(fileName);
-    request.type = Barcode.DecodeBarcodeType.QR;
-    request.preset = Barcode.PresetType.HighPerformance;
-    request.fastScanOnly = true;
+async function scanBarcode(api, fileName) {
+    const request = new Barcode.ScanBarcodeRequest(fs.readFileSync(fileName));
+    request.decodeTypes = [Barcode.DecodeBarcodeType.QR];
 
-    const result = await api.postBarcodeRecognizeFromUrlOrContent(request);
+    const result = await api.scanBarcode(request);
 
     return result.body.barcodes;
 }
@@ -82,7 +79,7 @@ generateBarcode(api)
         console.log('Barcode saved to ' + fileName);
 
         console.log('Trying to recognize barcode...');
-        recognizeBarcode(api, fileName)
+        scanBarcode(api, fileName)
             .then(barcodes => {
                 console.log('Recognized barcodes are:');
                 console.log(JSON.stringify(barcodes, null, 2));
@@ -122,6 +119,7 @@ BarcodeApi | [**postGenerateMultiple**](docs/index.md#postgeneratemultiple) | **
 BarcodeApi | [**putBarcodeGenerateFile**](docs/index.md#putbarcodegeneratefile) | **PUT** /barcode/{name}/generate | Generate barcode and save on server (from query params or from file with json or xml content)
 BarcodeApi | [**putBarcodeRecognizeFromBody**](docs/index.md#putbarcoderecognizefrombody) | **PUT** /barcode/{name}/recognize | Recognition of a barcode from file on server with parameters in body.
 BarcodeApi | [**putGenerateMultiple**](docs/index.md#putgeneratemultiple) | **PUT** /barcode/{name}/generateMultiple | Generate image with multiple barcodes and put new file on server
+BarcodeApi | [**scanBarcode**](docs/index.md#scanbarcode) | **POST** /barcode/scan | Quickly scan a barcode from an image.
 FileApi | [**copyFile**](docs/index.md#copyfile) | **PUT** /barcode/storage/file/copy/{srcPath} | Copy file
 FileApi | [**deleteFile**](docs/index.md#deletefile) | **DELETE** /barcode/storage/file/{path} | Delete file
 FileApi | [**downloadFile**](docs/index.md#downloadfile) | **GET** /barcode/storage/file/{path} | Download file

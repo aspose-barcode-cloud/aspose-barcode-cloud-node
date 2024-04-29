@@ -101,7 +101,7 @@ Name | Type | Description  | Notes
  **allowAdditionalRestorations** | **boolean**| Allows engine using additional image restorations to recognize corrupted barcodes. At this time, it is used only in MicroPdf417 barcode type. Default value: False. | [optional]
  **regionLikelihoodThresholdPercent** | **number**| Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time. | [optional]
  **scanWindowSizes** | **Array&lt;number&gt;**| Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. | [optional]
- **similarity** | **number**| Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] | [optional]
+ **similarity** | **number**| Similarity coefficient depends on how homogeneous barcodes are. Use high value for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] | [optional]
  **skipDiagonalSearch** | **boolean**| Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. | [optional]
  **readTinyBarcodes** | **boolean**| Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. | [optional]
  **australianPostEncodingTable** |  &#39;CTable&#39;, &#39;NTable&#39;, &#39;Other&#39; | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. | [optional]
@@ -158,7 +158,7 @@ Name | Type | Description  | Notes
  **allowAdditionalRestorations** | **boolean**| Allows engine using additional image restorations to recognize corrupted barcodes. At this time, it is used only in MicroPdf417 barcode type. Default value: False. | [optional]
  **regionLikelihoodThresholdPercent** | **number**| Sets threshold for detected regions that may contain barcodes. Value 0.7 means that bottom 70% of possible regions are filtered out and not processed further. Region likelihood threshold must be between [0.05, 0.9] Use high values for clear images with few barcodes. Use low values for images with many barcodes or for noisy images. Low value may lead to a bigger recognition time. | [optional]
  **scanWindowSizes** | **Array&lt;number&gt;**| Scan window sizes in pixels. Allowed sizes are 10, 15, 20, 25, 30. Scanning with small window size takes more time and provides more accuracy but may fail in detecting very big barcodes. Combining of several window sizes can improve detection quality. | [optional]
- **similarity** | **number**| Similarity coefficient depends on how homogeneous barcodes are. Use high value for for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] | [optional]
+ **similarity** | **number**| Similarity coefficient depends on how homogeneous barcodes are. Use high value for clear barcodes. Use low values to detect barcodes that ara partly damaged or not lighten evenly. Similarity coefficient must be between [0.5, 0.9] | [optional]
  **skipDiagonalSearch** | **boolean**| Allows detector to skip search for diagonal barcodes. Setting it to false will increase detection time but allow to find diagonal barcodes that can be missed otherwise. Enabling of diagonal search leads to a bigger detection time. | [optional]
  **readTinyBarcodes** | **boolean**| Allows engine to recognize tiny barcodes on large images. Ignored if AllowIncorrectBarcodes is set to True. Default value: False. | [optional]
  **australianPostEncodingTable** |  &#39;CTable&#39;, &#39;NTable&#39;, &#39;Other&#39; | Interpreting Type for the Customer Information of AustralianPost BarCode.Default is CustomerInformationInterpretingType.Other. | [optional]
@@ -296,6 +296,28 @@ Name | Type | Description  | Notes
 #### BarcodeApi.putGenerateMultiple return type
 
 [**ResultImageInfo**](models.md#ResultImageInfo)
+
+---
+
+### scanBarcode
+
+Quickly scan a barcode from an image.
+
+```ts
+scanBarcode(imageFile: Buffer): BarcodeResponseList;
+```
+
+#### BarcodeApi.scanBarcode parameters
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+ **imageFile** | **Buffer**| Image as file |
+ **decodeTypes** | **Array&lt;DecodeBarcodeType&gt;**| Types of barcode to recognize | [optional]
+ **timeout** | **number**| Timeout of recognition process in milliseconds.  Default value is 15_000 (15 seconds).  Maximum value is 30_000 (1/2 minute).  In case of a timeout RequestTimeout (408) status will be returned.  Try reducing the image size to avoid timeout. | [optional]
+
+#### BarcodeApi.scanBarcode return type
+
+[**BarcodeResponseList**](models.md#BarcodeResponseList)
 
 ---
 
