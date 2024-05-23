@@ -90,7 +90,7 @@ export class HttpClient {
                 }
                 const chunks: any[] | Uint8Array[] = [];
 
-                res.on('data', chunk => {
+                res.on('data', (chunk) => {
                     chunks.push(chunk);
                 });
 
@@ -123,7 +123,7 @@ export class HttpClient {
                     ? http.request(url, requestOptions, requestCallback)
                     : https.request(url, requestOptions, requestCallback);
 
-            req.on('error', error => {
+            req.on('error', (error) => {
                 reject({
                     response: null,
                     error: error,
