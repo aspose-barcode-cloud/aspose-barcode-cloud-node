@@ -52,7 +52,7 @@ describe('httpClient tests', () => {
 
     it('should send file as multipart form', async () => {
         const token = process.env['TEST_CONFIGURATION_ACCESS_TOKEN'];
-        assert.ok(token);
+        assert.ok(token, "The required env variable 'TEST_CONFIGURATION_ACCESS_TOKEN' is missing");
 
         const authHeader = { Authorization: `Bearer ${token}` };
         const multipartForm = new Multipart(
