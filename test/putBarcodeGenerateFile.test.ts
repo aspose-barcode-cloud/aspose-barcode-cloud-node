@@ -11,7 +11,7 @@ describe('putBarcodeGenerateFile', () => {
     const tempFolderPath = `BarcodeTests/${uuidv4()}`;
     const filename = 'Test_putBarcodeGenerateFile.png';
 
-    it('should create file on server', async function() {
+    it('should create file on server', async function () {
         const request = new Barcode.PutBarcodeGenerateFileRequest(
             filename,
             Barcode.EncodeBarcodeType.Code128,
