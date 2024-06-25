@@ -134,7 +134,7 @@
   "scripts": {
     "test": "dts test",
     "cover": "dts test --coverage",
-    "lint": "tsc --strict",
+    "lint": "dts lint src test",
     "format": "dts lint src test --fix",
     "prepare": "dts build --target node",
     "check-updates": "ncu -u --enginesNode"
@@ -155,6 +155,7 @@
     "prettier": "^3.3.2",
     "ts-jest": "^29.1.3",
     "tslib": "^2.6.3",
+    "typescript": "<5.2.0",
     "uuid": "^10.0.0"
   },
   "bugs": {
