@@ -338,7 +338,7 @@ let typeMap: { [index: string]: any } = {
 export class BarcodeApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '24.5.0',
+        'x-aspose-client-version': '24.6.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -563,7 +563,11 @@ export class BarcodeApi {
     ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/recognize'.replace('{' + 'name' + '}', String(request.name));
+            '/barcode/{name}/recognize'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'name' + '}',
+                String(request.name)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1084,7 +1088,11 @@ export class BarcodeApi {
     ): Promise<{ response: HttpResponse; body: ResultImageInfo }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/generate'.replace('{' + 'name' + '}', String(request.name));
+            '/barcode/{name}/generate'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'name' + '}',
+                String(request.name)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1309,7 +1317,11 @@ export class BarcodeApi {
     ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/recognize'.replace('{' + 'name' + '}', String(request.name));
+            '/barcode/{name}/recognize'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'name' + '}',
+                String(request.name)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1371,7 +1383,11 @@ export class BarcodeApi {
     ): Promise<{ response: HttpResponse; body: ResultImageInfo }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/{name}/generateMultiple'.replace('{' + 'name' + '}', String(request.name));
+            '/barcode/{name}/generateMultiple'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'name' + '}',
+                String(request.name)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1472,7 +1488,7 @@ export class BarcodeApi {
 export class FileApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '24.5.0',
+        'x-aspose-client-version': '24.6.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -1490,7 +1506,11 @@ export class FileApi {
     public async copyFile(request: CopyFileRequest): Promise<{ response: HttpResponse; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/copy/{srcPath}'.replace('{' + 'srcPath' + '}', String(request.srcPath));
+            '/barcode/storage/file/copy/{srcPath}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'srcPath' + '}',
+                String(request.srcPath)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1542,7 +1562,11 @@ export class FileApi {
     public async deleteFile(request: DeleteFileRequest): Promise<{ response: HttpResponse; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', String(request.path));
+            '/barcode/storage/file/{path}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'path' + '}',
+                String(request.path)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1581,7 +1605,11 @@ export class FileApi {
     public async downloadFile(request: DownloadFileRequest): Promise<{ response: HttpResponse; body: Buffer }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', String(request.path));
+            '/barcode/storage/file/{path}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'path' + '}',
+                String(request.path)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1624,7 +1652,11 @@ export class FileApi {
     public async moveFile(request: MoveFileRequest): Promise<{ response: HttpResponse; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/move/{srcPath}'.replace('{' + 'srcPath' + '}', String(request.srcPath));
+            '/barcode/storage/file/move/{srcPath}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'srcPath' + '}',
+                String(request.srcPath)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1676,7 +1708,11 @@ export class FileApi {
     public async uploadFile(request: UploadFileRequest): Promise<{ response: HttpResponse; body: FilesUploadResult }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/file/{path}'.replace('{' + 'path' + '}', String(request.path));
+            '/barcode/storage/file/{path}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'path' + '}',
+                String(request.path)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
         const formParams: FormParamsType = [];
@@ -1720,7 +1756,7 @@ export class FileApi {
 export class FolderApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '24.5.0',
+        'x-aspose-client-version': '24.6.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -1738,7 +1774,11 @@ export class FolderApi {
     public async copyFolder(request: CopyFolderRequest): Promise<{ response: HttpResponse; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/copy/{srcPath}'.replace('{' + 'srcPath' + '}', String(request.srcPath));
+            '/barcode/storage/folder/copy/{srcPath}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'srcPath' + '}',
+                String(request.srcPath)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1786,7 +1826,11 @@ export class FolderApi {
     public async createFolder(request: CreateFolderRequest): Promise<{ response: HttpResponse; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', String(request.path));
+            '/barcode/storage/folder/{path}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'path' + '}',
+                String(request.path)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1821,7 +1865,11 @@ export class FolderApi {
     public async deleteFolder(request: DeleteFolderRequest): Promise<{ response: HttpResponse; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', String(request.path));
+            '/barcode/storage/folder/{path}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'path' + '}',
+                String(request.path)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1860,7 +1908,11 @@ export class FolderApi {
     public async getFilesList(request: GetFilesListRequest): Promise<{ response: HttpResponse; body: FilesList }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/{path}'.replace('{' + 'path' + '}', String(request.path));
+            '/barcode/storage/folder/{path}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'path' + '}',
+                String(request.path)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1898,7 +1950,11 @@ export class FolderApi {
     public async moveFolder(request: MoveFolderRequest): Promise<{ response: HttpResponse; body?: any }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/folder/move/{srcPath}'.replace('{' + 'srcPath' + '}', String(request.srcPath));
+            '/barcode/storage/folder/move/{srcPath}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'srcPath' + '}',
+                String(request.srcPath)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -1942,7 +1998,7 @@ export class FolderApi {
 export class StorageApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '24.5.0',
+        'x-aspose-client-version': '24.6.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -1993,7 +2049,11 @@ export class StorageApi {
     ): Promise<{ response: HttpResponse; body: FileVersions }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/version/{path}'.replace('{' + 'path' + '}', String(request.path));
+            '/barcode/storage/version/{path}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'path' + '}',
+                String(request.path)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -2031,7 +2091,11 @@ export class StorageApi {
     public async objectExists(request: ObjectExistsRequest): Promise<{ response: HttpResponse; body: ObjectExist }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/exist/{path}'.replace('{' + 'path' + '}', String(request.path));
+            '/barcode/storage/exist/{path}'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'path' + '}',
+                String(request.path)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -2073,7 +2137,11 @@ export class StorageApi {
     public async storageExists(request: StorageExistsRequest): Promise<{ response: HttpResponse; body: StorageExist }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/storage/{storageName}/exist'.replace('{' + 'storageName' + '}', String(request.storageName));
+            '/barcode/storage/{storageName}/exist'.replace(
+                // eslint-disable-next-line no-useless-concat
+                '{' + 'storageName' + '}',
+                String(request.storageName)
+            );
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
