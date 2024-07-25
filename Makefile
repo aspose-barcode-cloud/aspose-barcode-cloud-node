@@ -66,5 +66,9 @@ example:
 	./scripts/extract_js_from_README.sh > "example.js"
 	./scripts/run_example.sh
 
+.PHONY: insert-example
+insert-example:
+	./scripts/insert-example.bash
+
 .PHONY: after-gen
-after-gen: format lock
+after-gen: format lock insert-example
