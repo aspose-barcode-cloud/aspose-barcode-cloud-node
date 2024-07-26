@@ -5,7 +5,7 @@
 [![npm](https://img.shields.io/npm/v/aspose-barcode-cloud-node)](https://www.npmjs.com/package/aspose-barcode-cloud-node)
 
 + API version: 3.0
-+ Package version: 24.6.0
++ Package version: 24.7.0
 
 ## Demo applications
 
@@ -89,6 +89,7 @@ generateBarcode(api)
         console.error(JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });
+
 ```
 
 Every method returns a chainable promise.
@@ -134,3 +135,4 @@ StorageApi | [**getDiscUsage**](docs/index.md#getdiscusage) | **GET** /barcode/s
 StorageApi | [**getFileVersions**](docs/index.md#getfileversions) | **GET** /barcode/storage/version/{path} | Get file versions
 StorageApi | [**objectExists**](docs/index.md#objectexists) | **GET** /barcode/storage/exist/{path} | Check if file or folder exists
 StorageApi | [**storageExists**](docs/index.md#storageexists) | **GET** /barcode/storage/{storageName}/exist | Check if storage exists
+
