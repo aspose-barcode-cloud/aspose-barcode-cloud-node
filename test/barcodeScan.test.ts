@@ -1,7 +1,6 @@
 import fs from 'fs';
 
 import assert from 'assert';
-import { v4 as uuidv4 } from 'uuid';
 
 import * as Barcode from '../src/api';
 import { LoadTestConfiguration } from './helpers';
@@ -14,11 +13,10 @@ describe('barcodeRecognize', () => {
     const api = new Barcode.ScanApi(config);
 
     const imageBuffer = fs.readFileSync('./testdata/pdf417Sample.png');
-    const requestFile = new RequestFile('file','pdf417Sample.png', imageBuffer);
+    const requestFile = new RequestFile('file', 'pdf417Sample.png', imageBuffer);
     const base64File = fs.readFileSync('./testdata/QR_and_Code128.png').toString('base64');
 
     it('barcodeScanFormPost should recognize uploaded image', async () => {
-        
         const scanRequest = new Barcode.BarcodeScanFormPostRequest(requestFile);
         const recognized = await api.barcodeScanFormPost(scanRequest);
 
@@ -42,7 +40,6 @@ describe('barcodeRecognize', () => {
     });
 
     it('barcodeScanBodyPost should recognize uploaded image', async () => {
-        
         const scanBase64Request = new Barcode.ScanBase64Request();
         scanBase64Request.fileBase64 = base64File;
         const scanRequest = new Barcode.BarcodeScanBodyPostRequest(scanBase64Request);
@@ -59,21 +56,20 @@ describe('barcodeRecognize', () => {
         barcode = recognized.body.barcodes[1];
         assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.Code128);
         assert.strictEqual(barcode.barcodeValue, 'Hello world!');
-
     });
 
     it('barcodeRecognizeBodyPost should recognize image from URL', async () => {
-        
-        const scanRequest = new Barcode.BarcodeScanGetRequest('https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png');
+        const scanRequest = new Barcode.BarcodeScanGetRequest(
+            'https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png'
+        );
 
         const recognized = await api.barcodeScanGet(scanRequest);
 
         assert.ok(recognized.body.barcodes);
         assert.strictEqual(recognized.body.barcodes.length, 1);
-        
+
         let barcode = recognized.body.barcodes[0];
         assert.strictEqual(barcode.type, Barcode.DecodeBarcodeType.Qr);
         assert.strictEqual(barcode.barcodeValue, 'http://en.m.wikipedia.org');
-
     });
 });

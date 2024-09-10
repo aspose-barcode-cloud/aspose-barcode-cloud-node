@@ -9,8 +9,12 @@ describe('barcodeGenerateApiTests', () => {
     const api = new Barcode.GenerateApi(LoadTestConfiguration());
 
     it('should generate image with barcodeGenerateBarcodeTypeGet', async () => {
-        const request = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(Barcode.EncodeBarcodeType.Qr, Barcode.EncodeDataType.StringData,'Testing generator');
-        request.foregroundColor = "0x001100";
+        const request = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(
+            Barcode.EncodeBarcodeType.Qr,
+            Barcode.EncodeDataType.StringData,
+            'Testing generator'
+        );
+        request.foregroundColor = '0x001100';
         const generated = await api.barcodeGenerateBarcodeTypeGet(request);
 
         const imageSize = generated.body.buffer.byteLength;
@@ -18,10 +22,8 @@ describe('barcodeGenerateApiTests', () => {
     });
 
     it('should generate image with barcodeGenerateBodyPost', async () => {
-
-
         const imageParams = new Barcode.BarcodeImageParams();
-        imageParams.backgroundColor = "0xffddff";
+        imageParams.backgroundColor = '0xffddff';
 
         const encodeData = new Barcode.EncodeData();
         encodeData.data = 'Testing generator';

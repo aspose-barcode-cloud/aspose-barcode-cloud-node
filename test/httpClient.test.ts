@@ -1,4 +1,3 @@
-import fs from 'fs';
 import assert from 'assert';
 
 import { HttpClient } from '../src/httpClient';
@@ -48,5 +47,4 @@ describe('httpClient tests', () => {
             }
         );
     });
-
 });

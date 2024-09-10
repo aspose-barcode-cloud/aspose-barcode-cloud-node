@@ -38,6 +38,5 @@ describe('Generate and recognize', () => {
 
         assert.ok(barcode.region![0].x! > 0, `X=${barcode.region![0].x}`);
         assert.ok(barcode.region![0].y! > 0, `Y=${barcode.region![0].y}`);
-        
     });
 });
