@@ -3,14 +3,14 @@ import { StringKeyWithStringValue } from 'httpClient';
 
 export interface FormParamsType extends Array<Array<string>> {}
 
-interface IFormFile {
+interface IRequestFile {
     name: string;
     filename: string;
     data: Buffer;
     contentType?: string;
 }
 
-export class FormFile implements IFormFile {
+export class RequestFile implements IRequestFile {
     constructor(
         readonly name: string,
         readonly filename: string,
@@ -24,7 +24,7 @@ export class Multipart {
     readonly body: Buffer;
     readonly headers: StringKeyWithStringValue;
 
-    constructor(textFields: FormParamsType, files?: IFormFile[]) {
+    constructor(textFields: FormParamsType, files?: IRequestFile[]) {
         const random = crypto.randomUUID();
         this.boundary = '------------------------' + random.replace(/-/g, '');
 
@@ -37,7 +37,9 @@ export class Multipart {
         }
         for (const file of files || []) {
             bodyLines.push(`--${this.boundary}`);
-            bodyLines.push(`Content-Disposition: form-data; name="${file.name}"; filename="${file.filename}"`);
+            bodyLines.push(
+                `Content-Disposition: form-data; name="${file.name}"; filename="${file.filename || 'filename'}"`
+            );
             bodyLines.push(`Content-Type: ${file.contentType || 'application/octet-stream'}`);
             bodyLines.push('');
             bodyLines.push(file.data.toString('binary'));

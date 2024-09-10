@@ -2,7 +2,7 @@
 import { Authentication } from './Authentication';
 
 export enum ApiVersion {
-    v3 = 'v3.0',
+    v4 = 'v4.0',
 }
 
 export class Configuration {
@@ -26,7 +26,7 @@ export class Configuration {
      */
     public baseUrl: string;
 
-    readonly version: ApiVersion = ApiVersion.v3;
+    readonly version: ApiVersion = ApiVersion.v4;
     readonly accessToken: string;
     readonly tokenUrl: string;
 
@@ -40,7 +40,7 @@ export class Configuration {
             this.baseUrl = 'https://api.aspose.cloud';
         }
 
-        this.tokenUrl = tokenUrl ?? this.baseUrl + '/connect/token';
+        this.tokenUrl = tokenUrl ?? 'https://id.aspose.cloud/connect/token';
 
         if (accessToken) {
             this.accessToken = accessToken;
