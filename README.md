@@ -4,7 +4,7 @@
 [![Node.js CI](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/actions/workflows/node.js.yml/badge.svg?branch=main)](https://github.com/aspose-barcode-cloud/aspose-barcode-cloud-node/actions/workflows/node.js.yml)
 [![npm](https://img.shields.io/npm/v/aspose-barcode-cloud-node)](https://www.npmjs.com/package/aspose-barcode-cloud-node)
 
-+ API version: 3.0
++ API version: 4.0
 + Package version: 24.7.0
 
 ## Demo applications
@@ -109,30 +109,17 @@ All Aspose.BarCode for Cloud SDKs, helper scripts and templates are licensed und
 
 ## Documentation for API Endpoints
 
-All URIs are relative to *<https://api.aspose.cloud/v3.0/>*
+All URIs are relative to *<https://barcode.qa.aspose.cloud/v4.0/>*
 
 Class | Method | HTTP request | Description
 ----- | ------ | ------------ | -----------
-BarcodeApi | [**getBarcodeGenerate**](docs/index.md#getbarcodegenerate) | **GET** /barcode/generate | Generate barcode.
-BarcodeApi | [**getBarcodeRecognize**](docs/index.md#getbarcoderecognize) | **GET** /barcode/{name}/recognize | Recognize barcode from a file on server.
-BarcodeApi | [**postBarcodeRecognizeFromUrlOrContent**](docs/index.md#postbarcoderecognizefromurlorcontent) | **POST** /barcode/recognize | Recognize barcode from an url or from request body. Request body can contain raw data bytes of the image with content-type \&quot;application/octet-stream\&quot;. An image can also be passed as a form field.
-BarcodeApi | [**postGenerateMultiple**](docs/index.md#postgeneratemultiple) | **POST** /barcode/generateMultiple | Generate multiple barcodes and return in response stream
-BarcodeApi | [**putBarcodeGenerateFile**](docs/index.md#putbarcodegeneratefile) | **PUT** /barcode/{name}/generate | Generate barcode and save on server (from query params or from file with json or xml content)
-BarcodeApi | [**putBarcodeRecognizeFromBody**](docs/index.md#putbarcoderecognizefrombody) | **PUT** /barcode/{name}/recognize | Recognition of a barcode from file on server with parameters in body.
-BarcodeApi | [**putGenerateMultiple**](docs/index.md#putgeneratemultiple) | **PUT** /barcode/{name}/generateMultiple | Generate image with multiple barcodes and put new file on server
-BarcodeApi | [**scanBarcode**](docs/index.md#scanbarcode) | **POST** /barcode/scan | Quickly scan a barcode from an image.
-FileApi | [**copyFile**](docs/index.md#copyfile) | **PUT** /barcode/storage/file/copy/{srcPath} | Copy file
-FileApi | [**deleteFile**](docs/index.md#deletefile) | **DELETE** /barcode/storage/file/{path} | Delete file
-FileApi | [**downloadFile**](docs/index.md#downloadfile) | **GET** /barcode/storage/file/{path} | Download file
-FileApi | [**moveFile**](docs/index.md#movefile) | **PUT** /barcode/storage/file/move/{srcPath} | Move file
-FileApi | [**uploadFile**](docs/index.md#uploadfile) | **PUT** /barcode/storage/file/{path} | Upload file
-FolderApi | [**copyFolder**](docs/index.md#copyfolder) | **PUT** /barcode/storage/folder/copy/{srcPath} | Copy folder
-FolderApi | [**createFolder**](docs/index.md#createfolder) | **PUT** /barcode/storage/folder/{path} | Create the folder
-FolderApi | [**deleteFolder**](docs/index.md#deletefolder) | **DELETE** /barcode/storage/folder/{path} | Delete folder
-FolderApi | [**getFilesList**](docs/index.md#getfileslist) | **GET** /barcode/storage/folder/{path} | Get all files and folders within a folder
-FolderApi | [**moveFolder**](docs/index.md#movefolder) | **PUT** /barcode/storage/folder/move/{srcPath} | Move folder
-StorageApi | [**getDiscUsage**](docs/index.md#getdiscusage) | **GET** /barcode/storage/disc | Get disc usage
-StorageApi | [**getFileVersions**](docs/index.md#getfileversions) | **GET** /barcode/storage/version/{path} | Get file versions
-StorageApi | [**objectExists**](docs/index.md#objectexists) | **GET** /barcode/storage/exist/{path} | Check if file or folder exists
-StorageApi | [**storageExists**](docs/index.md#storageexists) | **GET** /barcode/storage/{storageName}/exist | Check if storage exists
+GenerateApi | [**barcodeGenerateBarcodeTypeGet**](docs/index.md#barcodegeneratebarcodetypeget) | **GET** /barcode/generate/{barcodeType} | Generate barcode using GET request with parameters in route and query string.
+GenerateApi | [**barcodeGenerateBodyPost**](docs/index.md#barcodegeneratebodypost) | **POST** /barcode/generate-body | Generate barcode using POST request with parameters in body in json or xml format.
+GenerateApi | [**barcodeGenerateFormPost**](docs/index.md#barcodegenerateformpost) | **POST** /barcode/generate-form | Generate barcode using POST request with parameters in url ecncoded form.
+RecognizeApi | [**barcodeRecognizeBarcodeTypeGet**](docs/index.md#barcoderecognizebarcodetypeget) | **GET** /barcode/recognize/{barcodeType} | Recognize barcode from file on server using GET requests with parameters in route and query string.
+RecognizeApi | [**barcodeRecognizeBodyPost**](docs/index.md#barcoderecognizebodypost) | **POST** /barcode/recognize-body | Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
+RecognizeApi | [**barcodeRecognizeFormPost**](docs/index.md#barcoderecognizeformpost) | **POST** /barcode/recognize-form | Recognize barcode from file in request body using POST requests with parameters in multipart form.
+ScanApi | [**barcodeScanBodyPost**](docs/index.md#barcodescanbodypost) | **POST** /barcode/scan-body | Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
+ScanApi | [**barcodeScanFormPost**](docs/index.md#barcodescanformpost) | **POST** /barcode/scan-form | Scan barcode from file in request body using POST requests with parameter in multipart form.
+ScanApi | [**barcodeScanGet**](docs/index.md#barcodescanget) | **GET** /barcode/scan | Scan barcode from file on server using GET requests with parameter in query string.
 
