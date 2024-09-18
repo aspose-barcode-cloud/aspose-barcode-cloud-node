@@ -349,9 +349,12 @@ enum EncodeBarcodeType {
 ```
 
 ## EncodeData
+
+Data to encode in barcode
+
 ```ts
 interface EncodeData {
-    dataType: EncodeDataType;
+    dataType?: EncodeDataType;
 
     /**
      * String represents data to encode
@@ -419,13 +422,13 @@ interface RecognizeBase64Request {
      * Array of decode types to find on barcode
      */
     barcodeTypes: Array<DecodeBarcodeType>;
-    recognitionMode?: RecognitionMode;
-    imageKind?: RecognitionImageKind;
 
     /**
      * Barcode image bytes encoded as base-64.
      */
     fileBase64: string;
+    recognitionMode?: RecognitionMode;
+    imageKind?: RecognitionImageKind;
 }
 ```
 

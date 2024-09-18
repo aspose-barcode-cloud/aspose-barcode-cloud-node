@@ -13,7 +13,6 @@ describe('Generate and recognize', () => {
     it('should recognize generated code', async () => {
         const generateRequest = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(
             Barcode.EncodeBarcodeType.Qr,
-            Barcode.EncodeDataType.StringData,
             'Testing generator'
         );
         const generated = await generateApi.barcodeGenerateBarcodeTypeGet(generateRequest);

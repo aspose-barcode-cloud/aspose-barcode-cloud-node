@@ -449,8 +449,12 @@ export enum EncodeBarcodeType {
     RectMicroQr = 'RectMicroQR',
     MicroQr = 'MicroQR',
 }
+
+/**
+ * Data to encode in barcode
+ */
 export class EncodeData {
-    'dataType': EncodeDataType;
+    'dataType'?: EncodeDataType;
     /**
      * String represents data to encode
      */
@@ -540,18 +544,23 @@ export class RecognizeBase64Request {
      * Array of decode types to find on barcode
      */
     'barcodeTypes': Array<DecodeBarcodeType>;
-    'recognitionMode'?: RecognitionMode;
-    'imageKind'?: RecognitionImageKind;
     /**
      * Barcode image bytes encoded as base-64.
      */
     'fileBase64': string;
+    'recognitionMode'?: RecognitionMode;
+    'imageKind'?: RecognitionImageKind;
 
     static attributeTypeMap: Array<{ name: string; baseName: string; type: string }> = [
         {
             name: 'barcodeTypes',
             baseName: 'barcodeTypes',
             type: 'Array<DecodeBarcodeType>',
+        },
+        {
+            name: 'fileBase64',
+            baseName: 'fileBase64',
+            type: 'string',
         },
         {
             name: 'recognitionMode',
@@ -562,11 +571,6 @@ export class RecognizeBase64Request {
             name: 'imageKind',
             baseName: 'imageKind',
             type: 'RecognitionImageKind',
-        },
-        {
-            name: 'fileBase64',
-            baseName: 'fileBase64',
-            type: 'string',
         },
     ];
 
@@ -644,13 +648,14 @@ export class BarcodeGenerateBarcodeTypeGetRequest {
      */
     'barcodeType': EncodeBarcodeType;
     /**
-     * Type of data to encode.
-     */
-    'dataType': EncodeDataType;
-    /**
      * String represents data to encode
      */
     'data': string;
+    /**
+     * Type of data to encode.
+Default value:  EncodeDataType.StringData.
+     */
+    'dataType'?: EncodeDataType;
     /**
      * Barcode output image format.
 Default value: png
@@ -713,13 +718,10 @@ Default value: 0.
     /**
      * @param barcodeType Type of barcode to generate.
      
-     * @param dataType Type of data to encode.
-     
      * @param data String represents data to encode
      */
-    constructor(barcodeType: EncodeBarcodeType, dataType: EncodeDataType, data: string) {
+    constructor(barcodeType: EncodeBarcodeType, data: string) {
         this.barcodeType = barcodeType;
-        this.dataType = dataType;
         this.data = data;
     }
 }
@@ -750,13 +752,13 @@ export class BarcodeGenerateFormPostRequest {
      */
     'barcodeType': EncodeBarcodeType;
     /**
-     *
-     */
-    'dataType': EncodeDataType;
-    /**
      * String represents data to encode
      */
     'data': string;
+    /**
+     *
+     */
+    'dataType'?: EncodeDataType;
     /**
      *
      */
@@ -805,13 +807,10 @@ export class BarcodeGenerateFormPostRequest {
     /**
      * @param barcodeType 
      
-     * @param dataType 
-     
      * @param data String represents data to encode
      */
-    constructor(barcodeType: EncodeBarcodeType, dataType: EncodeDataType, data: string) {
+    constructor(barcodeType: EncodeBarcodeType, data: string) {
         this.barcodeType = barcodeType;
-        this.dataType = dataType;
         this.data = data;
     }
 }
@@ -829,7 +828,7 @@ export class BarcodeRecognizeBarcodeTypeGetRequest {
     /**
      * Url to barcode image
      */
-    'url': string;
+    'fileUrl': string;
     /**
      * Recognition mode
      */
@@ -842,11 +841,11 @@ export class BarcodeRecognizeBarcodeTypeGetRequest {
     /**
      * @param barcodeType Type of barcode to recognize
      
-     * @param url Url to barcode image
+     * @param fileUrl Url to barcode image
      */
-    constructor(barcodeType: DecodeBarcodeType, url: string) {
+    constructor(barcodeType: DecodeBarcodeType, fileUrl: string) {
         this.barcodeType = barcodeType;
-        this.url = url;
+        this.fileUrl = fileUrl;
     }
 }
 
@@ -942,12 +941,12 @@ export class BarcodeScanGetRequest {
     /**
      * Url to barcode image
      */
-    'url': string;
+    'fileUrl': string;
 
     /**
-     * @param url Url to barcode image
+     * @param fileUrl Url to barcode image
      */
-    constructor(url: string) {
-        this.url = url;
+    constructor(fileUrl: string) {
+        this.fileUrl = fileUrl;
     }
 }

@@ -11,7 +11,6 @@ describe('barcodeGenerateApiTests', () => {
     it('should generate image with barcodeGenerateBarcodeTypeGet', async () => {
         const request = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(
             Barcode.EncodeBarcodeType.Qr,
-            Barcode.EncodeDataType.StringData,
             'Testing generator'
         );
         request.foregroundColor = '0x001100';
@@ -27,7 +26,6 @@ describe('barcodeGenerateApiTests', () => {
 
         const encodeData = new Barcode.EncodeData();
         encodeData.data = 'Testing generator';
-        encodeData.dataType = Barcode.EncodeDataType.StringData;
 
         const generateParams = new Barcode.GenerateParams();
         generateParams.barcodeType = Barcode.EncodeBarcodeType.Pdf417;
@@ -42,11 +40,7 @@ describe('barcodeGenerateApiTests', () => {
     });
 
     it('should generate image with barcodeGenerateBodyPost', async () => {
-        const request = new Barcode.BarcodeGenerateFormPostRequest(
-            Barcode.EncodeBarcodeType.Qr,
-            Barcode.EncodeDataType.StringData,
-            'Testing generator'
-        );
+        const request = new Barcode.BarcodeGenerateFormPostRequest(Barcode.EncodeBarcodeType.Qr, 'Testing generator');
         request.rotationAngle = 90;
         const generated = await api.barcodeGenerateFormPost(request);
 

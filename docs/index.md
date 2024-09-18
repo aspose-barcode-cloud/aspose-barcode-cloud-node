@@ -7,7 +7,7 @@
 Generate barcode using GET request with parameters in route and query string.
 
 ```ts
-barcodeGenerateBarcodeTypeGet(barcodeType: EncodeBarcodeType, dataType: EncodeDataType, data: string): Buffer;
+barcodeGenerateBarcodeTypeGet(barcodeType: EncodeBarcodeType, data: string): Buffer;
 ```
 
 #### GenerateApi.barcodeGenerateBarcodeTypeGet parameters
@@ -15,8 +15,8 @@ barcodeGenerateBarcodeTypeGet(barcodeType: EncodeBarcodeType, dataType: EncodeDa
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **barcodeType** | [**EncodeBarcodeType**](models.md#)| Type of barcode to generate. |
- **dataType** | [**EncodeDataType**](models.md#)| Type of data to encode. |
  **data** | **string**| String represents data to encode |
+ **dataType** | [**EncodeDataType**](models.md#)| Type of data to encode.  Default value:  EncodeDataType.StringData. | [optional]
  **imageFormat** | [**AvailableBarCodeImageFormat**](models.md#)| Barcode output image format.  Default value: png | [optional]
  **twoDDisplayText** | **string**| Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode | [optional]
  **textLocation** | [**CodeLocation**](models.md#)| Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below. | [optional]
@@ -60,7 +60,7 @@ Buffer
 Generate barcode using POST request with parameters in url ecncoded form.
 
 ```ts
-barcodeGenerateFormPost(barcodeType: EncodeBarcodeType, dataType: EncodeDataType, data: string): Buffer;
+barcodeGenerateFormPost(barcodeType: EncodeBarcodeType, data: string): Buffer;
 ```
 
 #### GenerateApi.barcodeGenerateFormPost parameters
@@ -68,8 +68,8 @@ barcodeGenerateFormPost(barcodeType: EncodeBarcodeType, dataType: EncodeDataType
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **barcodeType** | [**EncodeBarcodeType**](models.md#EncodeBarcodeType)|  |
- **dataType** | [**EncodeDataType**](models.md#EncodeDataType)|  |
  **data** | **string**| String represents data to encode |
+ **dataType** | [**EncodeDataType**](models.md#EncodeDataType)|  | [optional]
  **imageFormat** | [**AvailableBarCodeImageFormat**](models.md#AvailableBarCodeImageFormat)|  | [optional]
  **twoDDisplayText** | **string**| Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode | [optional]
  **textLocation** | [**CodeLocation**](models.md#CodeLocation)|  | [optional]
@@ -95,7 +95,7 @@ Buffer
 Recognize barcode from file on server using GET requests with parameters in route and query string.
 
 ```ts
-barcodeRecognizeBarcodeTypeGet(barcodeType: DecodeBarcodeType, url: string): BarcodeResponseList;
+barcodeRecognizeBarcodeTypeGet(barcodeType: DecodeBarcodeType, fileUrl: string): BarcodeResponseList;
 ```
 
 #### RecognizeApi.barcodeRecognizeBarcodeTypeGet parameters
@@ -103,7 +103,7 @@ barcodeRecognizeBarcodeTypeGet(barcodeType: DecodeBarcodeType, url: string): Bar
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **barcodeType** | [**DecodeBarcodeType**](models.md#)| Type of barcode to recognize |
- **url** | **string**| Url to barcode image |
+ **fileUrl** | **string**| Url to barcode image |
  **recognitionMode** | [**RecognitionMode**](models.md#)| Recognition mode | [optional]
  **imageKind** | [**RecognitionImageKind**](models.md#)| Image kind | [optional]
 
@@ -203,14 +203,14 @@ Name | Type | Description  | Notes
 Scan barcode from file on server using GET requests with parameter in query string.
 
 ```ts
-barcodeScanGet(url: string): BarcodeResponseList;
+barcodeScanGet(fileUrl: string): BarcodeResponseList;
 ```
 
 #### ScanApi.barcodeScanGet parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
- **url** | **string**| Url to barcode image |
+ **fileUrl** | **string**| Url to barcode image |
 
 #### ScanApi.barcodeScanGet return type
 

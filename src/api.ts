@@ -240,13 +240,6 @@ export class GenerateApi {
             );
         }
 
-        // verify required parameter 'request.dataType' is not null or undefined
-        if (request.dataType == null) {
-            throw new Error(
-                'Required parameter request.dataType was null or undefined when calling barcodeGenerateBarcodeTypeGet.'
-            );
-        }
-
         // verify required parameter 'request.data' is not null or undefined
         if (request.data == null) {
             throw new Error(
@@ -387,13 +380,6 @@ export class GenerateApi {
             );
         }
 
-        // verify required parameter 'request.dataType' is not null or undefined
-        if (request.dataType == null) {
-            throw new Error(
-                'Required parameter request.dataType was null or undefined when calling barcodeGenerateFormPost.'
-            );
-        }
-
         // verify required parameter 'request.data' is not null or undefined
         if (request.data == null) {
             throw new Error(
@@ -520,15 +506,15 @@ export class RecognizeApi {
             );
         }
 
-        // verify required parameter 'request.url' is not null or undefined
-        if (request.url == null) {
+        // verify required parameter 'request.fileUrl' is not null or undefined
+        if (request.fileUrl == null) {
             throw new Error(
-                'Required parameter request.url was null or undefined when calling barcodeRecognizeBarcodeTypeGet.'
+                'Required parameter request.fileUrl was null or undefined when calling barcodeRecognizeBarcodeTypeGet.'
             );
         }
 
-        if (request.url != null) {
-            queryParameters['url'] = ObjectSerializer.serialize(request.url, 'string');
+        if (request.fileUrl != null) {
+            queryParameters['fileUrl'] = ObjectSerializer.serialize(request.fileUrl, 'string');
         }
 
         if (request.recognitionMode != null) {
@@ -787,13 +773,13 @@ export class ScanApi {
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
-        // verify required parameter 'request.url' is not null or undefined
-        if (request.url == null) {
-            throw new Error('Required parameter request.url was null or undefined when calling barcodeScanGet.');
+        // verify required parameter 'request.fileUrl' is not null or undefined
+        if (request.fileUrl == null) {
+            throw new Error('Required parameter request.fileUrl was null or undefined when calling barcodeScanGet.');
         }
 
-        if (request.url != null) {
-            queryParameters['url'] = ObjectSerializer.serialize(request.url, 'string');
+        if (request.fileUrl != null) {
+            queryParameters['fileUrl'] = ObjectSerializer.serialize(request.fileUrl, 'string');
         }
 
         const requestOptions: HttpOptions = {
