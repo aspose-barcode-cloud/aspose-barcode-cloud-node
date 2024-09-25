@@ -212,7 +212,7 @@ interface CaptionParams {
     alignment?: TextAlignment;
 
     /**
-     * Text color.
+     * Text color.   Default value: black   Use named colors like: red, green, blue   Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     color?: string;
 
@@ -1065,7 +1065,7 @@ interface GeneratorParams {
     textAlignment?: TextAlignment;
 
     /**
-     * Specify the displaying CodeText's Color. Default value: Color.Black.
+     * Specify the displaying CodeText's Color. Default value: black. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     textColor?: string;
 
@@ -1155,17 +1155,17 @@ interface GeneratorParams {
     captionBelow?: CaptionParams;
 
     /**
-     * Background color of the barcode image. Default value: Color.White.
+     * Background color of the barcode image. Default value: white. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     backColor?: string;
 
     /**
-     * Bars color. Default value: Color.Black.
+     * Bars color. Default value: black. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     barColor?: string;
 
     /**
-     * Border color. Default value: Color.Black.
+     * Border color. Default value: black. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     borderColor?: string;
 
@@ -1310,7 +1310,7 @@ interface GeneratorParams {
     patchCode?: PatchCodeParams;
 
     /**
-     * Code128 params.
+     * Code128 parameters
      */
     code128?: Code128Params;
 

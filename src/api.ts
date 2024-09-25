@@ -403,10 +403,6 @@ export class BarcodeApi {
             queryParameters['TextColor'] = ObjectSerializer.serialize(request.textColor, 'string');
         }
 
-        if (request.fontSizeMode != null) {
-            queryParameters['FontSizeMode'] = ObjectSerializer.serialize(request.fontSizeMode, "'Auto' | 'Manual'");
-        }
-
         if (request.noWrap != null) {
             queryParameters['NoWrap'] = ObjectSerializer.serialize(request.noWrap, 'boolean');
         }
@@ -1148,10 +1144,6 @@ export class BarcodeApi {
 
         if (request.textColor != null) {
             queryParameters['TextColor'] = ObjectSerializer.serialize(request.textColor, 'string');
-        }
-
-        if (request.fontSizeMode != null) {
-            queryParameters['FontSizeMode'] = ObjectSerializer.serialize(request.fontSizeMode, "'Auto' | 'Manual'");
         }
 
         if (request.noWrap != null) {
