@@ -4892,6 +4892,10 @@ export class ScanBarcodeRequest {
  Try reducing the image size to avoid timeout.
      */
     'timeout'?: number;
+    /**
+     * Checksum validation setting. Default is ON.
+     */
+    'checksumValidation'?: 'Default' | 'On' | 'Off';
 
     /**
      * @param imageFile Image as file

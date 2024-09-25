@@ -1456,6 +1456,10 @@ export class BarcodeApi {
             formParams.push(['timeout', ObjectSerializer.serialize(request.timeout, 'number')]);
         }
 
+        if (request.checksumValidation != null) {
+            formParams.push(['checksumValidation', ObjectSerializer.serialize(request.checksumValidation, 'string')]);
+        }
+
         const requestOptions: HttpOptions = {
             method: 'POST',
             qs: queryParameters,
