@@ -57,4 +57,25 @@ describe('scanBarcode', () => {
             }
         );
     });
+
+    it('should scan Code39 without checksum', async () => {
+        const request = new Barcode.ScanBarcodeRequest(fs.readFileSync('./testdata/Code39.jpg'));
+        request.decodeTypes = [Barcode.DecodeBarcodeType.Code39Extended];
+        request.checksumValidation = Barcode.ChecksumValidation.Off;
+        request.timeout = 5_000;
+
+        const recognized = await api.scanBarcode(request);
+
+        const barcodes = recognized.body.barcodes;
+        assert.ok(barcodes);
+        assert.strictEqual(barcodes.length, 1);
+
+        assert.strictEqual(barcodes[0].type, Barcode.DecodeBarcodeType.Code39Extended);
+        assert.strictEqual(barcodes[0].barcodeValue, '8M93');
+
+        assert.ok(barcodes[0].region);
+        assert.strictEqual(barcodes[0].region.length, 4);
+        assert.ok(barcodes[0].region[0].X > 0, `X=${barcodes[0].region[0].X}`);
+        assert.ok(barcodes[0].region[0].Y > 0, `Y=${barcodes[0].region[0].Y}`);
+    });
 });

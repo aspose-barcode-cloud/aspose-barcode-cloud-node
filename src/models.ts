@@ -308,7 +308,7 @@ export class CaptionParams {
      */
     'alignment'?: TextAlignment;
     /**
-     * Text color.
+     * Text color.   Default value: black   Use named colors like: red, green, blue   Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'color'?: string;
     /**
@@ -1359,7 +1359,7 @@ export class GeneratorParams {
      */
     'textAlignment'?: TextAlignment;
     /**
-     * Specify the displaying CodeText's Color. Default value: Color.Black.
+     * Specify the displaying CodeText's Color. Default value: black. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'textColor'?: string;
     /**
@@ -1431,15 +1431,15 @@ export class GeneratorParams {
      */
     'captionBelow'?: CaptionParams;
     /**
-     * Background color of the barcode image. Default value: Color.White.
+     * Background color of the barcode image. Default value: white. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'backColor'?: string;
     /**
-     * Bars color. Default value: Color.Black.
+     * Bars color. Default value: black. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'barColor'?: string;
     /**
-     * Border color. Default value: Color.Black.
+     * Border color. Default value: black. Use named colors like: red, green, blue Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'borderColor'?: string;
     /**
@@ -1555,7 +1555,7 @@ export class GeneratorParams {
      */
     'patchCode'?: PatchCodeParams;
     /**
-     * Code128 params.
+     * Code128 parameters
      */
     'code128'?: Code128Params;
     /**
@@ -3519,15 +3519,11 @@ Default value: CodeLocation.Below.
     'textAlignment'?: 'Left' | 'Center' | 'Right';
     /**
      * Specify the displaying CodeText's Color.
-Default value: Color.Black.
+Default value: black.
+Use named colors like: red, green, blue
+Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'textColor'?: string;
-    /**
-     * Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value.
-It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation.
-Default value: FontSizeMode.Auto.
-     */
-    'fontSizeMode'?: 'Auto' | 'Manual';
     /**
      * Specify word wraps (line breaks) within text.
 Default value: false.
@@ -3588,17 +3584,23 @@ Default value: 0.
     'rotationAngle'?: number;
     /**
      * Background color of the barcode image.
-Default value: Color.White.
+Default value: white.
+Use named colors like: red, green, blue
+Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'backColor'?: string;
     /**
      * Bars color.
-Default value: Color.Black.
+Default value: black.
+Use named colors like: red, green, blue
+Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'barColor'?: string;
     /**
      * Border color.
-Default value: Color.Black.
+Default value: black.
+Use named colors like: red, green, blue
+Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'borderColor'?: string;
     /**
@@ -4457,15 +4459,11 @@ Default value: CodeLocation.Below.
     'textAlignment'?: 'Left' | 'Center' | 'Right';
     /**
      * Specify the displaying CodeText's Color.
-Default value: Color.Black.
+Default value: black.
+Use named colors like: red, green, blue
+Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'textColor'?: string;
-    /**
-     * Specify FontSizeMode. If FontSizeMode is set to Auto, font size will be calculated automatically based on xDimension value.
-It is recommended to use FontSizeMode.Auto especially in AutoSizeMode.Nearest or AutoSizeMode.Interpolation.
-Default value: FontSizeMode.Auto.
-     */
-    'fontSizeMode'?: 'Auto' | 'Manual';
     /**
      * Specify word wraps (line breaks) within text.
 Default value: false.
@@ -4526,17 +4524,23 @@ Default value: 0.
     'rotationAngle'?: number;
     /**
      * Background color of the barcode image.
-Default value: Color.White.
+Default value: white.
+Use named colors like: red, green, blue
+Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'backColor'?: string;
     /**
      * Bars color.
-Default value: Color.Black.
+Default value: black.
+Use named colors like: red, green, blue
+Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'barColor'?: string;
     /**
      * Border color.
-Default value: Color.Black.
+Default value: black.
+Use named colors like: red, green, blue
+Or HTML colors like: #FF0000, #00FF00, #0000FF
      */
     'borderColor'?: string;
     /**
@@ -4888,6 +4892,10 @@ export class ScanBarcodeRequest {
  Try reducing the image size to avoid timeout.
      */
     'timeout'?: number;
+    /**
+     * Checksum validation setting. Default is ON.
+     */
+    'checksumValidation'?: 'Default' | 'On' | 'Off';
 
     /**
      * @param imageFile Image as file

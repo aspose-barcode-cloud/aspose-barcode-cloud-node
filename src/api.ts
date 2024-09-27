@@ -338,7 +338,7 @@ let typeMap: { [index: string]: any } = {
 export class BarcodeApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '24.8.0',
+        'x-aspose-client-version': '24.9.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -401,10 +401,6 @@ export class BarcodeApi {
 
         if (request.textColor != null) {
             queryParameters['TextColor'] = ObjectSerializer.serialize(request.textColor, 'string');
-        }
-
-        if (request.fontSizeMode != null) {
-            queryParameters['FontSizeMode'] = ObjectSerializer.serialize(request.fontSizeMode, "'Auto' | 'Manual'");
         }
 
         if (request.noWrap != null) {
@@ -1150,10 +1146,6 @@ export class BarcodeApi {
             queryParameters['TextColor'] = ObjectSerializer.serialize(request.textColor, 'string');
         }
 
-        if (request.fontSizeMode != null) {
-            queryParameters['FontSizeMode'] = ObjectSerializer.serialize(request.fontSizeMode, "'Auto' | 'Manual'");
-        }
-
         if (request.noWrap != null) {
             queryParameters['NoWrap'] = ObjectSerializer.serialize(request.noWrap, 'boolean');
         }
@@ -1464,6 +1456,10 @@ export class BarcodeApi {
             formParams.push(['timeout', ObjectSerializer.serialize(request.timeout, 'number')]);
         }
 
+        if (request.checksumValidation != null) {
+            formParams.push(['checksumValidation', ObjectSerializer.serialize(request.checksumValidation, 'string')]);
+        }
+
         const requestOptions: HttpOptions = {
             method: 'POST',
             qs: queryParameters,
@@ -1488,7 +1484,7 @@ export class BarcodeApi {
 export class FileApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '24.8.0',
+        'x-aspose-client-version': '24.9.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -1756,7 +1752,7 @@ export class FileApi {
 export class FolderApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '24.8.0',
+        'x-aspose-client-version': '24.9.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -1998,7 +1994,7 @@ export class FolderApi {
 export class StorageApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '24.8.0',
+        'x-aspose-client-version': '24.9.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
