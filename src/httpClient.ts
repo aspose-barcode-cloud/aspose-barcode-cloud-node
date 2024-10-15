@@ -117,7 +117,11 @@ export class HttpClient {
                             error: new Error(`Error on '${url}': ${res.statusCode} ${res.statusMessage}`),
                             errorResponse: null,
                         };
-                        var errorResponse = JSON.parse(respBody.toString()) as ApiErrorResponse;
+                        var errorResponse = null;
+                        try {
+                            errorResponse = JSON.parse(respBody.toString()) as ApiErrorResponse;
+                        } catch (parseError) {}
+
                         if (errorResponse) {
                             rejectObject.errorResponse = errorResponse;
                         } else {

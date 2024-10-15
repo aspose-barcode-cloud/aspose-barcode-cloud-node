@@ -116,11 +116,11 @@ export class BarcodeImageParams {
     'textLocation'?: CodeLocation;
     'textAlignment'?: TextAlignment;
     /**
-     * Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
+     * Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black.
      */
     'foregroundColor'?: string;
     /**
-     * Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
+     * Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White.
      */
     'backgroundColor'?: string;
     'units'?: AvailableGraphicsUnit;
@@ -679,15 +679,15 @@ Default value: TextAligment.Left
     /**
      * Specify the displaying bars and content Color. 
 Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #. 
-For example: Color.AliceBlue or #FF000000
-Default value: Color.Black.
+For example: AliceBlue or #FF000000
+Default value: Black.
      */
     'foregroundColor'?: string;
     /**
      * Background color of the barcode image.
 Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #. 
-For example: Color.AliceBlue or #FF000000
-Default value: Color.White.
+For example: AliceBlue or #FF000000
+Default value: White.
      */
     'backgroundColor'?: string;
     /**
@@ -776,11 +776,11 @@ export class BarcodeGenerateFormPostRequest {
      */
     'textAlignment'?: TextAlignment;
     /**
-     * Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black.
+     * Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black.
      */
     'foregroundColor'?: string;
     /**
-     * Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White.
+     * Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White.
      */
     'backgroundColor'?: string;
     /**
@@ -875,7 +875,7 @@ export class BarcodeRecognizeFormPostRequest {
      */
     'barcodeType': DecodeBarcodeType;
     /**
-     *
+     * Barcode image file
      */
     'file': RequestFile;
     /**
@@ -890,7 +890,7 @@ export class BarcodeRecognizeFormPostRequest {
     /**
      * @param barcodeType 
      
-     * @param file 
+     * @param file Barcode image file
      */
     constructor(barcodeType: DecodeBarcodeType, file: RequestFile) {
         this.barcodeType = barcodeType;
@@ -922,12 +922,12 @@ export class BarcodeScanBodyPostRequest {
  */
 export class BarcodeScanFormPostRequest {
     /**
-     *
+     * Barcode image file
      */
     'file': RequestFile;
 
     /**
-     * @param file
+     * @param file Barcode image file
      */
     constructor(file: RequestFile) {
         this.file = file;

@@ -371,7 +371,6 @@ export class GenerateApi {
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
         const formParams: FormParamsType = [];
-        let isMultipartForm: boolean = false;
 
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
@@ -440,22 +439,11 @@ export class GenerateApi {
             encoding: null,
         };
 
-        if (isMultipartForm) {
-            let fileArray = new Array<RequestFile>();
+        let fileArray = new Array<RequestFile>();
 
-            const multipartForm = new Multipart(formParams, fileArray);
-            requestOptions.body = multipartForm.body;
-            requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };
-        } else {
-            let mappedForm: StringKeyWithStringValue = {};
-            formParams.forEach((pair) => {
-                if (pair.length === 2) {
-                    const [key, value] = pair;
-                    mappedForm[key] = value;
-                }
-            });
-            requestOptions.form = mappedForm;
-        }
+        const multipartForm = new Multipart(formParams, fileArray);
+        requestOptions.body = multipartForm.body;
+        requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
@@ -592,7 +580,6 @@ export class RecognizeApi {
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
         const formParams: FormParamsType = [];
-        let isMultipartForm: boolean = false;
 
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
@@ -611,7 +598,6 @@ export class RecognizeApi {
         if (request.barcodeType != null) {
             formParams.push(['barcodeType', ObjectSerializer.serialize(request.barcodeType, 'DecodeBarcodeType')]);
         }
-        isMultipartForm = true;
         if (request.recognitionMode != null) {
             formParams.push([
                 'recognitionMode',
@@ -628,22 +614,11 @@ export class RecognizeApi {
             uri: requestPath,
         };
 
-        if (isMultipartForm) {
-            let fileArray = new Array<RequestFile>();
-            fileArray = request.file == null ? [] : [request.file];
-            const multipartForm = new Multipart(formParams, fileArray);
-            requestOptions.body = multipartForm.body;
-            requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };
-        } else {
-            let mappedForm: StringKeyWithStringValue = {};
-            formParams.forEach((pair) => {
-                if (pair.length === 2) {
-                    const [key, value] = pair;
-                    mappedForm[key] = value;
-                }
-            });
-            requestOptions.form = mappedForm;
-        }
+        let fileArray = new Array<RequestFile>();
+        fileArray = request.file == null ? [] : [request.file];
+        const multipartForm = new Multipart(formParams, fileArray);
+        requestOptions.body = multipartForm.body;
+        requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
@@ -719,14 +694,12 @@ export class ScanApi {
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
         const formParams: FormParamsType = [];
-        let isMultipartForm: boolean = false;
 
         // verify required parameter 'request.file' is not null or undefined
         if (request.file == null) {
             throw new Error('Required parameter request.file was null or undefined when calling barcodeScanFormPost.');
         }
 
-        isMultipartForm = true;
         const requestOptions: HttpOptions = {
             method: 'POST',
             qs: queryParameters,
@@ -734,22 +707,11 @@ export class ScanApi {
             uri: requestPath,
         };
 
-        if (isMultipartForm) {
-            let fileArray = new Array<RequestFile>();
-            fileArray = request.file == null ? [] : [request.file];
-            const multipartForm = new Multipart(formParams, fileArray);
-            requestOptions.body = multipartForm.body;
-            requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };
-        } else {
-            let mappedForm: StringKeyWithStringValue = {};
-            formParams.forEach((pair) => {
-                if (pair.length === 2) {
-                    const [key, value] = pair;
-                    mappedForm[key] = value;
-                }
-            });
-            requestOptions.form = mappedForm;
-        }
+        let fileArray = new Array<RequestFile>();
+        fileArray = request.file == null ? [] : [request.file];
+        const multipartForm = new Multipart(formParams, fileArray);
+        requestOptions.body = multipartForm.body;
+        requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 

@@ -21,8 +21,8 @@ Name | Type | Description  | Notes
  **twoDDisplayText** | **string**| Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode | [optional]
  **textLocation** | [**CodeLocation**](models.md#)| Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below. | [optional]
  **textAlignment** | [**TextAlignment**](models.md#)| Text alignment.  Default value: TextAligment.Left | [optional]
- **foregroundColor** | **string**| Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black. | [optional]
- **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White. | [optional]
+ **foregroundColor** | **string**| Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black. | [optional]
+ **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White. | [optional]
  **units** | [**AvailableGraphicsUnit**](models.md#)| Common Units for all measuring in query. Default units: pixel. | [optional]
  **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi. | [optional]
  **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel. | [optional]
@@ -74,8 +74,8 @@ Name | Type | Description  | Notes
  **twoDDisplayText** | **string**| Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode | [optional]
  **textLocation** | [**CodeLocation**](models.md#CodeLocation)|  | [optional]
  **textAlignment** | [**TextAlignment**](models.md#TextAlignment)|  | [optional]
- **foregroundColor** | **string**| Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.Black. | [optional]
- **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: Color.AliceBlue or #FF000000  Default value: Color.White. | [optional]
+ **foregroundColor** | **string**| Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black. | [optional]
+ **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White. | [optional]
  **units** | [**AvailableGraphicsUnit**](models.md#AvailableGraphicsUnit)|  | [optional]
  **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi. | [optional]
  **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel. | [optional]
@@ -146,7 +146,7 @@ barcodeRecognizeFormPost(barcodeType: DecodeBarcodeType, file: RequestFile): Bar
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **barcodeType** | [**DecodeBarcodeType**](models.md#DecodeBarcodeType)|  |
- **file** | **RequestFile****RequestFile**|  |
+ **file** | **RequestFile****RequestFile**| Barcode image file |
  **recognitionMode** | [**RecognitionMode**](models.md#RecognitionMode)|  | [optional]
  **imageKind** | [**RecognitionImageKind**](models.md#RecognitionImageKind)|  | [optional]
 
@@ -190,7 +190,7 @@ barcodeScanFormPost(file: RequestFile): BarcodeResponseList;
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
- **file** | **RequestFile****RequestFile**|  |
+ **file** | **RequestFile****RequestFile**| Barcode image file |
 
 #### ScanApi.barcodeScanFormPost return type
 
