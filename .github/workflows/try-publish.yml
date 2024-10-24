@@ -22,5 +22,7 @@ jobs:
         cache: 'npm'
     - name: Init
       run: make init
+    - name: Print current working directory
+      run: pwd
     - name: Dry run
       run: npm publish --dry-run
