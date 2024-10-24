@@ -18,8 +18,7 @@ jobs:
     - name: Use the latest versiob of Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: latest
-        cache: 'npm'
+        node-version: 20.18.0
     - name: Init
       run: make init
     - name: Print current working directory
