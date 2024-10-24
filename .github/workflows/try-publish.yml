@@ -18,8 +18,10 @@ jobs:
     - name: Use the latest versiob of Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: latest
+        node-version: 21.7.3
     - name: Init
       run: make init
+    - name: Print npm version
+      run: npm --version
     - name: Dry run
       run: npm publish --dry-run
