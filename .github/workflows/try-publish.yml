@@ -18,7 +18,11 @@ jobs:
     - name: Use the latest versiob of Node.js
       uses: actions/setup-node@v4
       with:
-        node-version: latest
+      # Switch node-version: latest (23) to 22 for a while
+      # https://github.com/nodejs/node/issues/55410
+      # npm pack crash in Node 23
+      # node-version: latest
+        node-version: 22.x
         cache: 'npm'
     - name: Init
       run: make init
