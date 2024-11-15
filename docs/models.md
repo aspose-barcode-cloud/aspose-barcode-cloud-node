@@ -40,35 +40,22 @@ interface ApiErrorResponse {
     /**
      * Gets or sets request Id.
      */
-    requestId?: string;
-    error?: ApiError;
+    requestId: string;
+    error: ApiError;
 }
 ```
 
-## AvailableBarCodeImageFormat
+## BarcodeImageFormat
 
 Specifies the file format of the image.
 
 ```ts
-enum AvailableBarCodeImageFormat {
+enum BarcodeImageFormat {
     Gif = 'Gif',
     Jpeg = 'Jpeg',
     Png = 'Png',
     Tiff = 'Tiff',
     Svg = 'Svg'
-}
-```
-
-## AvailableGraphicsUnit
-
-Subset of Aspose.Drawing.GraphicsUnit.
-
-```ts
-enum AvailableGraphicsUnit {
-    Pixel = 'Pixel',
-    Point = 'Point',
-    Inch = 'Inch',
-    Millimeter = 'Millimeter'
 }
 ```
 
@@ -78,38 +65,32 @@ Barcode image optional parameters
 
 ```ts
 interface BarcodeImageParams {
-    imageFormat?: AvailableBarCodeImageFormat;
-
-    /**
-     * Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode
-     */
-    twoDDisplayText?: string;
+    imageFormat?: BarcodeImageFormat;
     textLocation?: CodeLocation;
-    textAlignment?: TextAlignment;
 
     /**
-     * Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black.
+     * Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black.
      */
     foregroundColor?: string;
 
     /**
-     * Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White.
+     * Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White.
      */
     backgroundColor?: string;
-    units?: AvailableGraphicsUnit;
+    units?: GraphicsUnit;
 
     /**
-     * Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.
+     * Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.  Decimal separator is dot.
      */
     resolution?: number;
 
     /**
-     * Height of the barcode image in given units. Default units: pixel.
+     * Height of the barcode image in given units. Default units: pixel.  Decimal separator is dot.
      */
     imageHeight?: number;
 
     /**
-     * Width of the barcode image in given units. Default units: pixel.
+     * Width of the barcode image in given units. Default units: pixel.  Decimal separator is dot.
      */
     imageWidth?: number;
 
@@ -178,91 +159,90 @@ See Aspose.BarCode.Aspose.BarCode.BarCodeRecognition.DecodeType
 
 ```ts
 enum DecodeBarcodeType {
-    MostCommonlyUsed = 'mostCommonlyUsed',
+    MostCommonlyUsed = 'MostCommonlyUsed',
+    Qr = 'QR',
     AustraliaPost = 'AustraliaPost',
+    AustralianPosteParcel = 'AustralianPosteParcel',
     Aztec = 'Aztec',
-    Isbn = 'ISBN',
     Codabar = 'Codabar',
+    CodablockF = 'CodablockF',
     Code11 = 'Code11',
     Code128 = 'Code128',
-    Gs1Code128 = 'GS1Code128',
+    Code16K = 'Code16K',
+    Code32 = 'Code32',
     Code39 = 'Code39',
     Code39FullAscii = 'Code39FullASCII',
     Code93 = 'Code93',
-    Code93FullAscii = 'Code93FullASCII',
+    CompactPdf417 = 'CompactPdf417',
+    DataLogic2of5 = 'DataLogic2of5',
     DataMatrix = 'DataMatrix',
+    DatabarExpanded = 'DatabarExpanded',
+    DatabarExpandedStacked = 'DatabarExpandedStacked',
+    DatabarLimited = 'DatabarLimited',
+    DatabarOmniDirectional = 'DatabarOmniDirectional',
+    DatabarStacked = 'DatabarStacked',
+    DatabarStackedOmniDirectional = 'DatabarStackedOmniDirectional',
+    DatabarTruncated = 'DatabarTruncated',
     DeutschePostIdentcode = 'DeutschePostIdentcode',
     DeutschePostLeitcode = 'DeutschePostLeitcode',
+    DotCode = 'DotCode',
+    DutchKix = 'DutchKIX',
     Ean13 = 'EAN13',
     Ean14 = 'EAN14',
     Ean8 = 'EAN8',
+    Gs1Aztec = 'GS1Aztec',
+    Gs1Code128 = 'GS1Code128',
+    Gs1CompositeBar = 'GS1CompositeBar',
+    Gs1DataMatrix = 'GS1DataMatrix',
+    Gs1DotCode = 'GS1DotCode',
+    Gs1HanXin = 'GS1HanXin',
+    Gs1MicroPdf417 = 'GS1MicroPdf417',
+    Gs1Qr = 'GS1QR',
+    HanXin = 'HanXin',
+    HibcAztecLic = 'HIBCAztecLIC',
+    HibcAztecPas = 'HIBCAztecPAS',
+    HibcCode128Lic = 'HIBCCode128LIC',
+    HibcCode128Pas = 'HIBCCode128PAS',
+    HibcCode39Lic = 'HIBCCode39LIC',
+    HibcCode39Pas = 'HIBCCode39PAS',
+    HibcDataMatrixLic = 'HIBCDataMatrixLIC',
+    HibcDataMatrixPas = 'HIBCDataMatrixPAS',
+    Hibcqrlic = 'HIBCQRLIC',
+    Hibcqrpas = 'HIBCQRPAS',
     Iata2of5 = 'IATA2of5',
-    Interleaved2of5 = 'Interleaved2of5',
-    Issn = 'ISSN',
+    Isbn = 'ISBN',
     Ismn = 'ISMN',
-    ItalianPost25 = 'ItalianPost25',
+    Issn = 'ISSN',
     Itf14 = 'ITF14',
     Itf6 = 'ITF6',
+    Interleaved2of5 = 'Interleaved2of5',
+    ItalianPost25 = 'ItalianPost25',
     MacroPdf417 = 'MacroPdf417',
+    Mailmark = 'Mailmark',
     Matrix2of5 = 'Matrix2of5',
+    MaxiCode = 'MaxiCode',
+    MicrE13B = 'MicrE13B',
+    MicroPdf417 = 'MicroPdf417',
+    MicroQr = 'MicroQR',
     Msi = 'MSI',
     OneCode = 'OneCode',
     Opc = 'OPC',
     PatchCode = 'PatchCode',
     Pdf417 = 'Pdf417',
-    MicroPdf417 = 'MicroPdf417',
+    Pharmacode = 'Pharmacode',
     Planet = 'Planet',
     Postnet = 'Postnet',
     Pzn = 'PZN',
-    Qr = 'QR',
-    MicroQr = 'MicroQR',
     RectMicroQr = 'RectMicroQR',
     Rm4Scc = 'RM4SCC',
     Scc14 = 'SCC14',
     Sscc18 = 'SSCC18',
     Standard2of5 = 'Standard2of5',
     Supplement = 'Supplement',
+    SwissPostParcel = 'SwissPostParcel',
     Upca = 'UPCA',
     Upce = 'UPCE',
-    Vin = 'VIN',
-    Pharmacode = 'Pharmacode',
-    Gs1DataMatrix = 'GS1DataMatrix',
-    DatabarOmniDirectional = 'DatabarOmniDirectional',
-    DatabarTruncated = 'DatabarTruncated',
-    DatabarLimited = 'DatabarLimited',
-    DatabarExpanded = 'DatabarExpanded',
-    SwissPostParcel = 'SwissPostParcel',
-    AustralianPosteParcel = 'AustralianPosteParcel',
-    Code16K = 'Code16K',
-    DatabarStackedOmniDirectional = 'DatabarStackedOmniDirectional',
-    DatabarStacked = 'DatabarStacked',
-    DatabarExpandedStacked = 'DatabarExpandedStacked',
-    CompactPdf417 = 'CompactPdf417',
-    Gs1Qr = 'GS1QR',
-    MaxiCode = 'MaxiCode',
-    MicrE13B = 'MicrE13B',
-    Code32 = 'Code32',
-    DataLogic2of5 = 'DataLogic2of5',
-    DotCode = 'DotCode',
-    DutchKix = 'DutchKIX',
-    CodablockF = 'CodablockF',
-    Mailmark = 'Mailmark',
-    Gs1DotCode = 'GS1DotCode',
-    HibcCode39Lic = 'HIBCCode39LIC',
-    HibcCode128Lic = 'HIBCCode128LIC',
-    HibcAztecLic = 'HIBCAztecLIC',
-    HibcDataMatrixLic = 'HIBCDataMatrixLIC',
-    Hibcqrlic = 'HIBCQRLIC',
-    HibcCode39Pas = 'HIBCCode39PAS',
-    HibcCode128Pas = 'HIBCCode128PAS',
-    HibcAztecPas = 'HIBCAztecPAS',
-    HibcDataMatrixPas = 'HIBCDataMatrixPAS',
-    Hibcqrpas = 'HIBCQRPAS',
-    HanXin = 'HanXin',
-    Gs1HanXin = 'GS1HanXin',
-    Gs1Aztec = 'GS1Aztec',
-    Gs1CompositeBar = 'GS1CompositeBar',
-    Gs1MicroPdf417 = 'GS1MicroPdf417'
+    Vin = 'VIN'
 }
 ```
 
@@ -272,79 +252,79 @@ See Aspose.BarCode.Generation.EncodeTypes
 
 ```ts
 enum EncodeBarcodeType {
+    Qr = 'QR',
+    AustraliaPost = 'AustraliaPost',
+    AustralianPosteParcel = 'AustralianPosteParcel',
+    Aztec = 'Aztec',
     Codabar = 'Codabar',
+    CodablockF = 'CodablockF',
     Code11 = 'Code11',
+    Code128 = 'Code128',
+    Code16K = 'Code16K',
+    Code32 = 'Code32',
     Code39 = 'Code39',
     Code39FullAscii = 'Code39FullASCII',
     Code93 = 'Code93',
-    Code128 = 'Code128',
-    Gs1Code128 = 'GS1Code128',
-    Ean8 = 'EAN8',
-    Ean13 = 'EAN13',
-    Ean14 = 'EAN14',
-    Scc14 = 'SCC14',
-    Sscc18 = 'SSCC18',
-    Upca = 'UPCA',
-    Upce = 'UPCE',
-    Isbn = 'ISBN',
-    Issn = 'ISSN',
-    Ismn = 'ISMN',
-    Standard2of5 = 'Standard2of5',
-    Interleaved2of5 = 'Interleaved2of5',
-    Matrix2of5 = 'Matrix2of5',
-    ItalianPost25 = 'ItalianPost25',
-    Iata2of5 = 'IATA2of5',
-    Itf14 = 'ITF14',
-    Itf6 = 'ITF6',
-    Msi = 'MSI',
-    Vin = 'VIN',
-    DeutschePostIdentcode = 'DeutschePostIdentcode',
-    DeutschePostLeitcode = 'DeutschePostLeitcode',
-    Opc = 'OPC',
-    Pzn = 'PZN',
-    Code16K = 'Code16K',
-    Pharmacode = 'Pharmacode',
+    DataLogic2of5 = 'DataLogic2of5',
     DataMatrix = 'DataMatrix',
-    Qr = 'QR',
-    Aztec = 'Aztec',
-    Pdf417 = 'Pdf417',
-    MacroPdf417 = 'MacroPdf417',
-    AustraliaPost = 'AustraliaPost',
-    Postnet = 'Postnet',
-    Planet = 'Planet',
-    OneCode = 'OneCode',
-    Rm4Scc = 'RM4SCC',
-    DatabarOmniDirectional = 'DatabarOmniDirectional',
-    DatabarTruncated = 'DatabarTruncated',
-    DatabarLimited = 'DatabarLimited',
     DatabarExpanded = 'DatabarExpanded',
-    SingaporePost = 'SingaporePost',
-    Gs1DataMatrix = 'GS1DataMatrix',
-    AustralianPosteParcel = 'AustralianPosteParcel',
-    SwissPostParcel = 'SwissPostParcel',
-    PatchCode = 'PatchCode',
     DatabarExpandedStacked = 'DatabarExpandedStacked',
+    DatabarLimited = 'DatabarLimited',
+    DatabarOmniDirectional = 'DatabarOmniDirectional',
     DatabarStacked = 'DatabarStacked',
     DatabarStackedOmniDirectional = 'DatabarStackedOmniDirectional',
-    MicroPdf417 = 'MicroPdf417',
-    Gs1Qr = 'GS1QR',
-    MaxiCode = 'MaxiCode',
-    Code32 = 'Code32',
-    DataLogic2of5 = 'DataLogic2of5',
+    DatabarTruncated = 'DatabarTruncated',
+    DeutschePostIdentcode = 'DeutschePostIdentcode',
+    DeutschePostLeitcode = 'DeutschePostLeitcode',
     DotCode = 'DotCode',
     DutchKix = 'DutchKIX',
+    Ean13 = 'EAN13',
+    Ean14 = 'EAN14',
+    Ean8 = 'EAN8',
+    Gs1Aztec = 'GS1Aztec',
+    Gs1CodablockF = 'GS1CodablockF',
+    Gs1Code128 = 'GS1Code128',
+    Gs1DataMatrix = 'GS1DataMatrix',
+    Gs1DotCode = 'GS1DotCode',
+    Gs1HanXin = 'GS1HanXin',
+    Gs1MicroPdf417 = 'GS1MicroPdf417',
+    Gs1Qr = 'GS1QR',
+    HanXin = 'HanXin',
+    Iata2of5 = 'IATA2of5',
+    Isbn = 'ISBN',
+    Ismn = 'ISMN',
+    Issn = 'ISSN',
+    Itf14 = 'ITF14',
+    Itf6 = 'ITF6',
+    Interleaved2of5 = 'Interleaved2of5',
+    ItalianPost25 = 'ItalianPost25',
+    Msi = 'MSI',
+    MacroPdf417 = 'MacroPdf417',
+    Mailmark = 'Mailmark',
+    Matrix2of5 = 'Matrix2of5',
+    MaxiCode = 'MaxiCode',
+    MicroPdf417 = 'MicroPdf417',
+    MicroQr = 'MicroQR',
+    Opc = 'OPC',
+    OneCode = 'OneCode',
+    Pzn = 'PZN',
+    PatchCode = 'PatchCode',
+    Pdf417 = 'Pdf417',
+    Pharmacode = 'Pharmacode',
+    Planet = 'Planet',
+    Postnet = 'Postnet',
+    Rm4Scc = 'RM4SCC',
+    RectMicroQr = 'RectMicroQR',
+    Scc14 = 'SCC14',
+    Sscc18 = 'SSCC18',
+    SingaporePost = 'SingaporePost',
+    Standard2of5 = 'Standard2of5',
+    SwissPostParcel = 'SwissPostParcel',
+    Upca = 'UPCA',
+    Upce = 'UPCE',
     UpcaGs1Code128Coupon = 'UpcaGs1Code128Coupon',
     UpcaGs1DatabarCoupon = 'UpcaGs1DatabarCoupon',
-    CodablockF = 'CodablockF',
-    Gs1CodablockF = 'GS1CodablockF',
-    Mailmark = 'Mailmark',
-    Gs1DotCode = 'GS1DotCode',
-    HanXin = 'HanXin',
-    Gs1HanXin = 'GS1HanXin',
-    Gs1Aztec = 'GS1Aztec',
-    Gs1MicroPdf417 = 'GS1MicroPdf417',
-    RectMicroQr = 'RectMicroQR',
-    MicroQr = 'MicroQR'
+    Vin = 'VIN'
 }
 ```
 
@@ -384,6 +364,19 @@ interface GenerateParams {
     barcodeType: EncodeBarcodeType;
     encodeData: EncodeData;
     barcodeImageParams?: BarcodeImageParams;
+}
+```
+
+## GraphicsUnit
+
+Subset of Aspose.Drawing.GraphicsUnit.
+
+```ts
+enum GraphicsUnit {
+    Pixel = 'Pixel',
+    Point = 'Point',
+    Inch = 'Inch',
+    Millimeter = 'Millimeter'
 }
 ```
 
@@ -428,7 +421,7 @@ interface RecognizeBase64Request {
      */
     fileBase64: string;
     recognitionMode?: RecognitionMode;
-    imageKind?: RecognitionImageKind;
+    recognitionImageKind?: RecognitionImageKind;
 }
 ```
 
@@ -462,15 +455,6 @@ interface ScanBase64Request {
      * Barcode image bytes encoded as base-64.
      */
     fileBase64: string;
-}
-```
-
-## TextAlignment
-```ts
-enum TextAlignment {
-    Left = 'Left',
-    Center = 'Center',
-    Right = 'Right'
 }
 ```
 

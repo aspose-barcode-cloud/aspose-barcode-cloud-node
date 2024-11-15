@@ -19,9 +19,9 @@ describe('Generate and recognize', () => {
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
 
-        const scanRequest = new Barcode.BarcodeScanFormPostRequest(new RequestFile('file', 'file', generated.body));
+        const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(new RequestFile('file', 'file', generated.body));
 
-        const recognized = await scanApi.barcodeScanFormPost(scanRequest);
+        const recognized = await scanApi.barcodeScanMultipartPost(scanRequest);
 
         const barcodes = recognized.body.barcodes;
         assert.ok(barcodes);

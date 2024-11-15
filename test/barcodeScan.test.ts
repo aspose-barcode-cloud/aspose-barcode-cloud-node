@@ -16,9 +16,9 @@ describe('barcodeRecognize', () => {
     const requestFile = new RequestFile('file', 'pdf417Sample.png', imageBuffer);
     const base64File = fs.readFileSync('./testdata/QR_and_Code128.png').toString('base64');
 
-    it('barcodeScanFormPost should recognize uploaded image', async () => {
-        const scanRequest = new Barcode.BarcodeScanFormPostRequest(requestFile);
-        const recognized = await api.barcodeScanFormPost(scanRequest);
+    it('barcodeScanMultipartPost should recognize uploaded image', async () => {
+        const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(requestFile);
+        const recognized = await api.barcodeScanMultipartPost(scanRequest);
 
         assert.ok(recognized.body.barcodes);
         assert.strictEqual(recognized.body.barcodes.length, 1);

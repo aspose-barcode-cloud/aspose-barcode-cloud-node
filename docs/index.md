@@ -17,16 +17,14 @@ Name | Type | Description  | Notes
  **barcodeType** | [**EncodeBarcodeType**](models.md#)| Type of barcode to generate. |
  **data** | **string**| String represents data to encode |
  **dataType** | [**EncodeDataType**](models.md#)| Type of data to encode.  Default value:  EncodeDataType.StringData. | [optional]
- **imageFormat** | [**AvailableBarCodeImageFormat**](models.md#)| Barcode output image format.  Default value: png | [optional]
- **twoDDisplayText** | **string**| Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode | [optional]
+ **imageFormat** | [**BarcodeImageFormat**](models.md#)| Barcode output image format.  Default value: png | [optional]
  **textLocation** | [**CodeLocation**](models.md#)| Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below. | [optional]
- **textAlignment** | [**TextAlignment**](models.md#)| Text alignment.  Default value: TextAligment.Left | [optional]
- **foregroundColor** | **string**| Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black. | [optional]
- **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White. | [optional]
- **units** | [**AvailableGraphicsUnit**](models.md#)| Common Units for all measuring in query. Default units: pixel. | [optional]
- **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi. | [optional]
- **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel. | [optional]
- **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel. | [optional]
+ **foregroundColor** | **string**| Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black. | [optional]
+ **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White. | [optional]
+ **units** | [**GraphicsUnit**](models.md#)| Common Units for all measuring in query. Default units: pixel. | [optional]
+ **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.  Decimal separator is dot. | [optional]
+ **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
+ **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
  **rotationAngle** | **number**| BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0. | [optional]
 
 #### GenerateApi.barcodeGenerateBarcodeTypeGet return type
@@ -55,63 +53,38 @@ Buffer
 
 ---
 
-### barcodeGenerateFormPost
+### barcodeGenerateMultipartPost
 
-Generate barcode using POST request with parameters in url ecncoded form.
+Generate barcode using POST request with parameters in multipart form.
 
 ```ts
-barcodeGenerateFormPost(barcodeType: EncodeBarcodeType, data: string): Buffer;
+barcodeGenerateMultipartPost(barcodeType: EncodeBarcodeType, data: string): Buffer;
 ```
 
-#### GenerateApi.barcodeGenerateFormPost parameters
+#### GenerateApi.barcodeGenerateMultipartPost parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **barcodeType** | [**EncodeBarcodeType**](models.md#EncodeBarcodeType)|  |
  **data** | **string**| String represents data to encode |
  **dataType** | [**EncodeDataType**](models.md#EncodeDataType)|  | [optional]
- **imageFormat** | [**AvailableBarCodeImageFormat**](models.md#AvailableBarCodeImageFormat)|  | [optional]
- **twoDDisplayText** | **string**| Text that will be displayed instead of codetext in 2D barcodes.  Used for: Aztec, Pdf417, DataMatrix, QR, MaxiCode, DotCode | [optional]
+ **imageFormat** | [**BarcodeImageFormat**](models.md#BarcodeImageFormat)|  | [optional]
  **textLocation** | [**CodeLocation**](models.md#CodeLocation)|  | [optional]
- **textAlignment** | [**TextAlignment**](models.md#TextAlignment)|  | [optional]
- **foregroundColor** | **string**| Specify the displaying bars and content Color.   Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: Black. | [optional]
- **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.   For example: AliceBlue or #FF000000  Default value: White. | [optional]
- **units** | [**AvailableGraphicsUnit**](models.md#AvailableGraphicsUnit)|  | [optional]
- **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi. | [optional]
- **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel. | [optional]
- **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel. | [optional]
+ **foregroundColor** | **string**| Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black. | [optional]
+ **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White. | [optional]
+ **units** | [**GraphicsUnit**](models.md#GraphicsUnit)|  | [optional]
+ **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.  Decimal separator is dot. | [optional]
+ **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
+ **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
  **rotationAngle** | **number**| BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0. | [optional]
 
-#### GenerateApi.barcodeGenerateFormPost return type
+#### GenerateApi.barcodeGenerateMultipartPost return type
 
 Buffer
 
 ---
 
 ## class RecognizeApi
-
-### barcodeRecognizeBarcodeTypeGet
-
-Recognize barcode from file on server using GET requests with parameters in route and query string.
-
-```ts
-barcodeRecognizeBarcodeTypeGet(barcodeType: DecodeBarcodeType, fileUrl: string): BarcodeResponseList;
-```
-
-#### RecognizeApi.barcodeRecognizeBarcodeTypeGet parameters
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | -----
- **barcodeType** | [**DecodeBarcodeType**](models.md#)| Type of barcode to recognize |
- **fileUrl** | **string**| Url to barcode image |
- **recognitionMode** | [**RecognitionMode**](models.md#)| Recognition mode | [optional]
- **imageKind** | [**RecognitionImageKind**](models.md#)| Image kind | [optional]
-
-#### RecognizeApi.barcodeRecognizeBarcodeTypeGet return type
-
-[**BarcodeResponseList**](models.md#BarcodeResponseList)
-
----
 
 ### barcodeRecognizeBodyPost
 
@@ -133,24 +106,47 @@ Name | Type | Description  | Notes
 
 ---
 
-### barcodeRecognizeFormPost
+### barcodeRecognizeGet
+
+Recognize barcode from file on server using GET requests with parameters in route and query string.
+
+```ts
+barcodeRecognizeGet(barcodeType: DecodeBarcodeType, fileUrl: string): BarcodeResponseList;
+```
+
+#### RecognizeApi.barcodeRecognizeGet parameters
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+ **barcodeType** | [**DecodeBarcodeType**](models.md#)| Type of barcode to recognize |
+ **fileUrl** | **string**| Url to barcode image |
+ **recognitionMode** | [**RecognitionMode**](models.md#)| Recognition mode | [optional]
+ **recognitionImageKind** | [**RecognitionImageKind**](models.md#)| Image kind for recognition | [optional]
+
+#### RecognizeApi.barcodeRecognizeGet return type
+
+[**BarcodeResponseList**](models.md#BarcodeResponseList)
+
+---
+
+### barcodeRecognizeMultipartPost
 
 Recognize barcode from file in request body using POST requests with parameters in multipart form.
 
 ```ts
-barcodeRecognizeFormPost(barcodeType: DecodeBarcodeType, file: RequestFile): BarcodeResponseList;
+barcodeRecognizeMultipartPost(barcodeType: DecodeBarcodeType, file: RequestFile): BarcodeResponseList;
 ```
 
-#### RecognizeApi.barcodeRecognizeFormPost parameters
+#### RecognizeApi.barcodeRecognizeMultipartPost parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **barcodeType** | [**DecodeBarcodeType**](models.md#DecodeBarcodeType)|  |
  **file** | **RequestFile****RequestFile**| Barcode image file |
  **recognitionMode** | [**RecognitionMode**](models.md#RecognitionMode)|  | [optional]
- **imageKind** | [**RecognitionImageKind**](models.md#RecognitionImageKind)|  | [optional]
+ **recognitionImageKind** | [**RecognitionImageKind**](models.md#RecognitionImageKind)|  | [optional]
 
-#### RecognizeApi.barcodeRecognizeFormPost return type
+#### RecognizeApi.barcodeRecognizeMultipartPost return type
 
 [**BarcodeResponseList**](models.md#BarcodeResponseList)
 
@@ -178,26 +174,6 @@ Name | Type | Description  | Notes
 
 ---
 
-### barcodeScanFormPost
-
-Scan barcode from file in request body using POST requests with parameter in multipart form.
-
-```ts
-barcodeScanFormPost(file: RequestFile): BarcodeResponseList;
-```
-
-#### ScanApi.barcodeScanFormPost parameters
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | -----
- **file** | **RequestFile****RequestFile**| Barcode image file |
-
-#### ScanApi.barcodeScanFormPost return type
-
-[**BarcodeResponseList**](models.md#BarcodeResponseList)
-
----
-
 ### barcodeScanGet
 
 Scan barcode from file on server using GET requests with parameter in query string.
@@ -213,6 +189,26 @@ Name | Type | Description  | Notes
  **fileUrl** | **string**| Url to barcode image |
 
 #### ScanApi.barcodeScanGet return type
+
+[**BarcodeResponseList**](models.md#BarcodeResponseList)
+
+---
+
+### barcodeScanMultipartPost
+
+Scan barcode from file in request body using POST requests with parameter in multipart form.
+
+```ts
+barcodeScanMultipartPost(file: RequestFile): BarcodeResponseList;
+```
+
+#### ScanApi.barcodeScanMultipartPost parameters
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+ **file** | **RequestFile****RequestFile**| Barcode image file |
+
+#### ScanApi.barcodeScanMultipartPost return type
 
 [**BarcodeResponseList**](models.md#BarcodeResponseList)
 

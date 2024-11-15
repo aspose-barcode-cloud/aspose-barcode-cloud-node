@@ -5,8 +5,7 @@ import { Multipart, RequestFile, FormParamsType } from './multipart';
 import {
     ApiError,
     ApiErrorResponse,
-    AvailableBarCodeImageFormat,
-    AvailableGraphicsUnit,
+    BarcodeImageFormat,
     BarcodeImageParams,
     BarcodeResponse,
     BarcodeResponseList,
@@ -16,24 +15,24 @@ import {
     EncodeData,
     EncodeDataType,
     GenerateParams,
+    GraphicsUnit,
     RecognitionImageKind,
     RecognitionMode,
     RecognizeBase64Request,
     RegionPoint,
     ScanBase64Request,
-    TextAlignment,
 } from './models';
 
 import {
     BarcodeGenerateBarcodeTypeGetRequest,
     BarcodeGenerateBodyPostRequest,
-    BarcodeGenerateFormPostRequest,
-    BarcodeRecognizeBarcodeTypeGetRequest,
+    BarcodeGenerateMultipartPostRequest,
     BarcodeRecognizeBodyPostRequest,
-    BarcodeRecognizeFormPostRequest,
+    BarcodeRecognizeGetRequest,
+    BarcodeRecognizeMultipartPostRequest,
     BarcodeScanBodyPostRequest,
-    BarcodeScanFormPostRequest,
     BarcodeScanGetRequest,
+    BarcodeScanMultipartPostRequest,
 } from './models';
 
 export * from './models';
@@ -178,15 +177,14 @@ class ObjectSerializer {
 }
 
 let enumsMap: { [index: string]: any } = {
-    AvailableBarCodeImageFormat: AvailableBarCodeImageFormat,
-    AvailableGraphicsUnit: AvailableGraphicsUnit,
+    BarcodeImageFormat: BarcodeImageFormat,
     CodeLocation: CodeLocation,
     DecodeBarcodeType: DecodeBarcodeType,
     EncodeBarcodeType: EncodeBarcodeType,
     EncodeDataType: EncodeDataType,
+    GraphicsUnit: GraphicsUnit,
     RecognitionImageKind: RecognitionImageKind,
     RecognitionMode: RecognitionMode,
-    TextAlignment: TextAlignment,
 };
 
 let typeMap: { [index: string]: any } = {
@@ -248,58 +246,47 @@ export class GenerateApi {
         }
 
         if (request.dataType != null) {
-            queryParameters['DataType'] = ObjectSerializer.serialize(request.dataType, 'EncodeDataType');
+            queryParameters['dataType'] = ObjectSerializer.serialize(request.dataType, 'EncodeDataType');
         }
 
         if (request.data != null) {
-            queryParameters['Data'] = ObjectSerializer.serialize(request.data, 'string');
+            queryParameters['data'] = ObjectSerializer.serialize(request.data, 'string');
         }
 
         if (request.imageFormat != null) {
-            queryParameters['ImageFormat'] = ObjectSerializer.serialize(
-                request.imageFormat,
-                'AvailableBarCodeImageFormat'
-            );
-        }
-
-        if (request.twoDDisplayText != null) {
-            queryParameters['TwoDDisplayText'] = ObjectSerializer.serialize(request.twoDDisplayText, 'string');
+            queryParameters['imageFormat'] = ObjectSerializer.serialize(request.imageFormat, 'BarcodeImageFormat');
         }
 
         if (request.textLocation != null) {
-            queryParameters['TextLocation'] = ObjectSerializer.serialize(request.textLocation, 'CodeLocation');
-        }
-
-        if (request.textAlignment != null) {
-            queryParameters['TextAlignment'] = ObjectSerializer.serialize(request.textAlignment, 'TextAlignment');
+            queryParameters['textLocation'] = ObjectSerializer.serialize(request.textLocation, 'CodeLocation');
         }
 
         if (request.foregroundColor != null) {
-            queryParameters['ForegroundColor'] = ObjectSerializer.serialize(request.foregroundColor, 'string');
+            queryParameters['foregroundColor'] = ObjectSerializer.serialize(request.foregroundColor, 'string');
         }
 
         if (request.backgroundColor != null) {
-            queryParameters['BackgroundColor'] = ObjectSerializer.serialize(request.backgroundColor, 'string');
+            queryParameters['backgroundColor'] = ObjectSerializer.serialize(request.backgroundColor, 'string');
         }
 
         if (request.units != null) {
-            queryParameters['Units'] = ObjectSerializer.serialize(request.units, 'AvailableGraphicsUnit');
+            queryParameters['units'] = ObjectSerializer.serialize(request.units, 'GraphicsUnit');
         }
 
         if (request.resolution != null) {
-            queryParameters['Resolution'] = ObjectSerializer.serialize(request.resolution, 'number');
+            queryParameters['resolution'] = ObjectSerializer.serialize(request.resolution, 'number');
         }
 
         if (request.imageHeight != null) {
-            queryParameters['ImageHeight'] = ObjectSerializer.serialize(request.imageHeight, 'number');
+            queryParameters['imageHeight'] = ObjectSerializer.serialize(request.imageHeight, 'number');
         }
 
         if (request.imageWidth != null) {
-            queryParameters['ImageWidth'] = ObjectSerializer.serialize(request.imageWidth, 'number');
+            queryParameters['imageWidth'] = ObjectSerializer.serialize(request.imageWidth, 'number');
         }
 
         if (request.rotationAngle != null) {
-            queryParameters['RotationAngle'] = ObjectSerializer.serialize(request.rotationAngle, 'number');
+            queryParameters['rotationAngle'] = ObjectSerializer.serialize(request.rotationAngle, 'number');
         }
 
         const requestOptions: HttpOptions = {
@@ -361,13 +348,13 @@ export class GenerateApi {
 
     /**
      *
-     * @summary Generate barcode using POST request with parameters in url ecncoded form.
-     * @param request BarcodeGenerateFormPostRequest
+     * @summary Generate barcode using POST request with parameters in multipart form.
+     * @param request BarcodeGenerateMultipartPostRequest
      */
-    public async barcodeGenerateFormPost(
-        request: BarcodeGenerateFormPostRequest
+    public async barcodeGenerateMultipartPost(
+        request: BarcodeGenerateMultipartPostRequest
     ): Promise<{ response: HttpResponse; body: Buffer }> {
-        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate-form';
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate-multipart';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
         const formParams: FormParamsType = [];
@@ -375,14 +362,14 @@ export class GenerateApi {
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
             throw new Error(
-                'Required parameter request.barcodeType was null or undefined when calling barcodeGenerateFormPost.'
+                'Required parameter request.barcodeType was null or undefined when calling barcodeGenerateMultipartPost.'
             );
         }
 
         // verify required parameter 'request.data' is not null or undefined
         if (request.data == null) {
             throw new Error(
-                'Required parameter request.data was null or undefined when calling barcodeGenerateFormPost.'
+                'Required parameter request.data was null or undefined when calling barcodeGenerateMultipartPost.'
             );
         }
 
@@ -390,46 +377,37 @@ export class GenerateApi {
             formParams.push(['barcodeType', ObjectSerializer.serialize(request.barcodeType, 'EncodeBarcodeType')]);
         }
         if (request.dataType != null) {
-            formParams.push(['DataType', ObjectSerializer.serialize(request.dataType, 'EncodeDataType')]);
+            formParams.push(['dataType', ObjectSerializer.serialize(request.dataType, 'EncodeDataType')]);
         }
         if (request.data != null) {
-            formParams.push(['Data', ObjectSerializer.serialize(request.data, 'string')]);
+            formParams.push(['data', ObjectSerializer.serialize(request.data, 'string')]);
         }
         if (request.imageFormat != null) {
-            formParams.push([
-                'ImageFormat',
-                ObjectSerializer.serialize(request.imageFormat, 'AvailableBarCodeImageFormat'),
-            ]);
-        }
-        if (request.twoDDisplayText != null) {
-            formParams.push(['TwoDDisplayText', ObjectSerializer.serialize(request.twoDDisplayText, 'string')]);
+            formParams.push(['imageFormat', ObjectSerializer.serialize(request.imageFormat, 'BarcodeImageFormat')]);
         }
         if (request.textLocation != null) {
-            formParams.push(['TextLocation', ObjectSerializer.serialize(request.textLocation, 'CodeLocation')]);
-        }
-        if (request.textAlignment != null) {
-            formParams.push(['TextAlignment', ObjectSerializer.serialize(request.textAlignment, 'TextAlignment')]);
+            formParams.push(['textLocation', ObjectSerializer.serialize(request.textLocation, 'CodeLocation')]);
         }
         if (request.foregroundColor != null) {
-            formParams.push(['ForegroundColor', ObjectSerializer.serialize(request.foregroundColor, 'string')]);
+            formParams.push(['foregroundColor', ObjectSerializer.serialize(request.foregroundColor, 'string')]);
         }
         if (request.backgroundColor != null) {
-            formParams.push(['BackgroundColor', ObjectSerializer.serialize(request.backgroundColor, 'string')]);
+            formParams.push(['backgroundColor', ObjectSerializer.serialize(request.backgroundColor, 'string')]);
         }
         if (request.units != null) {
-            formParams.push(['Units', ObjectSerializer.serialize(request.units, 'AvailableGraphicsUnit')]);
+            formParams.push(['units', ObjectSerializer.serialize(request.units, 'GraphicsUnit')]);
         }
         if (request.resolution != null) {
-            formParams.push(['Resolution', ObjectSerializer.serialize(request.resolution, 'number')]);
+            formParams.push(['resolution', ObjectSerializer.serialize(request.resolution, 'number')]);
         }
         if (request.imageHeight != null) {
-            formParams.push(['ImageHeight', ObjectSerializer.serialize(request.imageHeight, 'number')]);
+            formParams.push(['imageHeight', ObjectSerializer.serialize(request.imageHeight, 'number')]);
         }
         if (request.imageWidth != null) {
-            formParams.push(['ImageWidth', ObjectSerializer.serialize(request.imageWidth, 'number')]);
+            formParams.push(['imageWidth', ObjectSerializer.serialize(request.imageWidth, 'number')]);
         }
         if (request.rotationAngle != null) {
-            formParams.push(['RotationAngle', ObjectSerializer.serialize(request.rotationAngle, 'number')]);
+            formParams.push(['rotationAngle', ObjectSerializer.serialize(request.rotationAngle, 'number')]);
         }
         const requestOptions: HttpOptions = {
             method: 'POST',
@@ -467,67 +445,6 @@ export class RecognizeApi {
     constructor(configuration: Configuration) {
         this._configuration = configuration;
         this._client = new HttpClient();
-    }
-
-    /**
-     *
-     * @summary Recognize barcode from file on server using GET requests with parameters in route and query string.
-     * @param request BarcodeRecognizeBarcodeTypeGetRequest
-     */
-    public async barcodeRecognizeBarcodeTypeGet(
-        request: BarcodeRecognizeBarcodeTypeGetRequest
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
-        const requestPath =
-            this._configuration.getApiBaseUrl() +
-            '/barcode/recognize/{barcodeType}'.replace(
-                // eslint-disable-next-line no-useless-concat
-                '{' + 'barcodeType' + '}',
-                String(request.barcodeType)
-            );
-        let queryParameters: any = {};
-        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
-
-        // verify required parameter 'request.barcodeType' is not null or undefined
-        if (request.barcodeType == null) {
-            throw new Error(
-                'Required parameter request.barcodeType was null or undefined when calling barcodeRecognizeBarcodeTypeGet.'
-            );
-        }
-
-        // verify required parameter 'request.fileUrl' is not null or undefined
-        if (request.fileUrl == null) {
-            throw new Error(
-                'Required parameter request.fileUrl was null or undefined when calling barcodeRecognizeBarcodeTypeGet.'
-            );
-        }
-
-        if (request.fileUrl != null) {
-            queryParameters['fileUrl'] = ObjectSerializer.serialize(request.fileUrl, 'string');
-        }
-
-        if (request.recognitionMode != null) {
-            queryParameters['recognitionMode'] = ObjectSerializer.serialize(request.recognitionMode, 'RecognitionMode');
-        }
-
-        if (request.imageKind != null) {
-            queryParameters['imageKind'] = ObjectSerializer.serialize(request.imageKind, 'RecognitionImageKind');
-        }
-
-        const requestOptions: HttpOptions = {
-            method: 'GET',
-            qs: queryParameters,
-            headers: headerParams,
-            uri: requestPath,
-        };
-
-        await this._configuration.authentication.applyToRequestAsync(requestOptions);
-
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
-
-        return {
-            response: result.response,
-            body: ObjectSerializer.deserialize(result.body, 'BarcodeResponseList'),
-        };
     }
 
     /**
@@ -570,13 +487,75 @@ export class RecognizeApi {
 
     /**
      *
-     * @summary Recognize barcode from file in request body using POST requests with parameters in multipart form.
-     * @param request BarcodeRecognizeFormPostRequest
+     * @summary Recognize barcode from file on server using GET requests with parameters in route and query string.
+     * @param request BarcodeRecognizeGetRequest
      */
-    public async barcodeRecognizeFormPost(
-        request: BarcodeRecognizeFormPostRequest
+    public async barcodeRecognizeGet(
+        request: BarcodeRecognizeGetRequest
     ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
-        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize-form';
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize';
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
+
+        // verify required parameter 'request.barcodeType' is not null or undefined
+        if (request.barcodeType == null) {
+            throw new Error(
+                'Required parameter request.barcodeType was null or undefined when calling barcodeRecognizeGet.'
+            );
+        }
+
+        // verify required parameter 'request.fileUrl' is not null or undefined
+        if (request.fileUrl == null) {
+            throw new Error(
+                'Required parameter request.fileUrl was null or undefined when calling barcodeRecognizeGet.'
+            );
+        }
+
+        if (request.barcodeType != null) {
+            queryParameters['barcodeType'] = ObjectSerializer.serialize(request.barcodeType, 'DecodeBarcodeType');
+        }
+
+        if (request.fileUrl != null) {
+            queryParameters['fileUrl'] = ObjectSerializer.serialize(request.fileUrl, 'string');
+        }
+
+        if (request.recognitionMode != null) {
+            queryParameters['recognitionMode'] = ObjectSerializer.serialize(request.recognitionMode, 'RecognitionMode');
+        }
+
+        if (request.recognitionImageKind != null) {
+            queryParameters['recognitionImageKind'] = ObjectSerializer.serialize(
+                request.recognitionImageKind,
+                'RecognitionImageKind'
+            );
+        }
+
+        const requestOptions: HttpOptions = {
+            method: 'GET',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: requestPath,
+        };
+
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
+
+        const result: HttpResult = await this._client.requestAsync(requestOptions);
+
+        return {
+            response: result.response,
+            body: ObjectSerializer.deserialize(result.body, 'BarcodeResponseList'),
+        };
+    }
+
+    /**
+     *
+     * @summary Recognize barcode from file in request body using POST requests with parameters in multipart form.
+     * @param request BarcodeRecognizeMultipartPostRequest
+     */
+    public async barcodeRecognizeMultipartPost(
+        request: BarcodeRecognizeMultipartPostRequest
+    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize-multipart';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
         const formParams: FormParamsType = [];
@@ -584,14 +563,14 @@ export class RecognizeApi {
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
             throw new Error(
-                'Required parameter request.barcodeType was null or undefined when calling barcodeRecognizeFormPost.'
+                'Required parameter request.barcodeType was null or undefined when calling barcodeRecognizeMultipartPost.'
             );
         }
 
         // verify required parameter 'request.file' is not null or undefined
         if (request.file == null) {
             throw new Error(
-                'Required parameter request.file was null or undefined when calling barcodeRecognizeFormPost.'
+                'Required parameter request.file was null or undefined when calling barcodeRecognizeMultipartPost.'
             );
         }
 
@@ -604,8 +583,11 @@ export class RecognizeApi {
                 ObjectSerializer.serialize(request.recognitionMode, 'RecognitionMode'),
             ]);
         }
-        if (request.imageKind != null) {
-            formParams.push(['imageKind', ObjectSerializer.serialize(request.imageKind, 'RecognitionImageKind')]);
+        if (request.recognitionImageKind != null) {
+            formParams.push([
+                'recognitionImageKind',
+                ObjectSerializer.serialize(request.recognitionImageKind, 'RecognitionImageKind'),
+            ]);
         }
         const requestOptions: HttpOptions = {
             method: 'POST',
@@ -684,47 +666,6 @@ export class ScanApi {
 
     /**
      *
-     * @summary Scan barcode from file in request body using POST requests with parameter in multipart form.
-     * @param request BarcodeScanFormPostRequest
-     */
-    public async barcodeScanFormPost(
-        request: BarcodeScanFormPostRequest
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
-        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan-form';
-        let queryParameters: any = {};
-        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
-        const formParams: FormParamsType = [];
-
-        // verify required parameter 'request.file' is not null or undefined
-        if (request.file == null) {
-            throw new Error('Required parameter request.file was null or undefined when calling barcodeScanFormPost.');
-        }
-
-        const requestOptions: HttpOptions = {
-            method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
-            uri: requestPath,
-        };
-
-        let fileArray = new Array<RequestFile>();
-        fileArray = request.file == null ? [] : [request.file];
-        const multipartForm = new Multipart(formParams, fileArray);
-        requestOptions.body = multipartForm.body;
-        requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };
-
-        await this._configuration.authentication.applyToRequestAsync(requestOptions);
-
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
-
-        return {
-            response: result.response,
-            body: ObjectSerializer.deserialize(result.body, 'BarcodeResponseList'),
-        };
-    }
-
-    /**
-     *
      * @summary Scan barcode from file on server using GET requests with parameter in query string.
      * @param request BarcodeScanGetRequest
      */
@@ -750,6 +691,49 @@ export class ScanApi {
             headers: headerParams,
             uri: requestPath,
         };
+
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
+
+        const result: HttpResult = await this._client.requestAsync(requestOptions);
+
+        return {
+            response: result.response,
+            body: ObjectSerializer.deserialize(result.body, 'BarcodeResponseList'),
+        };
+    }
+
+    /**
+     *
+     * @summary Scan barcode from file in request body using POST requests with parameter in multipart form.
+     * @param request BarcodeScanMultipartPostRequest
+     */
+    public async barcodeScanMultipartPost(
+        request: BarcodeScanMultipartPostRequest
+    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan-multipart';
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
+        const formParams: FormParamsType = [];
+
+        // verify required parameter 'request.file' is not null or undefined
+        if (request.file == null) {
+            throw new Error(
+                'Required parameter request.file was null or undefined when calling barcodeScanMultipartPost.'
+            );
+        }
+
+        const requestOptions: HttpOptions = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: requestPath,
+        };
+
+        let fileArray = new Array<RequestFile>();
+        fileArray = request.file == null ? [] : [request.file];
+        const multipartForm = new Multipart(formParams, fileArray);
+        requestOptions.body = multipartForm.body;
+        requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
