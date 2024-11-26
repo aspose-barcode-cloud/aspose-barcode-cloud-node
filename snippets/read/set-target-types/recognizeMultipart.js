@@ -24,14 +24,16 @@ const config = makeConfiguration();
 
 async function recognizeBarcode(api, fileName) {
     const imageBuffer = fs.readFileSync(fileName);
-    const requestFile = new RequestFile('file', fileName, imageBuffer);
+
     const recognizeRequest = new Barcode.BarcodeRecognizeMultipartPostRequest(
         Barcode.DecodeBarcodeType.Pdf417,
-        requestFile
+        imageBuffer
     );
     recognizeRequest.recognitionImageKind = Barcode.RecognitionImageKind.ClearImage;
   
     const result = await api.barcodeRecognizeMultipartPost(recognizeRequest);
+    
+    return result.body.barcodes;
 }
 
 const recognizeApi = new Barcode.RecognizeApi(config);

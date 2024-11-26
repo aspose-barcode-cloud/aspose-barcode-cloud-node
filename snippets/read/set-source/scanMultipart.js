@@ -16,8 +16,8 @@ function makeConfiguration() {
 
 async function scanBarcode(api, fileName) {
     const imageBuffer = fs.readFileSync(fileName);
-    const requestFile = new RequestFile('file', fileName, imageBuffer);
-    const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(requestFile);
+
+    const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(imageBuffer);
     const result = await api.barcodeScanMultipartPost(scanRequest);
     return result.body.barcodes;
 }

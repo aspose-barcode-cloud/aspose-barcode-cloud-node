@@ -1,5 +1,3 @@
-import { RequestFile } from './multipart';
-
 /**
  * Api Error.
  */
@@ -841,7 +839,7 @@ export class BarcodeRecognizeMultipartPostRequest {
     /**
      * Barcode image file
      */
-    'file': RequestFile;
+    'fileBytes': Buffer;
     /**
      *
      */
@@ -854,11 +852,11 @@ export class BarcodeRecognizeMultipartPostRequest {
     /**
      * @param barcodeType 
      
-     * @param file Barcode image file
+     * @param fileBytes Barcode image file
      */
-    constructor(barcodeType: DecodeBarcodeType, file: RequestFile) {
+    constructor(barcodeType: DecodeBarcodeType, fileBytes: Buffer) {
         this.barcodeType = barcodeType;
-        this.file = file;
+        this.fileBytes = fileBytes;
     }
 }
 
@@ -905,12 +903,12 @@ export class BarcodeScanMultipartPostRequest {
     /**
      * Barcode image file
      */
-    'file': RequestFile;
+    'fileBytes': Buffer;
 
     /**
-     * @param file Barcode image file
+     * @param fileBytes Barcode image file
      */
-    constructor(file: RequestFile) {
-        this.file = file;
+    constructor(fileBytes: Buffer) {
+        this.fileBytes = fileBytes;
     }
 }

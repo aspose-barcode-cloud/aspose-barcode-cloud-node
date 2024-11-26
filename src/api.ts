@@ -1,5 +1,5 @@
 import { Configuration } from './Configuration';
-import { HttpClient, HttpOptions, HttpResponse, HttpResult, StringKeyWithStringValue } from './httpClient';
+import { HttpClient, HttpOptions, HttpResponse, HttpResult } from './httpClient';
 import { Multipart, RequestFile, FormParamsType } from './multipart';
 
 import {
@@ -567,10 +567,10 @@ export class RecognizeApi {
             );
         }
 
-        // verify required parameter 'request.file' is not null or undefined
-        if (request.file == null) {
+        // verify required parameter 'request.fileBytes' is not null or undefined
+        if (request.fileBytes == null) {
             throw new Error(
-                'Required parameter request.file was null or undefined when calling barcodeRecognizeMultipartPost.'
+                'Required parameter request.fileBytes was null or undefined when calling barcodeRecognizeMultipartPost.'
             );
         }
 
@@ -597,7 +597,7 @@ export class RecognizeApi {
         };
 
         let fileArray = new Array<RequestFile>();
-        fileArray = request.file == null ? [] : [request.file];
+        fileArray = request.fileBytes == null ? [] : [new RequestFile('file', '', request.fileBytes)];
         const multipartForm = new Multipart(formParams, fileArray);
         requestOptions.body = multipartForm.body;
         requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };
@@ -715,10 +715,10 @@ export class ScanApi {
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
         const formParams: FormParamsType = [];
 
-        // verify required parameter 'request.file' is not null or undefined
-        if (request.file == null) {
+        // verify required parameter 'request.fileBytes' is not null or undefined
+        if (request.fileBytes == null) {
             throw new Error(
-                'Required parameter request.file was null or undefined when calling barcodeScanMultipartPost.'
+                'Required parameter request.fileBytes was null or undefined when calling barcodeScanMultipartPost.'
             );
         }
 
@@ -730,7 +730,7 @@ export class ScanApi {
         };
 
         let fileArray = new Array<RequestFile>();
-        fileArray = request.file == null ? [] : [request.file];
+        fileArray = request.fileBytes == null ? [] : [new RequestFile('file', '', request.fileBytes)];
         const multipartForm = new Multipart(formParams, fileArray);
         requestOptions.body = multipartForm.body;
         requestOptions.headers = { ...requestOptions.headers, ...multipartForm.headers };

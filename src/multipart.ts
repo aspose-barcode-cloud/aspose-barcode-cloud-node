@@ -37,7 +37,9 @@ export class Multipart {
         }
         for (const file of files || []) {
             bodyLines.push(`--${this.boundary}`);
-            bodyLines.push(`Content-Disposition: form-data; name="${file.name}"; filename="${file.filename}"`);
+            bodyLines.push(
+                `Content-Disposition: form-data; name="${file.name}"; filename="${file.filename || 'filename'}"`
+            );
             bodyLines.push(`Content-Type: ${file.contentType || 'application/octet-stream'}`);
             bodyLines.push('');
             bodyLines.push(file.data.toString('binary'));

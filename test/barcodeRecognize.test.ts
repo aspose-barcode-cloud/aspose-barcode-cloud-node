@@ -4,7 +4,6 @@ import assert from 'assert';
 
 import * as Barcode from '../src/api';
 import { LoadTestConfiguration } from './helpers';
-import { RequestFile } from '../src/multipart';
 
 describe('barcodeRecognize', () => {
     jest.setTimeout(60000);
@@ -13,13 +12,12 @@ describe('barcodeRecognize', () => {
     const api = new Barcode.RecognizeApi(config);
 
     const imageBuffer = fs.readFileSync('./testdata/pdf417Sample.png');
-    const requestFile = new RequestFile('file', 'pdf417Sample.png', imageBuffer);
     const base64File = fs.readFileSync('./testdata/QR_and_Code128.png').toString('base64');
 
     it('barcodeRecognizeMultipartPost should recognize uploaded image', async () => {
         const recognizeRequest = new Barcode.BarcodeRecognizeMultipartPostRequest(
             Barcode.DecodeBarcodeType.Pdf417,
-            requestFile
+            imageBuffer
         );
         recognizeRequest.recognitionImageKind = Barcode.RecognitionImageKind.ClearImage;
         recognizeRequest.recognitionMode = Barcode.RecognitionMode.Fast;

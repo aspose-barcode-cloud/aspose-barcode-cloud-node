@@ -1,7 +1,6 @@
 import assert from 'assert';
 
 import * as Barcode from '../src/api';
-import { RequestFile } from '../src/multipart';
 import { LoadTestConfiguration } from './helpers';
 
 describe('Generate and recognize', () => {
@@ -19,9 +18,7 @@ describe('Generate and recognize', () => {
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
 
-        const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(
-            new RequestFile('file', 'file', generated.body)
-        );
+        const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(generated.body);
 
         const recognized = await scanApi.barcodeScanMultipartPost(scanRequest);
 
