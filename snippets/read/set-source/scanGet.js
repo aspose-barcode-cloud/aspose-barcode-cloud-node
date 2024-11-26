@@ -2,24 +2,32 @@ const fs = require('fs');
 const path = require('path');
 const Barcode = require('aspose-barcode-cloud-node');
 
-function MakeConfiguration() {
+function makeConfiguration() {
     const envToken = process.env['TEST_CONFIGURATION_JWT_TOKEN'];
-    const config = new Barcode.Configuration(
-        !envToken ? 'Client Id from https://dashboard.aspose.cloud/applications' : null,
-        !envToken ? 'Client Secret from https://dashboard.aspose.cloud/applications' : null,
-        null,
-        envToken
-    );
-    return config;
+    if (!envToken) {
+        return new Barcode.Configuration(
+            'Client Id from https://dashboard.aspose.cloud/applications',
+            'Client Secret from https://dashboard.aspose.cloud/applications',
+            null,
+            null
+        );
+    } else {
+        return new Barcode.Configuration(
+            null,
+            null,
+            envToken,
+            null
+        );
+    }
 }
 
-async function scanBarcode(api, imageUrl) {
-    const request = new Barcode.BarcodeScanGetRequest(imageUrl);
+async function scanBarcode(api, fileUrl) {
+    const request = new Barcode.BarcodeScanGetRequest(fileUrl);
     const result = await api.barcodeScanGet(request);
     return result.body.barcodes;
 }
 
-const config = MakeConfiguration();
+const config = makeConfiguration();
 const scanApi = new Barcode.ScanApi(config);
 const fileUrl = "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png";
 
@@ -28,6 +36,6 @@ scanBarcode(scanApi, fileUrl)
         console.log(`File recognized, result: '${barcodes[0].barcodeValue}'`);
     })
     .catch(err => {
-        console.error(JSON.stringify(err, null, 2));
+        console.error("Error: " + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

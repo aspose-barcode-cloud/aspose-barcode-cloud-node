@@ -21,8 +21,8 @@ function makeConfiguration() {
     }
 }
 
-async function recognizeBarcode(api, imageUrl) {
-    const request = new Barcode.BarcodeRecognizeGetRequest(Barcode.DecodeBarcodeType.QR, imageUrl);
+async function recognizeBarcode(api, fileUrl) {
+    const request = new Barcode.BarcodeRecognizeGetRequest(Barcode.DecodeBarcodeType.Qr, fileUrl);
     request.recognitionMode = Barcode.RecognitionMode.Fast;
     request.imageKind = Barcode.RecognitionImageKind.Photo;
     const result = await api.barcodeRecognizeGet(request);
@@ -31,13 +31,13 @@ async function recognizeBarcode(api, imageUrl) {
 
 const config = makeConfiguration();
 const recognizeApi = new Barcode.RecognizeApi(config);
-const imageUrl = "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png";
+const fileUrl = "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png";
 
-recognizeBarcode(recognizeApi, imageUrl)
+recognizeBarcode(recognizeApi, fileUrl)
     .then(barcodes => {
         console.log(`File recognized, result: '${barcodes[0].barcodeValue}'`);
     })
     .catch(err => {
-        console.error(JSON.stringify(err, null, 2));
+        console.error("Error: " + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

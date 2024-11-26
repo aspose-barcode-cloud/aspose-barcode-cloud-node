@@ -86,7 +86,7 @@ generateBarcode(genApi)
             });
     })
     .catch(err => {
-        console.error(JSON.stringify(err, null, 2));
+        console.error("Error: " + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });
 

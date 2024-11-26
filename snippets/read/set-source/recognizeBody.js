@@ -29,21 +29,13 @@ async function recognizeBarcode(api, fileName) {
 const config = makeConfiguration();
 const recognizeApi = new Barcode.RecognizeApi(config);
 
-const fileName = path.resolve(
-    path.dirname(__dirname),
-    '..',
-    '..',
-    '..',
-    '..',
-    '..',
-    'qr.png'
-);
+const fileName = path.resolve('testdata','Pdf417.png');
 
 recognizeBarcode(recognizeApi, fileName)
     .then(barcodes => {
         console.log(`File '${fileName}' recognized, result: '${barcodes[0].barcodeValue}'`);
     })
     .catch(err => {
-        console.error(JSON.stringify(err, null, 2));
+        console.error("Error: " + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

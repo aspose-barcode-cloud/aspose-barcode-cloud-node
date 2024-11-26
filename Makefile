@@ -63,7 +63,6 @@ publish-docker: init test
 
 .PHONY: example
 example:
-	./scripts/extract_js_from_README.sh > "example.js"
 	./scripts/run_example.sh
 
 .PHONY: insert-example

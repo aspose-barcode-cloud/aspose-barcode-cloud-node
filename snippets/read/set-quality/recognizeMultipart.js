@@ -2,41 +2,48 @@ const fs = require('fs');
 const path = require('path');
 const Barcode = require('aspose-barcode-cloud-node');
 
-const config = new Barcode.Configuration(
-    'Client Id from https://dashboard.aspose.cloud/applications',
-    'Client Secret from https://dashboard.aspose.cloud/applications',
-    null,
-    process.env['TEST_CONFIGURATION_JWT_TOKEN']
-);
+function makeConfiguration() {
+    const envToken = process.env['TEST_CONFIGURATION_JWT_TOKEN'];
+    if (!envToken) {
+        return new Barcode.Configuration(
+            'Client Id from https://dashboard.aspose.cloud/applications',
+            'Client Secret from https://dashboard.aspose.cloud/applications',
+            null,
+            null
+        );
+    } else {
+        return new Barcode.Configuration(
+            null,
+            null,
+            envToken,
+            null
+        );
+    }
+}
+const config = makeConfiguration();
 
 async function recognizeBarcode(api, fileName) {
-    const imageBytes = fs.readFileSync(fileName);
-    const imageBase64 = Buffer.from(imageBytes).toString('base64');
-    const recognizeBase64Request = new Barcode.RecognizeBase64Request();
-    recognizeBase64Request.barcodeTypes = [Barcode.DecodeBarcodeType.Aztec];
-    recognizeBase64Request.fileBase64 = imageBase64;
-    const recognizeRequest = new Barcode.BarcodeRecognizeBodyPostRequest(recognizeBase64Request);
-    const result = await api.barcodeRecognizeBodyPost(recognizeRequest);
+    const imageBuffer = fs.readFileSync(fileName);
+    const requestFile = new RequestFile('file', fileName, imageBuffer);
+    const recognizeRequest = new Barcode.BarcodeRecognizeMultipartPostRequest(
+        Barcode.DecodeBarcodeType.Aztec,
+        requestFile
+    );
+    
+    const result = await api.barcodeRecognizeMultipartPost(recognizeRequest);
 
     return result.body.barcodes;
 }
 
 const recognizeApi = new Barcode.RecognizeApi(config);
 
-const fileName = path.resolve(
-    path.dirname(__dirname),
-    '..',
-    '..',
-    '..',
-    '..',
-    'aztec.png'
-);
+const fileName = path.resolve('testdata','Aztec.png');
 
 recognizeBarcode(recognizeApi, fileName)
 .then(barcodes => {
     console.log(`File '${fileName}' recognized, result: '${barcodes[0].barcodeValue}'`);
 })
 .catch(err => {
-    console.error(JSON.stringify(err, null, 2));
+    console.error("Error: " + JSON.stringify(err, null, 2));
     process.exitCode = 1;
 });

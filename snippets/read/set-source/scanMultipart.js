@@ -15,8 +15,9 @@ function makeConfiguration() {
 }
 
 async function scanBarcode(api, fileName) {
-    const fileStream = fs.readFileSync(fileName);
-    const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(fileStream);
+    const imageBuffer = fs.readFileSync(fileName);
+    const requestFile = new RequestFile('file', fileName, imageBuffer);
+    const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(requestFile);
     const result = await api.barcodeScanMultipartPost(scanRequest);
     return result.body.barcodes;
 }
@@ -24,21 +25,13 @@ async function scanBarcode(api, fileName) {
 const config = makeConfiguration();
 const scanApi = new Barcode.ScanApi(config);
 
-const fileName = path.resolve(
-    path.dirname(__dirname),
-    '..',
-    '..',
-    '..',
-    '..',
-    '..',
-    'qr.png'
-);
+const fileName = path.resolve('testdata','Qr.png');
 
 scanBarcode(scanApi, fileName)
     .then(barcodes => {
         console.log(`File '${fileName}' recognized, result: '${barcodes[0].barcodeValue}'`);
     })
     .catch(err => {
-        console.error(JSON.stringify(err, null, 2));
+        console.error("Error: " + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

@@ -2,11 +2,11 @@ const axios = require('axios');
 const qs = require('qs');
 
 async function main() {
-    const clientId = "<Your-Client-Id>";
-    const clientSecret = "<Your-Client-Secret>";
+    const clientId = "Client Id from https://dashboard.aspose.cloud/applications";
+    const clientSecret = "Client Secret from https://dashboard.aspose.cloud/applications";
 
     const client = axios.create({
-        baseURL: 'https://id.aspose.cloud/',
+        baseURL: 'https://id-qa.aspose.cloud/',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
@@ -20,10 +20,13 @@ async function main() {
 
     try {
         const response = await client.post('connect/token', payload);
-        console.log(response.data);
+        console.log("Token received successfully");
+        //Uncomment next line to view token
+        //console.log(response.data.access_token);
     } catch (error) {
         if (error.response) {
-            console.error(`Request error: ${error.response.data}`);
+            console.error(`Request error:`);
+            console.error(error.response.data);
         } else {
             console.error(`An unexpected error occurred: ${error.message}`);
         }
