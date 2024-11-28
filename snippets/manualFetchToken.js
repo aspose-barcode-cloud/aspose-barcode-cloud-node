@@ -6,7 +6,7 @@ async function main() {
     const clientSecret = "Client Secret from https://dashboard.aspose.cloud/applications";
 
     const client = axios.create({
-        baseURL: 'https://id-qa.aspose.cloud/',
+        baseURL: 'https://id.aspose.cloud/',
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },

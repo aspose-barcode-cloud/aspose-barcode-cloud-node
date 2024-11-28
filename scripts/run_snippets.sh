@@ -18,7 +18,7 @@ ln -sv -F ../../../dist/ .
 popd
 popd
 
-for file in $(find "${SNIPPETS_DIR}/read" -name "*.js" ! -name "manualFetchToken.js"); do
+for file in $(find "${SNIPPETS_DIR}" -name "*.js" ! -name "manualFetchToken.js"); do
     ${SCRIPT_DIR}/run_snippet.sh "$file" $RUN_DIR $SCRIPT_DIR $CONFIG_FILE_PATH || { echo "Error processing $file"; exit 1; }
 done
 
