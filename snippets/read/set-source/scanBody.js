@@ -26,8 +26,8 @@ async function scanBarcode(api, fileName) {
     const imageBase64 = Buffer.from(imageBytes).toString('base64');
     const base64Request = new Barcode.ScanBase64Request();
     base64Request.fileBase64 = imageBase64;
-    const request = new Barcode.BarcodeScanBodyPostRequest(base64Request);
-    const result = await api.barcodeScanBodyPost(request);
+    const request = new Barcode.ScanBase64RequestWrapper(base64Request);
+    const result = await api.scanBase64(request);
     
     return result.body.barcodes;
 }

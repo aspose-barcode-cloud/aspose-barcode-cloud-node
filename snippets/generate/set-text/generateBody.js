@@ -29,8 +29,8 @@ async function generateBarcode(api, fileName) {
     postParams.encodeData.dataType = Barcode.EncodeDataType.Base64Bytes;
     postParams.encodeData.data = "QXNwb3NlLkJhckNvZGUuQ2xvdWQ=";
 
-    const postRequest = new Barcode.BarcodeGenerateBodyPostRequest(postParams);
-    const generated = await api.barcodeGenerateBodyPost(postRequest);
+    const postRequest = new Barcode.GenerateBodyRequestWrapper(postParams);
+    const generated = await api.generateBody(postRequest);
 
     fs.writeFileSync(fileName, generated.body);
 }

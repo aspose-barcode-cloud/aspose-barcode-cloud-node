@@ -23,11 +23,11 @@ function makeConfiguration() {
 const config = makeConfiguration();
 
 async function recognizeBarcode(api, fileUrl) {
-    const recognizeRequest = new Barcode.BarcodeRecognizeGetRequest(
+    const RecognizeRequestWrapper = new Barcode.RecognizeRequestWrapper(
         Barcode.DecodeBarcodeType.Qr,
         fileUrl
     );
-    const result = await api.barcodeRecognizeGet(recognizeRequest);
+    const result = await api.recognize(RecognizeRequestWrapper);
     return result.body.barcodes;
 }
 

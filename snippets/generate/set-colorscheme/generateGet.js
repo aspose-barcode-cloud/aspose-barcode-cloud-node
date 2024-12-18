@@ -23,7 +23,7 @@ function makeConfiguration() {
 const config = makeConfiguration();
 
 async function generateBarcode(api, fileName) {
-    const request = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(
+    const request = new Barcode.GenerateRequestWrapper(
         Barcode.EncodeBarcodeType.Qr,
         'https://products.aspose.cloud/barcode/family/'
     );
@@ -31,7 +31,7 @@ async function generateBarcode(api, fileName) {
     request.backgroundColor = "LightGray";
     request.imageFormat = Barcode.BarcodeImageFormat.Png;
 
-    const generated = await api.barcodeGenerateBarcodeTypeGet(request);
+    const generated = await api.generate(request);
 
     fs.writeFileSync(fileName, generated.body);
 }

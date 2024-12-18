@@ -10,10 +10,10 @@ describe('Error response tests', () => {
     const api = new Barcode.GenerateApi(LoadTestConfiguration());
 
     it('should throw  response message', async () => {
-        const request = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(Barcode.EncodeBarcodeType.Qr, '');
+        const request = new Barcode.GenerateRequestWrapper(Barcode.EncodeBarcodeType.Qr, '');
 
         try {
-            await api.barcodeGenerateBarcodeTypeGet(request);
+            await api.generate(request);
             assert.fail('Expected HttpRejectType was not thrown');
         } catch (err) {
             assert.ok(err);
@@ -22,7 +22,7 @@ describe('Error response tests', () => {
             assert.ok(typedError.errorResponse?.error);
             assert.strictEqual(
                 typedError.errorResponse?.error?.message,
-                "1. Field name: 'Data'. Errors: The Data field is required."
+                "Error: Field name: 'Data' errors: The Data field is required."
             );
             return true;
         }

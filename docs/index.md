@@ -2,66 +2,66 @@
 
 ## class GenerateApi
 
-### barcodeGenerateBarcodeTypeGet
+### generate
 
 Generate barcode using GET request with parameters in route and query string.
 
 ```ts
-barcodeGenerateBarcodeTypeGet(barcodeType: EncodeBarcodeType, data: string): Buffer;
+generate(barcodeType: EncodeBarcodeType, data: string): Buffer;
 ```
 
-#### GenerateApi.barcodeGenerateBarcodeTypeGet parameters
+#### GenerateApi.generate parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **barcodeType** | [**EncodeBarcodeType**](models.md#)| Type of barcode to generate. |
  **data** | **string**| String represents data to encode |
- **dataType** | [**EncodeDataType**](models.md#)| Type of data to encode.  Default value:  EncodeDataType.StringData. | [optional]
+ **dataType** | [**EncodeDataType**](models.md#)| Type of data to encode.  Default value: StringData. | [optional]
  **imageFormat** | [**BarcodeImageFormat**](models.md#)| Barcode output image format.  Default value: png | [optional]
  **textLocation** | [**CodeLocation**](models.md#)| Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: CodeLocation.Below. | [optional]
- **foregroundColor** | **string**| Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black. | [optional]
- **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White. | [optional]
+ **foregroundColor** | **string**| Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black. | [optional] [default to '&#39;Black&#39;']
+ **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White. | [optional] [default to '&#39;White&#39;']
  **units** | [**GraphicsUnit**](models.md#)| Common Units for all measuring in query. Default units: pixel. | [optional]
  **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.  Decimal separator is dot. | [optional]
  **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
  **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
  **rotationAngle** | **number**| BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0. | [optional]
 
-#### GenerateApi.barcodeGenerateBarcodeTypeGet return type
+#### GenerateApi.generate return type
 
 Buffer
 
 ---
 
-### barcodeGenerateBodyPost
+### generateBody
 
 Generate barcode using POST request with parameters in body in json or xml format.
 
 ```ts
-barcodeGenerateBodyPost(generateParams: GenerateParams): Buffer;
+generateBody(generateParams: GenerateParams): Buffer;
 ```
 
-#### GenerateApi.barcodeGenerateBodyPost parameters
+#### GenerateApi.generateBody parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **generateParams** | [**GenerateParams**](models.md#GenerateParams)| Parameters of generation |
 
-#### GenerateApi.barcodeGenerateBodyPost return type
+#### GenerateApi.generateBody return type
 
 Buffer
 
 ---
 
-### barcodeGenerateMultipartPost
+### generateMultipart
 
 Generate barcode using POST request with parameters in multipart form.
 
 ```ts
-barcodeGenerateMultipartPost(barcodeType: EncodeBarcodeType, data: string): Buffer;
+generateMultipart(barcodeType: EncodeBarcodeType, data: string): Buffer;
 ```
 
-#### GenerateApi.barcodeGenerateMultipartPost parameters
+#### GenerateApi.generateMultipart parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -70,15 +70,15 @@ Name | Type | Description  | Notes
  **dataType** | [**EncodeDataType**](models.md#EncodeDataType)|  | [optional]
  **imageFormat** | [**BarcodeImageFormat**](models.md#BarcodeImageFormat)|  | [optional]
  **textLocation** | [**CodeLocation**](models.md#CodeLocation)|  | [optional]
- **foregroundColor** | **string**| Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black. | [optional]
- **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White. | [optional]
+ **foregroundColor** | **string**| Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black. | [optional] [default to '&#39;Black&#39;']
+ **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White. | [optional] [default to '&#39;White&#39;']
  **units** | [**GraphicsUnit**](models.md#GraphicsUnit)|  | [optional]
  **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.  Decimal separator is dot. | [optional]
  **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
  **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
  **rotationAngle** | **number**| BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0. | [optional]
 
-#### GenerateApi.barcodeGenerateMultipartPost return type
+#### GenerateApi.generateMultipart return type
 
 Buffer
 
@@ -86,35 +86,15 @@ Buffer
 
 ## class RecognizeApi
 
-### barcodeRecognizeBodyPost
-
-Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
-
-```ts
-barcodeRecognizeBodyPost(recognizeBase64Request: RecognizeBase64Request): BarcodeResponseList;
-```
-
-#### RecognizeApi.barcodeRecognizeBodyPost parameters
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | -----
- **recognizeBase64Request** | [**RecognizeBase64Request**](models.md#RecognizeBase64Request)| Barcode recognition request |
-
-#### RecognizeApi.barcodeRecognizeBodyPost return type
-
-[**BarcodeResponseList**](models.md#BarcodeResponseList)
-
----
-
-### barcodeRecognizeGet
+### recognize
 
 Recognize barcode from file on server using GET requests with parameters in route and query string.
 
 ```ts
-barcodeRecognizeGet(barcodeType: DecodeBarcodeType, fileUrl: string): BarcodeResponseList;
+recognize(barcodeType: DecodeBarcodeType, fileUrl: string): BarcodeResponseList;
 ```
 
-#### RecognizeApi.barcodeRecognizeGet parameters
+#### RecognizeApi.recognize parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -123,21 +103,41 @@ Name | Type | Description  | Notes
  **recognitionMode** | [**RecognitionMode**](models.md#)| Recognition mode | [optional]
  **recognitionImageKind** | [**RecognitionImageKind**](models.md#)| Image kind for recognition | [optional]
 
-#### RecognizeApi.barcodeRecognizeGet return type
+#### RecognizeApi.recognize return type
 
 [**BarcodeResponseList**](models.md#BarcodeResponseList)
 
 ---
 
-### barcodeRecognizeMultipartPost
+### recognizeBase64
+
+Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
+
+```ts
+recognizeBase64(recognizeBase64Request: RecognizeBase64Request): BarcodeResponseList;
+```
+
+#### RecognizeApi.recognizeBase64 parameters
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+ **recognizeBase64Request** | [**RecognizeBase64Request**](models.md#RecognizeBase64Request)| Barcode recognition request |
+
+#### RecognizeApi.recognizeBase64 return type
+
+[**BarcodeResponseList**](models.md#BarcodeResponseList)
+
+---
+
+### recognizeMultipart
 
 Recognize barcode from file in request body using POST requests with parameters in multipart form.
 
 ```ts
-barcodeRecognizeMultipartPost(barcodeType: DecodeBarcodeType, file: RequestFile): BarcodeResponseList;
+recognizeMultipart(barcodeType: DecodeBarcodeType, file: RequestFile): BarcodeResponseList;
 ```
 
-#### RecognizeApi.barcodeRecognizeMultipartPost parameters
+#### RecognizeApi.recognizeMultipart parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
@@ -146,7 +146,7 @@ Name | Type | Description  | Notes
  **recognitionMode** | [**RecognitionMode**](models.md#RecognitionMode)|  | [optional]
  **recognitionImageKind** | [**RecognitionImageKind**](models.md#RecognitionImageKind)|  | [optional]
 
-#### RecognizeApi.barcodeRecognizeMultipartPost return type
+#### RecognizeApi.recognizeMultipart return type
 
 [**BarcodeResponseList**](models.md#BarcodeResponseList)
 
@@ -154,61 +154,61 @@ Name | Type | Description  | Notes
 
 ## class ScanApi
 
-### barcodeScanBodyPost
-
-Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
-
-```ts
-barcodeScanBodyPost(scanBase64Request: ScanBase64Request): BarcodeResponseList;
-```
-
-#### ScanApi.barcodeScanBodyPost parameters
-
-Name | Type | Description  | Notes
----- | ---- | ------------ | -----
- **scanBase64Request** | [**ScanBase64Request**](models.md#ScanBase64Request)| Barcode scan request |
-
-#### ScanApi.barcodeScanBodyPost return type
-
-[**BarcodeResponseList**](models.md#BarcodeResponseList)
-
----
-
-### barcodeScanGet
+### scan
 
 Scan barcode from file on server using GET requests with parameter in query string.
 
 ```ts
-barcodeScanGet(fileUrl: string): BarcodeResponseList;
+scan(fileUrl: string): BarcodeResponseList;
 ```
 
-#### ScanApi.barcodeScanGet parameters
+#### ScanApi.scan parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **fileUrl** | **string**| Url to barcode image |
 
-#### ScanApi.barcodeScanGet return type
+#### ScanApi.scan return type
 
 [**BarcodeResponseList**](models.md#BarcodeResponseList)
 
 ---
 
-### barcodeScanMultipartPost
+### scanBase64
+
+Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
+
+```ts
+scanBase64(scanBase64Request: ScanBase64Request): BarcodeResponseList;
+```
+
+#### ScanApi.scanBase64 parameters
+
+Name | Type | Description  | Notes
+---- | ---- | ------------ | -----
+ **scanBase64Request** | [**ScanBase64Request**](models.md#ScanBase64Request)| Barcode scan request |
+
+#### ScanApi.scanBase64 return type
+
+[**BarcodeResponseList**](models.md#BarcodeResponseList)
+
+---
+
+### scanMultipart
 
 Scan barcode from file in request body using POST requests with parameter in multipart form.
 
 ```ts
-barcodeScanMultipartPost(file: RequestFile): BarcodeResponseList;
+scanMultipart(file: RequestFile): BarcodeResponseList;
 ```
 
-#### ScanApi.barcodeScanMultipartPost parameters
+#### ScanApi.scanMultipart parameters
 
 Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **file** | **RequestFile****RequestFile**| Barcode image file |
 
-#### ScanApi.barcodeScanMultipartPost return type
+#### ScanApi.scanMultipart return type
 
 [**BarcodeResponseList**](models.md#BarcodeResponseList)
 

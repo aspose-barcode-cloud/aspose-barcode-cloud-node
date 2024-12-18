@@ -23,13 +23,13 @@ function makeConfiguration() {
 const config = makeConfiguration();
 
 async function generateBarcode(api, fileName) {
-    const request = new Barcode.BarcodeGenerateMultipartPostRequest(Barcode.EncodeBarcodeType.Aztec, 'Aspose.BarCode.Cloud');
+    const request = new Barcode.GenerateMultipartRequestWrapper(Barcode.EncodeBarcodeType.Aztec, 'Aspose.BarCode.Cloud');
     request.imageHeight = 200;
     request.imageWidth = 200;
     request.resolution = 150;
     request.units = Barcode.GraphicsUnit.Point;
 
-    const generated = await api.barcodeGenerateMultipartPost(request);
+    const generated = await api.generateMultipart(request);
 
     fs.writeFileSync(fileName, generated.body);
 }

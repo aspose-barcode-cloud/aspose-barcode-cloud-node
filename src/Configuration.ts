@@ -37,10 +37,10 @@ export class Configuration {
         if (baseUrl) {
             this.baseUrl = baseUrl;
         } else {
-            this.baseUrl = 'https://barcode.qa.aspose.cloud';
+            this.baseUrl = 'https://api.aspose.cloud';
         }
 
-        this.tokenUrl = tokenUrl ?? 'https://id-qa.aspose.cloud/connect/token';
+        this.tokenUrl = tokenUrl ?? 'https://id.aspose.cloud/connect/token';
 
         if (accessToken) {
             this.accessToken = accessToken;

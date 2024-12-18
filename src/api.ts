@@ -24,15 +24,15 @@ import {
 } from './models';
 
 import {
-    BarcodeGenerateBarcodeTypeGetRequest,
-    BarcodeGenerateBodyPostRequest,
-    BarcodeGenerateMultipartPostRequest,
-    BarcodeRecognizeBodyPostRequest,
-    BarcodeRecognizeGetRequest,
-    BarcodeRecognizeMultipartPostRequest,
-    BarcodeScanBodyPostRequest,
-    BarcodeScanGetRequest,
-    BarcodeScanMultipartPostRequest,
+    GenerateRequestWrapper,
+    GenerateBodyRequestWrapper,
+    GenerateMultipartRequestWrapper,
+    RecognizeRequestWrapper,
+    RecognizeBase64RequestWrapper,
+    RecognizeMultipartRequestWrapper,
+    ScanRequestWrapper,
+    ScanBase64RequestWrapper,
+    ScanMultipartRequestWrapper,
 } from './models';
 
 export * from './models';
@@ -216,11 +216,9 @@ export class GenerateApi {
     /**
      *
      * @summary Generate barcode using GET request with parameters in route and query string.
-     * @param request BarcodeGenerateBarcodeTypeGetRequest
+     * @param request GenerateRequestWrapper
      */
-    public async barcodeGenerateBarcodeTypeGet(
-        request: BarcodeGenerateBarcodeTypeGetRequest
-    ): Promise<{ response: HttpResponse; body: Buffer }> {
+    public async generate(request: GenerateRequestWrapper): Promise<{ response: HttpResponse; body: Buffer }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/generate/{barcodeType}'.replace(
@@ -233,16 +231,12 @@ export class GenerateApi {
 
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
-            throw new Error(
-                'Required parameter request.barcodeType was null or undefined when calling barcodeGenerateBarcodeTypeGet.'
-            );
+            throw new Error('Required parameter request.barcodeType was null or undefined when calling generate.');
         }
 
         // verify required parameter 'request.data' is not null or undefined
         if (request.data == null) {
-            throw new Error(
-                'Required parameter request.data was null or undefined when calling barcodeGenerateBarcodeTypeGet.'
-            );
+            throw new Error('Required parameter request.data was null or undefined when calling generate.');
         }
 
         if (request.dataType != null) {
@@ -310,11 +304,9 @@ export class GenerateApi {
     /**
      *
      * @summary Generate barcode using POST request with parameters in body in json or xml format.
-     * @param request BarcodeGenerateBodyPostRequest
+     * @param request GenerateBodyRequestWrapper
      */
-    public async barcodeGenerateBodyPost(
-        request: BarcodeGenerateBodyPostRequest
-    ): Promise<{ response: HttpResponse; body: Buffer }> {
+    public async generateBody(request: GenerateBodyRequestWrapper): Promise<{ response: HttpResponse; body: Buffer }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate-body';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
@@ -322,7 +314,7 @@ export class GenerateApi {
         // verify required parameter 'request.generateParams' is not null or undefined
         if (request.generateParams == null) {
             throw new Error(
-                'Required parameter request.generateParams was null or undefined when calling barcodeGenerateBodyPost.'
+                'Required parameter request.generateParams was null or undefined when calling generateBody.'
             );
         }
 
@@ -349,10 +341,10 @@ export class GenerateApi {
     /**
      *
      * @summary Generate barcode using POST request with parameters in multipart form.
-     * @param request BarcodeGenerateMultipartPostRequest
+     * @param request GenerateMultipartRequestWrapper
      */
-    public async barcodeGenerateMultipartPost(
-        request: BarcodeGenerateMultipartPostRequest
+    public async generateMultipart(
+        request: GenerateMultipartRequestWrapper
     ): Promise<{ response: HttpResponse; body: Buffer }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate-multipart';
         let queryParameters: any = {};
@@ -362,15 +354,13 @@ export class GenerateApi {
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
             throw new Error(
-                'Required parameter request.barcodeType was null or undefined when calling barcodeGenerateMultipartPost.'
+                'Required parameter request.barcodeType was null or undefined when calling generateMultipart.'
             );
         }
 
         // verify required parameter 'request.data' is not null or undefined
         if (request.data == null) {
-            throw new Error(
-                'Required parameter request.data was null or undefined when calling barcodeGenerateMultipartPost.'
-            );
+            throw new Error('Required parameter request.data was null or undefined when calling generateMultipart.');
         }
 
         if (request.barcodeType != null) {
@@ -449,49 +439,11 @@ export class RecognizeApi {
 
     /**
      *
-     * @summary Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
-     * @param request BarcodeRecognizeBodyPostRequest
-     */
-    public async barcodeRecognizeBodyPost(
-        request: BarcodeRecognizeBodyPostRequest
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
-        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize-body';
-        let queryParameters: any = {};
-        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
-
-        // verify required parameter 'request.recognizeBase64Request' is not null or undefined
-        if (request.recognizeBase64Request == null) {
-            throw new Error(
-                'Required parameter request.recognizeBase64Request was null or undefined when calling barcodeRecognizeBodyPost.'
-            );
-        }
-
-        const requestOptions: HttpOptions = {
-            method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
-            uri: requestPath,
-            body: ObjectSerializer.serialize(request.recognizeBase64Request, 'RecognizeBase64Request'),
-            json: true,
-        };
-
-        await this._configuration.authentication.applyToRequestAsync(requestOptions);
-
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
-
-        return {
-            response: result.response,
-            body: ObjectSerializer.deserialize(result.body, 'BarcodeResponseList'),
-        };
-    }
-
-    /**
-     *
      * @summary Recognize barcode from file on server using GET requests with parameters in route and query string.
-     * @param request BarcodeRecognizeGetRequest
+     * @param request RecognizeRequestWrapper
      */
-    public async barcodeRecognizeGet(
-        request: BarcodeRecognizeGetRequest
+    public async recognize(
+        request: RecognizeRequestWrapper
     ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize';
         let queryParameters: any = {};
@@ -499,16 +451,12 @@ export class RecognizeApi {
 
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
-            throw new Error(
-                'Required parameter request.barcodeType was null or undefined when calling barcodeRecognizeGet.'
-            );
+            throw new Error('Required parameter request.barcodeType was null or undefined when calling recognize.');
         }
 
         // verify required parameter 'request.fileUrl' is not null or undefined
         if (request.fileUrl == null) {
-            throw new Error(
-                'Required parameter request.fileUrl was null or undefined when calling barcodeRecognizeGet.'
-            );
+            throw new Error('Required parameter request.fileUrl was null or undefined when calling recognize.');
         }
 
         if (request.barcodeType != null) {
@@ -549,11 +497,49 @@ export class RecognizeApi {
 
     /**
      *
-     * @summary Recognize barcode from file in request body using POST requests with parameters in multipart form.
-     * @param request BarcodeRecognizeMultipartPostRequest
+     * @summary Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
+     * @param request RecognizeBase64RequestWrapper
      */
-    public async barcodeRecognizeMultipartPost(
-        request: BarcodeRecognizeMultipartPostRequest
+    public async recognizeBase64(
+        request: RecognizeBase64RequestWrapper
+    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize-body';
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
+
+        // verify required parameter 'request.recognizeBase64Request' is not null or undefined
+        if (request.recognizeBase64Request == null) {
+            throw new Error(
+                'Required parameter request.recognizeBase64Request was null or undefined when calling recognizeBase64.'
+            );
+        }
+
+        const requestOptions: HttpOptions = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: requestPath,
+            body: ObjectSerializer.serialize(request.recognizeBase64Request, 'RecognizeBase64Request'),
+            json: true,
+        };
+
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
+
+        const result: HttpResult = await this._client.requestAsync(requestOptions);
+
+        return {
+            response: result.response,
+            body: ObjectSerializer.deserialize(result.body, 'BarcodeResponseList'),
+        };
+    }
+
+    /**
+     *
+     * @summary Recognize barcode from file in request body using POST requests with parameters in multipart form.
+     * @param request RecognizeMultipartRequestWrapper
+     */
+    public async recognizeMultipart(
+        request: RecognizeMultipartRequestWrapper
     ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize-multipart';
         let queryParameters: any = {};
@@ -563,14 +549,14 @@ export class RecognizeApi {
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
             throw new Error(
-                'Required parameter request.barcodeType was null or undefined when calling barcodeRecognizeMultipartPost.'
+                'Required parameter request.barcodeType was null or undefined when calling recognizeMultipart.'
             );
         }
 
         // verify required parameter 'request.fileBytes' is not null or undefined
         if (request.fileBytes == null) {
             throw new Error(
-                'Required parameter request.fileBytes was null or undefined when calling barcodeRecognizeMultipartPost.'
+                'Required parameter request.fileBytes was null or undefined when calling recognizeMultipart.'
             );
         }
 
@@ -628,57 +614,17 @@ export class ScanApi {
 
     /**
      *
-     * @summary Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
-     * @param request BarcodeScanBodyPostRequest
-     */
-    public async barcodeScanBodyPost(
-        request: BarcodeScanBodyPostRequest
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
-        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan-body';
-        let queryParameters: any = {};
-        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
-
-        // verify required parameter 'request.scanBase64Request' is not null or undefined
-        if (request.scanBase64Request == null) {
-            throw new Error(
-                'Required parameter request.scanBase64Request was null or undefined when calling barcodeScanBodyPost.'
-            );
-        }
-
-        const requestOptions: HttpOptions = {
-            method: 'POST',
-            qs: queryParameters,
-            headers: headerParams,
-            uri: requestPath,
-            body: ObjectSerializer.serialize(request.scanBase64Request, 'ScanBase64Request'),
-            json: true,
-        };
-
-        await this._configuration.authentication.applyToRequestAsync(requestOptions);
-
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
-
-        return {
-            response: result.response,
-            body: ObjectSerializer.deserialize(result.body, 'BarcodeResponseList'),
-        };
-    }
-
-    /**
-     *
      * @summary Scan barcode from file on server using GET requests with parameter in query string.
-     * @param request BarcodeScanGetRequest
+     * @param request ScanRequestWrapper
      */
-    public async barcodeScanGet(
-        request: BarcodeScanGetRequest
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+    public async scan(request: ScanRequestWrapper): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
         // verify required parameter 'request.fileUrl' is not null or undefined
         if (request.fileUrl == null) {
-            throw new Error('Required parameter request.fileUrl was null or undefined when calling barcodeScanGet.');
+            throw new Error('Required parameter request.fileUrl was null or undefined when calling scan.');
         }
 
         if (request.fileUrl != null) {
@@ -704,11 +650,49 @@ export class ScanApi {
 
     /**
      *
-     * @summary Scan barcode from file in request body using POST requests with parameter in multipart form.
-     * @param request BarcodeScanMultipartPostRequest
+     * @summary Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
+     * @param request ScanBase64RequestWrapper
      */
-    public async barcodeScanMultipartPost(
-        request: BarcodeScanMultipartPostRequest
+    public async scanBase64(
+        request: ScanBase64RequestWrapper
+    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+        const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan-body';
+        let queryParameters: any = {};
+        let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
+
+        // verify required parameter 'request.scanBase64Request' is not null or undefined
+        if (request.scanBase64Request == null) {
+            throw new Error(
+                'Required parameter request.scanBase64Request was null or undefined when calling scanBase64.'
+            );
+        }
+
+        const requestOptions: HttpOptions = {
+            method: 'POST',
+            qs: queryParameters,
+            headers: headerParams,
+            uri: requestPath,
+            body: ObjectSerializer.serialize(request.scanBase64Request, 'ScanBase64Request'),
+            json: true,
+        };
+
+        await this._configuration.authentication.applyToRequestAsync(requestOptions);
+
+        const result: HttpResult = await this._client.requestAsync(requestOptions);
+
+        return {
+            response: result.response,
+            body: ObjectSerializer.deserialize(result.body, 'BarcodeResponseList'),
+        };
+    }
+
+    /**
+     *
+     * @summary Scan barcode from file in request body using POST requests with parameter in multipart form.
+     * @param request ScanMultipartRequestWrapper
+     */
+    public async scanMultipart(
+        request: ScanMultipartRequestWrapper
     ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan-multipart';
         let queryParameters: any = {};
@@ -717,9 +701,7 @@ export class ScanApi {
 
         // verify required parameter 'request.fileBytes' is not null or undefined
         if (request.fileBytes == null) {
-            throw new Error(
-                'Required parameter request.fileBytes was null or undefined when calling barcodeScanMultipartPost.'
-            );
+            throw new Error('Required parameter request.fileBytes was null or undefined when calling scanMultipart.');
         }
 
         const requestOptions: HttpOptions = {

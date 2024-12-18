@@ -22,8 +22,8 @@ function makeConfiguration() {
 }
 
 async function scanBarcode(api, fileUrl) {
-    const request = new Barcode.BarcodeScanGetRequest(fileUrl);
-    const result = await api.barcodeScanGet(request);
+    const request = new Barcode.ScanRequestWrapper(fileUrl);
+    const result = await api.scan(request);
     return result.body.barcodes;
 }
 

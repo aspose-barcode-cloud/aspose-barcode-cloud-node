@@ -38,9 +38,9 @@ async function generateBarcode(api, fileName) {
         generateParams.barcodeImageParams = imageParams;
 
 
-        const request = new Barcode.BarcodeGenerateBodyPostRequest(generateParams);
+        const request = new Barcode.GenerateBodyRequestWrapper(generateParams);
 
-        const generated = await api.barcodeGenerateBodyPost(request);
+        const generated = await api.generateBody(request);
 
         fs.writeFileSync(fileName, generated.body);
 }

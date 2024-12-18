@@ -10,17 +10,17 @@ describe('Generate and recognize', () => {
     const scanApi = new Barcode.ScanApi(LoadTestConfiguration());
 
     it('should recognize generated code', async () => {
-        const generateRequest = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(
+        const generateRequest = new Barcode.GenerateRequestWrapper(
             Barcode.EncodeBarcodeType.Qr,
             'Testing generator'
         );
-        const generated = await generateApi.barcodeGenerateBarcodeTypeGet(generateRequest);
+        const generated = await generateApi.generate(generateRequest);
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
 
-        const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(generated.body);
+        const scanRequest = new Barcode.ScanMultipartRequestWrapper(generated.body);
 
-        const recognized = await scanApi.barcodeScanMultipartPost(scanRequest);
+        const recognized = await scanApi.scanMultipart(scanRequest);
 
         const barcodes = recognized.body.barcodes;
         assert.ok(barcodes);

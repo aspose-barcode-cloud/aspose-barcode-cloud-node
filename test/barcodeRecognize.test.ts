@@ -14,15 +14,15 @@ describe('barcodeRecognize', () => {
     const imageBuffer = fs.readFileSync('./testdata/pdf417Sample.png');
     const base64File = fs.readFileSync('./testdata/QR_and_Code128.png').toString('base64');
 
-    it('barcodeRecognizeMultipartPost should recognize uploaded image', async () => {
-        const recognizeRequest = new Barcode.BarcodeRecognizeMultipartPostRequest(
+    it('recognizeMultipart should recognize uploaded image', async () => {
+        const request = new Barcode.RecognizeMultipartRequestWrapper(
             Barcode.DecodeBarcodeType.Pdf417,
             imageBuffer
         );
-        recognizeRequest.recognitionImageKind = Barcode.RecognitionImageKind.ClearImage;
-        recognizeRequest.recognitionMode = Barcode.RecognitionMode.Fast;
+        request.recognitionImageKind = Barcode.RecognitionImageKind.ClearImage;
+        request.recognitionMode = Barcode.RecognitionMode.Fast;
 
-        const recognized = await api.barcodeRecognizeMultipartPost(recognizeRequest);
+        const recognized = await api.recognizeMultipart(request);
 
         assert.ok(recognized.body.barcodes);
         assert.strictEqual(recognized.body.barcodes.length, 1);
@@ -43,13 +43,13 @@ describe('barcodeRecognize', () => {
         assert.strictEqual(barcode.region![3].y, 213);
     });
 
-    it('barcodeRecognizeBodyPost should recognize uploaded image', async () => {
+    it('recognizeBase64 should recognize uploaded image', async () => {
         const recognizeBase64Request = new Barcode.RecognizeBase64Request();
         recognizeBase64Request.barcodeTypes = [Barcode.DecodeBarcodeType.MostCommonlyUsed];
         recognizeBase64Request.fileBase64 = base64File;
-        const recognizeRequest = new Barcode.BarcodeRecognizeBodyPostRequest(recognizeBase64Request);
+        const recognizeRequestWrapper = new Barcode.RecognizeBase64RequestWrapper(recognizeBase64Request);
 
-        const recognized = await api.barcodeRecognizeBodyPost(recognizeRequest);
+        const recognized = await api.recognizeBase64(recognizeRequestWrapper);
 
         assert.ok(recognized.body.barcodes);
         assert.strictEqual(recognized.body.barcodes.length, 2);
@@ -63,13 +63,13 @@ describe('barcodeRecognize', () => {
         assert.strictEqual(barcode.barcodeValue, 'Hello world!');
     });
 
-    it('barcodeRecognizeBodyPost should recognize image from URL', async () => {
-        const recognizeRequest = new Barcode.BarcodeRecognizeGetRequest(
+    it('recognizeBase64 should recognize image from URL', async () => {
+        const recognizeRequest = new Barcode.RecognizeRequestWrapper(
             Barcode.DecodeBarcodeType.Qr,
             'https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png'
         );
 
-        const recognized = await api.barcodeRecognizeGet(recognizeRequest);
+        const recognized = await api.recognize(recognizeRequest);
 
         assert.ok(recognized.body.barcodes);
         assert.strictEqual(recognized.body.barcodes.length, 1);

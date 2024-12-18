@@ -85,11 +85,11 @@ export class ApiErrorResponse {
  * Specifies the file format of the image.
  */
 export enum BarcodeImageFormat {
-    Gif = 'Gif',
-    Jpeg = 'Jpeg',
     Png = 'Png',
-    Tiff = 'Tiff',
+    Jpeg = 'Jpeg',
     Svg = 'Svg',
+    Tiff = 'Tiff',
+    Gif = 'Gif',
 }
 
 /**
@@ -619,7 +619,7 @@ export class ScanBase64Request {
 /**
  * Generate barcode using GET request with parameters in route and query string.
  */
-export class BarcodeGenerateBarcodeTypeGetRequest {
+export class GenerateRequestWrapper {
     /**
      * Type of barcode to generate.
      */
@@ -630,7 +630,7 @@ export class BarcodeGenerateBarcodeTypeGetRequest {
     'data': string;
     /**
      * Type of data to encode.
-Default value:  EncodeDataType.StringData.
+Default value: StringData.
      */
     'dataType'?: EncodeDataType;
     /**
@@ -649,14 +649,14 @@ Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/c
 For example: AliceBlue or #FF000000
 Default value: Black.
      */
-    'foregroundColor'?: string;
+    'foregroundColor'?: string = "'Black'";
     /**
      * Background color of the barcode image.
 Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.
 For example: AliceBlue or #FF000000
 Default value: White.
      */
-    'backgroundColor'?: string;
+    'backgroundColor'?: string = "'White'";
     /**
      * Common Units for all measuring in query. Default units: pixel.
      */
@@ -699,7 +699,7 @@ Default value: 0.
 /**
  * Generate barcode using POST request with parameters in body in json or xml format.
  */
-export class BarcodeGenerateBodyPostRequest {
+export class GenerateBodyRequestWrapper {
     /**
      *
      */
@@ -716,7 +716,7 @@ export class BarcodeGenerateBodyPostRequest {
 /**
  * Generate barcode using POST request with parameters in multipart form.
  */
-export class BarcodeGenerateMultipartPostRequest {
+export class GenerateMultipartRequestWrapper {
     /**
      *
      */
@@ -740,11 +740,11 @@ export class BarcodeGenerateMultipartPostRequest {
     /**
      * Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black.
      */
-    'foregroundColor'?: string;
+    'foregroundColor'?: string = "'Black'";
     /**
      * Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White.
      */
-    'backgroundColor'?: string;
+    'backgroundColor'?: string = "'White'";
     /**
      *
      */
@@ -780,26 +780,9 @@ export class BarcodeGenerateMultipartPostRequest {
 // RecognizeApi
 
 /**
- * Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
- */
-export class BarcodeRecognizeBodyPostRequest {
-    /**
-     *
-     */
-    'recognizeBase64Request': RecognizeBase64Request;
-
-    /**
-     * @param recognizeBase64Request
-     */
-    constructor(recognizeBase64Request: RecognizeBase64Request) {
-        this.recognizeBase64Request = recognizeBase64Request;
-    }
-}
-
-/**
  * Recognize barcode from file on server using GET requests with parameters in route and query string.
  */
-export class BarcodeRecognizeGetRequest {
+export class RecognizeRequestWrapper {
     /**
      * Type of barcode to recognize
      */
@@ -829,9 +812,26 @@ export class BarcodeRecognizeGetRequest {
 }
 
 /**
+ * Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
+ */
+export class RecognizeBase64RequestWrapper {
+    /**
+     *
+     */
+    'recognizeBase64Request': RecognizeBase64Request;
+
+    /**
+     * @param recognizeBase64Request
+     */
+    constructor(recognizeBase64Request: RecognizeBase64Request) {
+        this.recognizeBase64Request = recognizeBase64Request;
+    }
+}
+
+/**
  * Recognize barcode from file in request body using POST requests with parameters in multipart form.
  */
-export class BarcodeRecognizeMultipartPostRequest {
+export class RecognizeMultipartRequestWrapper {
     /**
      *
      */
@@ -863,26 +863,9 @@ export class BarcodeRecognizeMultipartPostRequest {
 // ScanApi
 
 /**
- * Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
- */
-export class BarcodeScanBodyPostRequest {
-    /**
-     *
-     */
-    'scanBase64Request': ScanBase64Request;
-
-    /**
-     * @param scanBase64Request
-     */
-    constructor(scanBase64Request: ScanBase64Request) {
-        this.scanBase64Request = scanBase64Request;
-    }
-}
-
-/**
  * Scan barcode from file on server using GET requests with parameter in query string.
  */
-export class BarcodeScanGetRequest {
+export class ScanRequestWrapper {
     /**
      * Url to barcode image
      */
@@ -897,9 +880,26 @@ export class BarcodeScanGetRequest {
 }
 
 /**
+ * Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
+ */
+export class ScanBase64RequestWrapper {
+    /**
+     *
+     */
+    'scanBase64Request': ScanBase64Request;
+
+    /**
+     * @param scanBase64Request
+     */
+    constructor(scanBase64Request: ScanBase64Request) {
+        this.scanBase64Request = scanBase64Request;
+    }
+}
+
+/**
  * Scan barcode from file in request body using POST requests with parameter in multipart form.
  */
-export class BarcodeScanMultipartPostRequest {
+export class ScanMultipartRequestWrapper {
     /**
      * Barcode image file
      */

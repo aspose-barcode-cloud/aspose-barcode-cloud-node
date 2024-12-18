@@ -25,7 +25,7 @@ const config = makeConfiguration();
 function generateBarcode(api, fileName) {
     return new Promise(async (resolve, reject) => {
         try {
-            const request = new Barcode.BarcodeGenerateMultipartPostRequest(
+            const request = new Barcode.GenerateMultipartRequestWrapper(
                 Barcode.EncodeBarcodeType.Code39,
                 'Aspose'
             );
@@ -33,7 +33,7 @@ function generateBarcode(api, fileName) {
             request.backgroundColor = "Yellow";
             request.imageFormat = Barcode.BarcodeImageFormat.Gif;
 
-            const generated = await api.barcodeGenerateMultipartPost(request);
+            const generated = await api.generateMultipart(request);
 
             fs.writeFileSync(fileName, generated.body);
             resolve();

@@ -24,10 +24,10 @@ const config = makeConfiguration();
 
 async function generateBarcode(api, fileName) {
 
-    const request = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(Barcode.EncodeBarcodeType.Code128, "Aspose.BarCode.Cloud");
+    const request = new Barcode.GenerateRequestWrapper(Barcode.EncodeBarcodeType.Code128, "Aspose.BarCode.Cloud");
     request.imageFormat = Barcode.BarcodeImageFormat.Png;
 
-    const generated = await api.barcodeGenerateBarcodeTypeGet(request);
+    const generated = await api.generate(request);
 
     fs.writeFileSync(fileName, generated.body);
 }

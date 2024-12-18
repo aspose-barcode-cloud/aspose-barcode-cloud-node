@@ -8,19 +8,19 @@ describe('barcodeGenerateApiTests', () => {
 
     const api = new Barcode.GenerateApi(LoadTestConfiguration());
 
-    it('should generate image with barcodeGenerateBarcodeTypeGet', async () => {
-        const request = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(
+    it('should generate image with generate', async () => {
+        const request = new Barcode.GenerateRequestWrapper(
             Barcode.EncodeBarcodeType.Qr,
             'Testing generator'
         );
         request.foregroundColor = '0x001100';
-        const generated = await api.barcodeGenerateBarcodeTypeGet(request);
+        const generated = await api.generate(request);
 
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
     });
 
-    it('should generate image with barcodeGenerateBodyPost', async () => {
+    it('should generate image with generateBody', async () => {
         const imageParams = new Barcode.BarcodeImageParams();
         imageParams.backgroundColor = '0xffddff';
 
@@ -32,20 +32,17 @@ describe('barcodeGenerateApiTests', () => {
         generateParams.encodeData = encodeData;
         generateParams.barcodeImageParams = imageParams;
 
-        const request = new Barcode.BarcodeGenerateBodyPostRequest(generateParams);
-        const generated = await api.barcodeGenerateBodyPost(request);
+        const request = new Barcode.GenerateBodyRequestWrapper(generateParams);
+        const generated = await api.generateBody(request);
 
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);
     });
 
-    it('should generate image with barcodeGenerateBodyPost', async () => {
-        const request = new Barcode.BarcodeGenerateMultipartPostRequest(
-            Barcode.EncodeBarcodeType.Qr,
-            'Testing generator'
-        );
+    it('should generate image with generateBody', async () => {
+        const request = new Barcode.GenerateMultipartRequestWrapper(Barcode.EncodeBarcodeType.Qr, 'Testing generator');
         request.rotationAngle = 90;
-        const generated = await api.barcodeGenerateMultipartPost(request);
+        const generated = await api.generateMultipart(request);
 
         const imageSize = generated.body.buffer.byteLength;
         assert.ok(imageSize > 0, `ImageSize=${imageSize}`);

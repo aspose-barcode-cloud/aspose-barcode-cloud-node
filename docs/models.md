@@ -51,11 +51,11 @@ Specifies the file format of the image.
 
 ```ts
 enum BarcodeImageFormat {
-    Gif = 'Gif',
-    Jpeg = 'Jpeg',
     Png = 'Png',
+    Jpeg = 'Jpeg',
+    Svg = 'Svg',
     Tiff = 'Tiff',
-    Svg = 'Svg'
+    Gif = 'Gif'
 }
 ```
 

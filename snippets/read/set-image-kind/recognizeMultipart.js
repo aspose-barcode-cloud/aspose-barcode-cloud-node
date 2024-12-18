@@ -26,13 +26,13 @@ async function recognizeBarcode(api, fileName) {
 
     const imageBuffer = fs.readFileSync(fileName);
 
-    const recognizeRequest = new Barcode.BarcodeRecognizeMultipartPostRequest(
+    const RecognizeRequestWrapper = new Barcode.RecognizeMultipartRequestWrapper(
         Barcode.DecodeBarcodeType.MostCommonlyUsed,
         imageBuffer
     );
-    recognizeRequest.recognitionImageKind = Barcode.RecognitionImageKind.ClearImage;
+    RecognizeRequestWrapper.recognitionImageKind = Barcode.RecognitionImageKind.ClearImage;
   
-    const result = await api.barcodeRecognizeMultipartPost(recognizeRequest);
+    const result = await api.recognizeMultipart(RecognizeRequestWrapper);
 
     return result.body.barcodes;
 }

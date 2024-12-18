@@ -24,9 +24,9 @@ const config = makeConfiguration();
 
 async function generateBarcode(api, fileName) {
 
-    const request = new Barcode.BarcodeGenerateMultipartPostRequest(Barcode.EncodeBarcodeType.Pdf417, "Aspose.BarCode.Cloud");
+    const request = new Barcode.GenerateMultipartRequestWrapper(Barcode.EncodeBarcodeType.Pdf417, "Aspose.BarCode.Cloud");
 
-    const generated = await api.barcodeGenerateMultipartPost(request);
+    const generated = await api.generateMultipart(request);
 
     fs.writeFileSync(fileName, generated.body);
 }

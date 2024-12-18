@@ -22,10 +22,10 @@ function makeConfiguration() {
 }
 
 async function recognizeBarcode(api, fileUrl) {
-    const request = new Barcode.BarcodeRecognizeGetRequest(Barcode.DecodeBarcodeType.Qr, fileUrl);
+    const request = new Barcode.RecognizeRequestWrapper(Barcode.DecodeBarcodeType.Qr, fileUrl);
     request.recognitionMode = Barcode.RecognitionMode.Fast;
     request.imageKind = Barcode.RecognitionImageKind.Photo;
-    const result = await api.barcodeRecognizeGet(request);
+    const result = await api.recognize(request);
     return result.body.barcodes;
 }
 

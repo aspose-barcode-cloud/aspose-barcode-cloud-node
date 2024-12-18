@@ -9,11 +9,11 @@ const config = new Barcode.Configuration(
 );
 
 async function generateBarcode(api) {
-    const request = new Barcode.BarcodeGenerateBarcodeTypeGetRequest(
+    const request = new Barcode.GenerateRequestWrapper(
         Barcode.EncodeBarcodeType.Qr, 
         'Aspose.BarCode for Cloud Sample');
 
-    const oneBarcode = await api.barcodeGenerateBarcodeTypeGet(request);
+    const oneBarcode = await api.generate(request);
 
     const fileName = 'QR.png'
     fs.writeFileSync(fileName, oneBarcode.body);
@@ -24,8 +24,8 @@ async function generateBarcode(api) {
 async function scanBarcode(api, fileName) {
 
     const requestFile = new RequestFile('file', fileName, fs.readFileSync(fileName));
-    const scanRequest = new Barcode.BarcodeScanMultipartPostRequest(requestFile);
-    const result = await api.barcodeScanMultipartPost(scanRequest);
+    const scanRequest = new Barcode.ScanMultipartRequestWrapper(requestFile);
+    const result = await api.scanMultipart(scanRequest);
 
     return result.body.barcodes;
 }

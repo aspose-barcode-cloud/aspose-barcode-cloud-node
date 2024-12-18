@@ -23,10 +23,10 @@ function makeConfiguration() {
 const config = makeConfiguration();
 
 async function generateBarcode(api, fileName) {
-    const formRequest = new Barcode.BarcodeGenerateMultipartPostRequest(Barcode.EncodeBarcodeType.Code128, "4173706F73652E426172436F64652E436C6F7564");
+    const formRequest = new Barcode.GenerateMultipartRequestWrapper(Barcode.EncodeBarcodeType.Code128, "4173706F73652E426172436F64652E436C6F7564");
     formRequest.dataType = Barcode.EncodeDataType.HexBytes;
 
-    const generated = await api.barcodeGenerateMultipartPost(formRequest);
+    const generated = await api.generateMultipart(formRequest);
 
     fs.writeFileSync(fileName, generated.body);
 }

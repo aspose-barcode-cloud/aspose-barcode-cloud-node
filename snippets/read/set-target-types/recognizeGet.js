@@ -23,11 +23,11 @@ function makeConfiguration() {
 const config = makeConfiguration();
 
 async function recognizeBarcode(api) {
-    const request = new Barcode.BarcodeRecognizeGetRequest(
+    const request = new Barcode.RecognizeRequestWrapper(
         Barcode.DecodeBarcodeType.MostCommonlyUsed,
         "https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png"
     );
-    const result = await api.barcodeRecognizeGet(request);
+    const result = await api.recognize(request);
     return result.body.barcodes;
 }
 

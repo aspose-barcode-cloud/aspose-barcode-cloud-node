@@ -29,8 +29,8 @@ async function recognizeBarcode(api, fileName) {
     const recognizeBase64Request = new Barcode.RecognizeBase64Request();
     recognizeBase64Request.barcodeTypes = [Barcode.DecodeBarcodeType.Pdf417];
     recognizeBase64Request.fileBase64 = imageBase64;
-    const recognizeRequest = new Barcode.BarcodeRecognizeBodyPostRequest(recognizeBase64Request);
-    const result = await api.barcodeRecognizeBodyPost(recognizeRequest);
+    const RecognizeRequestWrapper = new Barcode.RecognizeBase64RequestWrapper(recognizeBase64Request);
+    const result = await api.recognizeBase64(RecognizeRequestWrapper);
 
     return result.body.barcodes;
 }
