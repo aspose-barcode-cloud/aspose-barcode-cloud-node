@@ -28,3 +28,5 @@ npm i axios qs
 popd
 
 ${SCRIPT_DIR}/run_snippet.sh "${SNIPPETS_DIR}/manualFetchToken.js" $RUN_DIR $SCRIPT_DIR $CONFIG_FILE_PATH || exit 1;
+
+rm -rf "${RUN_DIR}" || true

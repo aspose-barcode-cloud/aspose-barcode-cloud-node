@@ -3,6 +3,20 @@ import json
 import os
 
 def replace_values_in_file(text_file_path, json_file_path, output_folder_path):
+        # Check if the JSON file exists
+        if not os.path.exists(json_file_path):
+                print(f"JSON file '{json_file_path}' does not exist. Writing input file as is.")
+                # Ensure the output folder exists
+                os.makedirs(output_folder_path, exist_ok=True)
+
+                # Generate the output file path
+                output_file_path = os.path.join(output_folder_path, os.path.basename(text_file_path))
+
+                # Write the original content to the output file
+                with open(text_file_path, 'r') as text_file, open(output_file_path, 'w') as output_file:
+                    output_file.write(text_file.read())
+                return 
+        
         # Read the JSON file
         with open(json_file_path, 'r') as json_file:
             replacement_values = json.load(json_file)
