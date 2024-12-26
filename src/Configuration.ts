@@ -1,10 +1,6 @@
 ﻿import { JWTAuth } from './JWTAuth';
 import { Authentication } from './Authentication';
 
-export enum ApiVersion {
-    v3 = 'v3.0',
-}
-
 export class Configuration {
     /**
      * Authentication type.
@@ -26,7 +22,6 @@ export class Configuration {
      */
     public baseUrl: string;
 
-    readonly version: ApiVersion = ApiVersion.v3;
     readonly accessToken: string;
     readonly tokenUrl: string;
 
@@ -55,6 +50,6 @@ export class Configuration {
      * Returns api base url
      */
     public getApiBaseUrl(): string {
-        return this.baseUrl + '/' + this.version;
+        return this.baseUrl + '/v3.0';
     }
 }
