@@ -11,7 +11,7 @@ describe('httpClient tests', () => {
 
     it('should return response', async () => {
         const response = await client.requestAsync({
-            uri: 'https://api.aspose.cloud',
+            uri: 'https://docs.aspose.cloud/barcode/',
         });
         assert.ok(response);
     });
