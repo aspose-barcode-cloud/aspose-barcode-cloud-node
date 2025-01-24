@@ -3,7 +3,8 @@ const path = require('path');
 const Barcode = require('aspose-barcode-cloud-node');
 
 function makeConfiguration() {
-    const envToken = process.env['TEST_CONFIGURATION_JWT_TOKEN'];
+    const envToken = process.env['TEST_CONFIGURATION_ACCESS_TOKEN'];
+    console.log("Start config");
     if (!envToken) {
         return new Barcode.Configuration(
             'Client Id from https://dashboard.aspose.cloud/applications',
@@ -15,14 +16,15 @@ function makeConfiguration() {
         return new Barcode.Configuration(
             null,
             null,
-            envToken,
-            null
+            null,
+            envToken
         );
     }
 }
 const config = makeConfiguration();
 
 async function generateBarcode(api, fileName) {
+
         const imageParams = new Barcode.BarcodeImageParams();        
         imageParams.foregroundColor = "#FF0000";
         imageParams.backgroundColor = "#FFFF00";
@@ -44,9 +46,10 @@ async function generateBarcode(api, fileName) {
 
         fs.writeFileSync(fileName, generated.body);
 }
-
 const genApi = new Barcode.GenerateApi(config);
+
 const fileName = path.resolve('testdata', 'Code39.png');
+
 
 generateBarcode(genApi, fileName)
     .then(() => {

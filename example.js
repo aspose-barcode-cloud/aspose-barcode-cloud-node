@@ -23,8 +23,7 @@ async function generateBarcode(api) {
 
 async function scanBarcode(api, fileName) {
 
-    const requestFile = new RequestFile('file', fileName, fs.readFileSync(fileName));
-    const scanRequest = new Barcode.ScanMultipartRequestWrapper(requestFile);
+    const scanRequest = new Barcode.ScanMultipartRequestWrapper(fs.readFileSync(fileName));
     const result = await api.scanMultipart(scanRequest);
 
     return result.body.barcodes;

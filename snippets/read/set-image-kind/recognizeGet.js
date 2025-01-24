@@ -3,7 +3,7 @@ const path = require('path');
 const Barcode = require('aspose-barcode-cloud-node');
 
 function makeConfiguration() {
-    const envToken = process.env['TEST_CONFIGURATION_JWT_TOKEN'];
+    const envToken = process.env['TEST_CONFIGURATION_ACCESS_TOKEN'];
     if (!envToken) {
         return new Barcode.Configuration(
             'Client Id from https://dashboard.aspose.cloud/applications',
@@ -15,8 +15,8 @@ function makeConfiguration() {
         return new Barcode.Configuration(
             null,
             null,
-            envToken,
-            null
+            null,
+            envToken
         );
     }
 }
