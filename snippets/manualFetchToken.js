@@ -5,6 +5,12 @@ async function main() {
     const clientId = "Client Id from https://dashboard.aspose.cloud/applications";
     const clientSecret = "Client Secret from https://dashboard.aspose.cloud/applications";
 
+    // Check the client_id is changed to not break GitHub CI pipeline
+    if (clientId.startsWith("Client Id")) {
+        console.log("clientId not configured. Skip this snippet test");
+        return;
+    }
+
     const client = axios.create({
         baseURL: 'https://id.aspose.cloud/',
         headers: {
