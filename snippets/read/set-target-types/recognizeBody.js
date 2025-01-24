@@ -34,7 +34,7 @@ async function recognizeBarcode(api, fileName) {
 
 const recognizeApi = new Barcode.RecognizeApi(makeConfiguration());
 
-const fileName = path.resolve('testdata','Qr_and_Code128.png');
+const fileName = path.resolve('testdata','QR_and_Code128.png');
 
 recognizeBarcode(recognizeApi, fileName)
     .then(barcodes => {
