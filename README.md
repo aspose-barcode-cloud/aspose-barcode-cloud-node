@@ -7,6 +7,11 @@
 + API version: 4.0
 + Package version: 25.1.0
 
+## SDK and API Version Compatibility:
+
+- SDK Version 25.1 and Later: Starting from SDK version 25.1, all subsequent versions are compatible with API Version v4.0.
+- SDK Version 24.12 and Earlier: These versions are compatible with API Version v3.0.
+
 ## Demo applications
 
 [Scan QR](https://products.aspose.app/barcode/scanqr) | [Generate Barcode](https://products.aspose.app/barcode/generate) | [Recognize Barcode](https://products.aspose.app/barcode/recognize)
@@ -63,8 +68,7 @@ async function generateBarcode(api) {
 
 async function scanBarcode(api, fileName) {
 
-    const requestFile = new RequestFile('file', fileName, fs.readFileSync(fileName));
-    const scanRequest = new Barcode.ScanMultipartRequestWrapper(requestFile);
+    const scanRequest = new Barcode.ScanMultipartRequestWrapper(fs.readFileSync(fileName));
     const result = await api.scanMultipart(scanRequest);
 
     return result.body.barcodes;
