@@ -10,7 +10,7 @@ describe('LoadConfigurationFromFile', () => {
         assert.strictEqual(config.clientId, 'Client Id from https://dashboard.aspose.cloud/applications');
         assert.strictEqual(config.clientSecret, 'Client Secret from https://dashboard.aspose.cloud/applications');
         assert.strictEqual(config.baseUrl, 'https://api.aspose.cloud');
-        assert.strictEqual(config.tokenUrl, 'https://api.aspose.cloud/connect/token');
+        assert.strictEqual(config.tokenUrl, 'https://id.aspose.cloud/connect/token');
     });
 });
 

@@ -31,7 +31,7 @@ npm-test:
 	npm test
 
 .PHONY: test
-test: npm-test example
+test: npm-test example snippets
 
 .PHONY: cover
 cover:
@@ -63,8 +63,12 @@ publish-docker: init test
 
 .PHONY: example
 example:
-	./scripts/extract_js_from_README.sh > "example.js"
 	./scripts/run_example.sh
+
+.PHONY: snippets
+snippets:
+	chmod +x scripts/*
+	./scripts/run_snippets.sh
 
 .PHONY: insert-example
 insert-example:

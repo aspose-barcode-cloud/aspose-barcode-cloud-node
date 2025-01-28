@@ -1,5 +1,6 @@
 import http from 'http';
 import https from 'https';
+import { ApiErrorResponse } from './models';
 
 export interface StringKeyWithStringValue {
     [key: string]: string;
@@ -30,6 +31,7 @@ export interface HttpResult {
 
 export interface HttpRejectType {
     response: HttpResponse | null;
+    errorResponse: ApiErrorResponse | null;
     error: Error;
 }
 
@@ -110,10 +112,22 @@ export class HttpClient {
                             body: respBody,
                         });
                     } else {
-                        reject({
+                        var rejectObject: HttpRejectType = {
                             response: response,
                             error: new Error(`Error on '${url}': ${res.statusCode} ${res.statusMessage}`),
-                        });
+                            errorResponse: null,
+                        };
+                        var errorResponse = null;
+                        try {
+                            errorResponse = JSON.parse(respBody.toString()) as ApiErrorResponse;
+                        } catch (parseError) {}
+
+                        if (errorResponse) {
+                            rejectObject.errorResponse = errorResponse;
+                        } else {
+                            rejectObject.error.message += `. ${respBody}`;
+                        }
+                        reject(rejectObject);
                     }
                 });
             }
@@ -127,6 +141,7 @@ export class HttpClient {
                 reject({
                     response: null,
                     error: error,
+                    errorResponse: null,
                 });
             });
 
