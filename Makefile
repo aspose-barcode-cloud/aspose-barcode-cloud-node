@@ -5,7 +5,7 @@ all: init lint build cover
 github-ci: init lint test
 
 .PHONY: init
-init:
+init: clean
 	npm clean-install
 
 .PHONY: format

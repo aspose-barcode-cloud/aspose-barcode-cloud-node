@@ -203,7 +203,7 @@ let typeMap: { [index: string]: any } = {
 export class GenerateApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '25.1.0',
+        'x-aspose-client-version': '25.2.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -427,7 +427,7 @@ export class GenerateApi {
 export class RecognizeApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '25.1.0',
+        'x-aspose-client-version': '25.2.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -602,7 +602,7 @@ export class RecognizeApi {
 export class ScanApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '25.1.0',
+        'x-aspose-client-version': '25.2.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
