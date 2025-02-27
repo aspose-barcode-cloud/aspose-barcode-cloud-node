@@ -640,7 +640,7 @@ Default value: png
     'imageFormat'?: BarcodeImageFormat;
     /**
      * Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.
-Default value: CodeLocation.Below.
+Default value: Depends on BarcodeType. CodeLocation.Below for 1D Barcodes. CodeLocation.None for 2D Barcodes.
      */
     'textLocation'?: CodeLocation;
     /**
