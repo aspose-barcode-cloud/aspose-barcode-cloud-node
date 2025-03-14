@@ -12,18 +12,16 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 const config = makeConfiguration();
 
 async function generateBarcode(api, fileName) {
-    const formRequest = new Barcode.GenerateMultipartRequestWrapper(Barcode.EncodeBarcodeType.Code128, "4173706F73652E426172436F64652E436C6F7564");
+    const formRequest = new Barcode.GenerateMultipartRequestWrapper(
+        Barcode.EncodeBarcodeType.Code128,
+        '4173706F73652E426172436F64652E436C6F7564'
+    );
     formRequest.dataType = Barcode.EncodeDataType.HexBytes;
 
     const generated = await api.generateMultipart(formRequest);
@@ -32,13 +30,13 @@ async function generateBarcode(api, fileName) {
 }
 
 const genApi = new Barcode.GenerateApi(config);
-const fileName = path.resolve('testdata','Code128.png');
+const fileName = path.resolve('testdata', 'Code128.png');
 
 generateBarcode(genApi, fileName)
     .then(() => {
         console.log(`File '${fileName}' generated.`);
     })
-    .catch(err => {
-        console.error("Error: " + JSON.stringify(err, null, 2));
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

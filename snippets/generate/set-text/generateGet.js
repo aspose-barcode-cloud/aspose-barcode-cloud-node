@@ -12,21 +12,13 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 const config = makeConfiguration();
 
 async function generateBarcode(api, fileName) {
-    const getRequest = new Barcode.GenerateRequestWrapper(
-        Barcode.EncodeBarcodeType.Qr,
-        "Aspose.BarCode.Cloud"
-    );
+    const getRequest = new Barcode.GenerateRequestWrapper(Barcode.EncodeBarcodeType.Qr, 'Aspose.BarCode.Cloud');
     getRequest.dataType = Barcode.EncodeDataType.StringData;
 
     const generated = await api.generate(getRequest);
@@ -35,13 +27,13 @@ async function generateBarcode(api, fileName) {
 }
 
 const genApi = new Barcode.GenerateApi(config);
-const fileName = path.resolve('testdata','Qr.png');
+const fileName = path.resolve('testdata', 'Qr.png');
 
 generateBarcode(genApi, fileName)
     .then(() => {
         console.log('Barcode saved to ' + fileName);
     })
-    .catch(err => {
-        console.error("Error: " + JSON.stringify(err, null, 2));
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

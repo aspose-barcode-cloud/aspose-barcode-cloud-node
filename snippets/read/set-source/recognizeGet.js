@@ -12,21 +12,13 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 const config = makeConfiguration();
 
 async function recognizeBarcode(api, fileUrl) {
-    const RecognizeRequestWrapper = new Barcode.RecognizeRequestWrapper(
-        Barcode.DecodeBarcodeType.Qr,
-        fileUrl
-    );
+    const RecognizeRequestWrapper = new Barcode.RecognizeRequestWrapper(Barcode.DecodeBarcodeType.Qr, fileUrl);
     const result = await api.recognize(RecognizeRequestWrapper);
     return result.body.barcodes;
 }
@@ -36,10 +28,10 @@ const recognizeApi = new Barcode.RecognizeApi(config);
 const fileUrl = 'https://products.aspose.app/barcode/scan/img/how-to/scan/step2.png';
 
 recognizeBarcode(recognizeApi, fileUrl)
-    .then(barcodes => {
+    .then((barcodes) => {
         console.log(`File recognized, result: '${barcodes[0].barcodeValue}'`);
     })
-    .catch(err => {
-        console.error("Error: " + JSON.stringify(err, null, 2));
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });
