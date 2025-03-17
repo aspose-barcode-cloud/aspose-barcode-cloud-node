@@ -135,7 +135,7 @@
     "test": "npx jest",
     "cover": "npx jest --coverage",
     "lint": "npx eslint src test snippets",
-    "format": "npx eslint src test snippets --fix",
+    "format": "npx eslint src test snippets eslint.config.mjs --fix",
     "prepare": "npx tsup",
     "check-updates": "ncu -u --enginesNode"
   },
