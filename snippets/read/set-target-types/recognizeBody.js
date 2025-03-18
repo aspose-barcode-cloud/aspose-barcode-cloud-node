@@ -12,12 +12,7 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 
@@ -34,16 +29,16 @@ async function recognizeBarcode(api, fileName) {
 
 const recognizeApi = new Barcode.RecognizeApi(makeConfiguration());
 
-const fileName = path.resolve('testdata','QR_and_Code128.png');
+const fileName = path.resolve('testdata', 'QR_and_Code128.png');
 
 recognizeBarcode(recognizeApi, fileName)
-    .then(barcodes => {
+    .then((barcodes) => {
         console.log(`File '${fileName}' recognized, results:`);
-        barcodes.forEach(result => {
+        barcodes.forEach((result) => {
             console.log(`Value: '${result.barcodeValue}', type: ${result.type}`);
         });
     })
-    .catch(err => {
-        console.error("Error: " + JSON.stringify(err, null, 2));
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

@@ -12,12 +12,7 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 
@@ -28,19 +23,19 @@ async function scanBarcode(api, fileName) {
     base64Request.fileBase64 = imageBase64;
     const request = new Barcode.ScanBase64RequestWrapper(base64Request);
     const result = await api.scanBase64(request);
-    
+
     return result.body.barcodes;
 }
 
 const scanApi = new Barcode.ScanApi(makeConfiguration());
 
-const fileName = path.resolve('testdata','Qr.png');
+const fileName = path.resolve('testdata', 'Qr.png');
 
 scanBarcode(scanApi, fileName)
-.then(barcodes => {
-    console.log(`File '${fileName}' recognized, result: '${barcodes[0].barcodeValue}'`);
-})
-.catch(err => {
-    console.error("Error: " + JSON.stringify(err, null, 2));
-    process.exitCode = 1;
-});
+    .then((barcodes) => {
+        console.log(`File '${fileName}' recognized, result: '${barcodes[0].barcodeValue}'`);
+    })
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
+        process.exitCode = 1;
+    });

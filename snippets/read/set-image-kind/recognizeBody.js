@@ -1,4 +1,4 @@
-const fs =  require('fs');
+const fs = require('fs');
 const path = require('path');
 const Barcode = require('aspose-barcode-cloud-node');
 
@@ -12,18 +12,12 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 const config = makeConfiguration();
 
-async function recognizeBarcode(api, fileName)
-{
+async function recognizeBarcode(api, fileName) {
     const imageBytes = fs.readFileSync(fileName);
     const imageBase64 = Buffer.from(imageBytes).toString('base64');
 
@@ -34,19 +28,18 @@ async function recognizeBarcode(api, fileName)
     const result = await api.recognizeBase64(RecognizeRequestWrapper);
 
     return result.body.barcodes;
-
 }
 
 const recognizeApi = new Barcode.RecognizeApi(config);
 
-const fileName = path.resolve('testdata','QR_and_Code128.png');
+const fileName = path.resolve('testdata', 'QR_and_Code128.png');
 
 recognizeBarcode(recognizeApi, fileName)
-.then(barcodes => {
-    console.log('Recognized barcodes are:');
-    console.log(`File '${fileName}' recognized, result: '${barcodes[0].barcodeValue}'`);
-})
-.catch(err => {
-    console.error("Error: " + JSON.stringify(err, null, 2));
-    process.exitCode = 1;
-});
+    .then((barcodes) => {
+        console.log('Recognized barcodes are:');
+        console.log(`File '${fileName}' recognized, result: '${barcodes[0].barcodeValue}'`);
+    })
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
+        process.exitCode = 1;
+    });

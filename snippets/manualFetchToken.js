@@ -2,12 +2,12 @@ const axios = require('axios');
 const qs = require('qs');
 
 async function main() {
-    const clientId = "Client Id from https://dashboard.aspose.cloud/applications";
-    const clientSecret = "Client Secret from https://dashboard.aspose.cloud/applications";
+    const clientId = 'Client Id from https://dashboard.aspose.cloud/applications';
+    const clientSecret = 'Client Secret from https://dashboard.aspose.cloud/applications';
 
     // Check the client_id is changed to not break GitHub CI pipeline
-    if (clientId.startsWith("Client Id")) {
-        console.log("clientId not configured. Skip this snippet test");
+    if (clientId.startsWith('Client Id')) {
+        console.log('clientId not configured. Skip this snippet test');
         return;
     }
 
@@ -26,7 +26,7 @@ async function main() {
 
     try {
         const response = await client.post('connect/token', payload);
-        console.log("Token received successfully");
+        console.log('Token received successfully');
         //Uncomment next line to view token
         //console.log(response.data.access_token);
     } catch (error) {

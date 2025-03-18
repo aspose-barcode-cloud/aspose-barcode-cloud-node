@@ -2,6 +2,8 @@ import { Configuration } from './Configuration';
 import { HttpClient, HttpOptions, HttpResponse, HttpResult } from './httpClient';
 import { Multipart, RequestFile, FormParamsType } from './multipart';
 
+export * from './models';
+
 import {
     ApiError,
     ApiErrorResponse,
@@ -34,8 +36,6 @@ import {
     ScanBase64RequestWrapper,
     ScanMultipartRequestWrapper,
 } from './models';
-
-export * from './models';
 
 let primitives = ['string', 'boolean', 'double', 'integer', 'long', 'float', 'number', 'any'];
 
@@ -203,7 +203,7 @@ let typeMap: { [index: string]: any } = {
 export class GenerateApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '25.2.0',
+        'x-aspose-client-version': '25.3.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -221,11 +221,7 @@ export class GenerateApi {
     public async generate(request: GenerateRequestWrapper): Promise<{ response: HttpResponse; body: Buffer }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
-            '/barcode/generate/{barcodeType}'.replace(
-                // eslint-disable-next-line no-useless-concat
-                '{' + 'barcodeType' + '}',
-                String(request.barcodeType)
-            );
+            '/barcode/generate/{barcodeType}'.replace('{' + 'barcodeType' + '}', String(request.barcodeType));
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
 
@@ -427,7 +423,7 @@ export class GenerateApi {
 export class RecognizeApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '25.2.0',
+        'x-aspose-client-version': '25.3.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -602,7 +598,7 @@ export class RecognizeApi {
 export class ScanApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '25.2.0',
+        'x-aspose-client-version': '25.3.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;

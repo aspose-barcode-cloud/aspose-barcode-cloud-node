@@ -12,12 +12,7 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 const config = makeConfiguration();
@@ -27,8 +22,8 @@ async function generateBarcode(api, fileName) {
         Barcode.EncodeBarcodeType.Qr,
         'https://products.aspose.cloud/barcode/family/'
     );
-    request.foregroundColor = "DarkBlue";
-    request.backgroundColor = "LightGray";
+    request.foregroundColor = 'DarkBlue';
+    request.backgroundColor = 'LightGray';
     request.imageFormat = Barcode.BarcodeImageFormat.Png;
 
     const generated = await api.generate(request);
@@ -37,13 +32,13 @@ async function generateBarcode(api, fileName) {
 }
 
 const genApi = new Barcode.GenerateApi(config);
-const fileName = path.resolve('testdata','Qr.png');
+const fileName = path.resolve('testdata', 'Qr.png');
 
 generateBarcode(genApi, fileName)
     .then(() => {
-        console.log('File \'' + fileName + '\' generated.');
+        console.log("File '" + fileName + "' generated.");
     })
-    .catch(err => {
-        console.error("Error: " + JSON.stringify(err, null, 2));
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

@@ -12,12 +12,7 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 const config = makeConfiguration();
@@ -25,12 +20,9 @@ const config = makeConfiguration();
 function generateBarcode(api, fileName) {
     return new Promise(async (resolve, reject) => {
         try {
-            const request = new Barcode.GenerateMultipartRequestWrapper(
-                Barcode.EncodeBarcodeType.Code39,
-                'Aspose'
-            );
-            request.foregroundColor = "Green";
-            request.backgroundColor = "Yellow";
+            const request = new Barcode.GenerateMultipartRequestWrapper(Barcode.EncodeBarcodeType.Code39, 'Aspose');
+            request.foregroundColor = 'Green';
+            request.backgroundColor = 'Yellow';
             request.imageFormat = Barcode.BarcodeImageFormat.Gif;
 
             const generated = await api.generateMultipart(request);
@@ -44,13 +36,13 @@ function generateBarcode(api, fileName) {
 }
 
 const genApi = new Barcode.GenerateApi(config);
-const fileName = path.resolve('testdata','Code39.png');
+const fileName = path.resolve('testdata', 'Code39.png');
 
 generateBarcode(genApi, fileName)
     .then(() => {
         console.log('Barcode saved to ' + fileName);
     })
-    .catch(err => {
-        console.error("Error: " + JSON.stringify(err, null, 2));
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

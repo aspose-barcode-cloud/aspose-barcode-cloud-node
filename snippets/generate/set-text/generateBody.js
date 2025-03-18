@@ -12,12 +12,7 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 const config = makeConfiguration();
@@ -27,7 +22,7 @@ async function generateBarcode(api, fileName) {
     postParams.barcodeType = Barcode.EncodeBarcodeType.Pdf417;
     postParams.encodeData = new Barcode.EncodeData();
     postParams.encodeData.dataType = Barcode.EncodeDataType.Base64Bytes;
-    postParams.encodeData.data = "QXNwb3NlLkJhckNvZGUuQ2xvdWQ=";
+    postParams.encodeData.data = 'QXNwb3NlLkJhckNvZGUuQ2xvdWQ=';
 
     const postRequest = new Barcode.GenerateBodyRequestWrapper(postParams);
     const generated = await api.generateBody(postRequest);
@@ -36,13 +31,13 @@ async function generateBarcode(api, fileName) {
 }
 
 const genApi = new Barcode.GenerateApi(config);
-const fileName = path.resolve('testdata','Pdf417.png');
+const fileName = path.resolve('testdata', 'Pdf417.png');
 
 generateBarcode(genApi, fileName)
     .then(() => {
-        console.log('File \'' + fileName + '\' generated.');
+        console.log("File '" + fileName + "' generated.");
     })
-    .catch(err => {
-        console.error("Error: " + JSON.stringify(err, null, 2));
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
         process.exitCode = 1;
     });

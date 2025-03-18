@@ -12,18 +12,12 @@ function makeConfiguration() {
             null
         );
     } else {
-        return new Barcode.Configuration(
-            null,
-            null,
-            null,
-            envToken
-        );
+        return new Barcode.Configuration(null, null, null, envToken);
     }
 }
 const config = makeConfiguration();
 
 async function recognizeBarcode(api, fileName) {
-
     const imageBuffer = fs.readFileSync(fileName);
 
     const RecognizeRequestWrapper = new Barcode.RecognizeMultipartRequestWrapper(
@@ -31,7 +25,7 @@ async function recognizeBarcode(api, fileName) {
         imageBuffer
     );
     RecognizeRequestWrapper.recognitionImageKind = Barcode.RecognitionImageKind.ClearImage;
-  
+
     const result = await api.recognizeMultipart(RecognizeRequestWrapper);
 
     return result.body.barcodes;
@@ -39,13 +33,13 @@ async function recognizeBarcode(api, fileName) {
 
 const recognizeApi = new Barcode.RecognizeApi(config);
 
-const fileName = path.resolve('testdata','Pdf417.png');
+const fileName = path.resolve('testdata', 'Pdf417.png');
 
 recognizeBarcode(recognizeApi, fileName)
-.then(barcodes => {
-    console.log(`File '${fileName}' recognized, result: '${barcodes[0].barcodeValue}'`);
-})
-.catch(err => {
-    console.error("Error: " + JSON.stringify(err, null, 2));
-    process.exitCode = 1;
-});
+    .then((barcodes) => {
+        console.log(`File '${fileName}' recognized, result: '${barcodes[0].barcodeValue}'`);
+    })
+    .catch((err) => {
+        console.error('Error: ' + JSON.stringify(err, null, 2));
+        process.exitCode = 1;
+    });
