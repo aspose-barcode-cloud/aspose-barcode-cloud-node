@@ -16,16 +16,16 @@ Name | Type | Description  | Notes
 ---- | ---- | ------------ | -----
  **barcodeType** | [**EncodeBarcodeType**](models.md#)| Type of barcode to generate. |
  **data** | **string**| String represents data to encode |
- **dataType** | [**EncodeDataType**](models.md#)| Type of data to encode.  Default value: StringData. | [optional]
- **imageFormat** | [**BarcodeImageFormat**](models.md#)| Barcode output image format.  Default value: png | [optional]
- **textLocation** | [**CodeLocation**](models.md#)| Specify the displaying Text Location, set to CodeLocation.None to hide CodeText.  Default value: Depends on BarcodeType. CodeLocation.Below for 1D Barcodes. CodeLocation.None for 2D Barcodes. | [optional]
- **foregroundColor** | **string**| Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black. | [optional] [default to '&#39;Black&#39;']
- **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White. | [optional] [default to '&#39;White&#39;']
+ **dataType** | [**EncodeDataType**](models.md#)| Type of data to encode. Default value: StringData. | [optional]
+ **imageFormat** | [**BarcodeImageFormat**](models.md#)| Barcode output image format. Default value: png | [optional]
+ **textLocation** | [**CodeLocation**](models.md#)| Specify the displaying Text Location, set to CodeLocation.None to hide CodeText. Default value: Depends on BarcodeType. CodeLocation.Below for 1D Barcodes. CodeLocation.None for 2D Barcodes. | [optional]
+ **foregroundColor** | **string**| Specify the displaying bars and content Color. Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #. For example: AliceBlue or #FF000000 Default value: Black. | [optional] [default to '&#39;Black&#39;']
+ **backgroundColor** | **string**| Background color of the barcode image. Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #. For example: AliceBlue or #FF000000 Default value: White. | [optional] [default to '&#39;White&#39;']
  **units** | [**GraphicsUnit**](models.md#)| Common Units for all measuring in query. Default units: pixel. | [optional]
- **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.  Decimal separator is dot. | [optional]
- **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
- **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
- **rotationAngle** | **number**| BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0. | [optional]
+ **resolution** | **number**| Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi. Decimal separator is dot. | [optional]
+ **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel. Decimal separator is dot. | [optional]
+ **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel. Decimal separator is dot. | [optional]
+ **rotationAngle** | **number**| BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation. If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image. Default value: 0. | [optional]
 
 #### GenerateApi.generate return type
 
@@ -70,13 +70,13 @@ Name | Type | Description  | Notes
  **dataType** | [**EncodeDataType**](models.md#EncodeDataType)|  | [optional]
  **imageFormat** | [**BarcodeImageFormat**](models.md#BarcodeImageFormat)|  | [optional]
  **textLocation** | [**CodeLocation**](models.md#CodeLocation)|  | [optional]
- **foregroundColor** | **string**| Specify the displaying bars and content Color.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: Black. | [optional] [default to '&#39;Black&#39;']
- **backgroundColor** | **string**| Background color of the barcode image.  Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #.  For example: AliceBlue or #FF000000  Default value: White. | [optional] [default to '&#39;White&#39;']
+ **foregroundColor** | **string**| Specify the displaying bars and content Color. Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #. For example: AliceBlue or #FF000000 Default value: Black. | [optional] [default to '&#39;Black&#39;']
+ **backgroundColor** | **string**| Background color of the barcode image. Value: Color name from https://reference.aspose.com/drawing/net/system.drawing/color/ or ARGB value started with #. For example: AliceBlue or #FF000000 Default value: White. | [optional] [default to '&#39;White&#39;']
  **units** | [**GraphicsUnit**](models.md#GraphicsUnit)|  | [optional]
- **resolution** | **number**| Resolution of the BarCode image.  One value for both dimensions.  Default value: 96 dpi.  Decimal separator is dot. | [optional]
- **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
- **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel.  Decimal separator is dot. | [optional]
- **rotationAngle** | **number**| BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation.  If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image.  Default value: 0. | [optional]
+ **resolution** | **number**| Resolution of the BarCode image. One value for both dimensions. Default value: 96 dpi. Decimal separator is dot. | [optional]
+ **imageHeight** | **number**| Height of the barcode image in given units. Default units: pixel. Decimal separator is dot. | [optional]
+ **imageWidth** | **number**| Width of the barcode image in given units. Default units: pixel. Decimal separator is dot. | [optional]
+ **rotationAngle** | **number**| BarCode image rotation angle, measured in degree, e.g. RotationAngle &#x3D; 0 or RotationAngle &#x3D; 360 means no rotation. If RotationAngle NOT equal to 90, 180, 270 or 0, it may increase the difficulty for the scanner to read the image. Default value: 0. | [optional]
 
 #### GenerateApi.generateMultipart return type
 
