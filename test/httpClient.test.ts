@@ -16,11 +16,11 @@ describe('httpClient tests', () => {
         assert.ok(response);
     });
 
-    it('should return error', async () => {
+    it('should return 404 error', async () => {
         await assert.rejects(
             async () => {
                 await client.requestAsync({
-                    uri: 'https://www.aspose.cloud/404',
+                    uri: 'https://www.aspose.cloud/404/',
                     headers: { 'User-Agent': 'Googlebot/2.1 (+http://www.google.com/bot.html)' },
                 });
             },
