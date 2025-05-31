@@ -2,9 +2,9 @@ name: Try publish to NPM
 
 on:
   push:
-    branches: [main]
+    branches: [ v3 ]
   pull_request:
-    branches: [main]
+    branches: [ v3 ]
 
 jobs:
   publish:
