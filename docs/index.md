@@ -88,7 +88,7 @@ Buffer
 
 ### recognize
 
-Recognize barcode from file on server using GET requests with parameters in route and query string.
+Recognize barcode from file on server in the Internet using GET requests with parameter in query string. For recognizing files from your hard drive use `recognize-body` or `recognize-multipart` endpoints instead.
 
 ```ts
 recognize(barcodeType: DecodeBarcodeType, fileUrl: string): BarcodeResponseList;
@@ -156,7 +156,7 @@ Name | Type | Description  | Notes
 
 ### scan
 
-Scan barcode from file on server using GET requests with parameter in query string.
+Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use `scan-body` or `scan-multipart` endpoints instead.
 
 ```ts
 scan(fileUrl: string): BarcodeResponseList;

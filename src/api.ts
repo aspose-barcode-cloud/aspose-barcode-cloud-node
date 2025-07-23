@@ -203,7 +203,7 @@ let typeMap: { [index: string]: any } = {
 export class GenerateApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '25.6.0',
+        'x-aspose-client-version': '25.7.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -423,7 +423,7 @@ export class GenerateApi {
 export class RecognizeApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '25.6.0',
+        'x-aspose-client-version': '25.7.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -435,7 +435,7 @@ export class RecognizeApi {
 
     /**
      *
-     * @summary Recognize barcode from file on server using GET requests with parameters in route and query string.
+     * @summary Recognize barcode from file on server in the Internet using GET requests with parameter in query string. For recognizing files from your hard drive use `recognize-body` or `recognize-multipart` endpoints instead.
      * @param request RecognizeRequestWrapper
      */
     public async recognize(
@@ -598,7 +598,7 @@ export class RecognizeApi {
 export class ScanApi {
     protected defaultHeaders: any = {
         'x-aspose-client': 'nodejs sdk',
-        'x-aspose-client-version': '25.6.0',
+        'x-aspose-client-version': '25.7.0',
     };
     protected _configuration: Configuration;
     private _client: HttpClient;
@@ -610,7 +610,7 @@ export class ScanApi {
 
     /**
      *
-     * @summary Scan barcode from file on server using GET requests with parameter in query string.
+     * @summary Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use `scan-body` or `scan-multipart` endpoints instead.
      * @param request ScanRequestWrapper
      */
     public async scan(request: ScanRequestWrapper): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
