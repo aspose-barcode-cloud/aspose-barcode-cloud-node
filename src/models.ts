@@ -780,7 +780,7 @@ export class GenerateMultipartRequestWrapper {
 // RecognizeApi
 
 /**
- * Recognize barcode from file on server using GET requests with parameters in route and query string.
+ * Recognize barcode from file on server in the Internet using GET requests with parameter in query string. For recognizing files from your hard drive use `recognize-body` or `recognize-multipart` endpoints instead.
  */
 export class RecognizeRequestWrapper {
     /**
@@ -863,7 +863,7 @@ export class RecognizeMultipartRequestWrapper {
 // ScanApi
 
 /**
- * Scan barcode from file on server using GET requests with parameter in query string.
+ * Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use `scan-body` or `scan-multipart` endpoints instead.
  */
 export class ScanRequestWrapper {
     /**
