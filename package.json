@@ -147,8 +147,13 @@
     "tabWidth": 4
   },
   "tsup": {
-    "entry": ["src/index.ts"],
-    "format": ["cjs", "esm"],
+    "entry": [
+      "src/index.ts"
+    ],
+    "format": [
+      "cjs",
+      "esm"
+    ],
     "dts": true,
     "splitting": false,
     "sourcemap": true,
