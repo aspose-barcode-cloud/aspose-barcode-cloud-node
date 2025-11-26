@@ -254,7 +254,7 @@ export enum CodeLocation {
 }
 
 /**
- * See Aspose.BarCode.Aspose.BarCode.BarCodeRecognition.DecodeType
+ * See Aspose.BarCode.BarCodeRecognition.DecodeType
  */
 export enum DecodeBarcodeType {
     MostCommonlyUsed = 'MostCommonlyUsed',

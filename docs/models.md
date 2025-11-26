@@ -155,7 +155,7 @@ enum CodeLocation {
 
 ## DecodeBarcodeType
 
-See Aspose.BarCode.Aspose.BarCode.BarCodeRecognition.DecodeType
+See Aspose.BarCode.BarCodeRecognition.DecodeType
 
 ```ts
 enum DecodeBarcodeType {
