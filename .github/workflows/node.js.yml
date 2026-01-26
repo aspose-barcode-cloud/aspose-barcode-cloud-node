@@ -20,15 +20,15 @@ jobs:
       matrix:
         # see https://nodejs.org/en/about/previous-releases for active releases
         # https://github.com/nodejs/release#release-schedule
-        node-version: [ 18.x, 20.x, 22.x, lts/*, latest ]
+        node-version: [18.x, 20.x, 22.x, lts/*, latest]
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v4
-      with:
-        node-version: ${{ matrix.node-version }}
-        cache: 'npm'
-    - run: make github-ci
-      env:
-        TEST_CONFIGURATION_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
+      - uses: actions/checkout@v4
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+      - run: make github-ci
+        env:
+          TEST_CONFIGURATION_ACCESS_TOKEN: ${{ secrets.TEST_CONFIGURATION_ACCESS_TOKEN }}
