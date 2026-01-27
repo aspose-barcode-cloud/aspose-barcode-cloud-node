@@ -2,16 +2,16 @@ name: Check badges in README.md
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
   pull_request:
-    branches: [ main ]
+    branches: [main]
 
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
-    - name: Check badges in README.md
-      run: ./scripts/check-badges.bash "README.md"
+      - name: Check badges in README.md
+        run: ./scripts/check-badges.bash "README.md"
