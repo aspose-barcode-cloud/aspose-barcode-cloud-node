@@ -1,5 +1,5 @@
 import crypto from 'crypto';
-import { StringKeyWithStringValue } from 'httpClient';
+import { StringKeyWithStringValue } from './httpClient';
 
 export interface FormParamsType extends Array<Array<string>> {}
 

@@ -1,5 +1,3 @@
-import http from 'http';
-import https from 'https';
 import { ApiErrorResponse } from './models';
 
 export interface StringKeyWithStringValue {
@@ -35,6 +33,26 @@ export interface HttpRejectType {
     error: Error;
 }
 
+interface FetchHeaders {
+    forEach(callback: (value: string, key: string) => void): void;
+}
+
+interface FetchResponse {
+    status: number;
+    statusText: string;
+    headers: FetchHeaders;
+    ok: boolean;
+    arrayBuffer(): Promise<ArrayBuffer>;
+}
+
+interface FetchRequestInit {
+    method?: string;
+    headers?: StringKeyWithStringValue;
+    body?: any;
+}
+
+type Fetcher = (input: string | URL, init?: FetchRequestInit) => Promise<FetchResponse>;
+
 export class HttpClient {
     public requestAsync(options: HttpOptions): Promise<HttpResult> {
         const url: URL = options.qs
@@ -43,14 +61,18 @@ export class HttpClient {
 
         const requestBody = this.buildRequestBody(options);
 
-        const requestOptions: http.RequestOptions = {
-            method: options.method,
+        const responseEncoding: BufferEncoding | null = options.encoding === null ? null : options.encoding || 'utf-8';
+
+        const requestOptions: FetchRequestInit = {
+            method: options.method || 'GET',
             headers: options.headers,
         };
 
-        const responseEncoding: BufferEncoding | null = options.encoding === null ? null : options.encoding || 'utf-8';
+        if (requestBody) {
+            requestOptions.body = requestBody;
+        }
 
-        return this.doHttpRequest(url, requestBody, requestOptions, responseEncoding);
+        return this.doFetchRequest(url, requestOptions, responseEncoding);
     }
 
     private buildRequestBody(options: HttpOptions) {
@@ -78,78 +100,141 @@ export class HttpClient {
         return requestBody;
     }
 
-    private doHttpRequest(
+    private async doFetchRequest(
         url: URL,
-        requestBody: any,
-        requestOptions: http.RequestOptions,
+        requestOptions: FetchRequestInit,
         responseEncoding: BufferEncoding | null
     ): Promise<HttpResult> {
-        return new Promise((resolve, reject: (result: HttpRejectType) => void) => {
-            function requestCallback(res: http.IncomingMessage) {
-                if (responseEncoding) {
-                    // encoding = null for binary responses
-                    res.setEncoding(responseEncoding);
-                }
-                const chunks: any[] | Uint8Array[] = [];
-
-                res.on('data', (chunk) => {
-                    chunks.push(chunk);
-                });
-
-                res.on('end', () => {
-                    const respBody = responseEncoding ? chunks.join('') : Buffer.concat(chunks);
-
-                    const response: HttpResponse = {
-                        statusCode: res.statusCode!,
-                        statusMessage: res.statusMessage!,
-                        headers: res.headers,
-                        body: respBody,
-                    };
-
-                    if (response.statusCode >= 200 && response.statusCode <= 299) {
-                        resolve({
-                            response: response,
-                            body: respBody,
-                        });
-                    } else {
-                        var rejectObject: HttpRejectType = {
-                            response: response,
-                            error: new Error(`Error on '${url}': ${res.statusCode} ${res.statusMessage}`),
-                            errorResponse: null,
-                        };
-                        var errorResponse = null;
-                        try {
-                            errorResponse = JSON.parse(respBody.toString()) as ApiErrorResponse;
-                        } catch (parseError) {}
-
-                        if (errorResponse) {
-                            rejectObject.errorResponse = errorResponse;
-                        } else {
-                            rejectObject.error.message += `. ${respBody}`;
-                        }
-                        reject(rejectObject);
-                    }
-                });
-            }
-
-            const req =
-                url.protocol === 'http:'
-                    ? http.request(url, requestOptions, requestCallback)
-                    : https.request(url, requestOptions, requestCallback);
-
-            req.on('error', (error) => {
-                reject({
-                    response: null,
-                    error: error,
-                    errorResponse: null,
-                });
+        const fetcher = this.getFetch();
+        let response: FetchResponse;
+        try {
+            response = await fetcher(url.toString(), requestOptions);
+        } catch (error) {
+            return Promise.reject({
+                response: null,
+                error: this.normalizeFetchError(error),
+                errorResponse: null,
             });
+        }
 
-            if (requestBody) {
-                req.write(requestBody);
+        const respBody = await this.readResponseBody(response, responseEncoding);
+        const responseHeaders = this.toHeaderDict(response.headers);
+
+        const httpResponse: HttpResponse = {
+            statusCode: response.status,
+            statusMessage: response.statusText,
+            headers: responseHeaders,
+            body: respBody,
+        };
+
+        if (response.ok) {
+            return {
+                response: httpResponse,
+                body: respBody,
+            };
+        }
+
+        const rejectObject: HttpRejectType = {
+            response: httpResponse,
+            error: new Error(`Error on '${url}': ${response.status} ${response.statusText}`),
+            errorResponse: null,
+        };
+        let errorResponse = null;
+        try {
+            errorResponse = JSON.parse(respBody.toString()) as ApiErrorResponse;
+        } catch (parseError) {}
+
+        if (errorResponse) {
+            rejectObject.errorResponse = errorResponse;
+        } else {
+            rejectObject.error.message += `. ${respBody}`;
+        }
+
+        return Promise.reject(rejectObject);
+    }
+
+    private async readResponseBody(
+        response: FetchResponse,
+        responseEncoding: BufferEncoding | null
+    ): Promise<string | Buffer> {
+        const arrayBuffer = await response.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+
+        if (responseEncoding === null) {
+            return buffer;
+        }
+
+        return buffer.toString(responseEncoding);
+    }
+
+    private toHeaderDict(headers: FetchHeaders): NodeJS.Dict<string | string[]> {
+        const normalizedHeaders: NodeJS.Dict<string | string[]> = {};
+
+        headers.forEach((value, key) => {
+            const existing = normalizedHeaders[key];
+            if (existing === undefined) {
+                normalizedHeaders[key] = value;
+                return;
             }
 
-            req.end();
+            if (Array.isArray(existing)) {
+                existing.push(value);
+                normalizedHeaders[key] = existing;
+                return;
+            }
+
+            normalizedHeaders[key] = [existing, value];
         });
+
+        return normalizedHeaders;
+    }
+
+    private getFetch(): Fetcher {
+        const fetcher = (globalThis as { fetch?: Fetcher }).fetch;
+        if (!fetcher) {
+            throw new Error('Global fetch API is not available. Please use Node.js 18+.');
+        }
+
+        return fetcher;
+    }
+
+    private normalizeFetchError(error: unknown): Error {
+        if (error instanceof Error) {
+            const mutableError = error as Error & { code?: string; cause?: unknown; name: string };
+            let normalizedCode = mutableError.code;
+
+            if (!normalizedCode) {
+                const cause = mutableError.cause;
+                if (cause && typeof cause === 'object' && 'code' in (cause as { code?: string })) {
+                    const code = (cause as { code?: string }).code;
+                    if (code) {
+                        normalizedCode = String(code);
+                    }
+                }
+            }
+
+            if (!normalizedCode) {
+                normalizedCode = mutableError.name || 'FETCH_ERROR';
+            }
+
+            try {
+                if (!mutableError.code) {
+                    mutableError.code = normalizedCode;
+                }
+            } catch (assignError) {}
+
+            if (mutableError.code) {
+                return mutableError;
+            }
+
+            const wrapped = new Error(mutableError.message);
+            wrapped.name = mutableError.name;
+            (wrapped as { code?: string }).code = normalizedCode;
+            return wrapped;
+        }
+
+        const wrapped = new Error(String(error));
+        (wrapped as { code?: string }).code = 'FETCH_ERROR';
+        return wrapped;
     }
 }
