@@ -79,13 +79,13 @@ interface FetchResponse {
     arrayBuffer(): Promise<ArrayBuffer>;
 }
 
-interface FetchRequestInit {
+interface FetchRequestOptions {
     method?: string;
     headers?: StringKeyWithStringValue;
     body?: any;
 }
 
-type Fetcher = (input: string | URL, init?: FetchRequestInit) => Promise<FetchResponse>;
+type Fetcher = (input: string | URL, options?: FetchRequestOptions) => Promise<FetchResponse>;
 
 export class ApiClient {
     public requestAsync(options: ApiRequestOptions): Promise<ApiResult> {
@@ -97,7 +97,7 @@ export class ApiClient {
 
         const responseEncoding: BufferEncoding | null = options.encoding === null ? null : options.encoding || 'utf-8';
 
-        const requestOptions: FetchRequestInit = {
+        const requestOptions: FetchRequestOptions = {
             method: options.method || 'GET',
             headers: options.headers,
         };
@@ -136,7 +136,7 @@ export class ApiClient {
 
     private async doFetchRequest(
         url: URL,
-        requestOptions: FetchRequestInit,
+        requestOptions: FetchRequestOptions,
         responseEncoding: BufferEncoding | null
     ): Promise<ApiResult> {
         const fetcher = this.getFetch();
