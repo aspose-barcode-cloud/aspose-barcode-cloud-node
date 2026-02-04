@@ -67,27 +67,18 @@ type ApiRejectType = {
     error: Error;
 };
 
-interface FetchHeaders {
-    forEach(callback: (value: string, key: string) => void): void;
-}
-
-interface FetchResponse {
-    status: number;
-    statusText: string;
-    headers: FetchHeaders;
-    ok: boolean;
-    arrayBuffer(): Promise<ArrayBuffer>;
-}
-
-interface FetchOptions {
-    method?: string;
-    headers?: StringMap;
-    body?: any;
-}
-
-type Fetcher = (input: string | URL, options?: FetchOptions) => Promise<FetchResponse>;
-
 export class ApiClient {
+    private readonly _fetcher: typeof fetch;
+
+    constructor() {
+        const resolvedFetch = (globalThis as { fetch?: typeof fetch }).fetch;
+        if (!resolvedFetch) {
+            throw new Error('Global fetch API is not available. Please use Node.js 18+.');
+        }
+
+        this._fetcher = resolvedFetch;
+    }
+
     public requestAsync(options: ApiRequestOptions): Promise<ApiResult> {
         const url: URL = options.qs
             ? new URL(`?${new URLSearchParams(options.qs).toString()}`, options.uri)
@@ -97,7 +88,7 @@ export class ApiClient {
 
         const responseEncoding: BufferEncoding | null = options.encoding === null ? null : options.encoding || 'utf-8';
 
-        const requestOptions: FetchOptions = {
+        const requestOptions: RequestInit = {
             method: options.method || 'GET',
             headers: options.headers,
         };
@@ -136,13 +127,12 @@ export class ApiClient {
 
     private async doFetchRequest(
         url: URL,
-        requestOptions: FetchOptions,
+        requestOptions: RequestInit,
         responseEncoding: BufferEncoding | null
     ): Promise<ApiResult> {
-        const fetcher = this.getFetch();
-        let response: FetchResponse;
+        let response: Response;
         try {
-            response = await fetcher(url.toString(), requestOptions);
+            response = await this._fetcher(url.toString(), requestOptions);
         } catch (error) {
             return Promise.reject({
                 response: null,
@@ -188,7 +178,7 @@ export class ApiClient {
     }
 
     private async readResponseBody(
-        response: FetchResponse,
+        response: Response,
         responseEncoding: BufferEncoding | null
     ): Promise<string | Buffer> {
         const arrayBuffer = await response.arrayBuffer();
@@ -201,7 +191,7 @@ export class ApiClient {
         return buffer.toString(responseEncoding);
     }
 
-    private toHeaderDict(headers: FetchHeaders): NodeJS.Dict<string | string[]> {
+    private toHeaderDict(headers: Headers): NodeJS.Dict<string | string[]> {
         const normalizedHeaders: NodeJS.Dict<string | string[]> = {};
 
         headers.forEach((value, key) => {
@@ -221,15 +211,6 @@ export class ApiClient {
         });
 
         return normalizedHeaders;
-    }
-
-    private getFetch(): Fetcher {
-        const fetcher = (globalThis as { fetch?: Fetcher }).fetch;
-        if (!fetcher) {
-            throw new Error('Global fetch API is not available. Please use Node.js 18+.');
-        }
-
-        return fetcher;
     }
 
     private normalizeFetchError(error: unknown): Error {

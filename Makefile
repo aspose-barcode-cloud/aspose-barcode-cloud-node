@@ -31,7 +31,11 @@ npm-test:
 	npm test
 
 .PHONY: test
-test: npm-test example snippets
+test: typecheck npm-test example snippets
+
+.PHONY: typecheck
+typecheck:
+	npm run typecheck
 
 .PHONY: cover
 cover:

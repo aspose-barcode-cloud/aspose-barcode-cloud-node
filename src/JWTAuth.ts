@@ -2,25 +2,6 @@ import { Configuration } from './Configuration';
 import { Authentication } from './Authentication';
 import { ApiErrorResponse } from './models';
 
-type StringMap = Record<string, string>;
-
-interface FetchHeaders {
-    forEach(callback: (value: string, key: string) => void): void;
-}
-
-interface FetchResponse {
-    status: number;
-    statusText: string;
-    headers: FetchHeaders;
-    ok: boolean;
-    text(): Promise<string>;
-}
-
-type Fetcher = (
-    input: string | URL,
-    init?: { method?: string; headers?: StringMap; body?: any }
-) => Promise<FetchResponse>;
-
 type AuthResponse = {
     statusCode: number;
     statusMessage: string;
@@ -37,9 +18,16 @@ type AuthRejectType = {
 export class JWTAuth implements Authentication {
     private _accessToken?: string;
     private readonly _configuration: Configuration;
+    private readonly _fetcher: typeof fetch;
 
     constructor(configuration: Configuration) {
         this._configuration = configuration;
+        const resolvedFetch = (globalThis as { fetch?: typeof fetch }).fetch;
+        if (!resolvedFetch) {
+            throw new Error('Global fetch API is not available. Please use Node.js 18+.');
+        }
+
+        this._fetcher = resolvedFetch;
 
         if (configuration.accessToken) {
             // Use saved token
@@ -69,15 +57,14 @@ export class JWTAuth implements Authentication {
         if (!this._configuration.clientId || !this._configuration.clientSecret) {
             throw new Error("Required 'clientId' or 'clientSecret' not specified in configuration.");
         }
-        const fetcher = this.getFetch();
         const requestBody = new URLSearchParams({
             grant_type: 'client_credentials',
             client_id: this._configuration.clientId,
             client_secret: this._configuration.clientSecret,
         }).toString();
-        let response: FetchResponse;
+        let response: Response;
         try {
-            response = await fetcher(this._configuration.tokenUrl, {
+            response = await this._fetcher(this._configuration.tokenUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
@@ -125,7 +112,7 @@ export class JWTAuth implements Authentication {
         return parsed.access_token;
     }
 
-    private toHeaderDict(headers: FetchHeaders): NodeJS.Dict<string | string[]> {
+    private toHeaderDict(headers: Headers): NodeJS.Dict<string | string[]> {
         const normalizedHeaders: NodeJS.Dict<string | string[]> = {};
 
         headers.forEach((value, key) => {
@@ -145,15 +132,6 @@ export class JWTAuth implements Authentication {
         });
 
         return normalizedHeaders;
-    }
-
-    private getFetch(): Fetcher {
-        const fetcher = (globalThis as { fetch?: Fetcher }).fetch;
-        if (!fetcher) {
-            throw new Error('Global fetch API is not available. Please use Node.js 18+.');
-        }
-
-        return fetcher;
     }
 
     private normalizeFetchError(error: unknown): Error {
