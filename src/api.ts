@@ -1,5 +1,4 @@
 import { Configuration } from './Configuration';
-import { HttpClient, HttpOptions, HttpResponse, HttpResult } from './httpClient';
 import { Multipart, RequestFile, FormParamsType } from './multipart';
 
 export * from './models';
@@ -36,6 +35,243 @@ import {
     ScanBase64RequestWrapper,
     ScanMultipartRequestWrapper,
 } from './models';
+
+type StringKeyWithStringValue = Record<string, string>;
+
+type ApiRequestOptions = {
+    uri: string;
+    body?: any;
+    encoding?: BufferEncoding | null;
+    form?: StringKeyWithStringValue;
+    headers?: StringKeyWithStringValue;
+    json?: boolean;
+    method?: string;
+    qs?: StringKeyWithStringValue;
+};
+
+type ApiResponse = {
+    statusCode: number;
+    statusMessage: string;
+    headers: NodeJS.Dict<string | string[]>;
+    body: any;
+};
+
+type ApiResult<T = any> = {
+    response: ApiResponse;
+    body: T;
+};
+
+type ApiRejectType = {
+    response: ApiResponse | null;
+    errorResponse: ApiErrorResponse | null;
+    error: Error;
+};
+
+interface FetchHeaders {
+    forEach(callback: (value: string, key: string) => void): void;
+}
+
+interface FetchResponse {
+    status: number;
+    statusText: string;
+    headers: FetchHeaders;
+    ok: boolean;
+    arrayBuffer(): Promise<ArrayBuffer>;
+}
+
+interface FetchRequestInit {
+    method?: string;
+    headers?: StringKeyWithStringValue;
+    body?: any;
+}
+
+type Fetcher = (input: string | URL, init?: FetchRequestInit) => Promise<FetchResponse>;
+
+export class ApiClient {
+    public requestAsync(options: ApiRequestOptions): Promise<ApiResult> {
+        const url: URL = options.qs
+            ? new URL(`?${new URLSearchParams(options.qs).toString()}`, options.uri)
+            : new URL(options.uri);
+
+        const requestBody = this.buildRequestBody(options);
+
+        const responseEncoding: BufferEncoding | null = options.encoding === null ? null : options.encoding || 'utf-8';
+
+        const requestOptions: FetchRequestInit = {
+            method: options.method || 'GET',
+            headers: options.headers,
+        };
+
+        if (requestBody) {
+            requestOptions.body = requestBody;
+        }
+
+        return this.doFetchRequest(url, requestOptions, responseEncoding);
+    }
+
+    private buildRequestBody(options: ApiRequestOptions) {
+        let requestBody = options.body;
+        if (options.form) {
+            // Override requestBody for form with form content
+            requestBody = new URLSearchParams(options.form).toString();
+            options.headers = Object.assign(
+                {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                options.headers
+            );
+        }
+        if (options.json) {
+            // Override requestBody with JSON value
+            requestBody = JSON.stringify(options.body);
+            options.headers = Object.assign(
+                {
+                    'Content-Type': 'application/json',
+                },
+                options.headers
+            );
+        }
+        return requestBody;
+    }
+
+    private async doFetchRequest(
+        url: URL,
+        requestOptions: FetchRequestInit,
+        responseEncoding: BufferEncoding | null
+    ): Promise<ApiResult> {
+        const fetcher = this.getFetch();
+        let response: FetchResponse;
+        try {
+            response = await fetcher(url.toString(), requestOptions);
+        } catch (error) {
+            return Promise.reject({
+                response: null,
+                error: this.normalizeFetchError(error),
+                errorResponse: null,
+            });
+        }
+
+        const respBody = await this.readResponseBody(response, responseEncoding);
+        const responseHeaders = this.toHeaderDict(response.headers);
+
+        const httpResponse: ApiResponse = {
+            statusCode: response.status,
+            statusMessage: response.statusText,
+            headers: responseHeaders,
+            body: respBody,
+        };
+
+        if (response.ok) {
+            return {
+                response: httpResponse,
+                body: respBody,
+            };
+        }
+
+        const rejectObject: ApiRejectType = {
+            response: httpResponse,
+            error: new Error(`Error on '${url}': ${response.status} ${response.statusText}`),
+            errorResponse: null,
+        };
+        let errorResponse = null;
+        try {
+            errorResponse = JSON.parse(respBody.toString()) as ApiErrorResponse;
+        } catch (parseError) {}
+
+        if (errorResponse) {
+            rejectObject.errorResponse = errorResponse;
+        } else {
+            rejectObject.error.message += `. ${respBody}`;
+        }
+
+        return Promise.reject(rejectObject);
+    }
+
+    private async readResponseBody(
+        response: FetchResponse,
+        responseEncoding: BufferEncoding | null
+    ): Promise<string | Buffer> {
+        const arrayBuffer = await response.arrayBuffer();
+        const buffer = Buffer.from(arrayBuffer);
+
+        if (responseEncoding === null) {
+            return buffer;
+        }
+
+        return buffer.toString(responseEncoding);
+    }
+
+    private toHeaderDict(headers: FetchHeaders): NodeJS.Dict<string | string[]> {
+        const normalizedHeaders: NodeJS.Dict<string | string[]> = {};
+
+        headers.forEach((value, key) => {
+            const existing = normalizedHeaders[key];
+            if (existing === undefined) {
+                normalizedHeaders[key] = value;
+                return;
+            }
+
+            if (Array.isArray(existing)) {
+                existing.push(value);
+                normalizedHeaders[key] = existing;
+                return;
+            }
+
+            normalizedHeaders[key] = [existing, value];
+        });
+
+        return normalizedHeaders;
+    }
+
+    private getFetch(): Fetcher {
+        const fetcher = (globalThis as { fetch?: Fetcher }).fetch;
+        if (!fetcher) {
+            throw new Error('Global fetch API is not available. Please use Node.js 18+.');
+        }
+
+        return fetcher;
+    }
+
+    private normalizeFetchError(error: unknown): Error {
+        if (error instanceof Error) {
+            const mutableError = error as Error & { code?: string; cause?: unknown; name: string };
+            let normalizedCode = mutableError.code;
+
+            if (!normalizedCode) {
+                const cause = mutableError.cause;
+                if (cause && typeof cause === 'object' && 'code' in (cause as { code?: string })) {
+                    const code = (cause as { code?: string }).code;
+                    if (code) {
+                        normalizedCode = String(code);
+                    }
+                }
+            }
+
+            if (!normalizedCode) {
+                normalizedCode = mutableError.name || 'FETCH_ERROR';
+            }
+
+            try {
+                if (!mutableError.code) {
+                    mutableError.code = normalizedCode;
+                }
+            } catch (assignError) {}
+
+            if (mutableError.code) {
+                return mutableError;
+            }
+
+            const wrapped = new Error(mutableError.message);
+            wrapped.name = mutableError.name;
+            (wrapped as { code?: string }).code = normalizedCode;
+            return wrapped;
+        }
+
+        const wrapped = new Error(String(error));
+        (wrapped as { code?: string }).code = 'FETCH_ERROR';
+        return wrapped;
+    }
+}
 
 let primitives = ['string', 'boolean', 'double', 'integer', 'long', 'float', 'number', 'any'];
 
@@ -206,11 +442,11 @@ export class GenerateApi {
         'x-aspose-client-version': '26.1.0',
     };
     protected _configuration: Configuration;
-    private _client: HttpClient;
+    private _client: ApiClient;
 
     constructor(configuration: Configuration) {
         this._configuration = configuration;
-        this._client = new HttpClient();
+        this._client = new ApiClient();
     }
 
     /**
@@ -218,7 +454,7 @@ export class GenerateApi {
      * @summary Generate barcode using GET request with parameters in route and query string.
      * @param request GenerateRequestWrapper
      */
-    public async generate(request: GenerateRequestWrapper): Promise<{ response: HttpResponse; body: Buffer }> {
+    public async generate(request: GenerateRequestWrapper): Promise<{ response: ApiResponse; body: Buffer }> {
         const requestPath =
             this._configuration.getApiBaseUrl() +
             '/barcode/generate/{barcodeType}'.replace('{' + 'barcodeType' + '}', String(request.barcodeType));
@@ -279,7 +515,7 @@ export class GenerateApi {
             queryParameters['rotationAngle'] = ObjectSerializer.serialize(request.rotationAngle, 'number');
         }
 
-        const requestOptions: HttpOptions = {
+        const requestOptions: ApiRequestOptions = {
             method: 'GET',
             qs: queryParameters,
             headers: headerParams,
@@ -289,7 +525,7 @@ export class GenerateApi {
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
+        const result: ApiResult = await this._client.requestAsync(requestOptions);
 
         return {
             response: result.response,
@@ -302,7 +538,7 @@ export class GenerateApi {
      * @summary Generate barcode using POST request with parameters in body in json or xml format.
      * @param request GenerateBodyRequestWrapper
      */
-    public async generateBody(request: GenerateBodyRequestWrapper): Promise<{ response: HttpResponse; body: Buffer }> {
+    public async generateBody(request: GenerateBodyRequestWrapper): Promise<{ response: ApiResponse; body: Buffer }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate-body';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
@@ -314,7 +550,7 @@ export class GenerateApi {
             );
         }
 
-        const requestOptions: HttpOptions = {
+        const requestOptions: ApiRequestOptions = {
             method: 'POST',
             qs: queryParameters,
             headers: headerParams,
@@ -326,7 +562,7 @@ export class GenerateApi {
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
+        const result: ApiResult = await this._client.requestAsync(requestOptions);
 
         return {
             response: result.response,
@@ -341,7 +577,7 @@ export class GenerateApi {
      */
     public async generateMultipart(
         request: GenerateMultipartRequestWrapper
-    ): Promise<{ response: HttpResponse; body: Buffer }> {
+    ): Promise<{ response: ApiResponse; body: Buffer }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate-multipart';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
@@ -395,7 +631,7 @@ export class GenerateApi {
         if (request.rotationAngle != null) {
             formParams.push(['rotationAngle', ObjectSerializer.serialize(request.rotationAngle, 'number')]);
         }
-        const requestOptions: HttpOptions = {
+        const requestOptions: ApiRequestOptions = {
             method: 'POST',
             qs: queryParameters,
             headers: headerParams,
@@ -411,7 +647,7 @@ export class GenerateApi {
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
+        const result: ApiResult = await this._client.requestAsync(requestOptions);
 
         return {
             response: result.response,
@@ -426,11 +662,11 @@ export class RecognizeApi {
         'x-aspose-client-version': '26.1.0',
     };
     protected _configuration: Configuration;
-    private _client: HttpClient;
+    private _client: ApiClient;
 
     constructor(configuration: Configuration) {
         this._configuration = configuration;
-        this._client = new HttpClient();
+        this._client = new ApiClient();
     }
 
     /**
@@ -440,7 +676,7 @@ export class RecognizeApi {
      */
     public async recognize(
         request: RecognizeRequestWrapper
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+    ): Promise<{ response: ApiResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
@@ -474,7 +710,7 @@ export class RecognizeApi {
             );
         }
 
-        const requestOptions: HttpOptions = {
+        const requestOptions: ApiRequestOptions = {
             method: 'GET',
             qs: queryParameters,
             headers: headerParams,
@@ -483,7 +719,7 @@ export class RecognizeApi {
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
+        const result: ApiResult = await this._client.requestAsync(requestOptions);
 
         return {
             response: result.response,
@@ -498,7 +734,7 @@ export class RecognizeApi {
      */
     public async recognizeBase64(
         request: RecognizeBase64RequestWrapper
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+    ): Promise<{ response: ApiResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize-body';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
@@ -510,7 +746,7 @@ export class RecognizeApi {
             );
         }
 
-        const requestOptions: HttpOptions = {
+        const requestOptions: ApiRequestOptions = {
             method: 'POST',
             qs: queryParameters,
             headers: headerParams,
@@ -521,7 +757,7 @@ export class RecognizeApi {
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
+        const result: ApiResult = await this._client.requestAsync(requestOptions);
 
         return {
             response: result.response,
@@ -536,7 +772,7 @@ export class RecognizeApi {
      */
     public async recognizeMultipart(
         request: RecognizeMultipartRequestWrapper
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+    ): Promise<{ response: ApiResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize-multipart';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
@@ -571,7 +807,7 @@ export class RecognizeApi {
                 ObjectSerializer.serialize(request.recognitionImageKind, 'RecognitionImageKind'),
             ]);
         }
-        const requestOptions: HttpOptions = {
+        const requestOptions: ApiRequestOptions = {
             method: 'POST',
             qs: queryParameters,
             headers: headerParams,
@@ -586,7 +822,7 @@ export class RecognizeApi {
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
+        const result: ApiResult = await this._client.requestAsync(requestOptions);
 
         return {
             response: result.response,
@@ -601,11 +837,11 @@ export class ScanApi {
         'x-aspose-client-version': '26.1.0',
     };
     protected _configuration: Configuration;
-    private _client: HttpClient;
+    private _client: ApiClient;
 
     constructor(configuration: Configuration) {
         this._configuration = configuration;
-        this._client = new HttpClient();
+        this._client = new ApiClient();
     }
 
     /**
@@ -613,7 +849,7 @@ export class ScanApi {
      * @summary Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use `scan-body` or `scan-multipart` endpoints instead.
      * @param request ScanRequestWrapper
      */
-    public async scan(request: ScanRequestWrapper): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+    public async scan(request: ScanRequestWrapper): Promise<{ response: ApiResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
@@ -627,7 +863,7 @@ export class ScanApi {
             queryParameters['fileUrl'] = ObjectSerializer.serialize(request.fileUrl, 'string');
         }
 
-        const requestOptions: HttpOptions = {
+        const requestOptions: ApiRequestOptions = {
             method: 'GET',
             qs: queryParameters,
             headers: headerParams,
@@ -636,7 +872,7 @@ export class ScanApi {
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
+        const result: ApiResult = await this._client.requestAsync(requestOptions);
 
         return {
             response: result.response,
@@ -651,7 +887,7 @@ export class ScanApi {
      */
     public async scanBase64(
         request: ScanBase64RequestWrapper
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+    ): Promise<{ response: ApiResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan-body';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
@@ -663,7 +899,7 @@ export class ScanApi {
             );
         }
 
-        const requestOptions: HttpOptions = {
+        const requestOptions: ApiRequestOptions = {
             method: 'POST',
             qs: queryParameters,
             headers: headerParams,
@@ -674,7 +910,7 @@ export class ScanApi {
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
+        const result: ApiResult = await this._client.requestAsync(requestOptions);
 
         return {
             response: result.response,
@@ -689,7 +925,7 @@ export class ScanApi {
      */
     public async scanMultipart(
         request: ScanMultipartRequestWrapper
-    ): Promise<{ response: HttpResponse; body: BarcodeResponseList }> {
+    ): Promise<{ response: ApiResponse; body: BarcodeResponseList }> {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan-multipart';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
@@ -700,7 +936,7 @@ export class ScanApi {
             throw new Error('Required parameter request.fileBytes was null or undefined when calling scanMultipart.');
         }
 
-        const requestOptions: HttpOptions = {
+        const requestOptions: ApiRequestOptions = {
             method: 'POST',
             qs: queryParameters,
             headers: headerParams,
@@ -715,7 +951,7 @@ export class ScanApi {
 
         await this._configuration.authentication.applyToRequestAsync(requestOptions);
 
-        const result: HttpResult = await this._client.requestAsync(requestOptions);
+        const result: ApiResult = await this._client.requestAsync(requestOptions);
 
         return {
             response: result.response,

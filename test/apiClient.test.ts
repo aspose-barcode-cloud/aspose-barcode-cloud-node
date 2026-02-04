@@ -1,11 +1,11 @@
 import assert from 'assert';
 
-import { HttpClient } from '../src/httpClient';
+import { ApiClient } from '../src/api';
 
-describe('httpClient tests', () => {
+describe('api client tests', () => {
     jest.setTimeout(60000);
 
-    const client = new HttpClient();
+    const client = new ApiClient();
 
     it('should return response', async () => {
         const response = await client.requestAsync({

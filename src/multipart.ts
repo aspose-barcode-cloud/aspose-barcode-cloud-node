@@ -1,5 +1,6 @@
 import crypto from 'crypto';
-import { StringKeyWithStringValue } from './httpClient';
+
+type StringKeyWithStringValue = Record<string, string>;
 
 export interface FormParamsType extends Array<Array<string>> {}
 

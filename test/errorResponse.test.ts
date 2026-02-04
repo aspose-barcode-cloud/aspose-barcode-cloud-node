@@ -1,7 +1,6 @@
 import assert from 'assert';
 
 import * as Barcode from '../src/api';
-import { HttpRejectType } from '../src/httpClient';
 import { LoadTestConfiguration } from './helpers';
 
 describe('Error response tests', () => {
@@ -14,10 +13,10 @@ describe('Error response tests', () => {
 
         try {
             await api.generate(request);
-            assert.fail('Expected HttpRejectType was not thrown');
+            assert.fail('Expected API error was not thrown');
         } catch (err) {
             assert.ok(err);
-            var typedError = err as HttpRejectType;
+            const typedError = err as { errorResponse?: { error?: { message?: string } } };
             assert.ok(typedError);
             assert.ok(typedError.errorResponse?.error);
             assert.strictEqual(
