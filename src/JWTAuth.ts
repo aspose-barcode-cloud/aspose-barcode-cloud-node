@@ -2,7 +2,7 @@ import { Configuration } from './Configuration';
 import { Authentication } from './Authentication';
 import { ApiErrorResponse } from './models';
 
-type StringKeyWithStringValue = Record<string, string>;
+type StringMap = Record<string, string>;
 
 interface FetchHeaders {
     forEach(callback: (value: string, key: string) => void): void;
@@ -18,7 +18,7 @@ interface FetchResponse {
 
 type Fetcher = (
     input: string | URL,
-    init?: { method?: string; headers?: StringKeyWithStringValue; body?: any }
+    init?: { method?: string; headers?: StringMap; body?: any }
 ) => Promise<FetchResponse>;
 
 type AuthResponse = {

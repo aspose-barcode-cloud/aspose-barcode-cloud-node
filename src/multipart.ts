@@ -1,8 +1,8 @@
 import crypto from 'crypto';
 
-type StringKeyWithStringValue = Record<string, string>;
+type StringMap = Record<string, string>;
 
-export interface FormParamsType extends Array<Array<string>> {}
+export interface FormParamPairs extends Array<Array<string>> {}
 
 interface IRequestFile {
     name: string;
@@ -23,9 +23,9 @@ export class RequestFile implements IRequestFile {
 export class Multipart {
     readonly boundary: string;
     readonly body: Buffer;
-    readonly headers: StringKeyWithStringValue;
+    readonly headers: StringMap;
 
-    constructor(textFields: FormParamsType, files?: IRequestFile[]) {
+    constructor(textFields: FormParamPairs, files?: IRequestFile[]) {
         const random = crypto.randomUUID();
         this.boundary = '------------------------' + random.replace(/-/g, '');
 

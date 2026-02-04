@@ -1,5 +1,5 @@
 import { Configuration } from './Configuration';
-import { Multipart, RequestFile, FormParamsType } from './multipart';
+import { Multipart, RequestFile, FormParamPairs } from './multipart';
 
 export * from './models';
 
@@ -36,17 +36,17 @@ import {
     ScanMultipartRequestWrapper,
 } from './models';
 
-type StringKeyWithStringValue = Record<string, string>;
+type StringMap = Record<string, string>;
 
 type ApiRequestOptions = {
     uri: string;
     body?: any;
     encoding?: BufferEncoding | null;
-    form?: StringKeyWithStringValue;
-    headers?: StringKeyWithStringValue;
+    form?: StringMap;
+    headers?: StringMap;
     json?: boolean;
     method?: string;
-    qs?: StringKeyWithStringValue;
+    qs?: StringMap;
 };
 
 type ApiResponse = {
@@ -79,13 +79,13 @@ interface FetchResponse {
     arrayBuffer(): Promise<ArrayBuffer>;
 }
 
-interface FetchRequestOptions {
+interface FetchOptions {
     method?: string;
-    headers?: StringKeyWithStringValue;
+    headers?: StringMap;
     body?: any;
 }
 
-type Fetcher = (input: string | URL, options?: FetchRequestOptions) => Promise<FetchResponse>;
+type Fetcher = (input: string | URL, options?: FetchOptions) => Promise<FetchResponse>;
 
 export class ApiClient {
     public requestAsync(options: ApiRequestOptions): Promise<ApiResult> {
@@ -97,7 +97,7 @@ export class ApiClient {
 
         const responseEncoding: BufferEncoding | null = options.encoding === null ? null : options.encoding || 'utf-8';
 
-        const requestOptions: FetchRequestOptions = {
+        const requestOptions: FetchOptions = {
             method: options.method || 'GET',
             headers: options.headers,
         };
@@ -136,7 +136,7 @@ export class ApiClient {
 
     private async doFetchRequest(
         url: URL,
-        requestOptions: FetchRequestOptions,
+        requestOptions: FetchOptions,
         responseEncoding: BufferEncoding | null
     ): Promise<ApiResult> {
         const fetcher = this.getFetch();
@@ -581,7 +581,7 @@ export class GenerateApi {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/generate-multipart';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
-        const formParams: FormParamsType = [];
+        const formParams: FormParamPairs = [];
 
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
@@ -776,7 +776,7 @@ export class RecognizeApi {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/recognize-multipart';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
-        const formParams: FormParamsType = [];
+        const formParams: FormParamPairs = [];
 
         // verify required parameter 'request.barcodeType' is not null or undefined
         if (request.barcodeType == null) {
@@ -929,7 +929,7 @@ export class ScanApi {
         const requestPath = this._configuration.getApiBaseUrl() + '/barcode/scan-multipart';
         let queryParameters: any = {};
         let headerParams: any = (Object as any).assign({}, this.defaultHeaders);
-        const formParams: FormParamsType = [];
+        const formParams: FormParamPairs = [];
 
         // verify required parameter 'request.fileBytes' is not null or undefined
         if (request.fileBytes == null) {
