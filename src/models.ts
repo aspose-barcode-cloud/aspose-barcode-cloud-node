@@ -687,7 +687,6 @@ Default value: 0.
 
     /**
      * @param barcodeType Type of barcode to generate.
-     
      * @param data String represents data to encode
      */
     constructor(barcodeType: EncodeBarcodeType, data: string) {
@@ -767,8 +766,7 @@ export class GenerateMultipartRequestWrapper {
     'rotationAngle'?: number;
 
     /**
-     * @param barcodeType 
-     
+     * @param barcodeType
      * @param data String represents data to encode
      */
     constructor(barcodeType: EncodeBarcodeType, data: string) {
@@ -802,7 +800,6 @@ export class RecognizeRequestWrapper {
 
     /**
      * @param barcodeType Type of barcode to recognize
-     
      * @param fileUrl Url to barcode image
      */
     constructor(barcodeType: DecodeBarcodeType, fileUrl: string) {
@@ -850,8 +847,7 @@ export class RecognizeMultipartRequestWrapper {
     'recognitionImageKind'?: RecognitionImageKind;
 
     /**
-     * @param barcodeType 
-     
+     * @param barcodeType
      * @param fileBytes Barcode image file
      */
     constructor(barcodeType: DecodeBarcodeType, fileBytes: Buffer) {

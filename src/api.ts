@@ -431,8 +431,7 @@ export class GenerateApi {
     }
 
     /**
-     *
-     * @summary Generate barcode using GET request with parameters in route and query string.
+     * Generate barcode using GET request with parameters in route and query string.
      * @param request GenerateRequestWrapper
      */
     public async generate(request: GenerateRequestWrapper): Promise<{ response: ApiResponse; body: Buffer }> {
@@ -515,8 +514,7 @@ export class GenerateApi {
     }
 
     /**
-     *
-     * @summary Generate barcode using POST request with parameters in body in json or xml format.
+     * Generate barcode using POST request with parameters in body in json or xml format.
      * @param request GenerateBodyRequestWrapper
      */
     public async generateBody(request: GenerateBodyRequestWrapper): Promise<{ response: ApiResponse; body: Buffer }> {
@@ -552,8 +550,7 @@ export class GenerateApi {
     }
 
     /**
-     *
-     * @summary Generate barcode using POST request with parameters in multipart form.
+     * Generate barcode using POST request with parameters in multipart form.
      * @param request GenerateMultipartRequestWrapper
      */
     public async generateMultipart(
@@ -651,8 +648,7 @@ export class RecognizeApi {
     }
 
     /**
-     *
-     * @summary Recognize barcode from file on server in the Internet using GET requests with parameter in query string. For recognizing files from your hard drive use `recognize-body` or `recognize-multipart` endpoints instead.
+     * Recognize barcode from file on server in the Internet using GET requests with parameter in query string. For recognizing files from your hard drive use `recognize-body` or `recognize-multipart` endpoints instead.
      * @param request RecognizeRequestWrapper
      */
     public async recognize(
@@ -709,8 +705,7 @@ export class RecognizeApi {
     }
 
     /**
-     *
-     * @summary Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
+     * Recognize barcode from file in request body using POST requests with parameters in body in json or xml format.
      * @param request RecognizeBase64RequestWrapper
      */
     public async recognizeBase64(
@@ -747,8 +742,7 @@ export class RecognizeApi {
     }
 
     /**
-     *
-     * @summary Recognize barcode from file in request body using POST requests with parameters in multipart form.
+     * Recognize barcode from file in request body using POST requests with parameters in multipart form.
      * @param request RecognizeMultipartRequestWrapper
      */
     public async recognizeMultipart(
@@ -826,8 +820,7 @@ export class ScanApi {
     }
 
     /**
-     *
-     * @summary Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use `scan-body` or `scan-multipart` endpoints instead.
+     * Scan barcode from file on server in the Internet using GET requests with parameter in query string. For scaning files from your hard drive use `scan-body` or `scan-multipart` endpoints instead.
      * @param request ScanRequestWrapper
      */
     public async scan(request: ScanRequestWrapper): Promise<{ response: ApiResponse; body: BarcodeResponseList }> {
@@ -862,8 +855,7 @@ export class ScanApi {
     }
 
     /**
-     *
-     * @summary Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
+     * Scan barcode from file in request body using POST requests with parameter in body in json or xml format.
      * @param request ScanBase64RequestWrapper
      */
     public async scanBase64(
@@ -900,8 +892,7 @@ export class ScanApi {
     }
 
     /**
-     *
-     * @summary Scan barcode from file in request body using POST requests with parameter in multipart form.
+     * Scan barcode from file in request body using POST requests with parameter in multipart form.
      * @param request ScanMultipartRequestWrapper
      */
     public async scanMultipart(
