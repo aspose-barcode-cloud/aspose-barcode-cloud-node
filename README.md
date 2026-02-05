@@ -26,6 +26,10 @@ This repository contains Aspose.BarCode Cloud SDK for Node.js source code.
 
 To use these SDKs, you will need Client Id and Client Secret which can be looked up at [Aspose Cloud Dashboard](https://dashboard.aspose.cloud/applications) (free registration in Aspose Cloud is required for this).
 
+## Requirements
+
+- Node.js 18 or later (native `fetch` required).
+
 ## How to use the SDK
 
 The complete source code is available in this repository folder. You can either directly use it in your project via source code or get [nmpjs distribution](https://www.npmjs.com/package/aspose-barcode-cloud-node) (recommended).
@@ -55,7 +59,7 @@ const config = new Barcode.Configuration(
 
 async function generateBarcode(api) {
     const request = new Barcode.GenerateRequestWrapper(
-        Barcode.EncodeBarcodeType.Qr, 
+        Barcode.EncodeBarcodeType.Qr,
         'Aspose.BarCode for Cloud Sample');
 
     const oneBarcode = await api.generate(request);

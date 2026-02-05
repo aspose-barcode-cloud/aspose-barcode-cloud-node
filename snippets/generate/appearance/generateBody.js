@@ -41,7 +41,7 @@ async function generateBarcode(api, fileName) {
 }
 const genApi = new Barcode.GenerateApi(config);
 
-const fileName = path.resolve('testdata', 'Code39.png');
+const fileName = path.resolve('testdata', 'Code39-red.png');
 
 generateBarcode(genApi, fileName)
     .then(() => {

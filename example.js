@@ -10,7 +10,7 @@ const config = new Barcode.Configuration(
 
 async function generateBarcode(api) {
     const request = new Barcode.GenerateRequestWrapper(
-        Barcode.EncodeBarcodeType.Qr, 
+        Barcode.EncodeBarcodeType.Qr,
         'Aspose.BarCode for Cloud Sample');
 
     const oneBarcode = await api.generate(request);

@@ -2,6 +2,11 @@
 
 set -euo pipefail
 
+if [[ "${ASPOSE_E2E:-}" != "1" ]]; then
+    echo "Skipping example: set ASPOSE_E2E=1 to run against live API."
+    exit 0
+fi
+
 TEST_DIR="demo"
 
 rm -rf "${TEST_DIR}" || true

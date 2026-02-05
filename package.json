@@ -129,10 +129,11 @@
     "dist"
   ],
   "engines": {
-    "node": ">=16"
+    "node": ">=18"
   },
   "scripts": {
     "test": "npx jest",
+    "typecheck": "npx tsc --noEmit",
     "cover": "npx jest --coverage",
     "lint": "npx eslint src test snippets",
     "format": "npx eslint src test snippets eslint.config.mjs --fix",
