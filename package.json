@@ -132,11 +132,6 @@
       "import": "./dist/index.mjs",
       "require": "./dist/index.js"
     },
-    "./min": {
-      "types": "./dist/index.d.ts",
-      "import": "./dist/min/index.mjs",
-      "require": "./dist/min/index.js"
-    },
     "./dist/*": "./dist/*",
     "./package.json": "./package.json"
   },
@@ -154,7 +149,7 @@
     "format": "npx eslint src test snippets eslint.config.mjs --fix",
     "build": "npx tsup",
     "build:min": "npx tsup --minify --outDir dist/min --no-dts",
-    "prepare": "npm run build && npm run build:min",
+    "prepare": "npm run build",
     "check-updates": "ncu -u --enginesNode"
   },
   "prettier": {
@@ -169,7 +164,7 @@
     "format": ["cjs", "esm"],
     "dts": true,
     "splitting": false,
-    "sourcemap": true,
+    "sourcemap": false,
     "clean": true,
     "minify": false
   },

@@ -6,7 +6,7 @@
     "lib": ["es6"],
     "importHelpers": true,
     "declaration": true,
-    "sourceMap": true,
+    "sourceMap": false,
     "rootDir": "./src",
     "strict": true,
     "moduleResolution": "node",
