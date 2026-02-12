@@ -124,7 +124,17 @@
   ],
   "author": "Aspose.BarCode Team",
   "main": "dist/index.js",
+  "module": "dist/index.mjs",
   "typings": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.mjs",
+      "require": "./dist/index.js"
+    },
+    "./dist/*": "./dist/*",
+    "./package.json": "./package.json"
+  },
   "files": [
     "dist"
   ],
@@ -137,7 +147,9 @@
     "cover": "npx jest --coverage",
     "lint": "npx eslint src test snippets",
     "format": "npx eslint src test snippets eslint.config.mjs --fix",
-    "prepare": "npx tsup",
+    "build": "npx tsup",
+    "build:min": "npx tsup --minify --outDir dist/min --no-dts",
+    "prepare": "npm run build",
     "check-updates": "ncu -u --enginesNode"
   },
   "prettier": {
@@ -152,9 +164,9 @@
     "format": ["cjs", "esm"],
     "dts": true,
     "splitting": false,
-    "sourcemap": true,
+    "sourcemap": false,
     "clean": true,
-    "minify": true
+    "minify": false
   },
   "devDependencies": {
     "@types/jest": "^30.0.0",
