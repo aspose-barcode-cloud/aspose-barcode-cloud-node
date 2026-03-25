@@ -16,7 +16,7 @@ format:
 
 .PHONY: lock
 lock:
-	npm install --package-lock-only
+	npm install --package-lock-only --lockfile-version 2
 
 .PHONY: clean
 clean:
@@ -48,9 +48,9 @@ lint:
 .PHONY: update
 update:
 	npm run check-updates
-	npm update
+	npm update --lockfile-version 2
 	npm outdated || true
-	npm install --package-lock-only
+	npm install --package-lock-only --lockfile-version 2
 
 .PHONY: check-git
 check-git:
